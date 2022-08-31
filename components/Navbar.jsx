@@ -42,7 +42,6 @@ export default function Navbar() {
       // cleanup function
       return () => {
         window.removeEventListener("scroll", controlNavbar);
-        console.log(showNavbar);
       };
     }
   }, [lastScrollY]);
