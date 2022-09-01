@@ -13,7 +13,7 @@ const BackgroundImage = ({ src, alt }) => {
           layout="fill"
           objectFit="cover"
           quality={100}
-          placeholder={"blur"}
+          placeholder="blur"
         />
       </div>
     </>
