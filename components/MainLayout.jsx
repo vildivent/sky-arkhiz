@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
-
+import Head from "next/head";
 import Navbar from "./Navbar";
-import BackgroundImage from "./BackgroundImage";
-import { navLinks } from "../constasnts";
-import bg from "../public/assets/bg.png";
+import Footer from "./Footer";
+import { _title, _keywords, _description } from "../constasnts";
 
-export function MainLayout({ children }) {
-  const router = useRouter();
+export function MainLayout({ children, title, keywords, description }) {
+  // const router = useRouter();
 
   // const FindTitle = (navLinks) =>
   //   navLinks.find(
@@ -16,9 +15,16 @@ export function MainLayout({ children }) {
 
   return (
     <>
+      <Head>
+        <title>{title || _title} | Ночные экскурсии Архыз</title>
+        <meta name="keywords" content={keywords || _keywords} />
+        <meta name="description" content={description || _description} />
+        <link rel="icon" href="/logo.svg" />
+      </Head>
       <Navbar />
-      <BackgroundImage src={bg} alt="background" />
-      <div className="mt-16">{children}</div>
+      {children}
+
+      <Footer />
     </>
   );
 }

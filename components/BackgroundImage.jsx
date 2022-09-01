@@ -1,11 +1,12 @@
 import Image from "next/image";
 
 const BackgroundImage = ({ src, alt }) => {
-  const style =
-    "absolute top-0 left-0 right-0 h-[100vh] w-[100vw] overflow-hidden z-[-1]";
+  const style = "";
   return (
     <>
-      <div className={`${style}`}>
+      <div
+        className={`absolute top-0 left-0 right-0 h-full w-full overflow-hidden`}
+      >
         <Image
           alt={alt}
           src={src}

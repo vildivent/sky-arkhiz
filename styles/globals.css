@@ -10,6 +10,8 @@ body {
   margin: 0;
   list-style: none;
   font-family: "Hind Guntur", sans-serif;
+  color: white;
+  background-color: #1e1e1e;
 }
 
 a {
