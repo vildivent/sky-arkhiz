@@ -1,18 +1,18 @@
 import { MainLayout } from "../components/MainLayout";
 import Hero from "../components/Hero";
-import bgImg from "../public/assets/bg.png";
+import { bg } from "../public/assets";
 
 export default function Home() {
   return (
     <MainLayout title={"Главная"}>
       <main>
-        <Hero bg={bgImg}>
-          <h1 className={`text-center text-[72px] font-h1 `}>
+        <Hero bg={bg}>
+          <h1 className={`text-center text-[72px] mt-20 font-h1 `}>
             Ночные экскурсии
           </h1>
         </Hero>
 
-        <div className="font-p text-[21px] text-justify mb-10 w-[30%] mx-auto">
+        <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mx-auto">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
           voluptate laboriosam saepe earum officiis fuga excepturi, rerum ea,
           consequuntur fugit? In nihil illo quisquam similique maiores dolor

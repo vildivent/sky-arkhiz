@@ -10,7 +10,9 @@ const Logo = ({ src, alt, heading, description, changedNavbar }) => {
       <Link href={"/"}>
         <a className={`${changedNavbar ? "flex justify-start" : undefined}`}>
           <Image src={src} alt={alt} width={40} height={40} />
-          <div className={`${changedNavbar ? "pl-5" : undefined}`}>
+          <div
+            className={`${changedNavbar ? "pl-5 text-cyan-500" : undefined}`}
+          >
             <h1 className={` font-logo-h1 text-[21px] leading-[100%]`}>
               {heading}
             </h1>

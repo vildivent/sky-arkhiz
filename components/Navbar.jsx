@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { navLinks } from "../constasnts";
 import ActiveLink from "./ActiveLink";
-import logo from "./../public/assets/telescope-logo1.svg";
-import logoCyan from "./../public/assets/telescope-logo1-cyan.svg";
+import {
+  menuCyanIcon,
+  menuWhiteIcon,
+  telescopeLogo,
+  telescopeLogoCyan,
+} from "../public/assets";
 import Logo from "./Logo";
 import NavbarDropdown from "./NavbarDropdown";
+import Sidebar from "./Sidebar";
 
 export default function Navbar() {
   const router = useRouter();
+
+  const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [changedNavbar, setChangedNavbar] = useState(false);
@@ -49,19 +57,24 @@ export default function Navbar() {
   return (
     <nav
       className={`${
-        !showNavbar ? "opacity-0 pointer-events-none" : undefined
-      } fixed z-10 top-0 left-0 right-0 flex flex-row justify-around text-center text-white bg-transparent p-5 transition-all duration-500  ${
-        changedNavbar ? "bg-[#1e1e1e] pb-0 text-cyan-500" : "bg-transperent"
-      } `}
+        !showNavbar
+          ? "opacity-0 pointer-events-none absolute top-[-80px] left-0 right-0 "
+          : undefined
+      } ${
+        changedNavbar
+          ? "bg-[#1e1e1e] lg:pb-0 text-cyan-500"
+          : "bg-transperent border-none"
+      }
+      fixed z-10 top-0 left-0 right-0 flex flex-row justify-around text-center lg:border-none border-b border-cyan-500 text-white p-5 transition-all duration-500`}
     >
       <Logo
-        src={changedNavbar ? logoCyan : logo}
+        src={changedNavbar ? telescopeLogoCyan : telescopeLogo}
         alt="Ночные экскурсии"
         changedNavbar={changedNavbar}
         heading={"Ночные экскурсии"}
         description={"звёзды - это красиво"}
       />
-      <ul className="flex flex-row justify-center text-center">
+      <ul className="lg:flex hidden flex-row justify-center text-center">
         {navLinks.map((link) => (
           <li key={link.id}>
             <ActiveLink href={link.id} changedNavbar={changedNavbar}>
@@ -70,6 +83,20 @@ export default function Navbar() {
           </li>
         ))}
       </ul>
+      <div className={`lg:hidden flex text-center`}>
+        <Image
+          src={changedNavbar ? menuCyanIcon : menuWhiteIcon}
+          alt="menu"
+          quality={100}
+          width={40}
+          height={40}
+          onClick={() => setSidebarIsOpened((value) => !value)}
+        />
+      </div>
+      <Sidebar
+        sidebarIsOpened={sidebarIsOpened}
+        setSidebarIsOpened={setSidebarIsOpened}
+      />
     </nav>
   );
 }
