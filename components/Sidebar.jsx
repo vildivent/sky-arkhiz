@@ -2,6 +2,7 @@ import { navLinks } from "../constasnts";
 import { closeCyanIcon } from "../public/assets";
 import Image from "next/image";
 import ActiveLink from "./ActiveLink";
+import SidebarSubLinks from "./SidebarLinks";
 
 const Sidebar = ({ sidebarIsOpened, setSidebarIsOpened }) => {
   return (
@@ -9,8 +10,8 @@ const Sidebar = ({ sidebarIsOpened, setSidebarIsOpened }) => {
       className={`${
         sidebarIsOpened
           ? "block"
-          : "opacity-0 pointer-events-none absolute top-[-200px]"
-      }  max-w-[475px] h-auto absolute top-0 right-0 bg-[#1e1e1e] border-b border-l border-cyan-500 transition-all duration-500 p-20 pt-28 z-20`}
+          : "opacity-0 pointer-events-none translate-x-[100px]"
+      }  max-w-[475px] h-auto fixed top-0 bottom-0 right-0 overflow-y-auto overflow-x-hidden bg-[#1e1e1e] border-b border-l border-cyan-500 transition-all duration-500 px-20 pt-28 pb-10 z-20`}
     >
       <div className="absolute top-10 right-10 cursor-pointer mb-5 ml-auto">
         <Image
@@ -21,14 +22,10 @@ const Sidebar = ({ sidebarIsOpened, setSidebarIsOpened }) => {
           onClick={() => setSidebarIsOpened(() => false)}
         />
       </div>
-      <ul className="flex flex-col justify-center">
-        {navLinks.map((link) => (
-          <li key={link.id} className="mb-5">
-            <ActiveLink href={link.id} changedNavbar={true} sidebar={true}>
-              {link.title}
-            </ActiveLink>
-          </li>
-        ))}
+      <ul className="flex flex-col justify-center ">
+        {navLinks.map((link) => {
+          return <SidebarSubLinks key={link.id} link={link} />;
+        })}
       </ul>
     </div>
   );

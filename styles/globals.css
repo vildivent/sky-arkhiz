@@ -23,6 +23,49 @@ a {
   box-sizing: border-box;
 }
 
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #181818;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444444;
+  border-radius: 10px;
+}
+/*  */
+
+/* popups */
+.popup-content {
+  margin: auto;
+  background: #1e1e1e;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: #0891b2;
+  width: 50%;
+  padding: 5px;
+}
+
+.popup-arrow {
+  color: #1e1e1e;
+}
+
+[role="tooltip"].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-popup="tooltip"].popup-overlay {
+  background: transparent;
+}
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

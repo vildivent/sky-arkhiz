@@ -1,8 +1,9 @@
-import { useRouter } from "next/router";
+import { useState } from "react";
 import Head from "next/head";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { _title, _keywords, _description } from "../constasnts";
+import Sidebar from "./Sidebar";
 
 export function MainLayout({ children, title, keywords, description }) {
   // const router = useRouter();
@@ -13,6 +14,8 @@ export function MainLayout({ children, title, keywords, description }) {
   //   );
   // const title = FindTitle(navLinks).title;
 
+  const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
+
   return (
     <>
       <Head>
@@ -21,7 +24,11 @@ export function MainLayout({ children, title, keywords, description }) {
         <meta name="description" content={description || _description} />
         <link rel="icon" href="/logo.svg" />
       </Head>
-      <Navbar />
+      <Navbar setSidebarIsOpened={setSidebarIsOpened} />
+      <Sidebar
+        sidebarIsOpened={sidebarIsOpened}
+        setSidebarIsOpened={setSidebarIsOpened}
+      />
       {children}
 
       <Footer />

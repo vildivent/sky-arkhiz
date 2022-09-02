@@ -1,18 +1,16 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import NavbarDropdown from "./NavbarDropdown";
 
 export default function ActiveLink({ children, href, changedNavbar, sidebar }) {
   const router = useRouter();
 
   return (
-    <Link href={href}>
+    <Link href={href === "/" ? "/" : `/${href}`} prefetch={false}>
       <a>
-        {/* <NavbarDropdown> */}
         <div
           className={` ${
             sidebar
-              ? "text-start hover:text-cyan-500"
+              ? "text-start hover:text-white"
               : "pb-5 px-5 text-center hover:border-b-2"
           } ${
             changedNavbar
@@ -28,7 +26,6 @@ export default function ActiveLink({ children, href, changedNavbar, sidebar }) {
         >
           {children}
         </div>
-        {/* </NavbarDropdown> */}
       </a>
     </Link>
   );

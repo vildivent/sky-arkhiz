@@ -1,11 +1,11 @@
-import { MainLayout } from "../components/MainLayout";
+import { MainLayout } from "../../components/MainLayout";
 
-export default function Contacts() {
+export default function Planetarium() {
   return (
-    <MainLayout title={"Контакты"}>
+    <MainLayout title={"Планетарий"}>
       <main>
         <h1 className={`text-center py-[125px] text-[72px] font-h1 `}>
-          Контакты
+          Планетарий
         </h1>
         <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mt-5 mx-auto">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint

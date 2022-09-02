@@ -10,13 +10,9 @@ import {
   telescopeLogoCyan,
 } from "../public/assets";
 import Logo from "./Logo";
-import NavbarDropdown from "./NavbarDropdown";
-import Sidebar from "./Sidebar";
 
-export default function Navbar() {
+export default function Navbar({ setSidebarIsOpened }) {
   const router = useRouter();
-
-  const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [changedNavbar, setChangedNavbar] = useState(false);
@@ -64,8 +60,7 @@ export default function Navbar() {
         changedNavbar
           ? "bg-[#1e1e1e] lg:pb-0 text-cyan-500"
           : "bg-transperent border-none"
-      }
-      fixed z-10 top-0 left-0 right-0 flex flex-row justify-around text-center lg:border-none border-b border-cyan-500 text-white p-5 transition-all duration-500`}
+      } fixed z-10 top-0 left-0 right-0 flex flex-row justify-around text-center lg:border-none border-b border-cyan-500 text-white p-5 transition-all duration-500`}
     >
       <Logo
         src={changedNavbar ? telescopeLogoCyan : telescopeLogo}
@@ -76,15 +71,33 @@ export default function Navbar() {
         verticalLogo={false}
       />
       <ul className="lg:flex hidden flex-row justify-center text-center">
-        {navLinks.map((link) => (
-          <li key={link.id}>
-            <ActiveLink href={link.id} changedNavbar={changedNavbar}>
-              {link.title}
-            </ActiveLink>
-          </li>
-        ))}
+        {navLinks.map((link) => {
+          if (link.mainNavbar) {
+            if (link.subLinks) {
+              return (
+                <li key={link.id}>
+                  <ActiveLink
+                    href={link.id}
+                    changedNavbar={changedNavbar}
+                    link={link}
+                  >
+                    {link.title}
+                  </ActiveLink>
+                </li>
+              );
+            } else {
+              return (
+                <li key={link.id}>
+                  <ActiveLink href={link.id} changedNavbar={changedNavbar}>
+                    {link.title}
+                  </ActiveLink>
+                </li>
+              );
+            }
+          }
+        })}
       </ul>
-      <div className={`lg:hidden flex text-center`}>
+      <div className={`cursor-pointer`}>
         <Image
           src={changedNavbar ? menuCyanIcon : menuWhiteIcon}
           alt="menu"
@@ -94,10 +107,6 @@ export default function Navbar() {
           onClick={() => setSidebarIsOpened((value) => !value)}
         />
       </div>
-      <Sidebar
-        sidebarIsOpened={sidebarIsOpened}
-        setSidebarIsOpened={setSidebarIsOpened}
-      />
     </nav>
   );
 }
