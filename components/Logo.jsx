@@ -1,17 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const Logo = ({ src, alt, heading, description, changedNavbar }) => {
+const Logo = ({
+  src,
+  alt,
+  heading,
+  description,
+  changedNavbar,
+  verticalLogo,
+}) => {
   const logoStyleH1 = "";
   const logoStyleP = "";
 
   return (
-    <div className={`text-center whitespace-nowrap`}>
-      <Link href={"/"}>
-        <a className={`${changedNavbar ? "flex justify-start" : undefined}`}>
+    <Link href={"/"}>
+      <div className={`text-center whitespace-nowrap cursor-pointer`}>
+        <a className={`${!verticalLogo ? "flex justify-start" : ""}`}>
           <Image src={src} alt={alt} width={40} height={40} />
           <div
-            className={`${changedNavbar ? "pl-5 text-cyan-500" : undefined}`}
+            className={`${!verticalLogo ? "pl-5" : ""} ${
+              changedNavbar ? " text-cyan-500" : undefined
+            }`}
           >
             <h1 className={` font-logo-h1 text-[21px] leading-[100%]`}>
               {heading}
@@ -21,8 +30,8 @@ const Logo = ({ src, alt, heading, description, changedNavbar }) => {
             </p>
           </div>
         </a>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

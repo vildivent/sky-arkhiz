@@ -73,6 +73,7 @@ export default function Navbar() {
         changedNavbar={changedNavbar}
         heading={"Ночные экскурсии"}
         description={"звёзды - это красиво"}
+        verticalLogo={false}
       />
       <ul className="lg:flex hidden flex-row justify-center text-center">
         {navLinks.map((link) => (

@@ -27,15 +27,18 @@ const Footer = () => {
 
   // console.log(fixed);
   return (
-    <footer className="border-t border-white w-full text-left mx-auto">
+    <footer className="border-t border-white w-full text-left mx-auto px-10">
       <div className="grid sm:grid-flow-col grid-flow-row gap-5 sm:gap-10 text-center sm:py-[80px] py-8">
-        <Logo
-          src={logo}
-          alt="Ночные экскурсии"
-          changedNavbar={false}
-          heading={"Ночные экскурсии"}
-          description={"звёзды - это красиво"}
-        />
+        <div>
+          <Logo
+            src={logo}
+            alt="Ночные экскурсии"
+            changedNavbar={false}
+            verticalLogo={true}
+            heading={"Ночные экскурсии"}
+            description={"звёзды - это красиво"}
+          />
+        </div>
         <div className="">
           <h1 className={`${style.h2} text-[21px] mb-3`}>Контакты</h1>
           <p

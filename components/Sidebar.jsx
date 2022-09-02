@@ -9,7 +9,7 @@ const Sidebar = ({ sidebarIsOpened, setSidebarIsOpened }) => {
       className={`${
         sidebarIsOpened
           ? "block"
-          : "opacity-0 pointer-events-none absolute right-[-400px]"
+          : "opacity-0 pointer-events-none absolute top-[-200px]"
       }  max-w-[475px] h-auto absolute top-0 right-0 bg-[#1e1e1e] border-b border-l border-cyan-500 transition-all duration-500 p-20 pt-28 z-20`}
     >
       <div className="absolute top-10 right-10 cursor-pointer mb-5 ml-auto">
