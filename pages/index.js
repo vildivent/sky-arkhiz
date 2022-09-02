@@ -1,6 +1,8 @@
 import { MainLayout } from "../components/MainLayout";
 import Hero from "../components/Hero";
 import { bg } from "../public/assets";
+import CTACard from "../components/CTACard";
+import { roadToStarsGalaxy } from "../public/assets";
 
 export default function Home() {
   return (
@@ -13,6 +15,29 @@ export default function Home() {
             Ночные экскурсии
           </h1>
         </Hero>
+        <div className={`flex justify-around flex-wrap`}>
+          <CTACard
+            heading={"Дорога к звёздам"}
+            description={"Ночная экскурсия по звёздному небу с телескопом"}
+            img={roadToStarsGalaxy}
+            alt={"Галактика"}
+            link={"/excursions"}
+          />
+          <CTACard
+            heading={"Дорога к звёздам"}
+            description={"Ночная экскурсия по звёздному небу с телескопом"}
+            img={roadToStarsGalaxy}
+            alt={"Галактика"}
+            link={"/excursions"}
+          />
+          <CTACard
+            heading={"Дорога к звёздам"}
+            description={"Ночная экскурсия по звёздному небу с телескопом"}
+            img={roadToStarsGalaxy}
+            alt={"Галактика"}
+            link={"/excursions"}
+          />
+        </div>
 
         <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mt-5 mx-auto">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
@@ -26,21 +51,6 @@ export default function Home() {
           labore! Molestias, consectetur qui. Veritatis, blanditiis. Culpa et
           iusto ex quod placeat quae libero? Quos? Iure suscipit, tenetur harum
           itaque ullam praesentium! Eligendi repudiandae accusantium asperiores
-          eius eos nisi tenetur debitis aliquam ut possimus recusandae, quidem
-          placeat cumque, veniam tempora velit nemo, sit alias odio. Amet et rem
-          officiis quasi modi id culpa dolorum ipsa, illum magni? Expedita quos
-          commodi aut, neque cupiditate esse nobis pariatur nemo similique modi
-          fugit atque doloremque minus, cum accusamus? Ab esse corporis dicta
-          suscipit eligendi quisquam rem ipsum, labore sequi distinctio iste
-          incidunt magni nulla maxime expedita alias et eum laudantium ducimus
-          fugiat obcaecati officiis quibusdam, laborum quasi. Nihil. Facere
-          labore omnis ea hic assumenda est saepe autem, earum repellendus
-          inventore ut porro sapiente, in odit quos officiis doloribus atque
-          deserunt rerum deleniti ab minima. Adipisci maiores distinctio illum.
-          Voluptate vero esse, nemo corrupti excepturi modi nihil consequatur
-          quam magnam, at a blanditiis obcaecati debitis facere eius dolorum
-          accusantium libero atque dignissimos laboriosam natus praesentium.
-          Laudantium deserunt voluptate explicabo.
         </div>
       </main>
     </MainLayout>

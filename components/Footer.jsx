@@ -44,8 +44,8 @@ const Footer = () => {
           <p
             className={`${style.p} w-full grid flex-col sm:gap-4 gap-1 opacity-80`}
           >
-            <span>+7 (812) 123-45-67</span>
-            <span>+7 (911) 123-45-67</span>
+            <span>+7 (928) 384-30-40</span>
+            <span>+7 (988) 611-54-40</span>
           </p>
         </div>
         <div className="">

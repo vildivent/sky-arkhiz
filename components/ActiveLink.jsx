@@ -7,7 +7,7 @@ export default function ActiveLink({ children, href, changedNavbar, sidebar }) {
   return (
     <Link href={href === "/" ? "/" : `/${href}`} prefetch={false}>
       <a>
-        <div
+        <span
           className={` ${
             sidebar
               ? "text-start hover:text-white"
@@ -25,7 +25,7 @@ export default function ActiveLink({ children, href, changedNavbar, sidebar }) {
           }`}
         >
           {children}
-        </div>
+        </span>
       </a>
     </Link>
   );
