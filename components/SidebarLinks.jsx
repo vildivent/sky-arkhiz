@@ -16,13 +16,13 @@ const SidebarSubLinks = ({ link }) => {
       </li>
       {link.subLinks ? (
         link.subLinks.map((subLink) => (
-          <li key={subLink.id} className="mb-5 pl-5">
+          <li key={subLink.id} className="list mb-5 pl-5">
             <ActiveLink
               href={`${link.id}/${subLink.id}`}
               changedNavbar={true}
               sidebar={true}
             >
-              {subLink.title}
+              {`- ${subLink.title}`}
             </ActiveLink>
           </li>
         ))
