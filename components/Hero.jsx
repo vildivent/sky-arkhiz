@@ -1,12 +1,10 @@
 import React from "react";
 import BackgroundImage from "./BackgroundImage";
 
-const Hero = ({ children, bg, height, opacity }) => {
+const Hero = ({ children, bg }) => {
   return (
-    <div className={`w-full h-[${height}] relative`}>
-      <div className={` opacity-${opacity}`}>
-        <BackgroundImage src={bg} alt="background" />
-      </div>
+    <div className={`w-full h-[100vh] relative`}>
+      <BackgroundImage src={bg} alt="background" />
 
       <div className={`pt-[125px] relative z-[1] bg-transparent`}>
         {children}

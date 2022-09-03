@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Hero from "../components/Hero";
+import BgCover from "../components/BgCover";
 import { MainLayout } from "../components/MainLayout";
 import { roadToStarsGalaxy, roadToStarsTelescope } from "../public/assets";
 import { bgStars4k } from "../public/assets";
@@ -7,7 +7,7 @@ import { bgStars4k } from "../public/assets";
 export default function Excursions() {
   return (
     <MainLayout title={"Экскурсии"}>
-      <Hero bg={bgStars4k} opacity={20} height="100%">
+      <BgCover bg={bgStars4k} height="100%">
         <main className={`lg:w-[80%] w-[90%] mx-auto mt-[6rem]`}>
           <h1
             className={`text-center font-h1 sm:text-[72px] text-[45px] sm:mt-[6rem] pt-[2rem]`}
@@ -113,7 +113,7 @@ export default function Excursions() {
             </p>
           </div>
         </main>
-      </Hero>
+      </BgCover>
     </MainLayout>
   );
 }
