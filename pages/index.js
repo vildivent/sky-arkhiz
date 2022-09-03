@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <MainLayout title={"Главная"}>
       <main>
-        <Hero bg={bg}>
+        <Hero bg={bg} opacity={100} height="100vh">
           <h1
             className={`text-center sm:text-[72px] text-[52px] mt-20 font-h1 `}
           >

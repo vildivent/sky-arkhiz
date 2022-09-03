@@ -1,4 +1,5 @@
 import bg from "./bg.png";
+import bgStars4k from "./bg-stars-4k.png";
 import closeWhiteIcon from "./close-white.svg";
 import closeCyanIcon from "./close-cyan500.svg";
 import menuWhiteIcon from "./menu-white.svg";
@@ -11,6 +12,7 @@ import roadToStarsTelescope from "./road-to-stars-telescope.png";
 
 export {
   bg,
+  bgStars4k,
   closeWhiteIcon,
   closeCyanIcon,
   menuWhiteIcon,

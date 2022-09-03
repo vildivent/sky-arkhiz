@@ -1,31 +1,8 @@
-import { useState, useEffect } from "react";
 import logo from "../public/assets/telescope-logo1.svg";
 import { style } from "../styles/style";
 import Logo from "./Logo";
 
 const Footer = () => {
-  // const [fixed, setFixed] = useState(true);
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     window.addEventListener("scroll", () =>
-  //       document.body.scrollHeight - document.scrollTop ===
-  //       document.body.clientHeight
-  //         ? setFixed(true)
-  //         : setFixed(false)
-  //     );
-
-  //     return () => {
-  //       window.removeEventListener("scroll", () =>
-  //         document.body.scrollHeight - document.scrollTop ===
-  //         document.body.clientHeight
-  //           ? setFixed(true)
-  //           : setFixed(false)
-  //       );
-  //     };
-  //   }
-  // }, []);
-
-  // console.log(fixed);
   return (
     <footer className="border-t border-white w-full text-left mx-auto px-10">
       <div className="grid sm:grid-flow-col grid-flow-row gap-5 sm:gap-10 text-center sm:py-[80px] py-8">

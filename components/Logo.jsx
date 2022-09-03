@@ -9,13 +9,14 @@ const Logo = ({
   changedNavbar,
   verticalLogo,
 }) => {
-  const logoStyleH1 = "";
-  const logoStyleP = "";
-
   return (
     <Link href={"/"}>
-      <div className={`text-center whitespace-nowrap cursor-pointer`}>
-        <a className={`${!verticalLogo ? "flex justify-start" : ""}`}>
+      <a>
+        <div
+          className={`${
+            !verticalLogo ? "flex justify-start" : ""
+          } text-center whitespace-nowrap cursor-pointer`}
+        >
           <Image src={src} alt={alt} width={40} height={40} />
           <div
             className={`${!verticalLogo ? "pl-5" : ""} ${
@@ -29,8 +30,8 @@ const Logo = ({
               {description}
             </p>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
     </Link>
   );
 };

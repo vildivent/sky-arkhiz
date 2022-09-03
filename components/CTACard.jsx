@@ -12,11 +12,13 @@ const CTACard = ({ heading, description, img, alt, link, opacity }) => {
           <h1 className={`text-[27px]`}>{heading}</h1>
           <span className={`text-[20px]`}>{description}</span>
           <Link href={link || "/"}>
-            <button
-              className={`hover:text-cyan-500 hover:top-[2px] hover:relative border border-cyan-500 rounded-full py-3`}
-            >
-              <a>Подробнее</a>
-            </button>
+            <a>
+              <button
+                className={`hover:text-cyan-500 hover:top-[2px] hover:relative border border-cyan-500 rounded-full py-3 px-10`}
+              >
+                Подробнее
+              </button>
+            </a>
           </Link>
         </div>
 
