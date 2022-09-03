@@ -2,7 +2,7 @@ import { MainLayout } from "../components/MainLayout";
 import Hero from "../components/Hero";
 import { bg } from "../public/assets";
 import CTACard from "../components/CTACard";
-import { roadToStarsGalaxy } from "../public/assets";
+import { roadToStarsGalaxyCut } from "../public/assets";
 
 export default function Home() {
   return (
@@ -19,23 +19,26 @@ export default function Home() {
           <CTACard
             heading={"Дорога к звёздам"}
             description={"Ночная экскурсия по звёздному небу с телескопом"}
-            img={roadToStarsGalaxy}
+            img={roadToStarsGalaxyCut}
             alt={"Галактика"}
             link={"/excursions"}
+            opacity={80}
           />
           <CTACard
             heading={"Дорога к звёздам"}
             description={"Ночная экскурсия по звёздному небу с телескопом"}
-            img={roadToStarsGalaxy}
+            img={roadToStarsGalaxyCut}
             alt={"Галактика"}
             link={"/excursions"}
+            opacity={80}
           />
           <CTACard
             heading={"Дорога к звёздам"}
             description={"Ночная экскурсия по звёздному небу с телескопом"}
-            img={roadToStarsGalaxy}
+            img={roadToStarsGalaxyCut}
             alt={"Галактика"}
             link={"/excursions"}
+            opacity={80}
           />
         </div>
 

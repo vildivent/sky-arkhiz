@@ -97,16 +97,19 @@ export default function Navbar({ setSidebarIsOpened }) {
           }
         })}
       </ul>
-      <div className={`cursor-pointer`}>
+
+      <button
+        className={`hover:bottom-[2px] hover:relative mb-auto`}
+        onClick={() => setSidebarIsOpened((prev) => !prev)}
+      >
         <Image
           src={changedNavbar ? menuCyanIcon : menuWhiteIcon}
           alt="menu"
           quality={100}
           width={40}
           height={40}
-          onClick={() => setSidebarIsOpened((value) => !value)}
         />
-      </div>
+      </button>
     </nav>
   );
 }

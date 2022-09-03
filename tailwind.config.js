@@ -6,7 +6,7 @@ module.exports = {
       fontFamily: {
         h1: ["Alegreya", "serif"],
         h2: ["Taviraj", "serif"],
-        p: ['"Hind Guntur"', "sans-serif"],
+        p: ["Mulish", "sans-serif"],
         "logo-h1": ['"Open Sans"', "sans-serif"],
         "logo-p": ["Lora", "serif"],
       },
