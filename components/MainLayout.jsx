@@ -30,7 +30,6 @@ export function MainLayout({ children, title, keywords, description }) {
         setSidebarIsOpened={setSidebarIsOpened}
       />
       {children}
-
       <Footer />
     </>
   );
