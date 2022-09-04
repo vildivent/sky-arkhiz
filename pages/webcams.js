@@ -18,6 +18,7 @@ export default function Webcams() {
     setimgSrc(loadingGif.src);
     setTimeout(() => setimgSrc(camLink.link), 1000);
   };
+  useEffect(() => clickHandler(camLinks[0]), []);
 
   return (
     <MainLayout title={"Web камеры"}>
