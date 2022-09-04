@@ -13,6 +13,21 @@ export const navLinks = [
     mainNavbar: true,
   },
   {
+    id: "prices",
+    title: "Цены",
+    mainNavbar: true,
+  },
+  {
+    id: "how-to-get-there",
+    title: "Как добраться",
+    mainNavbar: true,
+  },
+  {
+    id: "news",
+    title: "Новости",
+    mainNavbar: true,
+  },
+  {
     id: "astronomy",
     title: "Астрономия",
     subTitle: "Блог: Статьи по астрономии",
@@ -29,36 +44,21 @@ export const navLinks = [
     ],
   },
   {
+    id: "photogallery",
+    title: "Фотогалерея",
+  },
+  {
+    id: "reviews",
+    title: "Отзывы",
+  },
+  {
     id: "webcams",
     title: "Web камеры",
     mainNavbar: true,
   },
   {
-    id: "prices",
-    title: "Цены",
-    mainNavbar: true,
-  },
-  {
-    id: "reviews",
-    title: "Отзывы",
-    mainNavbar: true,
-  },
-  {
-    id: "contacts",
-    title: "Контакты",
-    mainNavbar: true,
-  },
-  {
-    id: "how-to-get-there",
-    title: "Как добраться",
-  },
-  {
-    id: "news",
-    title: "Новости",
-  },
-  {
-    id: "photogallery",
-    title: "Фотогалерея",
+    id: "weather-in-Arkhyz",
+    title: "Погода в Архызе",
   },
   {
     id: "what-else-to-do-in-Arkhyz",
@@ -88,5 +88,46 @@ export const navLinks = [
         title: "Жилье",
       },
     ],
+  },
+  {
+    id: "contacts",
+    title: "Контакты",
+  },
+];
+export const camLinks = [
+  {
+    id: "newAllSky",
+    title: "AllSky",
+    link: "https://www.sao.ru/tb/webcam/mono_allsky.cgi",
+  },
+  {
+    id: "btaFirstCameraIndom",
+    title: "БТА Камера-1 (внутренняя)",
+    link: "http://www.sao.ru/tb/webcam/livecam.cgi?1",
+  },
+  {
+    id: "btaSecondCameraOutdoor",
+    title: "БТА Камера-2 (внешняя)",
+    link: "http://www.sao.ru/tb/webcam/livecam.cgi?2",
+  },
+  {
+    id: "zeiss1000FirstCameraIndom",
+    title: "Цейсс-1000 Камера-1 (внутренняя)",
+    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?0",
+  },
+  {
+    id: "zeiss1000SecondCameraToBTA",
+    title: "Цейсс-1000 Камера-2 (На БТА)",
+    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?1",
+  },
+  {
+    id: "zeiss1000ThirdCameraAllSky",
+    title: "Цейсс-1000 Камера-3 (AllSky)",
+    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?2",
+  },
+  {
+    id: "zeiss10005thCameraOutdoor",
+    title: "Цейсс-1000 Камера-4 (внешняя)",
+    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?5",
   },
 ];

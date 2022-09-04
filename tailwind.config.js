@@ -10,6 +10,9 @@ module.exports = {
         "logo-h1": ['"Open Sans"', "sans-serif"],
         "logo-p": ["Lora", "serif"],
       },
+      screens: {
+        lg: "1060px",
+      },
     },
   },
   plugins: [],

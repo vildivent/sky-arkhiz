@@ -8,9 +8,9 @@ export default function Excursions() {
   return (
     <MainLayout title={"Экскурсии"}>
       <BgCover bg={bgStars4k} height="100%">
-        <main className={`lg:w-[80%] w-[90%] mx-auto mt-[6rem]`}>
+        <main className={`lg:w-[80%] w-[90%] mx-auto mt-24`}>
           <h1
-            className={`text-center font-h1 sm:text-[72px] text-[45px] sm:mt-[6rem] pt-[2rem]`}
+            className={`text-center font-h1 sm:text-[72px] text-[45px] sm:mt-24 pt-8`}
           >
             Дорога к звёздам
           </h1>

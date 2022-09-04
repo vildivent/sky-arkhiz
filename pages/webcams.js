@@ -1,26 +1,49 @@
+import { useState, useEffect } from "react";
 import { MainLayout } from "../components/MainLayout";
+import { camLinks } from "../constasnts";
 
 export default function Webcams() {
+  const [activeLink, setActiveLink] = useState(camLinks[0]);
+  const [counter, setCounter] = useState(0);
+
+  // Timer
+  useEffect(() => {
+    const timer = setInterval(() => setCounter(counter + 1), 6000);
+    return () => clearInterval(timer);
+  }, [counter]);
+
   return (
     <MainLayout title={"Web камеры"}>
       <main>
-        <h1 className={`text-center py-[125px] text-[72px] font-h1 `}>
+        <h1
+          className={`text-center font-h1 sm:text-[72px] text-[45px] mt-24 pt-8`}
+        >
           Web камеры
         </h1>
-        <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mt-5 mx-auto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
-          voluptate laboriosam saepe earum officiis fuga excepturi, rerum ea,
-          consequuntur fugit? In nihil illo quisquam similique maiores dolor
-          beatae! Odit! Ad tempora impedit, modi quibusdam quis magnam! Nisi
-          beatae aliquam ad ipsa consectetur facilis similique doloremque magnam
-          aut sunt nihil veniam, iusto perferendis, rem sed maxime, odio non
-          ratione quaerat. Provident reprehenderit, veniam veritatis labore
-          natus officia? Eum inventore adipisci quas deleniti aut rerum saepe
-          labore! Molestias, consectetur qui. Veritatis, blanditiis. Culpa et
-          iusto ex quod placeat quae libero? Quos? Iure suscipit, tenetur harum
-          itaque ullam praesentium! Eligendi repudiandae accusantium asperiores
-          eius eos nisi tenetur debitis aliquam ut possimus recusandae, quidem
-          placeat cumque, veniam tempora velit nemo, sit alias odio. Amet et rem
+        <p className={`font-p text-[15px] leading-normal text-center`}>
+          Для обновления камеры переключите на другую и обратно
+        </p>
+        <div className={`flex justify-center flex-wrap`}>
+          <ul className={`flex flex-col justify-start text-start p-5`}>
+            {camLinks.map((camLink) => (
+              <li
+                key={camLink.id}
+                className={`${
+                  camLink.id === activeLink.id ? "text-white" : "text-cyan-500"
+                }  pb-5 cursor-pointer hover:bg-[#181818]`}
+                onClick={() => setActiveLink(camLink)}
+              >
+                {camLink.title}
+              </li>
+            ))}
+          </ul>
+          <img
+            src={activeLink.link}
+            alt={activeLink.title}
+            className={`p-5`}
+            width={704}
+            height={576}
+          />
         </div>
       </main>
     </MainLayout>
