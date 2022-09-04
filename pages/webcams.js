@@ -18,6 +18,8 @@ export default function Webcams() {
     setimgSrc(loadingGif.src);
     setTimeout(() => setimgSrc(camLink.link), 1000);
   };
+
+  //initial load
   useEffect(() => clickHandler(camLinks[0]), []);
 
   return (
@@ -28,7 +30,9 @@ export default function Webcams() {
         >
           Web камеры
         </h1>
-        <div className={`flex justify-start md:flex-row flex-col flex-wrap`}>
+        <div
+          className={`flex justify-start md:flex-row flex-col flex-wrap mb-5`}
+        >
           <div className={`flex justify-center`}>
             <ul
               className={`flex flex-col justify-start text-start md:pl-20 xl:pl-40 2xl:pl-60`}
@@ -49,11 +53,11 @@ export default function Webcams() {
             </ul>
           </div>
 
-          <div className={`flex justify-center border-cyan-500 sm:m-5 p-1`}>
+          <div className={``}>
             <img
               src={imgSrc}
               alt={activeLink.title}
-              className={`my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
+              className={`my-auto sm:ml-5 m-1 lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
             />
           </div>
         </div>

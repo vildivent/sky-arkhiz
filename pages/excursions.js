@@ -1,13 +1,17 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import BgCover from "../components/BgCover";
 import { MainLayout } from "../components/MainLayout";
 import { roadToStarsGalaxy, roadToStarsTelescope } from "../public/assets";
-import { bgStars4k } from "../public/assets";
+import { bgStars4k, mobileBg } from "../public/assets";
+import useBackground from "../hooks/useBackground";
 
 export default function Excursions() {
+  let [bg, fixed] = useBackground(bgStars4k);
+
   return (
     <MainLayout title={"Экскурсии"}>
-      <BgCover bg={bgStars4k} height="100%">
+      <BgCover bg={bg} fixed={fixed} height="100%">
         <main className={`lg:w-[80%] w-[90%] mx-auto mt-24`}>
           <h1
             className={`text-center font-h1 sm:text-[72px] text-[45px] sm:mt-24 pt-8`}
@@ -99,10 +103,12 @@ export default function Excursions() {
             <p>
               Для записи на экскурсию необходимо прислать сообщение в WhatsApp
               или Telegram на номер{" "}
-              <span className="font-bold text-cyan-600 text-[1.1rem] whitespace-nowrap">
-                {" "}
-                +7 (928) 384-30-40
-              </span>{" "}
+              <a href="tel:+79283843040" rel="nofollow">
+                <span className="font-bold hover:text-cyan-600 text-[1.1rem] whitespace-nowrap">
+                  {" "}
+                  +7 (928) 384-30-40
+                </span>{" "}
+              </a>
               в котором указать даты (числа и месяц) и количество человек.
             </p>
             <p>Трансфер к месту проведения вы осуществляете своими силами.</p>

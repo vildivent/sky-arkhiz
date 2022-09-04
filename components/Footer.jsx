@@ -21,17 +21,22 @@ const Footer = () => {
           <p
             className={`${style.p} w-full grid flex-col sm:gap-4 gap-1 opacity-80`}
           >
-            <span>+7 (928) 384-30-40</span>
-            <span>+7 (988) 611-54-40</span>
+            <a
+              href="tel:+79283843040"
+              rel="nofollow"
+              className={`hover:text-cyan-500`}
+            >
+              <span>+7 (928) 384-30-40</span>
+            </a>
           </p>
         </div>
-        <div className="">
+        {/* <div className="">
           <h1 className={`${style.h2} text-[21px] mb-3`}>Режим работы</h1>
           <p className={`${style.p} grid flex-col sm:gap-4 gap-1 opacity-80`}>
             <span>C 10:00 до 21:00 (Пн-Пт)</span>
             <span>С 11:00 до 20:00 (Сб-Вс)</span>
           </p>
-        </div>
+        </div> */}
       </div>
       <div className="border-t border-white opacity-50 text-center sm:py-[30px] py-3">
         <span className="">Copyright © 2022</span>

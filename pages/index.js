@@ -1,28 +1,31 @@
 import { MainLayout } from "../components/MainLayout";
 import Hero from "../components/Hero";
-import { bg } from "../public/assets";
+import { mainBg } from "../public/assets";
 import CTACard from "../components/CTACard";
-import { roadToStarsGalaxyCut } from "../public/assets";
+import { roadToStarsGalaxyCut, roadToStarsTelescope } from "../public/assets";
+import useBackground from "../hooks/useBackground";
+import BgCover from "../components/BgCover";
 
 export default function Home() {
   return (
     <MainLayout title={"Главная"}>
       <main>
-        <Hero bg={bg}>
+        <Hero bg={mainBg} height="100vh">
           <h1
             className={`text-center sm:text-[72px] text-[52px] mt-20 font-h1 `}
           >
             Ночные экскурсии
           </h1>
         </Hero>
+
         <div className={`flex justify-around flex-wrap`}>
           <CTACard
-            heading={"Дорога к звёздам"}
-            description={"Ночная экскурсия по звёздному небу с телескопом"}
-            img={roadToStarsGalaxyCut}
-            alt={"Галактика"}
-            link={"/excursions"}
-            opacity={80}
+            heading={"Что можно увидеть в телескоп"}
+            description={""}
+            img={roadToStarsTelescope}
+            alt={"Телескоп"}
+            link={"/astronomy/what-you-can-see-with-a-telescope"}
+            opacity={30}
           />
           <CTACard
             heading={"Дорога к звёздам"}
@@ -33,12 +36,12 @@ export default function Home() {
             opacity={80}
           />
           <CTACard
-            heading={"Дорога к звёздам"}
-            description={"Ночная экскурсия по звёздному небу с телескопом"}
-            img={roadToStarsGalaxyCut}
-            alt={"Галактика"}
-            link={"/excursions"}
-            opacity={80}
+            heading={"Телескопы"}
+            description={""}
+            img={roadToStarsTelescope}
+            alt={"Телескоп"}
+            link={"/astronomy/telescopes"}
+            opacity={30}
           />
         </div>
 
