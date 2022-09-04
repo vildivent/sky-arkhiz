@@ -52,7 +52,7 @@ export default function Webcams() {
             <img
               src={imgSrc}
               alt={activeLink.title}
-              className={`my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[370px] max-h-[370px]`}
+              className={`my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
             />
           </div>
         </div>
