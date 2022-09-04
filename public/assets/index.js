@@ -9,6 +9,7 @@ import telescopeLogoCyan from "./telescope-logo1-cyan.svg";
 import roadToStarsGalaxy from "./road-to-stars-galaxy.png";
 import roadToStarsGalaxyCut from "./road-to-stars-galaxy-cut.png";
 import roadToStarsTelescope from "./road-to-stars-telescope.png";
+import loadingGif from "./loading.gif";
 
 export {
   bg,
@@ -22,4 +23,5 @@ export {
   roadToStarsGalaxy,
   roadToStarsTelescope,
   roadToStarsGalaxyCut,
+  loadingGif,
 };

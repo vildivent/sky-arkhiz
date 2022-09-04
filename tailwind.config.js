@@ -11,7 +11,7 @@ module.exports = {
         "logo-p": ["Lora", "serif"],
       },
       screens: {
-        lg: "1060px",
+        lg: "1110px",
       },
     },
   },
