@@ -48,7 +48,7 @@ export default function Webcams() {
             </ul>
           </div>
 
-          <div className={`flex justify-center border-cyan-500 m-5 p-1`}>
+          <div className={`flex justify-center border-cyan-500 sm:m-5 p-1`}>
             <img
               src={imgSrc}
               alt={activeLink.title}
