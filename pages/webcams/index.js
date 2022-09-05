@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
-import { MainLayout } from "../components/MainLayout";
-import { camLinks } from "../constasnts";
-import { loadingGif } from "../public/assets";
+import { MainLayout } from "../../components/MainLayout";
+import { camLinks } from "../../constasnts";
+import { loadingGif } from "../../public/assets";
 
 export default function Webcams() {
   const [activeLink, setActiveLink] = useState(camLinks[0]);
   const [imgSrc, setimgSrc] = useState(activeLink.link);
+  const [count, setCount] = useState(0);
 
   //refresh timer
   useEffect(() => {
-    const timer = setInterval(() => clickHandler(activeLink), 60000);
+    const timer = setInterval(() => {
+      setCount((value) => value + 1);
+      if (activeLink.link === camLinks[0].link)
+        setimgSrc(activeLink.link + "?" + count);
+      else setimgSrc(activeLink.link + "&" + count);
+    }, 5000);
     return () => clearInterval(timer);
-  }, [activeLink]);
+  }, [activeLink, count]);
 
   const clickHandler = (camLink) => {
     setActiveLink(camLink);

@@ -103,31 +103,53 @@ export const camLinks = [
   {
     id: "btaFirstCameraIndom",
     title: "БТА Камера-1 (внутренняя)",
-    link: "http://www.sao.ru/tb/webcam/livecam.cgi?1",
+    link: "https://www.sao.ru/tb/webcam/livecam.cgi?1",
   },
   {
     id: "btaSecondCameraOutdoor",
     title: "БТА Камера-2 (внешняя)",
-    link: "http://www.sao.ru/tb/webcam/livecam.cgi?2",
+    link: "https://www.sao.ru/tb/webcam/livecam.cgi?2",
   },
   {
     id: "zeiss1000FirstCameraIndom",
     title: "Цейсс-1000 Камера-1 (внутренняя)",
-    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?0",
+    link: "https://www.sao.ru/zserv/webcam/livecam.cgi?0",
   },
   {
     id: "zeiss1000SecondCameraToBTA",
     title: "Цейсс-1000 Камера-2 (На БТА)",
-    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?1",
+    link: "https://www.sao.ru/zserv/webcam/livecam.cgi?1",
   },
   {
     id: "zeiss1000ThirdCameraAllSky",
     title: "Цейсс-1000 Камера-3 (AllSky)",
-    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?2",
+    link: "https://www.sao.ru/zserv/webcam/livecam.cgi?2",
   },
   {
     id: "zeiss10005thCameraOutdoor",
     title: "Цейсс-1000 Камера-4 (внешняя)",
-    link: "http://www.sao.ru/zserv/webcam/livecam.cgi?5",
+    link: "https://www.sao.ru/zserv/webcam/livecam.cgi?5",
+  },
+];
+export const staticCamLinks = [
+  {
+    id: "all-sky",
+    title: "AllSky",
+    link: "https://www.sao.ru/tb/webcam/mono_allsky.cgi",
+  },
+  {
+    id: "bta-indom",
+    title: "БТА",
+    link: "https://www.sao.ru/tb/webcam/webcam_sky_1.jpeg",
+  },
+  {
+    id: "zeiss-1000-indom",
+    title: "Цейсс-1000",
+    link: "https://www.sao.ru/zserv/webcam/webcam_0_maxi.jpeg",
+  },
+  {
+    id: "zeiss-1000-to-bta",
+    title: "Цейсс-1000 (На БТА)",
+    link: "https://www.sao.ru/zserv/webcam/webcam_1_maxi.jpeg",
   },
 ];
