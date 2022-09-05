@@ -30,13 +30,9 @@ export default function Webcams() {
         >
           Web камеры
         </h1>
-        <div
-          className={`flex justify-start md:flex-row flex-col flex-wrap mb-5`}
-        >
+        <div className={`flex justify-start md:flex-row flex-col mb-5`}>
           <div className={`flex justify-center`}>
-            <ul
-              className={`flex flex-col justify-start text-start md:pl-20 xl:pl-40 2xl:pl-60`}
-            >
+            <ul className={`flex flex-col justify-start text-start md:pl-20`}>
               {camLinks.map((camLink) => (
                 <li
                   key={camLink.id}
@@ -44,7 +40,7 @@ export default function Webcams() {
                     camLink.id === activeLink.id
                       ? "text-white"
                       : "text-cyan-500"
-                  }  pb-5 cursor-pointer hover:bg-[#181818]`}
+                  }  pb-5 cursor-pointer whitespace-nowrap hover:bg-[#181818]`}
                   onClick={() => clickHandler(camLink)}
                 >
                   {camLink.title}
@@ -53,11 +49,11 @@ export default function Webcams() {
             </ul>
           </div>
 
-          <div className={``}>
+          <div className={`w-full flex justify-center`}>
             <img
               src={imgSrc}
               alt={activeLink.title}
-              className={`my-auto sm:ml-5 m-1 lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
+              className={`my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
             />
           </div>
         </div>
