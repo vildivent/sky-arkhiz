@@ -60,7 +60,7 @@ export default function Navbar({ setSidebarIsOpened }) {
         changedNavbar
           ? "bg-[#1e1e1e] lg:pb-0 text-cyan-500"
           : "bg-transperent border-none"
-      } fixed z-10 top-0 left-0 right-0 flex flex-row justify-around text-center lg:border-none border-b border-cyan-500 text-white p-5 transition-all duration-500`}
+      } fixed z-10 top-0 left-0 right-0 flex flex-row justify-around text-center lg:border-none border-b border-cyan-500 text-white p-5 pb-0 transition-all duration-500`}
     >
       <Logo
         src={changedNavbar ? telescopeLogoCyan : telescopeLogo}
@@ -97,19 +97,20 @@ export default function Navbar({ setSidebarIsOpened }) {
           }
         })}
       </ul>
-
-      <button
-        className={`hover:bottom-[2px] hover:relative mb-auto`}
-        onClick={() => setSidebarIsOpened((prev) => !prev)}
-      >
-        <Image
-          src={changedNavbar ? menuCyanIcon : menuWhiteIcon}
-          alt="menu"
-          quality={100}
-          width={40}
-          height={40}
-        />
-      </button>
+      <div className={`flex flex-col justify-start`}>
+        <button
+          className={`hover:bottom-[2px] hover:relative mb-auto`}
+          onClick={() => setSidebarIsOpened((prev) => !prev)}
+        >
+          <Image
+            src={changedNavbar ? menuCyanIcon : menuWhiteIcon}
+            alt="menu"
+            quality={100}
+            width={40}
+            height={40}
+          />
+        </button>
+      </div>
     </nav>
   );
 }
