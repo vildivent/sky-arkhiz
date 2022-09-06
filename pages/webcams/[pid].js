@@ -47,7 +47,7 @@ const CameraPage = ({ staticCamLink }) => {
           onClick={() => Router.back()}
         />
         <h1
-          className={`flex flex-col justify-center text-center font-h1 text-5xl ml-10`}
+          className={`flex flex-col justify-center text-center font-h1 sm:text-[72px] text-[42px] sm:ml-10`}
         >
           {staticCamLink.title}
         </h1>

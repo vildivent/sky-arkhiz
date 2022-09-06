@@ -1,26 +1,46 @@
 import { MainLayout } from "../components/MainLayout";
+import {
+  YMaps,
+  Map,
+  Placemark,
+  ZoomControl,
+  GeolocationControl,
+} from "@pbe/react-yandex-maps";
+import "../styles/HowToGetThere.module.css";
 
 export default function HowToGetThere() {
   return (
     <MainLayout title={"Как добраться"}>
       <main>
-        <h1 className={`text-center py-[125px] text-[72px] font-h1 `}>
+        <h1 className={`text-center py-[125px] text-[72px] font-h1 heading`}>
           Как добраться
         </h1>
-        <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mt-5 mx-auto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
-          voluptate laboriosam saepe earum officiis fuga excepturi, rerum ea,
-          consequuntur fugit? In nihil illo quisquam similique maiores dolor
-          beatae! Odit! Ad tempora impedit, modi quibusdam quis magnam! Nisi
-          beatae aliquam ad ipsa consectetur facilis similique doloremque magnam
-          aut sunt nihil veniam, iusto perferendis, rem sed maxime, odio non
-          ratione quaerat. Provident reprehenderit, veniam veritatis labore
-          natus officia? Eum inventore adipisci quas deleniti aut rerum saepe
-          labore! Molestias, consectetur qui. Veritatis, blanditiis. Culpa et
-          iusto ex quod placeat quae libero? Quos? Iure suscipit, tenetur harum
-          itaque ullam praesentium! Eligendi repudiandae accusantium asperiores
-          eius eos nisi tenetur debitis aliquam ut possimus recusandae, quidem
-          placeat cumque, veniam tempora velit nemo, sit alias odio. Amet et rem
+
+        <div className={`flex justify-center sm:m-10 m-5`}>
+          <YMaps>
+            <Map
+              defaultState={{
+                center: [43.650004569239, 41.43560851623212],
+                zoom: 16,
+              }}
+              width={"100%"}
+              height={"30rem"}
+              modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
+            >
+              <Placemark
+                geometry={[43.650004569239, 41.43560851623212]}
+                properties={{
+                  iconContent: "",
+                  iconCaption: "Место сбора",
+                  hintContent: "",
+                  balloonContent: "Площадка проведения экскурсии",
+                  balloonContentHeader: "",
+                }}
+              />
+              <ZoomControl options={{ float: "left" }} />
+              <GeolocationControl options={{ float: "right" }} />
+            </Map>
+          </YMaps>
         </div>
       </main>
     </MainLayout>

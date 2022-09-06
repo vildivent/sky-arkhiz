@@ -41,10 +41,10 @@ export default function Webcams() {
 
         {/* switch menu */}
         <div
-          className={`font-h2 text-cyan-500 justify-center text-center flex mb-20`}
+          className={`font-h2 text-cyan-500 justify-center text-center flex sm:mb-20 mb-8`}
         >
           <button
-            className={`w-32  ${
+            className={`w-32 h-10 ${
               !liveTV ? "text-white bg-[#111111] " : ""
             }} hover:bg-[#181818] hover:text-white`}
             onClick={() => setLiveTV(false)}
@@ -53,7 +53,7 @@ export default function Webcams() {
           </button>
 
           <button
-            className={`w-32  ${
+            className={`w-32 h-10 ${
               liveTV ? "text-white bg-[#111111] " : ""
             }} hover:bg-[#181818] hover:text-white`}
             onClick={() => setLiveTV(true)}
