@@ -28,7 +28,7 @@ const CameraPage = ({ staticCamLink }) => {
     const timer = setInterval(() => {
       setCount((value) => value + 1);
       setLink(staticCamLink.link + "?" + count);
-    }, 60000);
+    }, 120000);
 
     return () => clearInterval(timer);
   }, [count, staticCamLink.link]);

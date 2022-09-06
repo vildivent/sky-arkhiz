@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { bgStars4k, mobileBg } from "../public/assets";
+import { mobileBg } from "../public/assets";
 
 export default function useBackground(altBg) {
   let bg = altBg;

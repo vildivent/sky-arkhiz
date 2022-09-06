@@ -17,7 +17,7 @@ export default function Webcams() {
       if (activeLink.link === camLinks[0].link)
         setimgSrc(activeLink.link + "?" + count);
       else setimgSrc(activeLink.link + "&" + count);
-    }, 60000);
+    }, 30000);
     return () => clearInterval(timer);
   }, [activeLink, count]);
 
