@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { MainLayout } from "../../components/MainLayout";
+import CamPageMenu from "../../components/CamPageMenu";
 import { camLinks } from "../../constasnts";
 import { loadingGif } from "../../public/assets";
 
@@ -7,6 +8,7 @@ export default function Webcams() {
   const [activeLink, setActiveLink] = useState(camLinks[0]);
   const [imgSrc, setimgSrc] = useState(activeLink.link);
   const [count, setCount] = useState(0);
+  const [liveTV, setLiveTV] = useState(false);
 
   //refresh timer
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function Webcams() {
       if (activeLink.link === camLinks[0].link)
         setimgSrc(activeLink.link + "?" + count);
       else setimgSrc(activeLink.link + "&" + count);
-    }, 5000);
+    }, 60000);
     return () => clearInterval(timer);
   }, [activeLink, count]);
 
@@ -36,30 +38,43 @@ export default function Webcams() {
         >
           Web камеры
         </h1>
-        <div className={`flex justify-start md:flex-row flex-col mb-5`}>
-          <div className={`flex justify-center`}>
-            <ul className={`flex flex-col justify-start text-start md:pl-20`}>
-              {camLinks.map((camLink) => (
-                <li
-                  key={camLink.id}
-                  className={`${
-                    camLink.id === activeLink.id
-                      ? "text-white"
-                      : "text-cyan-500"
-                  }  pb-5 cursor-pointer whitespace-nowrap hover:bg-[#181818]`}
-                  onClick={() => clickHandler(camLink)}
-                >
-                  {camLink.title}
-                </li>
-              ))}
-            </ul>
-          </div>
 
+        {/* switch menu */}
+        <div
+          className={`font-h2 text-cyan-500 justify-center text-center flex mb-20`}
+        >
+          <button
+            className={`w-32  ${
+              !liveTV ? "text-white bg-[#111111] " : ""
+            }} hover:bg-[#181818] hover:text-white`}
+            onClick={() => setLiveTV(false)}
+          >
+            Статичные
+          </button>
+
+          <button
+            className={`w-32  ${
+              liveTV ? "text-white bg-[#111111] " : ""
+            }} hover:bg-[#181818] hover:text-white`}
+            onClick={() => setLiveTV(true)}
+          >
+            Live
+          </button>
+        </div>
+
+        <div className={`flex justify-start md:flex-row flex-col mb-5`}>
+          <CamPageMenu
+            liveTV={liveTV}
+            activeLink={activeLink}
+            liveTVhandler={clickHandler}
+          />
           <div className={`w-full flex justify-center`}>
             <img
               src={imgSrc}
               alt={activeLink.title}
-              className={`my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
+              className={`${
+                liveTV ? "" : "hidden"
+              } my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
             />
           </div>
         </div>

@@ -139,17 +139,17 @@ export const staticCamLinks = [
   },
   {
     id: "bta-indom",
-    title: "БТА",
+    title: "БТА Камера-1 (внутренняя)",
     link: "https://www.sao.ru/tb/webcam/webcam_sky_1.jpeg",
   },
   {
     id: "zeiss-1000-indom",
-    title: "Цейсс-1000",
+    title: "Цейсс-1000 Камера-1 (внутренняя)",
     link: "https://www.sao.ru/zserv/webcam/webcam_0_maxi.jpeg",
   },
   {
     id: "zeiss-1000-to-bta",
-    title: "Цейсс-1000 (На БТА)",
+    title: "Цейсс-1000 Камера-2 (На БТА)",
     link: "https://www.sao.ru/zserv/webcam/webcam_1_maxi.jpeg",
   },
 ];
