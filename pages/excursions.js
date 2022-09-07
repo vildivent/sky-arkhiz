@@ -3,7 +3,7 @@ import Image from "next/image";
 import BgCover from "../components/BgCover";
 import { MainLayout } from "../components/MainLayout";
 import { roadToStarsGalaxy, roadToStarsTelescope } from "../public/assets";
-import { bgStars4k, mobileBg } from "../public/assets";
+import { bgStars4k } from "../public/assets";
 import useBackground from "../hooks/useBackground";
 
 export default function Excursions() {
@@ -12,9 +12,9 @@ export default function Excursions() {
   return (
     <MainLayout title={"Экскурсии"}>
       <BgCover bg={bg} fixed={fixed} height="100%">
-        <main className={`lg:w-[80%] w-[90%] mx-auto mt-24`}>
+        <main className={`lg:w-[80%] w-[90%] mx-auto`}>
           <h1
-            className={`text-center font-h1 sm:text-[72px] text-[45px] sm:mt-24 pt-8`}
+            className={`text-center font-h1 sm:text-[72px] text-[45px] sm:mt-24 sm:pt-8`}
           >
             Дорога к звёздам
           </h1>

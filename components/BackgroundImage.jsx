@@ -7,7 +7,9 @@ const BackgroundImage = ({ src, alt, fixed }) => {
       <div
         className={`${
           fixed ? "fixed" : "absolute"
-        } top-0 left-0 right-0 h-full w-full overflow-hidden`}
+        } top-0 left-0 right-0 h-full ${
+          fixed ? "w-[120%]" : "w-full"
+        } overflow-hidden`}
       >
         <Image
           alt={alt}
