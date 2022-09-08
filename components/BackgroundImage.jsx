@@ -6,15 +6,13 @@ const BackgroundImage = ({ src, alt, fixed }) => {
     <>
       <div
         className={`${
-          fixed ? "fixed" : "absolute"
-        } top-0 left-0 right-0 h-full ${
-          fixed ? "w-[120%]" : "w-full"
-        } overflow-hidden`}
+          fixed ? "fixed h-[120%]" : "absolute h-full"
+        } top-0 left-0 right-0 overflow-hidden`}
       >
         <Image
           alt={alt}
           src={src}
-          layout={fixed ? "responsive" : "fill"}
+          layout={"fill"}
           objectFit={fixed ? "" : "cover"}
           quality={100}
           placeholder="blur"

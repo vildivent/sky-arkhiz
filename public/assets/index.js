@@ -1,4 +1,5 @@
 import mainBg from "./bg.png";
+import btaBg1 from "./btaBg1.jpg";
 import bgStars4k from "./bg-stars-4k.png";
 import closeWhiteIcon from "./close-white.svg";
 import closeCyanIcon from "./close-cyan500.svg";
@@ -17,9 +18,11 @@ import iconTelegram from "./icon-telegram-app.svg";
 import iconWhatsapp from "./icon-whatsapp.svg";
 import iconVk from "./icon-vk-circled.svg";
 import iconInstagram from "./icon-instagram.svg";
+import iconPhone from "./icon-phone.svg";
 
 export {
   mainBg,
+  btaBg1,
   bgStars4k,
   closeWhiteIcon,
   closeCyanIcon,
@@ -38,4 +41,5 @@ export {
   iconWhatsapp,
   iconVk,
   iconInstagram,
+  iconPhone,
 };

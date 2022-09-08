@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { staticCamLinks } from "../../constasnts";
 import Image from "next/image";
 import Router from "next/router";
+
+import { staticCamLinks } from "../../constasnts";
 import { backArrowWhite, backArrowCyan500 } from "../../public/assets";
 
 export const getStaticPaths = async () => {
@@ -34,20 +35,20 @@ const CameraPage = ({ staticCamLink }) => {
   }, [count, staticCamLink.link]);
 
   return (
-    <div>
-      <div className={`flex justify-center my-10`}>
+    <main>
+      <div className={`flex justify-center my-3`}>
         <Image
           src={hovered ? backArrowWhite : backArrowCyan500}
           alt="Back"
           className={`cursor-pointer`}
-          width={60}
-          height={60}
+          width={50}
+          height={50}
           onPointerEnter={() => setHovered(true)}
           onPointerLeave={() => setHovered(false)}
           onClick={() => Router.back()}
         />
         <h1
-          className={`flex flex-col justify-center text-center font-h1 sm:text-[72px] text-[42px] sm:ml-10`}
+          className={`flex flex-col justify-center text-center font-h1 text-3xl md:text-5xl lg:text-7xl sm:ml-10 ml-3`}
         >
           {staticCamLink.title}
         </h1>
@@ -56,7 +57,7 @@ const CameraPage = ({ staticCamLink }) => {
       <div className={`flex justify-center`}>
         <img src={link} alt={`${staticCamLink.title} камера`} />
       </div>
-    </div>
+    </main>
   );
 };
 

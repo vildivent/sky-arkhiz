@@ -1,6 +1,6 @@
-import { MainLayout } from "../components/MainLayout";
+import { HomePageLayout } from "../layouts/HomePageLayout";
 import Hero from "../components/Hero";
-import { mainBg } from "../public/assets";
+import { mainBg, btaBg1 } from "../public/assets";
 import CTACard from "../components/CTACard";
 import { roadToStarsGalaxyCut, roadToStarsTelescope } from "../public/assets";
 import useBackground from "../hooks/useBackground";
@@ -8,13 +8,13 @@ import BgCover from "../components/BgCover";
 
 export default function Home() {
   return (
-    <MainLayout title={"Главная"}>
+    <HomePageLayout title={"Главная"}>
       <main>
-        <Hero bg={mainBg} height="100vh">
+        <Hero bg={btaBg1} height="100vh">
           <h1
-            className={`text-center sm:text-[72px] text-[52px] mt-20 font-h1 `}
+            className={`text-center sm:text-[62px] text-[42px] mt-20 font-h1 `}
           >
-            Ночные экскурсии
+            Экскурсии по ночному небу
           </h1>
         </Hero>
 
@@ -59,6 +59,6 @@ export default function Home() {
           itaque ullam praesentium! Eligendi repudiandae accusantium asperiores
         </div>
       </main>
-    </MainLayout>
+    </HomePageLayout>
   );
 }

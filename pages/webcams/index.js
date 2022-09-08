@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { MainLayout } from "../../components/MainLayout";
+
+import { MainLayout } from "../../layouts/MainLayout";
 import CamPageMenu from "../../components/CamPageMenu";
 import { camLinks } from "../../constasnts";
 import { loadingGif } from "../../public/assets";
+import SwitchButton from "../../components/switchButton";
 
 export default function Webcams() {
   const [activeLink, setActiveLink] = useState(camLinks[0]);
@@ -32,53 +34,40 @@ export default function Webcams() {
 
   return (
     <MainLayout title={"Web камеры"}>
-      <main>
-        <h1
-          className={`text-center font-h1 sm:text-[72px] text-[45px] mt-24 pt-8 pb-5`}
-        >
-          Web камеры
-        </h1>
+      {/* switch menu */}
+      <div
+        className={`font-h3 text-cyan-500 justify-center text-center flex md:my-10 my-5`}
+      >
+        <SwitchButton
+          title={"Статичные"}
+          state={liveTV}
+          setState={setLiveTV}
+          isLiveButton={false}
+        />
+        <SwitchButton
+          title={"Live"}
+          state={liveTV}
+          setState={setLiveTV}
+          isLiveButton={true}
+        />
+      </div>
 
-        {/* switch menu */}
-        <div
-          className={`font-h3 text-cyan-500 justify-center text-center flex sm:mb-20 mb-8`}
-        >
-          <button
-            className={`w-32 h-10 ${
-              !liveTV ? "text-white bg-[#111111] " : ""
-            }} hover:bg-[#181818] hover:text-white`}
-            onClick={() => setLiveTV(false)}
-          >
-            Статичные
-          </button>
-
-          <button
-            className={`w-32 h-10 ${
-              liveTV ? "text-white bg-[#111111] " : ""
-            }} hover:bg-[#181818] hover:text-white`}
-            onClick={() => setLiveTV(true)}
-          >
-            Live
-          </button>
-        </div>
-
-        <div className={`flex justify-start md:flex-row flex-col mb-5`}>
-          <CamPageMenu
-            liveTV={liveTV}
-            activeLink={activeLink}
-            liveTVhandler={clickHandler}
+      <div className={`flex justify-start md:flex-row flex-col mb-5`}>
+        <CamPageMenu
+          liveTV={liveTV}
+          activeLink={activeLink}
+          liveTVhandler={clickHandler}
+        />
+        <div className={`w-full flex justify-center`}>
+          <img
+            src={imgSrc}
+            alt={activeLink.title}
+            className={`${
+              liveTV ? "" : "hidden"
+            } my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
           />
-          <div className={`w-full flex justify-center`}>
-            <img
-              src={imgSrc}
-              alt={activeLink.title}
-              className={`${
-                liveTV ? "" : "hidden"
-              } my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
-            />
-          </div>
         </div>
-      </main>
+      </div>
     </MainLayout>
   );
 }

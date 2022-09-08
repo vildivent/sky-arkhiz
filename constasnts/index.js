@@ -3,6 +3,7 @@ import {
   iconTelegram,
   iconVk,
   iconWhatsapp,
+  iconPhone,
 } from "../public/assets";
 
 export const _keywords = "Архыз,Ночные экскурсии,звёзды";
@@ -58,6 +59,24 @@ export const navLinks = [
     id: "webcams",
     title: "Web камеры",
     mainNavbar: true,
+    subLinks: [
+      {
+        id: "all-sky",
+        title: "Небо над обсерваторией",
+      },
+      {
+        id: "bta-indom",
+        title: "БТА внутри",
+      },
+      {
+        id: "zeiss-1000-to-bta",
+        title: "БТА снаружи",
+      },
+      {
+        id: "zeiss-1000-indom",
+        title: "Цейсс-1000 внутри",
+      },
+    ],
   },
   {
     id: "weather-in-observatory",
@@ -97,6 +116,12 @@ export const navLinks = [
     title: "Контакты",
   },
 ];
+export const callLink = {
+  id: "call",
+  title: "Звонок",
+  link: "tel:+79283843040",
+  logo: iconPhone,
+};
 export const socialLinks = [
   {
     id: "whatsApp",

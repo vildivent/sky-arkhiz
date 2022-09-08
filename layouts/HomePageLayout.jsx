@@ -1,19 +1,12 @@
 import { useState } from "react";
 import Head from "next/head";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+
 import { _title, _keywords, _description } from "../constasnts";
-import Sidebar from "./Sidebar";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 
-export function MainLayout({ children, title, keywords, description }) {
-  // const router = useRouter();
-
-  // const FindTitle = (navLinks) =>
-  //   navLinks.find(
-  //     (link) => (link.id === "/" ? "/" : `/${link.id}`) === router.asPath
-  //   );
-  // const title = FindTitle(navLinks).title;
-
+export function HomePageLayout({ children, title, keywords, description }) {
   const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
 
   return (

@@ -2,12 +2,12 @@ import Image from "next/image";
 import { telescopeLogo } from "../public/assets";
 import { style } from "../styles/style";
 import Logo from "./Logo";
-import { socialLinks } from "../constasnts";
+import { socialLinks, callLink } from "../constasnts";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-white w-full text-left mx-auto px-10">
-      <div className="grid sm:grid-flow-col grid-flow-row gap-5 sm:gap-10 text-center sm:py-[80px] py-8">
+    <footer className="border-t border-white w-full text-left mx-auto px-10 ">
+      <div className="grid sm:grid-flow-col grid-flow-row gap-5 sm:gap-10 text-center py-8">
         <div>
           <Logo
             src={telescopeLogo}
@@ -19,19 +19,25 @@ const Footer = () => {
           />
         </div>
         <div className="">
-          <h1 className={`${style.h2} text-[21px] mb-3`}>Контакты</h1>
-          <p
-            className={`${style.p} w-full grid flex-col sm:gap-4 gap-1 opacity-80`}
+          <h1 className={`${style.h2} text-[21px]`}>Контакты</h1>
+          <div
+            className={`${style.p} w-full flex justify-center text-center my-3 sm:my-10 opacity-80`}
           >
             <a
-              href="tel:+79283843040"
+              href={callLink.link}
               rel="nofollow"
               className={`hover:text-cyan-500`}
             >
-              <span>+7 (928) 384-30-40</span>
+              <Image
+                src={callLink.logo}
+                alt={callLink.title}
+                width={40}
+                height={40}
+              />
+              <div className={` `}>+7 (928) 384-30-40</div>
             </a>
-          </p>
-          <div className={`flex justify-around`}>
+          </div>
+          <div className={`flex justify-around max-w-[280px] mx-auto`}>
             {socialLinks.map((socialLink) => (
               <a
                 key={socialLink.id}
