@@ -38,18 +38,22 @@ export default function Webcams() {
       <div
         className={`font-h3 text-cyan-500 justify-center text-center flex md:my-10 my-5`}
       >
-        <SwitchButton
-          title={"Статичные"}
-          state={liveTV}
-          setState={setLiveTV}
-          isLiveButton={false}
-        />
-        <SwitchButton
-          title={"Live"}
-          state={liveTV}
-          setState={setLiveTV}
-          isLiveButton={true}
-        />
+        <button
+          className={`w-32 h-10 ${
+            liveTV === false ? "text-white bg-[#111111] bg-opacity-70" : ""
+          } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
+          onClick={() => (false ? setLiveTV(true) : setLiveTV(false))}
+        >
+          Статичные
+        </button>
+        <button
+          className={`w-32 h-10 ${
+            liveTV === true ? "text-white bg-[#111111] bg-opacity-70" : ""
+          } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
+          onClick={() => (true ? setLiveTV(true) : setLiveTV(false))}
+        >
+          Live
+        </button>
       </div>
 
       <div className={`flex justify-start md:flex-row flex-col mb-5`}>
