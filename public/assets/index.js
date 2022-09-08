@@ -10,7 +10,7 @@ import telescopeLogoCyan from "./telescope-logo1-cyan.svg";
 import roadToStarsGalaxy from "./road-to-stars-galaxy.png";
 import roadToStarsGalaxyCut from "./road-to-stars-galaxy-cut.png";
 import roadToStarsTelescope from "./road-to-stars-telescope.png";
-import loadingGif from "./loading.gif";
+import loadingGif from "./loading.svg";
 import mobileBg from "./mobile-bg.jpg";
 import backArrowCyan500 from "./back-arrow-cyan500.svg";
 import backArrowWhite from "./back-arrow-white.svg";

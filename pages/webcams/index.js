@@ -25,7 +25,7 @@ export default function Webcams() {
   const clickHandler = (camLink) => {
     setActiveLink(camLink);
     setimgSrc(loadingGif.src);
-    setTimeout(() => setimgSrc(camLink.link), 500);
+    setTimeout(() => setimgSrc(camLink.link), 100);
   };
 
   //initial load
