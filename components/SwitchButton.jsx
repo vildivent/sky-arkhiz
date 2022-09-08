@@ -1,4 +1,4 @@
-const SwitchButton = ({ title, state, setState, isLiveButton }) => {
+export const SwitchButton = ({ title, state, setState, isLiveButton }) => {
   return (
     <button
       className={`w-32 h-10 ${
@@ -10,5 +10,3 @@ const SwitchButton = ({ title, state, setState, isLiveButton }) => {
     </button>
   );
 };
-
-export default SwitchButton;

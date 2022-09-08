@@ -4,7 +4,7 @@ import { MainLayout } from "../../layouts/MainLayout";
 import CamPageMenu from "../../components/CamPageMenu";
 import { camLinks } from "../../constasnts";
 import { loadingGif } from "../../public/assets";
-import SwitchButton from "../../components/switchButton";
+import { SwitchButton } from "../../components/switchButton";
 
 export default function Webcams() {
   const [activeLink, setActiveLink] = useState(camLinks[0]);
