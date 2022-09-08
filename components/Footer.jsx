@@ -1,6 +1,8 @@
-import logo from "../public/assets/telescope-logo1.svg";
+import Image from "next/image";
+import { telescopeLogo } from "../public/assets";
 import { style } from "../styles/style";
 import Logo from "./Logo";
+import { socialLinks } from "../constasnts";
 
 const Footer = () => {
   return (
@@ -8,7 +10,7 @@ const Footer = () => {
       <div className="grid sm:grid-flow-col grid-flow-row gap-5 sm:gap-10 text-center sm:py-[80px] py-8">
         <div>
           <Logo
-            src={logo}
+            src={telescopeLogo}
             alt="Ночные экскурсии"
             changedNavbar={false}
             verticalLogo={true}
@@ -29,14 +31,19 @@ const Footer = () => {
               <span>+7 (928) 384-30-40</span>
             </a>
           </p>
+          <div className={`flex justify-around`}>
+            {socialLinks.map((socialLink) => (
+              <a
+                key={socialLink.id}
+                href={socialLink.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image src={socialLink.logo} alt={socialLink.title} />
+              </a>
+            ))}
+          </div>
         </div>
-        {/* <div className="">
-          <h1 className={`${style.h2} text-[21px] mb-3`}>Режим работы</h1>
-          <p className={`${style.p} grid flex-col sm:gap-4 gap-1 opacity-80`}>
-            <span>C 10:00 до 21:00 (Пн-Пт)</span>
-            <span>С 11:00 до 20:00 (Сб-Вс)</span>
-          </p>
-        </div> */}
       </div>
       <div className="border-t border-white opacity-50 text-center sm:py-[30px] py-3">
         <span className="">Copyright © 2022</span>
@@ -44,4 +51,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default Footer;

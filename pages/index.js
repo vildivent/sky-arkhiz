@@ -20,20 +20,20 @@ export default function Home() {
 
         <div className={`flex justify-around flex-wrap`}>
           <CTACard
-            heading={"Что можно увидеть в телескоп"}
-            description={""}
-            img={roadToStarsTelescope}
-            alt={"Телескоп"}
-            link={"/astronomy/what-you-can-see-with-a-telescope"}
-            opacity={30}
-          />
-          <CTACard
             heading={"Дорога к звёздам"}
             description={"Ночная экскурсия по звёздному небу с телескопом"}
             img={roadToStarsGalaxyCut}
             alt={"Галактика"}
             link={"/excursions"}
             opacity={80}
+          />
+          <CTACard
+            heading={"Что можно увидеть в телескоп"}
+            description={""}
+            img={roadToStarsTelescope}
+            alt={"Телескоп"}
+            link={"/astronomy/what-you-can-see-with-a-telescope"}
+            opacity={30}
           />
           <CTACard
             heading={"Телескопы"}

@@ -29,7 +29,7 @@ export default function Excursions() {
             Категория: образовательный туризм.
           </h3>
           <div
-            className={`font-p text-[15px] leading-normal text-justify mt-5`}
+            className={`font-p text-[1rem] leading-normal text-justify mt-5`}
           >
             <p>
               Ночное небо завораживает своей красотой в разное время года

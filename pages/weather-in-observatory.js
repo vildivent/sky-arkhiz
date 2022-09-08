@@ -2,14 +2,14 @@ import { MainLayout } from "../components/MainLayout";
 
 export default function WeatherInArkhyz() {
   return (
-    <MainLayout title={"Погода в Архызе"}>
+    <MainLayout title={"Погода в обсерватории"}>
       <main className={`lg:w-[80%] w-[90%] mx-auto mt-24`}>
         <h1
           className={`text-center font-h1 sm:text-[4.5rem] text-[2.8rem] sm:mt-24 pt-8`}
         >
-          Погода в Архызе
+          Погода в обсерватории
         </h1>
-        <div className={`flex justify-center`}>
+        <div className={`flex justify-center mt-5`}>
           <div className={`flex flex-col justify-center mb-5 `}>
             <div
               className={`mx-auto`}

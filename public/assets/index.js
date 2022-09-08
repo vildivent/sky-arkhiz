@@ -13,6 +13,10 @@ import loadingGif from "./loading.gif";
 import mobileBg from "./mobile-bg.jpg";
 import backArrowCyan500 from "./back-arrow-cyan500.svg";
 import backArrowWhite from "./back-arrow-white.svg";
+import iconTelegram from "./icon-telegram-app.svg";
+import iconWhatsapp from "./icon-whatsapp.svg";
+import iconVk from "./icon-vk-circled.svg";
+import iconInstagram from "./icon-instagram.svg";
 
 export {
   mainBg,
@@ -30,4 +34,8 @@ export {
   mobileBg,
   backArrowCyan500,
   backArrowWhite,
+  iconTelegram,
+  iconWhatsapp,
+  iconVk,
+  iconInstagram,
 };

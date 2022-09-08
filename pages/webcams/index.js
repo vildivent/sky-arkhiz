@@ -41,7 +41,7 @@ export default function Webcams() {
 
         {/* switch menu */}
         <div
-          className={`font-h2 text-cyan-500 justify-center text-center flex sm:mb-20 mb-8`}
+          className={`font-h3 text-cyan-500 justify-center text-center flex sm:mb-20 mb-8`}
         >
           <button
             className={`w-32 h-10 ${

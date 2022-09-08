@@ -3,24 +3,45 @@ import { MainLayout } from "../../components/MainLayout";
 export default function Transfer() {
   return (
     <MainLayout title={"Трансфер"}>
-      <main>
-        <h1 className={`text-center py-[125px] text-[72px] font-h1 `}>
+      <main className={`lg:w-[80%] w-[90%] mx-auto mt-24`}>
+        <h1
+          className={`text-center font-h1 sm:text-[4.5rem] text-[2.8rem] sm:mt-24 py-8`}
+        >
           Трансфер
         </h1>
-        <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mt-5 mx-auto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
-          voluptate laboriosam saepe earum officiis fuga excepturi, rerum ea,
-          consequuntur fugit? In nihil illo quisquam similique maiores dolor
-          beatae! Odit! Ad tempora impedit, modi quibusdam quis magnam! Nisi
-          beatae aliquam ad ipsa consectetur facilis similique doloremque magnam
-          aut sunt nihil veniam, iusto perferendis, rem sed maxime, odio non
-          ratione quaerat. Provident reprehenderit, veniam veritatis labore
-          natus officia? Eum inventore adipisci quas deleniti aut rerum saepe
-          labore! Molestias, consectetur qui. Veritatis, blanditiis. Culpa et
-          iusto ex quod placeat quae libero? Quos? Iure suscipit, tenetur harum
-          itaque ullam praesentium! Eligendi repudiandae accusantium asperiores
-          eius eos nisi tenetur debitis aliquam ut possimus recusandae, quidem
-          placeat cumque, veniam tempora velit nemo, sit alias odio. Amet et rem
+        <div className={`flex justify-center mb-4`}>
+          <div className={`flex flex-col justify-start`}>
+            <p className={`mb-0`}>
+              <a
+                href="tel:+79286576416"
+                rel="nofollow"
+                className={`text-cyan-500 hover:text-white mr-5`}
+              >
+                +7 (928) 657-64-16
+              </a>
+              Денис (микроавтобус 8 чел.)
+            </p>
+            <p className={`mb-0`}>
+              <a
+                href="tel:+79266934744"
+                rel="nofollow"
+                className={`text-cyan-500 hover:text-white mr-5`}
+              >
+                +7 (926) 693-47-44
+              </a>
+              Максим (4 чел.)
+            </p>
+            <p className={`mb-0`}>
+              <a
+                href="tel:+79187131727"
+                rel="nofollow"
+                className={`text-cyan-500 hover:text-white mr-5`}
+              >
+                +7 (918) 713-17-27
+              </a>
+              Василий (4 чел.)
+            </p>
+          </div>
         </div>
       </main>
     </MainLayout>

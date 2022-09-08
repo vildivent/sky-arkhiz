@@ -1,3 +1,10 @@
+import {
+  iconInstagram,
+  iconTelegram,
+  iconVk,
+  iconWhatsapp,
+} from "../public/assets";
+
 export const _keywords = "Архыз,Ночные экскурсии,звёзды";
 export const _description = "Ночные экскурсии";
 export const _title = "sky-arkhiz.ru";
@@ -10,11 +17,6 @@ export const navLinks = [
   {
     id: "excursions",
     title: "Экскурсии",
-    mainNavbar: true,
-  },
-  {
-    id: "prices",
-    title: "Цены",
     mainNavbar: true,
   },
   {
@@ -46,6 +48,7 @@ export const navLinks = [
   {
     id: "photogallery",
     title: "Фотогалерея",
+    mainNavbar: true,
   },
   {
     id: "reviews",
@@ -57,8 +60,8 @@ export const navLinks = [
     mainNavbar: true,
   },
   {
-    id: "weather-in-Arkhyz",
-    title: "Погода в Архызе",
+    id: "weather-in-observatory",
+    title: "Погода в обсерватории",
   },
   {
     id: "what-else-to-do-in-Arkhyz",
@@ -94,62 +97,88 @@ export const navLinks = [
     title: "Контакты",
   },
 ];
+export const socialLinks = [
+  {
+    id: "whatsApp",
+    title: "Ватсап",
+    link: "https://wa.me/79283843040",
+    logo: iconWhatsapp,
+  },
+  {
+    id: "telegram",
+    title: "Телеграм",
+    link: "https://telegram.me/dimglen",
+    logo: iconTelegram,
+  },
+  {
+    id: "vk",
+    title: "Вконтакте",
+    link: "https://vk.me/id23187362",
+    logo: iconVk,
+  },
+  {
+    id: "instagram",
+    title: "Инстаграм",
+    link: "https://www.instagram.com/dimglen/",
+    logo: iconInstagram,
+  },
+];
 export const camLinks = [
   {
     id: "newAllSky",
-    title: "AllSky",
+    title: "Небо над обсерваторией",
     link: "https://www.sao.ru/tb/webcam/mono_allsky.cgi",
   },
   {
     id: "btaFirstCameraIndom",
-    title: "БТА Камера-1 (внутренняя)",
+    title: "БТА внутри",
     link: "https://www.sao.ru/tb/webcam/livecam.cgi?1",
   },
   {
+    id: "zeiss1000SecondCameraToBTA",
+    title: "БТА снаружи",
+    link: "https://www.sao.ru/zserv/webcam/livecam.cgi?1",
+  },
+  {
     id: "btaSecondCameraOutdoor",
-    title: "БТА Камера-2 (внешняя)",
+    title: "БТА парковка",
     link: "https://www.sao.ru/tb/webcam/livecam.cgi?2",
   },
   {
     id: "zeiss1000FirstCameraIndom",
-    title: "Цейсс-1000 Камера-1 (внутренняя)",
+    title: "Цейсс-1000 внутри",
     link: "https://www.sao.ru/zserv/webcam/livecam.cgi?0",
   },
   {
-    id: "zeiss1000SecondCameraToBTA",
-    title: "Цейсс-1000 Камера-2 (На БТА)",
-    link: "https://www.sao.ru/zserv/webcam/livecam.cgi?1",
-  },
-  {
     id: "zeiss1000ThirdCameraAllSky",
-    title: "Цейсс-1000 Камера-3 (AllSky)",
+    title: "Цейсс-1000 небо",
     link: "https://www.sao.ru/zserv/webcam/livecam.cgi?2",
   },
   {
     id: "zeiss10005thCameraOutdoor",
-    title: "Цейсс-1000 Камера-4 (внешняя)",
+    title: "Цейсс-1000 внешняя",
     link: "https://www.sao.ru/zserv/webcam/livecam.cgi?5",
   },
 ];
 export const staticCamLinks = [
   {
     id: "all-sky",
-    title: "AllSky",
+    title: "Небо над обсерваторией",
     link: "https://www.sao.ru/tb/webcam/mono_allsky.cgi",
   },
   {
     id: "bta-indom",
-    title: "БТА Камера-1 (внутренняя)",
+    title: "БТА внутри",
     link: "https://www.sao.ru/tb/webcam/webcam_sky_1.jpeg",
   },
   {
-    id: "zeiss-1000-indom",
-    title: "Цейсс-1000 Камера-1 (внутренняя)",
-    link: "https://www.sao.ru/zserv/webcam/webcam_0_maxi.jpeg",
+    id: "zeiss-1000-to-bta",
+    title: "БТА снаружи",
+    link: "https://www.sao.ru/zserv/webcam/webcam_1_maxi.jpeg",
   },
   {
-    id: "zeiss-1000-to-bta",
-    title: "Цейсс-1000 Камера-2 (На БТА)",
-    link: "https://www.sao.ru/zserv/webcam/webcam_1_maxi.jpeg",
+    id: "zeiss-1000-indom",
+    title: "Цейсс-1000 внутри",
+    link: "https://www.sao.ru/zserv/webcam/webcam_0_maxi.jpeg",
   },
 ];
