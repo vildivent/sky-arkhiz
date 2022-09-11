@@ -6,7 +6,7 @@ import { bta1, bta2, ratan600 } from "../../public/assets";
 export default function ToursToTheObservatory() {
   return (
     <MainLayout title={"Экскурсии в обсерваторию"}>
-      <h2 className={`font-h2 text-center text-5xl pt-5`}>
+      <h2 className={`font-h2 text-center sm:text-5xl text-2xl pt-5`}>
         Телескопы: оптический БТА и радиотелескоп РАТАН-600
       </h2>
       <div className={`text-justify`}>
