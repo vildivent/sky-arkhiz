@@ -58,6 +58,7 @@ export const navLinks = [
   {
     id: "webcams",
     title: "Web камеры",
+    subTitle: "Все камеры",
     mainNavbar: true,
     subLinks: [
       {
@@ -100,6 +101,7 @@ export const navLinks = [
   {
     id: "collaboration",
     title: "Сотрудничество",
+    subTitle: "Сотрудничество с нами",
     subLinks: [
       {
         id: "transfer",

@@ -6,21 +6,13 @@ export default function ActiveLink({ children, href, changedNavbar, sidebar }) {
 
   return (
     <Link href={href === "/" ? "/" : `/${href}`} prefetch={false}>
-      <a>
+      <a className={`flex`}>
         <span
-          className={` ${
-            sidebar
-              ? "text-start hover:text-white"
-              : "pb-5 px-5 text-center hover:border-b-2"
-          } ${
-            changedNavbar
-              ? "hover:border-cyan-500 text-cyan-500"
-              : "hover:border-white"
-          } ${
+          className={`${sidebar ? "py-2" : "p-3"} ${
             router.asPath === (href === "/" ? "/" : `/${href}`)
-              ? `border-b-2 ${
-                  changedNavbar ? "border-cyan-500" : "border-white"
-                }`
+              ? changedNavbar
+                ? "text-white"
+                : "text-cyan-500"
               : undefined
           }`}
         >

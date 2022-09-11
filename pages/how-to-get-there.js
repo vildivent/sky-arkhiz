@@ -32,7 +32,7 @@ export default function HowToGetThere() {
         </p>
       </div>
 
-      <div className={`flex justify-center mb-10`}>
+      <div className={`flex justify-center`}>
         <YMaps>
           <Map
             defaultState={{

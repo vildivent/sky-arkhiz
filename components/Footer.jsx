@@ -26,7 +26,7 @@ const Footer = () => {
             <a
               href={callLink.link}
               rel="nofollow"
-              className={`hover:text-cyan-500`}
+              className={`hover:text-cyan-500 hover:translate-y-[1px]`}
             >
               <Image
                 src={callLink.logo}
@@ -40,6 +40,7 @@ const Footer = () => {
           <div className={`flex justify-around max-w-[280px] mx-auto`}>
             {socialLinks.map((socialLink) => (
               <a
+                className={`hover:translate-y-[1px]`}
                 key={socialLink.id}
                 href={socialLink.link}
                 target="_blank"

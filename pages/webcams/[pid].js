@@ -55,7 +55,11 @@ const CameraPage = ({ staticCamLink }) => {
       </div>
 
       <div className={`flex justify-center`}>
-        <img src={link} alt={`${staticCamLink.title} камера`} />
+        <img
+          className="w-full h-full"
+          src={link}
+          alt={`${staticCamLink.title} камера`}
+        />
       </div>
     </main>
   );

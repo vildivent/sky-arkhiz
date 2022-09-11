@@ -7,7 +7,7 @@ const BgCover = ({ children, bg, height, fixed }) => {
         <BackgroundImage src={bg} alt="background" fixed={fixed} />
       </div>
 
-      <div className={`pt-[4rem] relative z-[1] bg-transparent`}>
+      <div className={`pt-[5rem] relative z-[1] bg-transparent`}>
         {children}
       </div>
     </div>

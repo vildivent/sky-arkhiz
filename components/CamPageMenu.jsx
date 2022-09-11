@@ -11,7 +11,7 @@ const CamPageMenu = ({ liveTV, activeLink, liveTVhandler }) => {
               key={camLink.id}
               className={`${
                 camLink.id === activeLink.id ? "text-white" : "text-cyan-500"
-              }  pb-3 md:pb-5 cursor-pointer whitespace-nowrap hover:bg-[#181818] hover:bg-opacity-80`}
+              } py-2 cursor-pointer whitespace-nowrap hover:text-white hover:bg-[#181818] hover:bg-opacity-80`}
               onClick={() => liveTVhandler(camLink)}
             >
               {camLink.title}
@@ -32,7 +32,7 @@ const CamPageMenu = ({ liveTV, activeLink, liveTVhandler }) => {
                     camLink.id === activeLink.id
                       ? "text-white"
                       : "text-cyan-500"
-                  }  pb-3 md:pb-5 cursor-pointer whitespace-nowrap hover:bg-[#181818] hover:bg-opacity-80`}
+                  } py-2 cursor-pointer whitespace-nowrap hover:text-white hover:bg-[#181818] hover:bg-opacity-80`}
                 >
                   {camLink.title}
                 </li>

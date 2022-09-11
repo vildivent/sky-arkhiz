@@ -43,7 +43,7 @@ export default function Webcams() {
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => (false ? setLiveTV(true) : setLiveTV(false))}
         >
-          Статичные
+          Кадры
         </button>
         <button
           className={`w-32 h-10 ${
@@ -51,23 +51,21 @@ export default function Webcams() {
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => (true ? setLiveTV(true) : setLiveTV(false))}
         >
-          Live
+          Видео
         </button>
       </div>
 
-      <div className={`flex justify-start md:flex-row flex-col mb-5`}>
+      <div className={`flex justify-start md:flex-row flex-col`}>
         <CamPageMenu
           liveTV={liveTV}
           activeLink={activeLink}
           liveTVhandler={clickHandler}
         />
-        <div className={`w-full flex justify-center`}>
+        <div className={`w-full flex justify-center md:pl-5 pt-2`}>
           <img
             src={imgSrc}
             alt={activeLink.title}
-            className={`${
-              liveTV ? "" : "hidden"
-            } my-auto lg:max-w-[704px] lg:max-h-[576px] max-w-[350px] max-h-[350px]`}
+            className={`${liveTV ? "" : "hidden"} my-auto`}
           />
         </div>
       </div>

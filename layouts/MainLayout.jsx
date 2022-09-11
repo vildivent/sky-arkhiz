@@ -35,10 +35,10 @@ export function MainLayout({
         setSidebarIsOpened={setSidebarIsOpened}
       />
       <BgCover bg={bg} fixed={fixed} height="100%">
-        <main className={`w-[90%] lg:w-[80%] mx-auto ${mainProps}`}>
-          <h1
-            className={`font-h1 text-center sm:text-7xl text-4xl  pt-5 ${h1Props}`}
-          >
+        <main
+          className={`mx-auto mb-3 p-5 w-[90%] lg:w-[80%] bg-[#1e1e1e] bg-opacity-70 border-[1px] rounded-xl border-[#111111] ${mainProps}`}
+        >
+          <h1 className={`font-h1 text-center sm:text-7xl text-4xl ${h1Props}`}>
             {h1Title || title}
           </h1>
           {children}
