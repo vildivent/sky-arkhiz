@@ -16,7 +16,7 @@ export default function Excursions() {
       >
         Категория: образовательный туризм.
       </h3>
-      <div className={`font-p text-[1rem] leading-normal text-justify mt-5`}>
+      <div className={`font-p text-[1rem] leading-normal mt-5`}>
         <p>
           Ночное небо завораживает своей красотой в разное время года по-новому.
           Познавательная лекция под открытым небом познакомит вас с небесными

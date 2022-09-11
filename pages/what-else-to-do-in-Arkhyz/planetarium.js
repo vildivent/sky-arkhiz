@@ -5,7 +5,7 @@ import { planetarium } from "../../public/assets";
 export default function Planetarium() {
   return (
     <MainLayout title={"Планетарий САО РАН"}>
-      <div className={`text-justify`}>
+      <div className={``}>
         <p>
           Приглашаем посетить планетарий САО РАН{" "}
           <a

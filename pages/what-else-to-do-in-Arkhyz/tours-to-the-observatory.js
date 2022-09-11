@@ -9,7 +9,7 @@ export default function ToursToTheObservatory() {
       <h2 className={`font-h2 text-center sm:text-5xl text-2xl pt-5`}>
         Телескопы: оптический БТА и радиотелескоп РАТАН-600
       </h2>
-      <div className={`text-justify`}>
+      <div className={``}>
         <p>
           У вас есть возможность посетить уникальные объекты Специальной
           астрофизической обсерватории Российской академии наук (САО РАН) -
