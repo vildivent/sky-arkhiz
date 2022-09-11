@@ -51,7 +51,7 @@ const SidebarSubLinks = ({ link, activeSubMenu, setActiveSubMenu }) => {
               className={`${
                 subMenuOpen
                   ? "transition-all duration-300"
-                  : "opacity-0 pointer-events-none translate-y-[50px]"
+                  : "opacity-0 pointer-events-none translate-y-[20px]"
               } list cursor-pointer hover:text-white hover:bg-[#181818] pl-10`}
               onClick={() => router.push(`/${link.id}`)}
             >
@@ -72,7 +72,7 @@ const SidebarSubLinks = ({ link, activeSubMenu, setActiveSubMenu }) => {
               className={`${
                 subMenuOpen
                   ? "transition-all duration-300"
-                  : "opacity-0 pointer-events-none translate-y-[50px]"
+                  : "opacity-0 pointer-events-none translate-y-[20px]"
               } list cursor-pointer hover:text-white hover:bg-[#181818] pl-10`}
               onClick={() => router.push(`/${link.id}/${subLink.id}`)}
             >

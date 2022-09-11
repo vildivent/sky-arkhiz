@@ -1,6 +1,6 @@
 import { HomePageLayout } from "../layouts/HomePageLayout";
 import Hero from "../components/Hero";
-import { mainBg, btaBg1 } from "../public/assets";
+import { mainBg, btaBg1, planetarium, bta2 } from "../public/assets";
 import CTACard from "../components/CTACard";
 import { roadToStarsGalaxyCut, roadToStarsTelescope } from "../public/assets";
 import useBackground from "../hooks/useBackground";
@@ -28,35 +28,21 @@ export default function Home() {
             opacity={80}
           />
           <CTACard
-            heading={"Что можно увидеть в телескоп"}
+            heading={"Планетарий САО РАН"}
             description={""}
-            img={roadToStarsTelescope}
-            alt={"Телескоп"}
-            link={"/astronomy/what-you-can-see-with-a-telescope"}
-            opacity={30}
+            img={planetarium}
+            alt={"Планетарий"}
+            link={"/what-else-to-do-in-Arkhyz/planetarium"}
+            opacity={50}
           />
           <CTACard
-            heading={"Телескопы"}
-            description={""}
-            img={roadToStarsTelescope}
-            alt={"Телескоп"}
-            link={"/astronomy/telescopes"}
-            opacity={30}
+            heading={"Экскурсии в обсерваторию"}
+            description={"Телескопы: оптический БТА и радиотелескоп РАТАН-600"}
+            img={bta2}
+            alt={"БТА холл"}
+            link={"/what-else-to-do-in-Arkhyz/tours-to-the-observatory"}
+            opacity={50}
           />
-        </div>
-
-        <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mt-5 mx-auto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
-          voluptate laboriosam saepe earum officiis fuga excepturi, rerum ea,
-          consequuntur fugit? In nihil illo quisquam similique maiores dolor
-          beatae! Odit! Ad tempora impedit, modi quibusdam quis magnam! Nisi
-          beatae aliquam ad ipsa consectetur facilis similique doloremque magnam
-          aut sunt nihil veniam, iusto perferendis, rem sed maxime, odio non
-          ratione quaerat. Provident reprehenderit, veniam veritatis labore
-          natus officia? Eum inventore adipisci quas deleniti aut rerum saepe
-          labore! Molestias, consectetur qui. Veritatis, blanditiis. Culpa et
-          iusto ex quod placeat quae libero? Quos? Iure suscipit, tenetur harum
-          itaque ullam praesentium! Eligendi repudiandae accusantium asperiores
         </div>
       </main>
     </HomePageLayout>

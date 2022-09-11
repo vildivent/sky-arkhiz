@@ -19,6 +19,10 @@ import iconWhatsapp from "./icon-whatsapp.svg";
 import iconVk from "./icon-vk-circled.svg";
 import iconInstagram from "./icon-instagram.svg";
 import iconPhone from "./icon-phone.svg";
+import bta1 from "./bta1.jpg";
+import bta2 from "./bta2.jpg";
+import ratan600 from "./ratan600.jpg";
+import planetarium from "./planetarium.jpg";
 
 export {
   mainBg,
@@ -42,4 +46,8 @@ export {
   iconVk,
   iconInstagram,
   iconPhone,
+  bta1,
+  bta2,
+  ratan600,
+  planetarium,
 };
