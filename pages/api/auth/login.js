@@ -1,7 +1,7 @@
 import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";
 
-const secret = MYSECRETKEY;
+const secret = "MYSECRETKEY";
 
 export default async function login(req, res) {
   const { username, password } = req.body;

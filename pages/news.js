@@ -1,14 +1,30 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import PostItem from "../components/PostItem";
 import { MainLayout } from "../layouts/MainLayout";
+import { getAllPosts } from "../redux/features/post/postSlice";
 
 export default function News() {
+  const dispatch = useDispatch();
+  const { posts } = useSelector((state) => state.post);
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
+
   return (
     <MainLayout title={"Новости"}>
-      <div className="font-p text-[21px] text-justify mb-10 mt-5 mx-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
-        voluptate laboriosam saepe earum officiis fuga excepturi, rerum ea,
-        consequuntur fugit? In nihil illo quisquam similique maiores dolor
-        beatae! Odit! Ad tempora impedit, modi quibusdam quis magnam! Nisi
-        beatae aliquam ad ipsa consectetur facilis similique doloremque magnam
+      <div>
+        {!posts.length ? (
+          <div>Новостей нет, или что-то пошло не так</div>
+        ) : (
+          <></>
+        )}
+        {posts?.map((post) => (
+          <div key={post._id} className={`pb-5`}>
+            <PostItem post={post} />
+          </div>
+        ))}
       </div>
     </MainLayout>
   );
