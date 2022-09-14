@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { navLinks } from "../constasnts";
 import ActiveLink from "./ActiveLink";
 import {
   menuCyanIcon,
@@ -12,7 +11,7 @@ import {
 import Logo from "./Logo";
 import MenuButton from "./MenuButton";
 
-export default function Navbar({ setSidebarIsOpened }) {
+export default function Navbar({ setSidebarIsOpened, navLinks }) {
   const router = useRouter();
 
   const [showNavbar, setShowNavbar] = useState(true);

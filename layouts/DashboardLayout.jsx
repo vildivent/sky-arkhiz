@@ -1,16 +1,17 @@
 import { useState } from "react";
 import Head from "next/head";
+import axios from "axios";
 
 import useBackground from "../hooks/useBackground";
 import { _title, _keywords, _description } from "../constasnts";
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import Footer from "../components/Footer";
 import BgCover from "../components/BgCover";
 import { bgStars4k } from "../public/assets";
-import { navLinks } from "../constasnts";
+import Sidebar from "../components/Sidebar";
+import { dashboardLinks } from "../constasnts";
+import { useRouter } from "next/router";
 
-export function MainLayout({
+export function DashboardLayout({
   children,
   title,
   keywords,
@@ -21,7 +22,14 @@ export function MainLayout({
 }) {
   const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
   const [bg, fixed] = useBackground(bgStars4k);
-  const fullTitle = `${title || _title} | Ночные экскурсии Архыз`;
+
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const user = await axios.get("/api/auth/logout");
+    router.push("/login");
+  };
+  const fullTitle = ` ${title || _title} | Администрирование`;
   return (
     <>
       <Head>
@@ -30,11 +38,15 @@ export function MainLayout({
         <meta name="description" content={description || _description} />
         <link rel="icon" href="/logo.svg" />
       </Head>
-      <Navbar setSidebarIsOpened={setSidebarIsOpened} navLinks={navLinks} />
+      <Navbar
+        setSidebarIsOpened={setSidebarIsOpened}
+        navLinks={dashboardLinks}
+      />
       <Sidebar
         sidebarIsOpened={sidebarIsOpened}
         setSidebarIsOpened={setSidebarIsOpened}
-        navLinks={navLinks}
+        navLinks={dashboardLinks}
+        handleLogout={handleLogout}
       />
       <BgCover bg={bg} fixed={fixed} height="100%">
         <main
@@ -45,7 +57,6 @@ export function MainLayout({
           </h1>
           {children}
         </main>
-        <Footer />
       </BgCover>
     </>
   );

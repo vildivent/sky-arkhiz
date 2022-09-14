@@ -34,7 +34,7 @@ const Footer = () => {
                 width={40}
                 height={40}
               />
-              <div className={` `}>+7 (928) 384-30-40</div>
+              <div>+7 (928) 384-30-40</div>
             </a>
           </div>
           <div className={`flex justify-around max-w-[280px] mx-auto`}>

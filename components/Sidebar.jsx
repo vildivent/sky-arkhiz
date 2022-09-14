@@ -1,11 +1,18 @@
-import { navLinks } from "../constasnts";
 import { closeCyanIcon, closeWhiteIcon } from "../public/assets";
 import SidebarSubLinks from "./SidebarLinks";
 import MenuButton from "./MenuButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Sidebar = ({ sidebarIsOpened, setSidebarIsOpened }) => {
+const Sidebar = ({
+  sidebarIsOpened,
+  setSidebarIsOpened,
+  navLinks,
+  handleLogout,
+}) => {
   const [activeSubMenu, setActiveSubMenu] = useState("");
+
+  useEffect(() => {}, [handleLogout]);
+
   const closeHandler = () => {
     setSidebarIsOpened(() => false);
     setActiveSubMenu("");
@@ -48,6 +55,16 @@ const Sidebar = ({ sidebarIsOpened, setSidebarIsOpened }) => {
               />
             );
           })}
+          {handleLogout !== undefined ? (
+            <li
+              className={`px-5 py-2 hover:bg-[#181818] hover:text-white cursor-pointer`}
+              onClick={() => handleLogout()}
+            >
+              Выйти
+            </li>
+          ) : (
+            <></>
+          )}
         </ul>
       </div>
     </div>

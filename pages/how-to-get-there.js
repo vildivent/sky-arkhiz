@@ -37,10 +37,10 @@ export default function HowToGetThere() {
           <Map
             defaultState={{
               center: [43.661075819224585, 41.44811349916219],
-              zoom: 14,
+              zoom: 13,
             }}
             width={"100%"}
-            height={"37rem"}
+            height={"20rem"}
             modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
           >
             <Placemark

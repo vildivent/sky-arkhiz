@@ -13,7 +13,7 @@ const SidebarSubLinks = ({ link, activeSubMenu, setActiveSubMenu }) => {
 
   const clickHanlder = (e) => {
     e.preventDefault();
-    setActiveSubMenu(link.id);
+    if (setActiveSubMenu !== undefined) setActiveSubMenu(link.id);
     setSubMenuOpen((value) => !value);
     if (!link.subLinks && !link.noLink)
       router.push(`${link.id === "/" ? "/" : `/${link.id}`}`);

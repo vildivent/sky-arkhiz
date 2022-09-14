@@ -209,3 +209,30 @@ export const staticCamLinks = [
     link: "https://www.sao.ru/zserv/webcam/webcam_0_maxi.jpeg",
   },
 ];
+
+export const dashboardLinks = [
+  {
+    id: "/",
+    title: "Главная",
+  },
+  {
+    id: "dashboard",
+    title: "Панель управления",
+    mainNavbar: true,
+  },
+  {
+    id: "dashboard/news",
+    title: "Новости",
+    mainNavbar: true,
+  },
+  {
+    id: "dashboard/reviews",
+    title: "Отзывы",
+    mainNavbar: true,
+  },
+  {
+    id: "dashboard/photogallery",
+    title: "Фотогалерея",
+    mainNavbar: true,
+  },
+];
