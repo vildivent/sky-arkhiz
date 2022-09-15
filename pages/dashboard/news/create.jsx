@@ -3,6 +3,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
+import {
+  Button,
+  ActionButton,
+  ResetButton,
+  CancelButton,
+} from "../../../components/Buttons";
 import PostItem from "../../../components/PostItem";
 import { DashboardLayout } from "../../../layouts/DashboardLayout";
 import { createPost } from "../../../redux/features/post/postSlice";
@@ -42,7 +49,7 @@ export default function CreateNews() {
     if (title && text) setWrongFormatDescription(false);
   }, [title, text]);
 
-  const clearFields = (e) => {
+  const resetFields = (e) => {
     e.preventDefault();
     setTitle("");
     setText("");
@@ -123,24 +130,12 @@ export default function CreateNews() {
             </div>
 
             <div className="flex gap-2 flex-wrap items-center justify-center mt-4">
-              <button
+              <ActionButton
+                title={"Добавить новость"}
                 onClick={submitHandler}
-                className="flex justify-center items-center bg-zinc-600 text-xs hover:bg-zinc-700 text-white rounded-sm py-2 px-4 "
-              >
-                Добавить новость
-              </button>
-              <button
-                onClick={clearFields}
-                className="flex justify-center items-center bg-zinc-600 border-2 border-red-800 hover:bg-zinc-700 text-xs text-white rounded-sm py-2 px-4 "
-              >
-                Сбросить поля
-              </button>
-              <button
-                onClick={cancelHandler}
-                className="flex justify-center items-center bg-red-800 hover:bg-red-900 text-xs text-white rounded-sm py-2 px-4 "
-              >
-                Отменить
-              </button>
+              />
+              <ResetButton title={"Сбросить поля"} onClick={resetFields} />
+              <CancelButton title={"Отменить"} onClick={cancelHandler} />
             </div>
           </form>
         </div>

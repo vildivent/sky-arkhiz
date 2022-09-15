@@ -22,7 +22,7 @@ export default async function createPost(req, res) {
       });
       await newPostWithImage.save();
       console.log("Post saved");
-      res.status(201).json({ message: "Post saved" });
+      res.status(201).json(newPostWithImage);
     } else {
       const newPostWithoutImage = new Post({
         title,
@@ -31,7 +31,7 @@ export default async function createPost(req, res) {
       });
       await newPostWithoutImage.save();
       console.log("Post saved");
-      res.status(201).json({ message: "Post saved" });
+      res.status(201).json(newPostWithoutImage);
     }
   } catch (error) {
     console.log(error);
