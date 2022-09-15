@@ -8,7 +8,7 @@ export default async function logout(req, res) {
   if (!jwt) {
     return res.json({ message: "You are already not logged in" });
   } else {
-    const serialized = serialize("SkyArkhyzJWT", null, {
+    const serialized = serialize("SkyArkhyzJWT", " ", {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
       sameSite: "strict",
