@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+
 import { MainLayout } from "../layouts/MainLayout";
 
 export default function WeatherInArkhyz() {
@@ -12,7 +15,17 @@ export default function WeatherInArkhyz() {
             }}
           />
 
-          <a className={`mx-auto mt-5`} href="https://rp5.ru/13590/ru">
+          <a
+            className={`mx-auto mt-5`}
+            href="https://rp5.ru/13590/ru"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div
+              className={`mx-auto mt-5 mb-3 font-p text-cyan-500 hover:text-white`}
+            >
+              Подробнее
+            </div>
             <img
               border={0}
               width={88}

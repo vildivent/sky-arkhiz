@@ -14,7 +14,7 @@ export default function News() {
 
   return (
     <MainLayout title={"Новости"}>
-      <div className={`flex flex-col flex-wrap gap-3`}>
+      <div className={`flex flex-col flex-wrap gap-3 mt-3`}>
         {!posts.length ? <div>Новостей нет, или они загружаются</div> : <></>}
         {posts?.map((post) => (
           <PostItem key={post._id} post={post} />
