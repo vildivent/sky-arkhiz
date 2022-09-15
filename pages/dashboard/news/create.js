@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import PostItem from "../../../components/PostItem";
 import { DashboardLayout } from "../../../layouts/DashboardLayout";
@@ -14,25 +14,47 @@ export default function CreateNews() {
   const [text, setText] = useState("");
   const [imgUrl, setImgUrl] = useState("");
 
+  const [wrongFOrmatTitle, setWrongFOrmatTitle] = useState(false);
+  const [wrongFOrmatText, setWrongFOrmatText] = useState(false);
+  const [wrongFormatDescription, setWrongFormatDescription] = useState(false);
+
   const dispatch = useDispatch();
 
   const submitHandler = () => {
-    try {
-      const data = { title, text, imgUrl };
+    if (title && text) {
+      try {
+        const data = { title, text, imgUrl };
 
-      console.log("uploading...");
-      dispatch(createPost(data));
-      router.push("/dashboard/news");
-    } catch (error) {
-      console.log(error);
+        console.log("uploading...");
+        dispatch(createPost(data));
+        router.push("/dashboard/news");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setWrongFOrmatTitle(true);
+      setWrongFOrmatText(true);
+      setWrongFormatDescription(true);
     }
   };
 
-  const cancelHandler = (e) => {
+  useEffect(() => {
+    if (title && text) setWrongFormatDescription(false);
+  }, [title, text]);
+
+  const clearFields = (e) => {
     e.preventDefault();
     setTitle("");
     setText("");
     setImgUrl("");
+    setWrongFOrmatTitle(false);
+    setWrongFOrmatText(false);
+    setWrongFormatDescription(false);
+  };
+
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    router.push("/dashboard/news");
   };
 
   return (
@@ -41,18 +63,25 @@ export default function CreateNews() {
         <div className={`mx-auto`}>
           <form
             id="formAddNewPost"
-            className={`w-1/2 mx-auto py-10`}
+            className={`sm:w-1/2 w-full mx-auto py-10`}
             onSubmit={(e) => e.preventDefault()}
           >
             <label className="text-xs text-white opacity-70">
-              Заголовок поста:
+              Заголовок новости:
               <input
                 type="text"
                 name="title"
-                placeholder="Заголовок"
+                placeholder="*Заголовок"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm"
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                  setWrongFOrmatTitle(false);
+                }}
+                className={`mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm ${
+                  wrongFOrmatTitle
+                    ? "placeholder:text-red-700"
+                    : "placeholder:text-gray-700"
+                }`}
               />
             </label>
 
@@ -69,26 +98,46 @@ export default function CreateNews() {
             </label>
 
             <label className="text-xs text-white opacity-70">
-              Текст поста:
+              Текст новости:
               <textarea
                 value={text}
                 name="text"
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Текст поста"
-                className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none resize-none h-40 placeholder:text-gray-700 rounded-sm"
+                onChange={(e) => {
+                  setText(e.target.value);
+                  setWrongFOrmatText(false);
+                }}
+                placeholder="*Текст"
+                className={`mt-1 resize-none h-40 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm ${
+                  wrongFOrmatText
+                    ? "placeholder:text-red-700"
+                    : "placeholder:text-gray-700"
+                }`}
               />
             </label>
+            <div
+              className={`${
+                wrongFormatDescription ? "text-red-500" : "text-gray-300"
+              } font-p italic text-sm `}
+            >
+              *отмечены поля, обязательные к заполнению
+            </div>
 
-            <div className="flex gap-8 items-center justify-center mt-4">
+            <div className="flex gap-2 flex-wrap items-center justify-center mt-4">
               <button
                 onClick={submitHandler}
-                className="flex justify-center items-center bg-zinc-600 text-xs text-white rounded-sm py-2 px-4 "
+                className="flex justify-center items-center bg-zinc-600 text-xs hover:bg-zinc-700 text-white rounded-sm py-2 px-4 "
               >
-                Добавить пост
+                Добавить новость
+              </button>
+              <button
+                onClick={clearFields}
+                className="flex justify-center items-center bg-zinc-600 border-2 border-red-800 hover:bg-zinc-700 text-xs text-white rounded-sm py-2 px-4 "
+              >
+                Сбросить поля
               </button>
               <button
                 onClick={cancelHandler}
-                className="flex justify-center items-center bg-red-800 text-xs text-white rounded-sm py-2 px-4 "
+                className="flex justify-center items-center bg-red-800 hover:bg-red-900 text-xs text-white rounded-sm py-2 px-4 "
               >
                 Отменить
               </button>

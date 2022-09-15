@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PostItem from "../../../components/PostItem";
+import PostItemDashboard from "../../../components/PostItemDashboard";
 import { DashboardLayout } from "../../../layouts/DashboardLayout";
 import { getAllPosts } from "../../../redux/features/post/postSlice";
 
@@ -19,23 +19,18 @@ const News = () => {
         <div className="flex justify-center my-5">
           <Link href="/dashboard/news/create">
             <a>
-              <button className="hover:text-cyan-500 bg-zinc-600 text-xs text-white rounded-sm py-2 px-4 ">
+              <button className=" bg-gray-600 hover:bg-gray-700 text-xs text-white rounded-sm py-2 px-4 ">
                 Добавить новость
               </button>
             </a>
           </Link>
         </div>
-
-        {!posts.length ? (
-          <div>Новостей нет, или что-то пошло не так</div>
-        ) : (
-          <></>
-        )}
-        {posts?.map((post) => (
-          <div key={post._id} className={`pb-5`}>
-            <PostItem post={post} />
-          </div>
-        ))}
+        <div className={`flex flex-col flex-wrap gap-3`}>
+          {!posts.length ? <div>Новостей нет, или они загружаются</div> : <></>}
+          {posts?.map((post) => (
+            <PostItemDashboard key={post._id} post={post} />
+          ))}
+        </div>
       </div>
     </DashboardLayout>
   );

@@ -27,17 +27,14 @@ export const getAllPosts = createAsyncThunk("post/getAllPosts", async () => {
   }
 });
 
-export const deletePost = createAsyncThunk(
-  "post/deletePost",
-  async (params) => {
-    try {
-      const { data } = await axios.post("/api/posts/deletePost", params);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
+export const deletePost = createAsyncThunk("post/deletePost", async (id) => {
+  try {
+    const { data } = await axios.post("/api/posts/deletePost", id);
+    return data;
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 
 export const postSlice = createSlice({
   name: "post",
@@ -72,7 +69,9 @@ export const postSlice = createSlice({
     },
     [deletePost.fulfilled]: (state, action) => {
       state.loading = false;
-      state.posts.push(action.payload);
+      state.posts = state.posts.filter(
+        (post) => post._id !== action.payload.post._id
+      );
     },
     [deletePost.rejected]: (state) => {
       state.loading = false;
