@@ -7,8 +7,8 @@ import PostItem from "../../components/PostItem";
 import axios from "axios";
 import { MainLayout } from "../../layouts/MainLayout";
 
-const API2 = "https://sky-arkhiz.vercel.app/";
-const API = "http://localhost:3000/";
+const API = "https://sky-arkhiz.vercel.app/";
+const API2 = "http://localhost:3000/";
 
 export const getStaticPaths = async () => {
   const { data } = await axios.get(`${API}api/posts/getAll`);
