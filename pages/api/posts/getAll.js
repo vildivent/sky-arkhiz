@@ -15,7 +15,6 @@ export default async function getAllPosts(req, res) {
     if (!posts) {
       return res.status(404).json({ message: "Постов нет" });
     }
-
     res.status(200).json({ posts });
   } catch (error) {
     res.json(error);

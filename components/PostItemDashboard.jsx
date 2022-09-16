@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deletePost } from "../redux/features/post/postSlice";
 import { CancelButton } from "./Buttons";
 import PostItem from "./PostItem";
+import PostItemShort from "./PostItemShort";
 
 const PostItemDashboard = ({ post }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const PostItemDashboard = ({ post }) => {
       <div className="flex justify-center mt-5">
         <CancelButton title={`Удалить новость`} onClick={deleteHandler} />
       </div>
-      <PostItem post={post} />
+      <PostItemShort post={post} />
     </>
   );
 };

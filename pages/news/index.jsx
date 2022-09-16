@@ -1,6 +1,7 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PostItem from "../../components/PostItem";
+import PostItemShort from "../../components/PostItemShort";
 import { MainLayout } from "../../layouts/MainLayout";
 import { getAllPosts } from "../../redux/features/post/postSlice";
 
@@ -17,7 +18,7 @@ export default function News() {
       <div className={`flex flex-col flex-wrap gap-3 mt-3`}>
         {!posts.length ? <div>Новостей нет, или они загружаются</div> : <></>}
         {posts?.map((post) => (
-          <PostItem key={post._id} post={post} />
+          <PostItemShort key={post._id} post={post} />
         ))}
       </div>
     </MainLayout>

@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { AiFillEye } from "react-icons/ai";
+import Link from "next/link";
 import Moment from "react-moment";
+import { AiFillEye } from "react-icons/ai";
 
-const PostItem = ({ post }) => {
+const PostItemShort = ({ post }) => {
   return (
     <div
       key={`item${post._id}`}
@@ -16,17 +17,12 @@ const PostItem = ({ post }) => {
       <div className={`mt-3 flex justify-center`}>
         {post.imgUrl && <img src={post.imgUrl} alt="post img" />}
       </div>
-      {post.text.map((item, index) => (
-        <p key={index} className="font-p px-3 my-0">
-          {item}
-        </p>
-      ))}
-      {post.srcUrl && (
-        <a
-          href={`${post.srcUrl}`}
-          className={`text-cyan-500 hover:text-white ml-3`}
-        >{`Источник`}</a>
-      )}
+      <p className="font-p px-3 my-0">{post.text[0]}</p>
+      <div className="flex">
+        <Link href={`/news/${post._id}`}>
+          <a className={`text-cyan-500 hover:text-white ml-3`}>Подробнее...</a>
+        </Link>
+      </div>
 
       <div className="flex flex-wrap gap-5 justify-end ">
         <div className="flex flex-wrap gap-1  items-center">
@@ -40,4 +36,4 @@ const PostItem = ({ post }) => {
   );
 };
 
-export default PostItem;
+export default PostItemShort;

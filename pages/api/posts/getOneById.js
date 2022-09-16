@@ -11,7 +11,11 @@ export default async function getOneById(req, res) {
     await connectMongo();
     console.log("Mongo connected!");
 
-    const post = await Post.findOne(req.params.id);
+    const id = req.body;
+
+    const post = await Post.findOneAndUpdate(id, {
+      $inc: { views: 1 },
+    });
 
     res.status(200).json({ post });
   } catch (error) {
