@@ -7,10 +7,10 @@ import PostItem from "../../components/PostItem";
 import axios from "axios";
 import { MainLayout } from "../../layouts/MainLayout";
 
+const API = "https://sky-arkhiz.vercel.app/";
+
 export const getStaticPaths = async () => {
-  const { data } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}api/posts/getAll`
-  );
+  const { data } = await axios.get(`${API}api/posts/getAll`);
 
   const paths = data.posts.map((post) => ({ params: { pid: post._id } }));
   return {
@@ -21,10 +21,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const _id = context.params.pid;
-  const { data } = await axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}api/posts/getOneById`,
-    { _id }
-  );
+  const { data } = await axios.post(`${API}api/posts/getOneById`, { _id });
   return { props: { post: data.post } };
 };
 
