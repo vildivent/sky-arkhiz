@@ -19,9 +19,9 @@ const PostItemShort = ({ post }) => {
       </div>
       <p className="font-p px-3 my-0">{post.text[0]}</p>
       <div className="flex">
-        <Link href={`/news/${post._id}`}>
+        {/* <Link href={`/news/${post._id}`}>
           <a className={`text-cyan-500 hover:text-white ml-3`}>Подробнее...</a>
-        </Link>
+        </Link> */}
       </div>
 
       <div className="flex flex-wrap gap-5 justify-end ">
