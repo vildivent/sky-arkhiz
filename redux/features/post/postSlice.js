@@ -27,6 +27,24 @@ export const getAllPosts = createAsyncThunk("post/getAllPosts", async () => {
   }
 });
 
+export const getOnePost = createAsyncThunk("post/getOnePost", async (id) => {
+  try {
+    const { data } = await axios.post("/api/posts/getOneById", id);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const updateViews = createAsyncThunk("post/getOnePost", async (id) => {
+  try {
+    const { data } = await axios.post("/api/posts/getOneById", id);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 export const deletePost = createAsyncThunk("post/deletePost", async (id) => {
   try {
     const { data } = await axios.post("/api/posts/deletePost", id);
@@ -61,6 +79,24 @@ export const postSlice = createSlice({
       state.posts = action.payload.posts;
     },
     [getAllPosts.rejected]: (state) => {
+      state.loading = false;
+    },
+    //Получение поста по id
+    [getOnePost.pending]: (state) => {
+      state.loading = true;
+    },
+    [getOnePost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.posts = [].push(action.payload.post);
+    },
+    //Обновление просмотров у поста
+    [updateViews.pending]: (state) => {
+      state.loading = true;
+    },
+    [updateViews.fulfilled]: (state, action) => {
+      state.loading = false;
+    },
+    [updateViews.rejected]: (state) => {
       state.loading = false;
     },
     //Удаление поста

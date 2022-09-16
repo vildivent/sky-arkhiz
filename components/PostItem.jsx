@@ -1,9 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import Moment from "react-moment";
+import { useDispatch } from "react-redux";
+import { updateViews } from "../redux/features/post/postSlice";
 
 const PostItem = ({ post }) => {
+  const dispatch = useDispatch();
+
+  const clickHandler = () => {
+    setDetailed((prev) => !prev);
+    if (detailed && !view) {
+      dispatch(updateViews({ id: post._id }));
+      setView(true);
+    }
+  };
+
+  const [detailed, setDetailed] = useState(false);
+  const [view, setView] = useState(false);
   return (
     <div
       key={`item${post._id}`}
@@ -16,19 +31,29 @@ const PostItem = ({ post }) => {
       <div className={`mt-3 flex justify-center`}>
         {post.imgUrl && <img src={post.imgUrl} alt="post img" />}
       </div>
-      {post.text.map((item, index) => (
-        <p key={index} className="font-p px-3 my-0">
-          {item}
-        </p>
-      ))}
-      {post.srcUrl && (
+      {!detailed && <p className="font-p px-3 my-0">{post.text[0]}</p>}
+
+      {detailed &&
+        post.text.map((item, index) => (
+          <p key={index} className="font-p px-3 my-0">
+            {item}
+          </p>
+        ))}
+      {detailed && post.srcUrl && (
         <a
           href={`${post.srcUrl}`}
           className={`text-cyan-500 hover:text-white ml-3`}
         >{`Источник`}</a>
       )}
-
-      <div className="flex flex-wrap gap-5 justify-end ">
+      <div className="flex">
+        <button
+          className={`text-cyan-500 hover:text-white ml-3`}
+          onClick={clickHandler}
+        >
+          {detailed ? "Свернуть..." : "Подробнее..."}
+        </button>
+      </div>
+      <div className="flex flex-wrap gap-5 sm:justify-end justify-around ">
         <div className="flex flex-wrap gap-1  items-center">
           <AiFillEye />
           <span>{post.views}</span>
