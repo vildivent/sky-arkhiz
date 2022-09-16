@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 
-import Moment from "react-moment";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../redux/features/post/postSlice";
 import { CancelButton } from "./Buttons";
+import PostItem from "./PostItem";
 
 const PostItemDashboard = ({ post }) => {
   const dispatch = useDispatch();
@@ -20,27 +20,12 @@ const PostItemDashboard = ({ post }) => {
   };
 
   return (
-    <div
-      key={`${post._id}`}
-      className="flex flex-col flex-wrap justify-around gap-3 flex-grow border border-gray-600 rounded-lg"
-    >
-      <h2 className={`font-h1 text-center sm:text-4xl text-2xl`}>
-        {post.title}
-      </h2>
-      <div className={`mt-3 flex justify-center`}>
-        {post.imgUrl && <img src={post.imgUrl} alt="post img" />}
-      </div>
-      <p className="px-3 my-0">{post.text}</p>
-      <div className="flex justify-center">
+    <>
+      <div className="flex justify-center mt-5">
         <CancelButton title={`Удалить новость`} onClick={deleteHandler} />
       </div>
-
-      <Moment
-        className="ml-auto mr-3"
-        date={post.createdAt}
-        format="D. M. YYYY г."
-      />
-    </div>
+      <PostItem post={post} />
+    </>
   );
 };
 

@@ -11,10 +11,22 @@ const PostItem = ({ post }) => {
       <h2 className={`font-h1 text-center sm:text-4xl text-2xl`}>
         {post.title}
       </h2>
+
       <div className={`mt-3 flex justify-center`}>
         {post.imgUrl && <img src={post.imgUrl} alt="post img" />}
       </div>
-      <p className="px-3 my-0">{post.text}</p>
+      {post.text.map((item, index) => (
+        <p key={index} className="font-p px-3 my-0">
+          {item}
+        </p>
+      ))}
+      <p className="font-p px-3 my-0">{post.paragraph}</p>
+      {post.srcUrl && (
+        <a
+          href={`${post.srcUrl}`}
+          className={`text-cyan-500 hover:text-white ml-3`}
+        >{`Источник`}</a>
+      )}
 
       <Moment
         className="ml-auto mr-3"

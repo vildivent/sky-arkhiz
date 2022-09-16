@@ -2,10 +2,9 @@
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
-  Button,
   ActionButton,
   ResetButton,
   CancelButton,
@@ -13,27 +12,43 @@ import {
 import PostItem from "../../../components/PostItem";
 import { DashboardLayout } from "../../../layouts/DashboardLayout";
 import { createPost } from "../../../redux/features/post/postSlice";
+import {
+  setTitle,
+  setImgUrl,
+  setParagraph,
+  setSrcUrl,
+  pushParagraph,
+  reset,
+} from "../../../redux/features/newPostForm/newPostFormSlice";
 
 export default function CreateNews() {
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
-
+  const { title, imgUrl, srcUrl, paragraph, text } = useSelector(
+    (state) => state.newPostForm
+  );
   const [wrongFOrmatTitle, setWrongFOrmatTitle] = useState(false);
   const [wrongFOrmatText, setWrongFOrmatText] = useState(false);
   const [wrongFormatDescription, setWrongFormatDescription] = useState(false);
 
-  const dispatch = useDispatch();
-
   const submitHandler = () => {
     if (title && text) {
+      const data = {
+        title,
+        text: [...text],
+        imgUrl,
+        srcUrl,
+      };
+      if (paragraph) {
+        data.text = [...text, paragraph];
+      }
       try {
-        const data = { title, text, imgUrl };
-
         console.log("uploading...");
         dispatch(createPost(data));
+        console.log("Post added!");
+
+        dispatch(reset());
         router.push("/dashboard/news");
       } catch (error) {
         console.log(error);
@@ -49,18 +64,9 @@ export default function CreateNews() {
     if (title && text) setWrongFormatDescription(false);
   }, [title, text]);
 
-  const resetFields = (e) => {
-    e.preventDefault();
-    setTitle("");
-    setText("");
-    setImgUrl("");
-    setWrongFOrmatTitle(false);
-    setWrongFOrmatText(false);
-    setWrongFormatDescription(false);
-  };
-
   const cancelHandler = (e) => {
     e.preventDefault();
+    dispatch(reset());
     router.push("/dashboard/news");
   };
 
@@ -73,6 +79,7 @@ export default function CreateNews() {
             className={`sm:w-1/2 w-full mx-auto py-10`}
             onSubmit={(e) => e.preventDefault()}
           >
+            {/*заголовок*/}
             <label className="text-xs text-white opacity-70">
               Заголовок новости:
               <input
@@ -81,7 +88,7 @@ export default function CreateNews() {
                 placeholder="*Заголовок"
                 value={title}
                 onChange={(e) => {
-                  setTitle(e.target.value);
+                  dispatch(setTitle(e.target.value));
                   setWrongFOrmatTitle(false);
                 }}
                 className={`mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm ${
@@ -91,7 +98,7 @@ export default function CreateNews() {
                 }`}
               />
             </label>
-
+            {/*изображение*/}
             <label className="text-xs text-white opacity-70">
               URL изображения:
               <input
@@ -99,18 +106,19 @@ export default function CreateNews() {
                 name="imgUrl"
                 placeholder="https://"
                 value={imgUrl}
-                onChange={(e) => setImgUrl(e.target.value)}
+                onChange={(e) => dispatch(setImgUrl(e.target.value))}
                 className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm"
               />
             </label>
 
+            {/*Текст*/}
             <label className="text-xs text-white opacity-70">
               Текст новости:
               <textarea
-                value={text}
+                value={paragraph}
                 name="text"
                 onChange={(e) => {
-                  setText(e.target.value);
+                  dispatch(setParagraph(e.target.value));
                   setWrongFOrmatText(false);
                 }}
                 placeholder="*Текст"
@@ -121,26 +129,54 @@ export default function CreateNews() {
                 }`}
               />
             </label>
+            {/*Ссылка на источник*/}
+            <label className="text-xs text-white opacity-70">
+              Ссылка на источник:
+              <input
+                type="text"
+                name="srcUrl"
+                placeholder="https://"
+                value={srcUrl}
+                onChange={(e) => dispatch(setSrcUrl(e.target.value))}
+                className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm"
+              />
+            </label>
             <div
-              className={`${
+              className={`mt-2 ${
                 wrongFormatDescription ? "text-red-500" : "text-gray-300"
               } font-p italic text-sm `}
             >
               *отмечены поля, обязательные к заполнению
             </div>
 
-            <div className="flex gap-2 flex-wrap items-center justify-center mt-4">
+            <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
               <ActionButton
-                title={"Добавить новость"}
-                onClick={submitHandler}
+                title={"Подтвердить"}
+                onClick={() => submitHandler()}
               />
-              <ResetButton title={"Сбросить поля"} onClick={resetFields} />
+              <ActionButton
+                title={"Добавить абзац"}
+                onClick={() => dispatch(pushParagraph())}
+              />
+              <ResetButton
+                title={"Сбросить поля"}
+                onClick={() => dispatch(reset())}
+              />
               <CancelButton title={"Отменить"} onClick={cancelHandler} />
             </div>
           </form>
         </div>
         <div>
-          <PostItem post={{ title, text, imgUrl, createdAt: Date.now() }} />
+          <PostItem
+            post={{
+              title,
+              imgUrl,
+              srcUrl,
+              paragraph,
+              text,
+              createdAt: Date.now(),
+            }}
+          />
         </div>
       </>
     </DashboardLayout>

@@ -8,31 +8,22 @@ import Post from "../../../models/Post";
 
 export default async function createPost(req, res) {
   try {
-    console.log("Connecting to Mongo...");
     await connectMongo();
     console.log("Mongo connected!");
 
-    const { title, text, imgUrl } = req.body;
+    const { title, text, imgUrl, srcUrl } = req.body;
 
-    if (imgUrl) {
-      const newPostWithImage = new Post({
-        title,
-        text,
-        imgUrl,
-      });
-      await newPostWithImage.save();
-      console.log("Post saved");
-      res.status(201).json(newPostWithImage);
-    } else {
-      const newPostWithoutImage = new Post({
-        title,
-        text,
-        imgUrl: "",
-      });
-      await newPostWithoutImage.save();
-      console.log("Post saved");
-      res.status(201).json(newPostWithoutImage);
-    }
+    const newPost = new Post({
+      title,
+      text: [...text],
+      imgUrl,
+      srcUrl,
+    });
+
+    await newPost.save();
+    console.log("Post saved!");
+
+    res.status(201).json(newPost);
   } catch (error) {
     console.log(error);
     res.json({ error });
