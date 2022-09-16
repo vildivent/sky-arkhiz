@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PostItem from "../../components/PostItem";
-import PostItemShort from "../../components/PostItemShort";
 import { MainLayout } from "../../layouts/MainLayout";
 import { loadingGif } from "../../public/assets";
 import { getAllPosts } from "../../redux/features/post/postSlice";
