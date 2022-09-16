@@ -22,8 +22,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const _id = context.params.pid;
-  const { data } = await axios.post(`${API}api/posts/getOneById`, { _id });
-  return { props: { post: data.post } };
+  // const { data } = await axios.post(`${API}api/posts/getOneById`, { _id });
+  return { props: { id: _id } };
 };
 
 const NewsPage = ({ post }) => {
@@ -43,7 +43,7 @@ const NewsPage = ({ post }) => {
           onClick={() => Router.back()}
         />
       </div>
-      <PostItem post={post} />
+      {/* <PostItem post={post} /> */}
     </MainLayout>
   );
 };
