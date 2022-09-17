@@ -55,15 +55,13 @@ const Sidebar = ({
               />
             );
           })}
-          {handleLogout !== undefined ? (
+          {handleLogout !== undefined && (
             <li
               className={`px-5 py-2 hover:bg-[#181818] hover:text-white cursor-pointer`}
               onClick={() => handleLogout()}
             >
               Выйти
             </li>
-          ) : (
-            <></>
           )}
         </ul>
       </div>

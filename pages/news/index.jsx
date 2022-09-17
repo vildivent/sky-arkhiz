@@ -23,11 +23,8 @@ export default function News() {
             <Image src={loadingGif} alt="loading" width={40} height={40} />
           </>
         )}
-        {posts.length ? (
-          posts.map((post) => <PostItem key={post._id} post={post} />)
-        ) : (
-          <></>
-        )}
+        {posts.length &&
+          posts.map((post) => <PostItem key={post._id} post={post} />)}
       </div>
     </MainLayout>
   );
