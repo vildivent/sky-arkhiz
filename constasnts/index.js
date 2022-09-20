@@ -6,6 +6,29 @@ import {
   iconPhone,
 } from "../public/assets";
 
+import {
+  gallery1,
+  gallery2,
+  gallery3,
+  gallery4,
+  gallery5,
+  gallery6,
+  gallery7,
+  gallery8,
+  gallery9,
+  gallery10,
+  gallery11,
+  gallery12,
+  gallery13,
+  gallery14,
+  gallery15,
+  gallery16,
+  gallery17,
+  gallery18,
+  gallery19,
+  gallery20,
+} from "../public/assets/gallery";
+
 export const _keywords = "Архыз,Ночные экскурсии,звёзды";
 export const _description = "Ночные экскурсии";
 export const _title = "sky-arkhiz.ru";
@@ -238,83 +261,103 @@ export const dashboardLinks = [
 ];
 export const photoGallery = [
   {
-    id: "1",
+    id: 1,
     title: "1",
+    img: gallery1,
   },
   {
-    id: "2",
+    id: 2,
     title: "2",
+    img: gallery2,
   },
   {
-    id: "3",
+    id: 3,
     title: "3",
+    img: gallery3,
   },
   {
-    id: "4",
+    id: 4,
     title: "4",
+    img: gallery4,
   },
   {
-    id: "5",
+    id: 5,
     title: "5",
+    img: gallery5,
   },
   {
-    id: "6",
+    id: 6,
     title: "6",
+    img: gallery6,
   },
   {
-    id: "7",
+    id: 7,
     title: "7",
+    img: gallery7,
   },
   {
-    id: "8",
+    id: 8,
     title: "8",
+    img: gallery8,
   },
   {
-    id: "9",
+    id: 9,
     title: "9",
+    img: gallery9,
   },
   {
-    id: "10",
+    id: 10,
     title: "10",
+    img: gallery10,
   },
   {
-    id: "11",
+    id: 11,
     title: "11",
+    img: gallery11,
   },
   {
-    id: "12",
+    id: 12,
     title: "12",
+    img: gallery12,
   },
   {
-    id: "13",
+    id: 13,
     title: "13",
+    img: gallery13,
   },
   {
-    id: "14",
+    id: 14,
     title: "14",
+    img: gallery14,
   },
   {
-    id: "15",
+    id: 15,
     title: "15",
+    img: gallery15,
   },
   {
-    id: "16",
+    id: 16,
     title: "16",
+    img: gallery16,
   },
   {
-    id: "17",
+    id: 17,
     title: "17",
+    img: gallery17,
   },
   {
-    id: "18",
+    id: 18,
     title: "18",
+    img: gallery18,
   },
   {
-    id: "19",
+    id: 19,
     title: "19",
+    img: gallery19,
   },
   {
-    id: "20",
+    id: 20,
     title: "20",
+    img: gallery20,
   },
 ];

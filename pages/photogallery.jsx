@@ -3,21 +3,43 @@ import { useState } from "react";
 import GalleryCard from "../components/GalleryCard";
 import { photoGallery } from "../constasnts";
 import { MainLayout } from "../layouts/MainLayout";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 export default function Photogallery() {
-  const [mainPicture, setMainPicture] = useState("");
+  const [imgSrc, setImgSrc] = useState(photoGallery[0]);
 
   return (
     <MainLayout title={"Фотогалерея"}>
-      {mainPicture && (
-        <div className="mt-5">
+      <div className="flex justify-around text-5xl mt-5">
+        <button
+          className="hover:text-cyan-500"
+          onClick={() => {
+            if (imgSrc.id === photoGallery[0].id)
+              setImgSrc(photoGallery[photoGallery.length - 1]);
+            else setImgSrc((prev) => photoGallery[prev.id - 2]);
+          }}
+        >
+          <BiChevronLeft />
+        </button>
+        <button
+          className="hover:text-cyan-500"
+          onClick={() => {
+            if (imgSrc.id === photoGallery[photoGallery.length - 1].id)
+              setImgSrc(photoGallery[0]);
+            else setImgSrc((prev) => photoGallery[prev.id]);
+          }}
+        >
+          <BiChevronRight />
+        </button>
+      </div>
+      {imgSrc?.img && (
+        <div className="">
           <Image
-            src={`/assets/gallery/${mainPicture}.jpg`}
+            src={imgSrc?.img}
             alt="image"
             layout={"responsive"}
             quality={50}
-            width={200}
-            height={200}
+            priority
           />
         </div>
       )}
@@ -30,7 +52,7 @@ export default function Photogallery() {
             <GalleryCard
               key={picture.id}
               picture={picture}
-              setId={setMainPicture}
+              setImgSrc={setImgSrc}
             />
           ))}
       </div>
