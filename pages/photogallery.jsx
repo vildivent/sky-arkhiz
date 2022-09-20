@@ -9,8 +9,24 @@ export default function Photogallery() {
   const [imgSrc, setImgSrc] = useState(photoGallery[0]);
 
   return (
-    <MainLayout title={"Фотогалерея"}>
-      <div className="flex justify-around text-5xl mt-5">
+    <MainLayout title={"Фотогалерея"} mainProps={"px-[2px]"}>
+      {photoGallery &&
+        photoGallery.map((picture) => (
+          <div
+            key={picture.id}
+            className={`${imgSrc.id !== picture.id ? "hidden" : "mt-5"}`}
+          >
+            <Image
+              src={picture.img}
+              alt={picture.title}
+              layout={"responsive"}
+              quality={50}
+              placeholder="blur"
+            />
+          </div>
+        ))}
+
+      <div className="flex justify-around text-5xl">
         <button
           className="hover:text-cyan-500"
           onClick={() => {
@@ -32,28 +48,21 @@ export default function Photogallery() {
           <BiChevronRight />
         </button>
       </div>
-      {imgSrc?.img && (
-        <div className="">
-          <Image
-            src={imgSrc?.img}
-            alt="image"
-            layout={"responsive"}
-            quality={50}
-            priority
-          />
-        </div>
-      )}
 
       <div
-        className={`grid lg:grid-cols-12 md:grid-cols-10 grid-cols-5 gap-2 mt-5 relative`}
+        className={`grid lg:grid-cols-12 md:grid-cols-10 sm:grid-cols-7 grid-cols-5 gap-2 `}
       >
         {photoGallery &&
           photoGallery.map((picture) => (
-            <GalleryCard
+            <div
               key={picture.id}
-              picture={picture}
-              setImgSrc={setImgSrc}
-            />
+              className={`flex hover:scale-110 cursor-pointer justify-center ${
+                imgSrc.id === picture.id ? "border border-cyan-500" : ""
+              }`}
+              onClick={() => setImgSrc(picture)}
+            >
+              <GalleryCard picture={picture} />
+            </div>
           ))}
       </div>
     </MainLayout>

@@ -15,7 +15,7 @@ export default function News() {
   }, [dispatch]);
 
   return (
-    <MainLayout title={"Новости"}>
+    <MainLayout title={"Новости"} mainProps={"px-2"}>
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
         {!posts.length && (
           <>
@@ -23,8 +23,7 @@ export default function News() {
             <Image src={loadingGif} alt="loading" width={40} height={40} />
           </>
         )}
-        {posts.length &&
-          posts.map((post) => <PostItem key={post._id} post={post} />)}
+        {posts && posts.map((post) => <PostItem key={post._id} post={post} />)}
       </div>
     </MainLayout>
   );

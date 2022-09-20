@@ -14,10 +14,10 @@ const News = () => {
 
   useEffect(() => {
     dispatch(getAllPosts());
-  }, [dispatch]);
+  }, [dispatch, posts]);
 
   return (
-    <DashboardLayout title={"Новости"}>
+    <DashboardLayout title={"Новости"} mainProps={"px-2"}>
       <div>
         <div className="flex flex-col flex-wrap items-center gap-3 mt-3">
           {!posts.length && (
