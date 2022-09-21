@@ -1,32 +1,34 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionButton } from "../../components/Buttons";
 
-import ReviewItemDashboard from "../../components/ReviewItemDashboard";
-import { DashboardLayout } from "../../layouts/DashboardLayout";
+import { ActionButton } from "../../components/Buttons";
+import ReviewItem from "../../components/ReviewItem";
+import { MainLayout } from "../../layouts/MainLayout";
 import { loadingGif } from "../../public/assets";
 import {
   getAllReviews,
-  getUncheckedReviews,
+  getCheckedReviews,
 } from "../../redux/features/review/reviewSlice";
 
 export default function Reviews() {
   const dispatch = useDispatch();
+
   const { reviews } = useSelector((state) => state.review);
 
   useEffect(() => {
-    dispatch(getUncheckedReviews());
+    dispatch(getCheckedReviews());
   }, [dispatch]);
 
   return (
-    <DashboardLayout title={"Отзывы"} mainProps={"px-2"}>
-      <div className={`flex flex-wrap gap-3 justify-center mt-5`}>
-        <ActionButton
-          title={"Ожидают проверку"}
-          onClick={() => dispatch(getUncheckedReviews())}
-        />
-        <ActionButton title={"Все"} onClick={() => dispatch(getAllReviews())} />
+    <MainLayout title={"Отзывы"} mainProps={"px-2"}>
+      <div className={"flex justify-center mt-3"}>
+        <Link href="/reviews/create">
+          <a>
+            <ActionButton title={"Оставить отзыв"} />
+          </a>
+        </Link>
       </div>
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
@@ -38,9 +40,9 @@ export default function Reviews() {
         )}
         {reviews &&
           reviews.map((review) => (
-            <ReviewItemDashboard key={review._id} review={review} />
+            <ReviewItem key={review._id} review={review} />
           ))}
       </div>
-    </DashboardLayout>
+    </MainLayout>
   );
 }

@@ -1,8 +1,11 @@
 import Button from "./Button";
 
-const ActionButton = (props) => {
+const ActionButton = ({ className, ...props }) => {
   return (
-    <Button {...props} className={`bg-zinc-600 hover:bg-zinc-700 text-white`} />
+    <Button
+      className={`bg-zinc-600 hover:bg-zinc-700 text-white ${className}`}
+      {...props}
+    />
   );
 };
 
