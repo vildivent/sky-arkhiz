@@ -37,7 +37,7 @@ const ReviewItemDashboard = ({ review }) => {
 
         <CancelButton title={`Удалить отзыв`} onClick={deleteHandler} />
       </div>
-      <ReviewItem review={review} />
+      <ReviewItem review={review} createPage={true} />
     </>
   );
 };
