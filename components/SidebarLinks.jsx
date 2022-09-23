@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 import ActiveLink from "./ActiveLink";
 
@@ -36,7 +37,7 @@ const SidebarSubLinks = ({ link, activeSubMenu, setActiveSubMenu }) => {
         )}
         {link.subLinks ? (
           <span className={`font-bold relative ml-5 my-auto `}>
-            {subMenuOpen ? "-" : "+"}
+            {subMenuOpen ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </span>
         ) : (
           <></>

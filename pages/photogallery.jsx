@@ -35,7 +35,6 @@ export default function Photogallery() {
                 src={picture.img}
                 alt={picture.title}
                 objectPosition={"center"}
-                quality={50}
                 placeholder="blur"
               />
             </div>
