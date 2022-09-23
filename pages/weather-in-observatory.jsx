@@ -21,17 +21,15 @@ export default function WeatherInArkhyz() {
             target="_blank"
             rel="noreferrer"
           >
-            <div
-              className={`mx-auto mt-5 mb-3 font-p text-cyan-500 hover:text-white`}
-            >
+            <div className={`font-p text-cyan-500 hover:text-white`}>
               Подробнее
             </div>
-            <img
+            {/* <img
               border={0}
               width={88}
               height={31}
               src="https://rp5.ru/informer/88x31x2.php?f=12&id=13590&lang=ru&um=00000"
-            />
+            /> */}
           </a>
         </div>
       </div>

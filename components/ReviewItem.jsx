@@ -20,13 +20,17 @@ const ReviewItem = ({ review, createPage }) => {
       className="flex flex-wrap justify-around border border-gray-600 rounded-lg w-full"
     >
       {/* блок пользователя */}
-      <div
-        className={`flex flex-col flex-wrap gap-3 justify-start sm:w-1/4 w-1/3`}
-      >
+      <div className={`flex flex-col flex-wrap gap-3 justify-start sm:w-1/4`}>
         <h2 className={`font-h1 text-center text-2xl`}>{review.name}</h2>
 
         {review.avatarUrl && (
-          <img src={review.avatarUrl} alt="avatar" className="rounded-full" />
+          <div className="flex mx-auto h-[10rem] w-[10rem]">
+            <img
+              src={review.avatarUrl}
+              alt="avatar"
+              className="rounded-full object-cover object-center border border-gray-500"
+            />
+          </div>
         )}
 
         <div className="flex justify-center">
@@ -38,8 +42,14 @@ const ReviewItem = ({ review, createPage }) => {
 
       {/* блок с отзывом */}
       <div className={`flex flex-col flex-wrap gap-3 sm:w-[70%] w-full`}>
-        <div className={`mt-3 flex justify-center`}>
-          {review.photoUrl && <img src={review.photoUrl} alt="photo" />}
+        <div className={`mt-3 flex max-h-[25rem] `}>
+          {review.photoUrl && (
+            <img
+              src={review.photoUrl}
+              alt="photo"
+              className="object-contain object-left"
+            />
+          )}
         </div>
 
         {/* абзацы */}

@@ -28,8 +28,10 @@ const PostItem = ({ post }) => {
         {post.title}
       </h2>
 
-      <div className={`mt-3 flex justify-center`}>
-        {post.imgUrl && <img src={post.imgUrl} alt="post img" />}
+      <div className={`mt-3 flex justify-center max-h-[25rem]`}>
+        {post.imgUrl && (
+          <img src={post.imgUrl} alt="post img" className="object-contain" />
+        )}
       </div>
       {!detailed && <p className="font-p px-3 my-0">{post.text[0]}</p>}
 

@@ -37,10 +37,10 @@ export default function HowToGetThere() {
           <Map
             defaultState={{
               center: [43.661075819224585, 41.44811349916219],
-              zoom: 13,
+              zoom: 14,
             }}
             width={"100%"}
-            height={"20rem"}
+            height={"40rem"}
             modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
           >
             <Placemark
@@ -54,7 +54,6 @@ export default function HowToGetThere() {
               }}
             />
             <ZoomControl options={{ float: "left" }} />
-            <GeolocationControl options={{ float: "left" }} />
           </Map>
         </YMaps>
       </div>
