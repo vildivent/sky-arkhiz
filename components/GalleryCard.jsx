@@ -30,6 +30,7 @@ const GalleryCard = ({ photoGallery, imgSrc, setImgSrc }) => {
             objectFit="contain"
             placeholder="blur"
             layout="fill"
+            quality={50}
           />
         ))}
 

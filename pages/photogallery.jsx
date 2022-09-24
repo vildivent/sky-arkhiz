@@ -28,7 +28,7 @@ export default function Photogallery() {
                 src={picture.img}
                 alt={picture.title || "photo"}
                 placeholder="blur"
-                quality={50}
+                quality={20}
                 layout="fill"
               />
             </div>
