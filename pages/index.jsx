@@ -1,48 +1,48 @@
 import { HomePageLayout } from "../layouts/HomePageLayout";
-import Hero from "../components/Hero";
-import { mainBg, btaBg1, planetarium, bta2 } from "../public/assets";
+import { btaBg1, celestron, btaMobile } from "../public/assets";
 import CTACard from "../components/CTACard";
-import { roadToStarsGalaxyCut, roadToStarsTelescope } from "../public/assets";
+import { roadToStarsGalaxyCut } from "../public/assets";
+import Background from "../components/Background";
 import useBackground from "../hooks/useBackground";
-import BgCover from "../components/BgCover";
+import Image from "next/image";
+import ActionButton from "../components/Buttons/ActionButton";
 
 export default function Home() {
+  const bg = useBackground(btaBg1, btaMobile);
   return (
     <HomePageLayout title={"Главная"}>
       <main>
-        <Hero bg={btaBg1} height="100vh">
-          <h1
-            className={`text-center sm:text-[62px] text-[42px] mt-20 font-h1 `}
-          >
-            Экскурсии по ночному небу
-          </h1>
-        </Hero>
+        <div className="h-[100vh]">
+          <Background bg={bg} position="absolute">
+            <h1
+              className={`text-center sm:text-[62px] text-5xl mt-20 font-h1 opacity-80 `}
+            >
+              Экскурсии по ночному небу
+            </h1>
+          </Background>
+        </div>
 
-        <div className={`flex justify-around flex-wrap`}>
-          <CTACard
-            heading={"Дорога к звёздам"}
-            description={"Ночная экскурсия по звёздному небу с телескопом"}
-            img={roadToStarsGalaxyCut}
-            alt={"Галактика"}
-            link={"/excursions"}
-            opacity={80}
-          />
-          <CTACard
-            heading={"Планетарий САО РАН"}
-            description={""}
-            img={planetarium}
-            alt={"Планетарий"}
-            link={"/what-else-to-do-in-Arkhyz/planetarium"}
-            opacity={50}
-          />
-          <CTACard
-            heading={"Экскурсии в обсерваторию"}
-            description={"Телескопы: оптический БТА и радиотелескоп РАТАН-600"}
-            img={bta2}
-            alt={"БТА холл"}
-            link={"/what-else-to-do-in-Arkhyz/tours-to-the-observatory"}
-            opacity={50}
-          />
+        <div
+          className={`h-[60vh] w-full relative flex flex-col sm:flex-row pt-20`}
+        >
+          <div className="w-1/2 pl-10 flex flex-col relative z-[1]">
+            <h2 className={`font-h1 text-4xl text-center`}>Экскурсии</h2>
+            <div className="">
+              <p className="text-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <p className="text-xl translate-x-10">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <p className=" text-xl translate-x-20">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </p>
+              <p className=" text-xl translate-x-20">
+                <ActionButton title="Подробнее" className=" mx-auto" />
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col justify-end relative h-full sm:w-1/2 w-full"></div>
         </div>
       </main>
     </HomePageLayout>

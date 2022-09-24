@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { mobileBg } from "../public/assets";
 
-export default function useBackground(altBg) {
-  let bg = altBg;
-
+export default function useBackground(mainBg, mobileBg) {
+  let bg = mainBg;
   function getWindowDimentions() {
     if (typeof window !== "undefined") {
       const { innerWidth: width, innerHeight: height } = window;
@@ -30,8 +28,7 @@ export default function useBackground(altBg) {
 
   if (typeof window !== "undefined") {
     const { height, width } = windowDimentions;
-    bg = width > 768 ? altBg : mobileBg;
+    bg = width > 640 ? mainBg : mobileBg;
   }
-  const fixed = bg === altBg ? false : true;
-  return [bg, fixed];
+  return bg;
 }

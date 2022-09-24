@@ -3,7 +3,7 @@ import Button from "./Button";
 const ActionButton = ({ className, ...props }) => {
   return (
     <Button
-      className={`bg-zinc-600 hover:bg-zinc-700 text-white ${className}`}
+      className={`bg-[#003256] hover:bg-[#00243F] text-white ${className}`}
       {...props}
     />
   );

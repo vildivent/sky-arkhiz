@@ -23,6 +23,8 @@ import bta1 from "./bta1.jpg";
 import bta2 from "./bta2.jpg";
 import ratan600 from "./ratan600.jpg";
 import planetarium from "./planetarium.jpg";
+import btaMobile from "./bta-mobile.webp";
+import celestron from "./Celestron.png";
 
 export {
   mainBg,
@@ -50,4 +52,6 @@ export {
   bta2,
   ratan600,
   planetarium,
+  btaMobile,
+  celestron,
 };
