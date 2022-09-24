@@ -6,29 +6,6 @@ import {
   iconPhone,
 } from "../public/assets";
 
-import {
-  gallery1,
-  gallery2,
-  gallery3,
-  gallery4,
-  gallery5,
-  gallery6,
-  gallery7,
-  gallery8,
-  gallery9,
-  gallery10,
-  gallery11,
-  gallery12,
-  gallery13,
-  gallery14,
-  gallery15,
-  gallery16,
-  gallery17,
-  gallery18,
-  gallery19,
-  gallery20,
-} from "../public/assets/gallery";
-
 export const _keywords = "Архыз,Ночные экскурсии,звёзды";
 export const _description = "Ночные экскурсии";
 export const _title = "sky-arkhiz.ru";
@@ -263,101 +240,101 @@ export const photoGallery = [
   {
     id: 1,
     title: "1",
-    img: gallery1,
+    img: "/assets/gallery/1.jpg",
   },
   {
     id: 2,
     title: "2",
-    img: gallery2,
+    img: "/assets/gallery/2.jpg",
   },
   {
     id: 3,
     title: "3",
-    img: gallery3,
+    img: "/assets/gallery/3.jpg",
   },
   {
     id: 4,
     title: "4",
-    img: gallery4,
+    img: "/assets/gallery/4.jpg",
   },
   {
     id: 5,
     title: "5",
-    img: gallery5,
+    img: "/assets/gallery/5.jpg",
   },
   {
     id: 6,
     title: "6",
-    img: gallery6,
+    img: "/assets/gallery/6.jpg",
   },
   {
     id: 7,
     title: "7",
-    img: gallery7,
+    img: "/assets/gallery/7.jpg",
   },
   {
     id: 8,
     title: "8",
-    img: gallery8,
+    img: "/assets/gallery/8.jpg",
   },
   {
     id: 9,
     title: "9",
-    img: gallery9,
+    img: "/assets/gallery/9.jpg",
   },
   {
     id: 10,
     title: "10",
-    img: gallery10,
+    img: "/assets/gallery/10.jpg",
   },
   {
     id: 11,
     title: "11",
-    img: gallery11,
+    img: "/assets/gallery/11.jpg",
   },
   {
     id: 12,
     title: "12",
-    img: gallery12,
+    img: "/assets/gallery/12.jpg",
   },
   {
     id: 13,
     title: "13",
-    img: gallery13,
+    img: "/assets/gallery/13.jpg",
   },
   {
     id: 14,
     title: "14",
-    img: gallery14,
+    img: "/assets/gallery/14.jpg",
   },
   {
     id: 15,
     title: "15",
-    img: gallery15,
+    img: "/assets/gallery/15.jpg",
   },
   {
     id: 16,
     title: "16",
-    img: gallery16,
+    img: "/assets/gallery/16.jpg",
   },
   {
     id: 17,
     title: "17",
-    img: gallery17,
+    img: "/assets/gallery/17.jpg",
   },
   {
     id: 18,
     title: "18",
-    img: gallery18,
+    img: "/assets/gallery/18.jpg",
   },
   {
     id: 19,
     title: "19",
-    img: gallery19,
+    img: "/assets/gallery/19.jpg",
   },
   {
     id: 20,
     title: "20",
-    img: gallery20,
+    img: "/assets/gallery/20.jpg",
   },
 ];

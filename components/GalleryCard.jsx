@@ -28,9 +28,10 @@ const GalleryCard = ({ photoGallery, imgSrc, setImgSrc }) => {
             src={picture.img}
             alt={picture.title}
             objectFit="contain"
-            placeholder="blur"
             layout="fill"
             quality={50}
+            placeholder="blur"
+            blurDataURL={picture.img}
           />
         ))}
 

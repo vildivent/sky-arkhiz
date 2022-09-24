@@ -27,9 +27,10 @@ export default function Photogallery() {
               <Image
                 src={picture.img}
                 alt={picture.title || "photo"}
-                placeholder="blur"
                 quality={20}
                 layout="fill"
+                placeholder="blur"
+                blurDataURL={picture.img}
               />
             </div>
           ))}
