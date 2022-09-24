@@ -8,6 +8,7 @@ import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import BgCover from "../components/BgCover";
 import { bgStars4k } from "../public/assets";
+import { gallery3 } from "../public/assets/gallery";
 import { navLinks } from "../constasnts";
 
 export function MainLayout({
@@ -20,7 +21,7 @@ export function MainLayout({
   h1Props,
 }) {
   const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
-  const [bg, fixed] = useBackground(bgStars4k);
+  const [bg, fixed] = useBackground(gallery3);
   const fullTitle = `${title || _title} | Ночные экскурсии Архыз`;
   return (
     <>
@@ -36,7 +37,7 @@ export function MainLayout({
         setSidebarIsOpened={setSidebarIsOpened}
         navLinks={navLinks}
       />
-      <BgCover bg={bg} fixed={fixed} height="100%">
+      <BgCover bg={bg} fixed={true} height="100%">
         <main
           className={`mx-auto mb-3 sm:p-5 p-5 w-full sm:w-[90%] lg:w-[80%] bg-[#1e1e1e] bg-opacity-70 border-[1px] rounded-xl border-[#111111] ${mainProps}`}
         >
