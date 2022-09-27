@@ -25,13 +25,13 @@ const GalleryCard = ({ photoGallery, imgSrc, setImgSrc }) => {
                 ? "opacity-0 scale-90 "
                 : "transition-all duration-300"
             } `}
-            src={picture.img}
+            src={`${picture.img}.jpg`}
             alt={picture.title}
             objectFit="contain"
             layout="fill"
             quality={50}
             placeholder="blur"
-            blurDataURL={picture.img}
+            blurDataURL={`${picture.img}.jpg`}
           />
         ))}
 

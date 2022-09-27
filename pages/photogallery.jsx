@@ -25,12 +25,12 @@ export default function Photogallery() {
               onClick={() => setImgSrc(picture)}
             >
               <Image
-                src={picture.img}
+                src={`${picture.img}_small.jpg`}
                 alt={picture.title || "photo"}
-                quality={20}
+                quality={100}
                 layout="fill"
                 placeholder="blur"
-                blurDataURL={picture.img}
+                blurDataURL={`${picture.img}_small.jpg`}
               />
             </div>
           ))}
