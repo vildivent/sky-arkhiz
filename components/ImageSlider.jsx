@@ -19,6 +19,7 @@ const ImageSlide = ({ src }) => {
 const ImageSlider = () => {
   return (
     <Slide
+      transitionDuration="400"
       prevArrow={
         <div className="text-5xl opacity-50 hover:text-cyan-500 h-full flex flex-col justify-center">
           <BiChevronLeft />

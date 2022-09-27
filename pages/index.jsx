@@ -23,32 +23,34 @@ export default function Home() {
           </Background>
         </section>
 
-        <section className={`sm:h-[50vw] w-full sm:pl-20 sm:pt-20 px-2 pt-2`}>
+        <section className={`sm:h-[80vh] w-full sm:pl-10 lg:pl-20 pt-2 px-2 `}>
           <div className="h-full w-full flex justify-between items-center sm:flex-row flex-col">
-            <div className="sm:w-[40%] sm:pb-20 pb-5 flex flex-col relative z-[1]">
+            <div className="sm:w-[40%] xl:pb-20 pb-5 flex flex-col justify-center relative z-[1]">
               <h2
-                className={`font-h1 sm:text-[3.75vw] text-3xl pb-[1.875vw] sm:text-start text-center`}
+                className={`font-h1 text-3xl sm:text-4xl xl:text-5xl my-5 sm:text-start text-center`}
               >
                 Экскурсии
               </h2>
-              <div className="mx-auto sm:text-[1.875vw] sm:text-start text-center">
-                <p className="mx-10 sm:mx-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              <div className="mx-auto sm:text-start text-center 2xl:text-xl">
+                <p className="mx-10 sm:mx-0 2xl:my-10">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem
+                  ipsum dolor sit amet
                 </p>
-                <p className="sm:translate-x-[6vw] mx-10 sm:mx-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                <p className="sm:translate-x-[6vw] mx-10 sm:mx-0 2xl:my-10">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem
+                  ipsum dolor sit amet
                 </p>
-                <p className="sm:translate-x-[12vw] mx-10 sm:mx-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                <p className="sm:translate-x-[12vw] mx-10 sm:mx-0 2xl:my-10">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem
+                  ipsum dolor sit amet
                 </p>
-                <p className="sm:translate-x-[18vw] mx-10 sm:mx-0"></p>
               </div>
               <Link href="/excursions/">
                 <a>
-                  <div className="flex sm:translate-x-[24vw] pt-[1.875vw] sm:justify-start justify-center">
+                  <div className="flex sm:translate-x-[24vw] pt-5 sm:justify-start justify-center">
                     <ActionButton
                       title="Подробнее"
-                      className="sm:text-[1.875vw] sm:px-[3vw] px-8 sm:py-[1vw] py-2 sm:rounded-[0.7vw] rounded-md"
+                      className="text-lg sm:px-10 px-8 sm:py-3 py-2 sm:rounded-xl rounded-md"
                     />
                   </div>
                 </a>
@@ -70,8 +72,8 @@ export default function Home() {
           className={`h-full w-full flex flex-col sm:flex-row justify-around bg-[#151515] p-2 sm:p-5`}
         >
           <div className="sm:w-1/2 w-full flex gap-3 flex-col">
-            <h2 className="font-h1 sm:text-4xl text-3xl text-center">
-              В телескоп можно увидеть:
+            <h2 className="font-h1 text-3xl sm:text-4xl xl:text-5xl text-center">
+              Вы увидете:
             </h2>
             <ImageSlider />
           </div>
