@@ -1,26 +1,22 @@
 import { MainLayout } from "../../layouts/MainLayout";
-import CTACard from "../../components/CTACard";
-import { roadToStarsTelescope } from "../../public/assets";
+import { cardImage1 } from "../../public/assets";
+import AstronomyCard from "../../components/AstronomyCard";
 
 export default function Astronomy() {
   return (
     <MainLayout title={"Блог: Статьи по астрономии"}>
-      <div className={`flex justify-around flex-wrap`}>
-        <CTACard
-          heading={"Что можно увидеть в телескоп"}
-          description={""}
-          img={roadToStarsTelescope}
-          alt={"Телескоп"}
-          link={"/astronomy/what-you-can-see-with-a-telescope"}
-          opacity={50}
+      <div className="flex flex-wrap gap-5 sm:gap-10 justify-center mt-5 sm:mt-10">
+        <AstronomyCard
+          href="/astronomy/telescopes/"
+          imageSrc={cardImage1}
+          title="Телескопы"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus porta"
         />
-        <CTACard
-          heading={"Телескопы"}
-          description={""}
-          img={roadToStarsTelescope}
-          alt={"Телескоп"}
-          link={"/astronomy/telescopes"}
-          opacity={50}
+        <AstronomyCard
+          href="/astronomy/what-you-can-see-with-a-telescope/"
+          imageSrc={cardImage1}
+          title="Что можно увидеть в телескоп"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus porta"
         />
       </div>
     </MainLayout>
