@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
-import { gallery3 } from "../public/assets/gallery";
+import { gallery19 } from "../public/assets/gallery";
 import { navLinks } from "../constasnts";
 import { mobileBg } from "../public/assets";
 
@@ -21,7 +21,7 @@ export function MainLayout({
   h1Props,
 }) {
   const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
-  const bg = useBackground(gallery3, mobileBg);
+  const bg = useBackground(gallery19, mobileBg);
   const fullTitle = `${title || _title} | Ночные экскурсии Архыз`;
   return (
     <>
