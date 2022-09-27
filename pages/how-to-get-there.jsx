@@ -6,7 +6,6 @@ import {
   ZoomControl,
   GeolocationControl,
 } from "@pbe/react-yandex-maps";
-import "../styles/HowToGetThere.module.css";
 import Link from "next/link";
 
 export default function HowToGetThere() {

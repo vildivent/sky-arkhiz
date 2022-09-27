@@ -10,7 +10,7 @@ const Background = ({ children, bg, position = "fixed", opacity = "" }) => {
           layout="fill"
           quality={100}
           placeholder="blur"
-          objectFit={position === "absolute" && "cover"}
+          objectFit={position === "absolute" ? "cover" : undefined}
         />
       </div>
 

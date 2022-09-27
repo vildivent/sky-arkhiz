@@ -41,7 +41,19 @@ p {
   background-color: #444444;
   border-radius: 10px;
 }
-/*  */
+
+/* slider */
+.indicators {
+  gap: 5px;
+}
+.indicator.active {
+  background: #666;
+}
+
+/* яндекс карты */
+a.ymaps-2-1-79-gototech {
+  display: none;
+}
 
 /* @media (prefers-color-scheme: dark) {
   html {
