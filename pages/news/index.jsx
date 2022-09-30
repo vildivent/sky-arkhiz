@@ -18,10 +18,7 @@ export default function News() {
     <MainLayout title={"Новости"} mainProps={"px-2"}>
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
         {!posts.length && (
-          <>
-            <span>Новостей нет, или они загружаются</span>
-            <Image src={loadingGif} alt="loading" width={40} height={40} />
-          </>
+          <Image src={loadingGif} alt="loading" width={40} height={40} />
         )}
         {posts && posts.map((post) => <PostItem key={post._id} post={post} />)}
       </div>

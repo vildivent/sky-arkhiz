@@ -9,6 +9,8 @@ import {
   ResetButton,
   CancelButton,
 } from "../../components/Buttons";
+import Label from "../../components/Label";
+import { InputName } from "../../components/Inputs";
 import { MainLayout } from "../../layouts/MainLayout";
 import { createReview } from "../../redux/features/review/reviewSlice";
 import {
@@ -81,25 +83,19 @@ export default function CreateReview() {
             onSubmit={(e) => e.preventDefault()}
           >
             {/*имя пользователя*/}
-            <label
-              className={`text-xs text-white opacity-70 ${
-                wrongFormat ? "text-red-500" : ""
-              }`}
-            >
+            <Label wrongFormat={wrongFormat && !name}>
               * Ваше имя:
-              <input
-                type="text"
-                name="name"
-                placeholder="Ваше имя"
+              <InputName
                 value={name}
                 onChange={(e) => {
                   dispatch(setName(e.target.value));
                 }}
                 className={`mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm`}
               />
-            </label>
+            </Label>
+
             {/*изображение аватара*/}
-            <label className="text-xs text-white opacity-70">
+            <Label>
               URL Вашего фото (аватара):
               <input
                 type="text"
@@ -109,9 +105,9 @@ export default function CreateReview() {
                 onChange={(e) => dispatch(setAvatarUrl(e.target.value))}
                 className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm"
               />
-            </label>
+            </Label>
             {/*изображение*/}
-            <label className="text-xs text-white opacity-70">
+            <Label>
               URL фото с места события:
               <input
                 type="text"
@@ -121,14 +117,10 @@ export default function CreateReview() {
                 onChange={(e) => dispatch(setPhotoUrl(e.target.value))}
                 className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm"
               />
-            </label>
+            </Label>
 
             {/*Текст*/}
-            <label
-              className={`text-xs text-white opacity-70 ${
-                wrongFormat ? "text-red-500" : ""
-              }`}
-            >
+            <Label wrongFormat={wrongFormat && !(text.length || paragraph)}>
               * Отзыв:
               <textarea
                 value={paragraph}
@@ -139,13 +131,13 @@ export default function CreateReview() {
                 placeholder="Напишите отзыв здесь"
                 className={`mt-1 resize-none h-40 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm`}
               />
-            </label>
+            </Label>
 
             {/* рейтинг */}
             <ol className="flex justify-start flex-wrap gap-3 items-center text-xl">
               <span
                 className={`text-xs text-white opacity-70 ${
-                  wrongFormat ? "text-red-500" : ""
+                  wrongFormat && !stars ? "text-red-500" : ""
                 }`}
               >
                 * Ваша оценка:
@@ -169,19 +161,27 @@ export default function CreateReview() {
             </div>
 
             <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
-              <ActionButton
-                title={"Подтвердить"}
-                onClick={() => submitHandler()}
-              />
-              <ActionButton
-                title={"Добавить абзац"}
-                onClick={() => dispatch(pushParagraph())}
-              />
+              <ActionButton onClick={() => submitHandler()}>
+                Подтвердить
+              </ActionButton>
               <ResetButton
-                title={"Сбросить поля"}
-                onClick={() => dispatch(reset())}
-              />
-              <CancelButton title={"Отменить"} onClick={cancelHandler} />
+                onClick={(e) => {
+                  e.preventDefault();
+                  paragraph && dispatch(pushParagraph());
+                }}
+              >
+                Добавить абзац
+              </ResetButton>
+              <CancelButton onClick={cancelHandler}>Отменить</CancelButton>
+              <ResetButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(reset());
+                  setWrongFormat(false);
+                }}
+              >
+                Сбросить поля
+              </ResetButton>
             </div>
           </form>
         </div>

@@ -1,11 +1,8 @@
 import Button from "./Button";
 
-const ResetButton = ({ className, ...props }) => {
+const ResetButton = (props) => {
   return (
-    <Button
-      className={`bg-zinc-600 hover:bg-zinc-700 border-2 border-red-800 text-white ${className}`}
-      {...props}
-    />
+    <Button style={`bg-zinc-600 hover:bg-zinc-700 text-white`} {...props} />
   );
 };
 

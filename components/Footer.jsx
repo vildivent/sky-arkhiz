@@ -3,12 +3,14 @@ import { telescopeLogo } from "../public/assets";
 import { style } from "../styles/style";
 import Logo from "./Logo";
 import { socialLinks, callLink } from "../constasnts";
+import { ActionButton } from "./Buttons";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-white w-full text-left mx-auto px-10 ">
-      <div className="grid sm:grid-flow-col grid-flow-row gap-5 sm:gap-10 text-center py-8">
-        <div>
+    <footer className="border-t border-white w-full text-left mx-auto px-10 border-opacity-50 bg-[#1e1e1e] bg-opacity-75">
+      <div className="flex flex-col sm:flex-row justify-center gap-5 sm:gap-40 text-center py-8">
+        <div className="flex flex-col items-center sm:gap-10 gap-5">
           <Logo
             src={telescopeLogo}
             alt="Ночные экскурсии"
@@ -17,6 +19,13 @@ const Footer = () => {
             heading={"Ночные экскурсии"}
             description={"звёзды - это красиво"}
           />
+          <Link href="/request">
+            <a>
+              <ActionButton className="text-lg sm:px-10 px-8 py-2 sm:rounded-lg rounded-md">
+                Оставить заявку
+              </ActionButton>
+            </a>
+          </Link>
         </div>
         <div className="">
           <h1 className={`${style.h2} text-[21px]`}>Контакты</h1>

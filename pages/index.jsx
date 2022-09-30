@@ -19,6 +19,7 @@ import ElseToDoCard from "../components/ElseToDoCard";
 
 export default function Home() {
   const bg = useBackground(btaBg1, btaMobile);
+  const buttonStyle = "text-lg sm:px-10 px-8 py-2 sm:rounded-lg rounded-md";
 
   return (
     <HomePageLayout title={"Главная"}>
@@ -26,10 +27,24 @@ export default function Home() {
         <section className="h-[100vh]">
           <Background bg={bg} position="absolute">
             <h1
-              className={`text-center sm:text-6xl text-5xl mt-20 font-h1 opacity-80`}
+              className={`text-center sm:text-6xl text-5xl mt-20 font-h1 opacity-80 cursor-default`}
             >
               Экскурсии по ночному небу
             </h1>
+            <div className="flex justify-center flex-col gap-5 items-center mt-5">
+              <h2
+                className={`text-center sm:text-6xl text-5xl font-h1 opacity-80 cursor-default`}
+              >
+                Записаться:
+              </h2>
+              <Link href="/request">
+                <a>
+                  <ActionButton className={`${buttonStyle} hover:opacity-75`}>
+                    Оставить заявку
+                  </ActionButton>
+                </a>
+              </Link>
+            </div>
           </Background>
         </section>
 
@@ -58,10 +73,9 @@ export default function Home() {
               <Link href="/excursions/">
                 <a>
                   <div className="flex sm:translate-x-[24vw] pt-5 sm:justify-start justify-center">
-                    <ActionButton
-                      title="Подробнее"
-                      className="text-lg sm:px-10 px-8 py-2 sm:rounded-lg rounded-md"
-                    />
+                    <ActionButton className={buttonStyle}>
+                      Подробнее
+                    </ActionButton>
                   </div>
                 </a>
               </Link>
@@ -141,10 +155,7 @@ export default function Home() {
             <Link href="/webcams/">
               <a>
                 <div className="flex justify-center">
-                  <ActionButton
-                    title="Подробнее"
-                    className="text-lg sm:px-10 px-8 py-2 sm:rounded-lg rounded-md"
-                  />
+                  <ActionButton className={buttonStyle}>Подробнее</ActionButton>
                 </div>
               </a>
             </Link>
@@ -175,10 +186,9 @@ export default function Home() {
           <Link href={"/reviews/create"}>
             <a>
               <div className="flex justify-center">
-                <ActionButton
-                  title="Оставить отзыв"
-                  className="text-lg sm:px-10 px-8 py-2 sm:rounded-lg rounded-md"
-                />
+                <ActionButton className={buttonStyle}>
+                  Оставить отзыв
+                </ActionButton>
               </div>
             </a>
           </Link>

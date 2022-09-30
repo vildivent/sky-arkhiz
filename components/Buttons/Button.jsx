@@ -1,14 +1,12 @@
-const Button = ({
-  className = "rounded-sm py-2 px-4 text-xs",
-  title,
-  ...props
-}) => {
+const Button = ({ className, title, style, ...props }) => {
   return (
     <button
-      className={`flex justify-center items-center ${className}`}
+      className={`flex justify-center items-center ${style} ${
+        className || "rounded-sm py-2 px-4 text-xs"
+      }`}
       {...props}
     >
-      {title}
+      {title || props.children}
     </button>
   );
 };

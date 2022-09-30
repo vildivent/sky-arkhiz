@@ -28,14 +28,18 @@ const ReviewItem = ({ review, createPage }) => {
             <img
               src={review.avatarUrl}
               alt="avatar"
-              className="rounded-full object-cover object-center border border-gray-500"
+              className="rounded-full object-cover object-center border mx-auto border-gray-500"
             />
           </div>
         )}
 
         <div className="flex justify-center">
           {starsArray.map((number) =>
-            review.stars >= number ? <AiFillStar /> : <AiOutlineStar />
+            review.stars >= number ? (
+              <AiFillStar key={number} />
+            ) : (
+              <AiOutlineStar key={number} />
+            )
           )}
         </div>
       </div>

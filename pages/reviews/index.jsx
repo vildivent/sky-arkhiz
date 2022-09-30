@@ -33,10 +33,7 @@ export default function Reviews() {
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
         {!reviews.length && (
-          <>
-            <span>Отзывов нет, или они загружаются</span>
-            <Image src={loadingGif} alt="loading" width={40} height={40} />
-          </>
+          <Image src={loadingGif} alt="loading" width={40} height={40} />
         )}
         {reviews &&
           reviews.map((review) => (
