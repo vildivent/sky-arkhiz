@@ -29,13 +29,17 @@ const ReviewItemDashboard = ({ review }) => {
 
   return (
     <>
-      <div className="flex justify-center flex-wrap gap-3 mt-5">
-        <ActionButton
-          title={review.checked ? "На проверку" : "Подтвердить"}
-          onClick={setCheckedHandler}
-        />
-
-        <CancelButton title={`Удалить отзыв`} onClick={deleteHandler} />
+      <div className="flex flex-col gap-3">
+        <div className="flex justify-center flex-wrap gap-3 mt-5">
+          <ActionButton onClick={setCheckedHandler}>
+            {review.checked ? "На проверку" : "Подтвердить"}
+          </ActionButton>
+          <CancelButton onClick={deleteHandler}>Удалить отзыв</CancelButton>
+        </div>
+        <div>
+          <div>{`Полезным посчитали: ${review.usefullRaiting}`}</div>
+          <div>{`Бесполезным посчитали: ${review.uselessRaiting}`}</div>
+        </div>
       </div>
       <ReviewItem review={review} createPage={true} />
     </>

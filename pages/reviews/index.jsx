@@ -15,7 +15,7 @@ import {
 export default function Reviews() {
   const dispatch = useDispatch();
 
-  const { reviews } = useSelector((state) => state.review);
+  const { reviews, loading } = useSelector((state) => state.review);
 
   useEffect(() => {
     dispatch(getCheckedReviews());
@@ -33,7 +33,13 @@ export default function Reviews() {
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
         {!reviews.length && (
-          <Image src={loadingGif} alt="loading" width={40} height={40} />
+          <>
+            {loading ? (
+              <Image src={loadingGif} alt="loading" width={40} height={40} />
+            ) : (
+              <span>Отзывов нет</span>
+            )}
+          </>
         )}
         {reviews &&
           reviews.map((review) => (

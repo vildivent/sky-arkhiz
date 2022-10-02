@@ -22,7 +22,7 @@ export default function Request() {
     name: "",
     phoneNumber: "",
     groupSize: 1,
-    description: "",
+    comment: "",
   };
   const inputStyle =
     "text-black bg-gray-200 border py-1 px-2 mb-2 text-xs outline-none placeholder:text-gray-700 rounded-sm";
@@ -137,9 +137,9 @@ export default function Request() {
           <textarea
             name="text"
             placeholder="Комментарий"
-            value={data.description}
+            value={data.comment}
             onChange={(e) => {
-              setData((prev) => ({ ...prev, description: e.target.value }));
+              setData((prev) => ({ ...prev, comment: e.target.value }));
             }}
             className={`${inputStyle.replace(
               /( mb-2)/,

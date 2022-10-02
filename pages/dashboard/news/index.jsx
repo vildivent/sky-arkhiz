@@ -10,7 +10,7 @@ import { getAllPosts } from "../../../redux/features/post/postSlice";
 
 const News = () => {
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => state.post);
+  const { posts, loading } = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getAllPosts());
@@ -21,7 +21,13 @@ const News = () => {
       <div>
         <div className="flex flex-col flex-wrap items-center gap-3 mt-3">
           {!posts.length && (
-            <Image src={loadingGif} alt="loading" width={40} height={40} />
+            <>
+              {loading ? (
+                <Image src={loadingGif} alt="loading" width={40} height={40} />
+              ) : (
+                <span>Отзывов нет</span>
+              )}
+            </>
           )}
           <Link href="/dashboard/news/create">
             <a>

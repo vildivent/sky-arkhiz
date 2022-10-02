@@ -8,7 +8,7 @@ import { getAllPosts } from "../../redux/features/post/postSlice";
 
 export default function News() {
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => state.post);
+  const { posts, loading } = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getAllPosts());
@@ -18,7 +18,13 @@ export default function News() {
     <MainLayout title={"Новости"} mainProps={"px-2"}>
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
         {!posts.length && (
-          <Image src={loadingGif} alt="loading" width={40} height={40} />
+          <>
+            {loading ? (
+              <Image src={loadingGif} alt="loading" width={40} height={40} />
+            ) : (
+              <span>Новостей нет</span>
+            )}
+          </>
         )}
         {posts && posts.map((post) => <PostItem key={post._id} post={post} />)}
       </div>

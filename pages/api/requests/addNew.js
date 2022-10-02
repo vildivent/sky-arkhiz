@@ -11,14 +11,15 @@ export default async function addNew(req, res) {
     await connectMongo();
     console.log("Mongo connected!");
 
-    const { name, phoneNumber, groupSize, dates, description } = req.body.data;
+    const { name, phoneNumber, groupSize, dates, comment } = req.body.data;
 
     const newRequest = new Request({
       name,
       phoneNumber,
       groupSize,
       dates: [...dates],
-      description,
+      comment,
+      status: "new",
     });
 
     await newRequest.save();

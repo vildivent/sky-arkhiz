@@ -4,6 +4,10 @@ import { useState } from "react";
 import Moment from "react-moment";
 import { useDispatch } from "react-redux";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import {
+  addUsefullRaiting,
+  addUselessRaiting,
+} from "../redux/features/review/reviewSlice";
 
 const ReviewItem = ({ review, createPage }) => {
   const dispatch = useDispatch();
@@ -15,10 +19,7 @@ const ReviewItem = ({ review, createPage }) => {
   const starsArray = [1, 2, 3, 4, 5];
 
   return (
-    <div
-      key={`review${review._id}`}
-      className="flex flex-wrap justify-around border border-gray-600 rounded-lg w-full"
-    >
+    <div className="flex flex-wrap justify-around border border-gray-600 rounded-lg w-full">
       {/* блок пользователя */}
       <div className={`flex flex-col flex-wrap gap-3 justify-start sm:w-1/4`}>
         <h2 className={`font-h1 text-center text-2xl`}>{review.name}</h2>
@@ -98,6 +99,7 @@ const ReviewItem = ({ review, createPage }) => {
                 }  `}
                 onClick={() => {
                   setUseful(1);
+                  if (!rated) dispatch(addUsefullRaiting({ id: review._id }));
                   setRated(true);
                 }}
               >
@@ -111,6 +113,7 @@ const ReviewItem = ({ review, createPage }) => {
                 }  `}
                 onClick={() => {
                   setUseful(2);
+                  if (!rated) dispatch(addUselessRaiting({ id: review._id }));
                   setRated(true);
                 }}
               >

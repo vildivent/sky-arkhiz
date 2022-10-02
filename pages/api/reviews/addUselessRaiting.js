@@ -14,17 +14,13 @@ export default async function addUselessRaiting(req, res) {
     const { id } = req.body;
     const filter = { _id: id };
 
-    const rewiew = await Review.findOneAndUpdate(
+    const review = await Review.findOneAndUpdate(
       filter,
-      {
-        $inc: { uselessRaiting: 1 },
-      },
-      {
-        new: true,
-      }
+      { $inc: { uselessRaiting: 1 } },
+      { new: true }
     );
 
-    res.status(200).json({ rewiew });
+    res.status(200).json({ review });
   } catch (error) {
     res.json(error);
   }

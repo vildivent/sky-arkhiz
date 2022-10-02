@@ -1,4 +1,4 @@
-import Review from "../../../models/Review";
+import Request from "../../../models/Request";
 import connectMongo from "../../../utils/connectMongo";
 
 /**
@@ -6,7 +6,7 @@ import connectMongo from "../../../utils/connectMongo";
  * @param {import("next").NextApiResponse} res
  */
 
-export default async function addUsefullRaiting(req, res) {
+export default async function deleteById(req, res) {
   try {
     await connectMongo();
     console.log("Mongo connected!");
@@ -14,13 +14,13 @@ export default async function addUsefullRaiting(req, res) {
     const { id } = req.body;
     const filter = { _id: id };
 
-    const review = await Review.findOneAndUpdate(
-      filter,
-      { $inc: { usefullRaiting: 1 } },
-      { new: true }
-    );
+    const request = await Request.findByIdAndDelete(filter);
 
-    res.status(200).json({ review });
+    if (!request) {
+      return res.status(404).json({ message: "Заявка не найдена" });
+    }
+
+    res.status(200).json({ request });
   } catch (error) {
     res.json(error);
   }

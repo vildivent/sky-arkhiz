@@ -6,9 +6,9 @@ const RequestSchema = new mongoose.Schema(
     phoneNumber: { type: String, required: true },
     groupSize: { type: Number, required: true },
     dates: [{ type: String, required: true }],
+    comment: { type: String, default: "" },
     description: { type: String, default: "" },
-    checked: { type: Boolean, default: false },
-    fulfilled: { type: Boolean, default: false },
+    status: { type: String, default: "new" },
   },
   { timestamps: true }
 );

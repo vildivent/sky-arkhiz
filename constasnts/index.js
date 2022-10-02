@@ -231,6 +231,11 @@ export const dashboardLinks = [
     mainNavbar: true,
   },
   {
+    id: "dashboard/requests",
+    title: "Заявки",
+    mainNavbar: true,
+  },
+  {
     id: "dashboard/photogallery",
     title: "Фотогалерея",
     mainNavbar: true,
