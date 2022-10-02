@@ -62,7 +62,9 @@ export default function Webcams() {
           activeLink={activeLink}
           liveTVhandler={clickHandler}
         />
-        <div className={`w-full flex justify-center md:pl-5 pt-2`}>
+        <div
+          className={`w-full sm:max-w-[75vh] flex justify-center md:pl-5 pt-2`}
+        >
           <img
             src={imgSrc}
             alt={activeLink.title}

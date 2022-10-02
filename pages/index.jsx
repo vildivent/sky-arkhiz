@@ -24,30 +24,28 @@ export default function Home() {
   return (
     <HomePageLayout title={"Главная"}>
       <main>
-        <section className="h-[100vh]">
+        <section className="h-[100vh] relative">
           <Background bg={bg} position="absolute">
             <h1
               className={`text-center sm:text-6xl text-5xl sm:mt-20 mt-10 font-h1 opacity-80 cursor-default`}
             >
               Экскурсии по ночному небу
             </h1>
-            <div className="flex justify-center flex-col gap-5 items-center mt-5">
-              <h2
+          </Background>
+          <div className="absolute bottom-10 sm:bottom-10 2xl:bottom-20 w-full flex justify-center">
+            {/* <h2
                 className={`text-center sm:text-6xl text-5xl font-h1 opacity-80 cursor-default`}
               >
                 Записаться:
-              </h2>
-              <Link href="/request">
-                <a>
-                  <ActionButton
-                    className={`${buttonStyle} hover:opacity-75 opacity-90`}
-                  >
-                    Оставить заявку
-                  </ActionButton>
-                </a>
-              </Link>
-            </div>
-          </Background>
+              </h2> */}
+            <Link href="/request">
+              <a>
+                <ActionButton className={`${buttonStyle} opacity-95`}>
+                  Оставить заявку
+                </ActionButton>
+              </a>
+            </Link>
+          </div>
         </section>
 
         <section className={`sm:h-[80vh] w-full sm:pl-10 lg:pl-20 pt-2 px-2 `}>
