@@ -27,7 +27,7 @@ export default function Home() {
         <section className="h-[100vh]">
           <Background bg={bg} position="absolute">
             <h1
-              className={`text-center sm:text-6xl text-5xl mt-20 font-h1 opacity-80 cursor-default`}
+              className={`text-center sm:text-6xl text-5xl sm:mt-20 mt-10 font-h1 opacity-80 cursor-default`}
             >
               Экскурсии по ночному небу
             </h1>
@@ -39,7 +39,9 @@ export default function Home() {
               </h2>
               <Link href="/request">
                 <a>
-                  <ActionButton className={`${buttonStyle} hover:opacity-75`}>
+                  <ActionButton
+                    className={`${buttonStyle} hover:opacity-75 opacity-90`}
+                  >
                     Оставить заявку
                   </ActionButton>
                 </a>
@@ -50,7 +52,7 @@ export default function Home() {
 
         <section className={`sm:h-[80vh] w-full sm:pl-10 lg:pl-20 pt-2 px-2 `}>
           <div className="h-full w-full flex justify-between items-center sm:flex-row flex-col">
-            <div className="sm:w-[40%] xl:pb-20 pb-5 flex flex-col justify-center relative z-[1]">
+            <div className="sm:w-[40%] xl:pb-20 pb-3 flex flex-col justify-center relative z-[1]">
               <h2
                 className={`font-h1 text-3xl sm:text-4xl xl:text-5xl my-5 sm:text-start text-center`}
               >
@@ -122,13 +124,13 @@ export default function Home() {
               href="/astronomy/telescopes/"
               imageSrc={cardImage1}
               title="Телескопы"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus porta"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus"
             />
             <AstronomyCard
               href="/astronomy/what-you-can-see-with-a-telescope/"
               imageSrc={cardImage1}
               title="Что можно увидеть в телескоп"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus porta"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus"
             />
           </div>
         </section>

@@ -70,7 +70,7 @@ const RequestItem = ({ request }) => {
           name="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className={`w-full text-black outline-none bg-gray-400 border-cyan-500 rounded-sm resize-none transition-all delay-250 ${
+          className={`w-full outline-none bg-[#1e1e1e] border-cyan-500 rounded-md resize-none transition-all delay-250 ${
             editDescription ? "h-40 py-1 px-2 border " : "h-0 "
           }`}
         />
