@@ -10,7 +10,7 @@ export default async function login(req, res) {
   //if the user with this username
   //and password exists
 
-  if (username === "admin" && password === "grWdqu1oTdNOsA34") {
+  if (username === "admin" && password === "admin") {
     const token = sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, // 30 days

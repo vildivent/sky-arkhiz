@@ -8,25 +8,46 @@ import {
 } from "../redux/features/request/requestSlice";
 import { ActionButton, CancelButton } from "./Buttons";
 import { InputDate } from "./Inputs";
+import Modal from "./Modal";
 
 const RequestItem = ({ request }) => {
+  const dispatch = useDispatch();
+
   const [editDescription, setEditDescription] = useState(false);
   const [editStatus, setEditStatus] = useState(false);
   const [description, setDescription] = useState(request.description);
-  const dispatch = useDispatch();
-  const inputStyle =
-    "text-black bg-gray-200 border py-1 px-2 mb-2 text-xs outline-none placeholder:text-gray-700 rounded-sm";
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-2 p-2 border border-gray-600 rounded-lg w-full sm:w-2/3 relative">
       <div className="absolute top-2 right-2">
         <CancelButton
           onClick={() => {
-            dispatch(deleteRequest({ id: request._id }));
-            console.log("Post deleted!");
+            setModalIsOpen(true);
           }}
         >
           Удалить заявку
         </CancelButton>
+        <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
+          <div className="flex gap-5 justify-center items-center">
+            <h1>Вы действительно хотите удалить эту заявку?</h1>
+            <div className="flex gap-5">
+              <ActionButton
+                className="rounded-sm py-2 px-4 text-xs w-10"
+                onClick={() => {
+                  setModalIsOpen(false);
+                  dispatch(deleteRequest({ id: request._id }));
+                  console.log("deleted!");
+                }}
+              >
+                Да
+              </ActionButton>
+              <CancelButton className onClick={() => setModalIsOpen(false)}>
+                Нет
+              </CancelButton>
+            </div>
+          </div>
+        </Modal>
       </div>
       <div>{`Имя: ${request.name}`}</div>
 
