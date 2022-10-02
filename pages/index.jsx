@@ -32,12 +32,12 @@ export default function Home() {
               Экскурсии по ночному небу
             </h1>
           </Background>
-          <div className="absolute bottom-10 sm:bottom-10 2xl:bottom-20 w-full flex justify-center">
-            {/* <h2
-                className={`text-center sm:text-6xl text-5xl font-h1 opacity-80 cursor-default`}
-              >
-                Записаться:
-              </h2> */}
+          <div className="absolute flex justify-center gap-5 sm:gap-10 items-center flex-col sm:flex-row  bottom-10 sm:bottom-10 2xl:bottom-20 w-full">
+            <h2
+              className={`text-centersm:text-5xl text-4xl font-h2 opacity-80 cursor-default`}
+            >
+              Записаться:
+            </h2>
             <Link href="/request">
               <a>
                 <ActionButton className={`${buttonStyle} opacity-95`}>
