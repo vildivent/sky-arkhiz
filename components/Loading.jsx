@@ -4,10 +4,12 @@ import { loadingGif } from "../public/assets";
 const Loading = ({ array, loading, alt }) => {
   return (
     <>
-      {!array.length && (
+      {!(array.length > 0) && (
         <>
           {loading ? (
-            <Image src={loadingGif} alt="loading" width={40} height={40} />
+            console.log(loading) || (
+              <Image src={loadingGif} alt="loading" width={40} height={40} />
+            )
           ) : (
             <span>{alt}</span>
           )}

@@ -169,12 +169,12 @@ export const reviewSlice = createSlice({
       state.loading = true;
     },
     [addUsefullRaiting.fulfilled]: (state, action) => {
-      state.loading = false;
       state.reviews.forEach((review) =>
         review._id === action.payload.review._id
           ? (review.usefullRaiting = action.payload.review.usefullRaiting)
           : undefined
       );
+      state.loading = false;
     },
     [addUsefullRaiting.rejected]: (state) => {
       state.loading = false;
@@ -184,12 +184,12 @@ export const reviewSlice = createSlice({
       state.loading = true;
     },
     [addUselessRaiting.fulfilled]: (state, action) => {
-      state.loading = false;
       state.reviews.forEach((review) =>
         review._id === action.payload.review._id
           ? (review.uselessRaiting = action.payload.review.uselessRaiting)
           : undefined
       );
+      state.loading = false;
     },
     [addUselessRaiting.rejected]: (state) => {
       state.loading = false;
@@ -199,10 +199,10 @@ export const reviewSlice = createSlice({
       state.loading = true;
     },
     [deleteReview.fulfilled]: (state, action) => {
-      state.loading = false;
       state.reviews = state.reviews.filter(
         (review) => review._id !== action.payload.review._id
       );
+      state.loading = false;
     },
     [deleteReview.rejected]: (state) => {
       state.loading = false;

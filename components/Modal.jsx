@@ -18,7 +18,7 @@ const Modal = ({ children, isOpen, setIsOpen }) => {
       <div
         className={`${
           isOpen ? "scale-100" : "scale-75"
-        } transition-all duration-200 p-10 bg-[#1e1e1e] border border-cyan-500 rounded-md`}
+        } transition-all duration-200 p-10 bg-[#1e1e1e] border border-gray-500 shadow-md shadow-gray-700 rounded-md`}
         onClick={(e) => e.stopPropagation()}
       >
         {children}

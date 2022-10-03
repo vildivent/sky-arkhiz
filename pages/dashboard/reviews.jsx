@@ -1,58 +1,59 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionButton } from "../../components/Buttons";
-
+import FilterMenu from "../../components/FilterMenu";
+import Loading from "../../components/Loading";
 import ReviewItemDashboard from "../../components/ReviewItemDashboard";
+import { reviewStatusTypes } from "../../constasnts";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
-import { loadingGif } from "../../public/assets";
 import {
   getAllReviews,
+  getCheckedReviews,
   getUncheckedReviews,
 } from "../../redux/features/review/reviewSlice";
 
 export default function Reviews() {
   const dispatch = useDispatch();
   const { reviews, loading } = useSelector((state) => state.review);
-  const [filter, setFilter] = useState("pending");
+  const [filter, setFilter] = useState(reviewStatusTypes[0].id);
 
   useEffect(() => {
     dispatch(getUncheckedReviews());
   }, [dispatch]);
 
+  const filterHandler = (status) => {
+    try {
+      if (status === reviewStatusTypes[0].id) {
+        dispatch(getUncheckedReviews());
+        setFilter(status);
+        return;
+      }
+      if (status === reviewStatusTypes[1].id) {
+        dispatch(getCheckedReviews());
+        setFilter(status);
+        return;
+      }
+      if (status === "all") {
+        dispatch(getAllReviews());
+        setFilter("all");
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <DashboardLayout title={"Отзывы"} mainProps={"px-2"}>
-      <div className={`flex flex-wrap gap-3 justify-center mt-5`}>
-        <ActionButton
-          onClick={() => {
-            dispatch(getUncheckedReviews());
-            setFilter("pending");
-          }}
-          disabled={filter === "pending"}
-        >
-          Ожидают проверку
-        </ActionButton>
-        <ActionButton
-          onClick={() => {
-            dispatch(getAllReviews());
-            setFilter("all");
-          }}
-          disabled={filter === "all"}
-        >
-          Все
-        </ActionButton>
-      </div>
+      <FilterMenu
+        typesArray={reviewStatusTypes}
+        filter={filter}
+        filterHandler={filterHandler}
+        plural={true}
+      />
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
-        {!reviews.length && (
-          <>
-            {loading ? (
-              <Image src={loadingGif} alt="loading" width={40} height={40} />
-            ) : (
-              <span>Отзывов нет</span>
-            )}
-          </>
-        )}
+        <Loading array={reviews} loading={loading} alt="Отзывов нет" />
+
         {reviews &&
           reviews.map((review) => (
             <ReviewItemDashboard key={review._id} review={review} />

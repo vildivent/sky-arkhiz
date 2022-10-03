@@ -10,7 +10,7 @@ import {
   getRequestsWithStatus,
 } from "../../redux/features/request/requestSlice";
 import DateFilter from "../../components/DateFilter";
-import { setFileredRequests } from "../../redux/features/requestFilter/requestFilterSlice";
+import { setFilteredRequests } from "../../redux/features/requestFilter/requestFilterSlice";
 
 const Requests = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Requests = () => {
 
   useEffect(() => {
     dispatch(
-      setFileredRequests({ requests, filterDate: filterDate?.format() })
+      setFilteredRequests({ requests, filterDate: filterDate?.format() })
     );
   }, [dispatch, requests, filterDate]);
 
@@ -57,12 +57,15 @@ const Requests = () => {
       />
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
-        <Loading array={requests} loading={loading} alt="Заявок нет" />
+        <Loading array={requests} loading={loading} alt="" />
 
-        {filteredRequests &&
+        {filteredRequests.length > 0 ? (
           filteredRequests.map((request) => (
             <RequestItem key={request._id} request={request} />
-          ))}
+          ))
+        ) : (
+          <div>Заявок нет</div>
+        )}
       </div>
     </DashboardLayout>
   );

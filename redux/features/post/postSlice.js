@@ -86,8 +86,8 @@ export const postSlice = createSlice({
       state.loading = true;
     },
     [getOnePost.fulfilled]: (state, action) => {
-      state.loading = false;
       state.posts = [].push(action.payload.post);
+      state.loading = false;
     },
     //Обновление просмотров у поста
     [updateViews.pending]: (state) => {
@@ -104,10 +104,10 @@ export const postSlice = createSlice({
       state.loading = true;
     },
     [deletePost.fulfilled]: (state, action) => {
-      state.loading = false;
       state.posts = state.posts.filter(
         (post) => post._id !== action.payload.post._id
       );
+      state.loading = false;
     },
     [deletePost.rejected]: (state) => {
       state.loading = false;

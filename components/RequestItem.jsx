@@ -52,7 +52,9 @@ const RequestItem = ({ request }) => {
           yesClick={deleteHandler}
           noCkick={() => setModalIsOpen(false)}
         >
-          <h1>Вы действительно хотите удалить эту заявку?</h1>
+          <h1 className="text-gray-300">
+            Вы действительно хотите удалить эту заявку?
+          </h1>
         </ModalYesNo>
       </div>
 
@@ -130,7 +132,11 @@ const RequestItem = ({ request }) => {
       </div>
 
       {`Дата создания: ${new DateObject(request.createdAt).format(
-        `${request.status === "active" ? "DD/MM/YYYY hh:mm:ss" : "DD/MM/YYYY"}`
+        `${
+          request.status === "active" || request.status === "registered"
+            ? "DD/MM/YYYY hh:mm:ss"
+            : "DD/MM/YYYY"
+        }`
       )}`}
     </div>
   );

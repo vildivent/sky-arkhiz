@@ -250,8 +250,8 @@ export const requestStatusTypes = [
   },
   {
     id: "registered",
-    title: "Зарегестрированная",
-    titlePlural: "Зарегестрированные",
+    title: "Зарегистрированная",
+    titlePlural: "Зарегистрированные",
   },
   {
     id: "active",
@@ -262,6 +262,19 @@ export const requestStatusTypes = [
     id: "fulfilled",
     title: "Завершённая",
     titlePlural: "Завершённые",
+  },
+];
+
+export const reviewStatusTypes = [
+  {
+    id: "new",
+    title: "Новый",
+    titlePlural: "Новые",
+  },
+  {
+    id: "checked",
+    title: "Проверенный",
+    titlePlural: "Проверенные",
   },
 ];
 

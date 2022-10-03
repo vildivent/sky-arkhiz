@@ -8,7 +8,7 @@ export const requestFilterSlice = createSlice({
   name: "requestFilter",
   initialState,
   reducers: {
-    setFileredRequests: (state, action) => {
+    setFilteredRequests: (state, action) => {
       const { requests, filterDate } = action.payload;
 
       if (filterDate) {
@@ -43,6 +43,6 @@ export const requestFilterSlice = createSlice({
   },
   extraReducers: {},
 });
-export const { setFileredRequests, resetFilterRequests } =
+export const { setFilteredRequests, resetFilterRequests } =
   requestFilterSlice.actions;
 export default requestFilterSlice.reducer;

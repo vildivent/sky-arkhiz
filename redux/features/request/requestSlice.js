@@ -121,12 +121,12 @@ export const requestSlice = createSlice({
       state.loading = true;
     },
     [setRequestDescription.fulfilled]: (state, action) => {
-      state.loading = false;
       state.requests.forEach((request) =>
         request._id === action.payload.request._id
           ? (request.description = action.payload.request.description)
           : undefined
       );
+      state.loading = false;
     },
     [setRequestDescription.rejected]: (state) => {
       state.loading = false;
@@ -137,10 +137,10 @@ export const requestSlice = createSlice({
       state.loading = true;
     },
     [deleteRequest.fulfilled]: (state, action) => {
-      state.loading = false;
       state.requests = state.requests.filter(
         (request) => request._id !== action.payload.request._id
       );
+      state.loading = false;
     },
     [deleteRequest.rejected]: (state) => {
       state.loading = false;

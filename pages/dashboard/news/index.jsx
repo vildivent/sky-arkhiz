@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionButton } from "../../../components/Buttons";
+import Loading from "../../../components/Loading";
 import PostItemDashboard from "../../../components/PostItemDashboard";
 import { DashboardLayout } from "../../../layouts/DashboardLayout";
-import { loadingGif } from "../../../public/assets";
 import { getAllPosts } from "../../../redux/features/post/postSlice";
 
 const News = () => {
@@ -20,15 +19,8 @@ const News = () => {
     <DashboardLayout title={"Новости"} mainProps={"px-2"}>
       <div>
         <div className="flex flex-col flex-wrap items-center gap-3 mt-3">
-          {!posts.length && (
-            <>
-              {loading ? (
-                <Image src={loadingGif} alt="loading" width={40} height={40} />
-              ) : (
-                <span>Отзывов нет</span>
-              )}
-            </>
-          )}
+          <Loading array={posts} loading={loading} alt="Новостей нет" />
+
           <Link href="/dashboard/news/create">
             <a>
               <ActionButton title={"Добавить новость"} />
