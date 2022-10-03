@@ -27,25 +27,20 @@ export default function Home() {
         <section className="h-[100vh] relative">
           <Background bg={bg} position="absolute">
             <h1
-              className={`text-center sm:text-6xl text-5xl sm:mt-20 mt-10 font-h1 opacity-80 cursor-default`}
+              className={`text-center sm:text-6xl text-5xl sm:mt-20 mt-10 mb-5 font-h1 opacity-80 cursor-default`}
             >
               Экскурсии по ночному небу
             </h1>
+            <div className="flex justify-center w-full">
+              <Link href="/request">
+                <a>
+                  <ActionButton className={`${buttonStyle} opacity-95`}>
+                    Оставить заявку
+                  </ActionButton>
+                </a>
+              </Link>
+            </div>
           </Background>
-          <div className="absolute flex justify-center gap-3 items-center flex-col bottom-10 sm:bottom-10 w-full">
-            <h2
-              className={`text-center sm:text-5xl text-4xl font-h2 opacity-80 cursor-default`}
-            >
-              Записаться:
-            </h2>
-            <Link href="/request">
-              <a>
-                <ActionButton className={`${buttonStyle} opacity-95`}>
-                  Оставить заявку
-                </ActionButton>
-              </a>
-            </Link>
-          </div>
         </section>
 
         <section className={`sm:h-[80vh] w-full sm:pl-10 lg:pl-20 pt-2 px-2 `}>
