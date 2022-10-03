@@ -132,11 +132,7 @@ const RequestItem = ({ request }) => {
       </div>
 
       {`Дата создания: ${new DateObject(request.createdAt).format(
-        `${
-          request.status === "active" || request.status === "registered"
-            ? "DD/MM/YYYY hh:mm:ss"
-            : "DD/MM/YYYY"
-        }`
+        "DD/MM/YYYY hh:mm:ss"
       )}`}
     </div>
   );
