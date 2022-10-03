@@ -61,7 +61,11 @@ const PostItem = ({ post }) => {
           <span>{post.views}</span>
         </div>
 
-        <Moment className="m-2" date={post.createdAt} format="D. M. YYYY г." />
+        <Moment
+          className="m-2"
+          date={post.createdAt}
+          format="DD/MM/YYYY-hh:mm"
+        />
       </div>
     </div>
   );
