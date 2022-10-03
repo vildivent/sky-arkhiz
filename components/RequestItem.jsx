@@ -132,7 +132,7 @@ const RequestItem = ({ request }) => {
       </div>
 
       {`Дата создания: ${new DateObject(request.createdAt).format(
-        "DD/MM/YYYY hh:mm:ss"
+        "DD/MM/YYYY-hh:mm"
       )}`}
     </div>
   );
