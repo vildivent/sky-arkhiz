@@ -36,7 +36,7 @@ const CameraPage = ({ staticCamLink }) => {
   }, [count, staticCamLink.link]);
 
   return (
-    <main>
+    <main className="h-[100vh] w-full">
       <div className={`flex justify-center my-3`}>
         <Image
           src={hovered ? backArrowWhite : backArrowCyan500}
@@ -57,7 +57,7 @@ const CameraPage = ({ staticCamLink }) => {
 
       <div className={`flex justify-center`}>
         <img
-          className="w-full h-full"
+          className="h-[85vh]"
           src={link}
           alt={`${staticCamLink.title} камера`}
         />
