@@ -30,7 +30,7 @@ export default function Navbar({ setSidebarIsOpened, navLinks }) {
           // if scroll up show the navbar
           setShowNavbar(true);
         }
-        if (window.scrollY === 0) {
+        if (window.scrollY < 200) {
           //set default navbar to top
           if (router.asPath === "/") setChangedNavbar(false);
         } else {
