@@ -1,29 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteReview, setChecked } from "../redux/features/review/reviewSlice";
 import { ActionButton, CancelButton } from "./Buttons";
+import ModalYesNo from "./ModalYesNo";
 import ReviewItem from "./ReviewItem";
 
 const ReviewItemDashboard = ({ review }) => {
   const dispatch = useDispatch();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const deleteHandler = () => {
     try {
-      const id = review._id;
-      dispatch(deleteReview({ id }));
-      console.log("Post deleted!");
+      setModalIsOpen(false);
+      dispatch(deleteReview({ id: review._id }));
+      console.log("Отзыв удалён!");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const setCheckedHandler = () => {
     try {
-      const id = review._id;
-      dispatch(setChecked({ id }));
+      dispatch(setChecked({ id: review._id }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -34,7 +36,19 @@ const ReviewItemDashboard = ({ review }) => {
           <ActionButton onClick={setCheckedHandler}>
             {review.checked ? "На проверку" : "Подтвердить"}
           </ActionButton>
-          <CancelButton onClick={deleteHandler}>Удалить отзыв</CancelButton>
+
+          <CancelButton onClick={() => setModalIsOpen(true)}>
+            Удалить отзыв
+          </CancelButton>
+
+          <ModalYesNo
+            isOpen={modalIsOpen}
+            setIsOpen={setModalIsOpen}
+            yesClick={deleteHandler}
+            noCkick={() => setModalIsOpen(false)}
+          >
+            <h1>Вы действительно хотите удалить этот отзыв?</h1>
+          </ModalYesNo>
         </div>
         <div>
           <div>{`Полезным посчитали: ${review.usefullRaiting}`}</div>

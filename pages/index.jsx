@@ -32,9 +32,9 @@ export default function Home() {
               Экскурсии по ночному небу
             </h1>
           </Background>
-          <div className="absolute flex justify-center gap-5 sm:gap-10 items-center flex-col sm:flex-row  bottom-10 sm:bottom-10 2xl:bottom-20 w-full">
+          <div className="absolute flex justify-center gap-3 items-center flex-col bottom-10 sm:bottom-10 w-full">
             <h2
-              className={`text-centersm:text-5xl text-4xl font-h2 opacity-80 cursor-default`}
+              className={`text-center sm:text-5xl text-4xl font-h2 opacity-80 cursor-default`}
             >
               Записаться:
             </h2>

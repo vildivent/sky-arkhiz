@@ -1,29 +1,41 @@
-/* eslint-disable @next/next/no-img-element */
-
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../redux/features/post/postSlice";
 import { CancelButton } from "./Buttons";
+import ModalYesNo from "./ModalYesNo";
 import PostItem from "./PostItem";
 
 const PostItemDashboard = ({ post }) => {
   const dispatch = useDispatch();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const deleteHandler = () => {
     try {
-      const id = post._id;
-
-      dispatch(deletePost({ id }));
-      console.log("Post deleted!");
+      setModalIsOpen(false);
+      dispatch(deletePost({ id: post._id }));
+      console.log("Новость удалена!");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   return (
     <>
       <div className="flex justify-center mt-5">
-        <CancelButton title={`Удалить новость`} onClick={deleteHandler} />
+        <CancelButton onClick={() => setModalIsOpen(true)}>
+          Удалить новость
+        </CancelButton>
+
+        <ModalYesNo
+          isOpen={modalIsOpen}
+          setIsOpen={setModalIsOpen}
+          yesClick={deleteHandler}
+          noCkick={() => setModalIsOpen(false)}
+        >
+          <h1>Вы действительно хотите удалить эту новость?</h1>
+        </ModalYesNo>
       </div>
+
       <PostItem post={post} />
     </>
   );

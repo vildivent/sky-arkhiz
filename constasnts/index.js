@@ -241,6 +241,30 @@ export const dashboardLinks = [
     mainNavbar: true,
   },
 ];
+
+export const requestStatusTypes = [
+  {
+    id: "new",
+    title: "Новая",
+    titlePlural: "Новые",
+  },
+  {
+    id: "registered",
+    title: "Зарегестрированная",
+    titlePlural: "Зарегестрированные",
+  },
+  {
+    id: "active",
+    title: "Активная",
+    titlePlural: "Активные",
+  },
+  {
+    id: "fulfilled",
+    title: "Завершённая",
+    titlePlural: "Завершённые",
+  },
+];
+
 export const photoGallery = [
   {
     id: 1,

@@ -1,9 +1,10 @@
 import Button from "./Button";
 
 const ActionButton = (props) => {
+  const bg = "bg-[#003256]";
   return (
     <Button
-      style={`bg-[#003256] hover:bg-[#00243F] disabled:bg-[#00243F] text-white`}
+      style={`bg-sky-700 hover:bg-blue-900 disabled:bg-blue-900 text-white`}
       {...props}
     />
   );

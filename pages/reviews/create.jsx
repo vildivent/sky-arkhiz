@@ -53,8 +53,7 @@ export default function CreateReview() {
         dispatch(createReview(data));
         console.log("Отзыв добавлен и находится на проверке");
 
-        dispatch(reset());
-        router.push("/reviews");
+        router.push("/reviews/success");
       } catch (error) {
         console.log(error);
       }
@@ -62,6 +61,10 @@ export default function CreateReview() {
       setWrongFormat(true);
     }
   };
+
+  useEffect(() => {
+    dispatch(reset());
+  }, [dispatch]);
 
   useEffect(() => {
     if (name && (text[0] || paragraph) && stars > 0) setWrongFormat(false);

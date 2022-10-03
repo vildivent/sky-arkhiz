@@ -1,14 +1,16 @@
 import { useState } from "react";
-import Moment from "react-moment";
 import { useDispatch } from "react-redux";
 import {
   deleteRequest,
   setRequestDescription,
   setRequestStatus,
 } from "../redux/features/request/requestSlice";
-import { ActionButton, CancelButton } from "./Buttons";
+import { CancelButton } from "./Buttons";
 import { InputDate } from "./Inputs";
-import Modal from "./Modal";
+import ModalYesNo from "./ModalYesNo";
+import FilterMenu from "./FilterMenu";
+import { requestStatusTypes } from "../constasnts";
+import { DateObject } from "react-multi-date-picker";
 
 const RequestItem = ({ request }) => {
   const dispatch = useDispatch();
@@ -18,37 +20,42 @@ const RequestItem = ({ request }) => {
   const [description, setDescription] = useState(request.description);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const deleteHandler = () => {
+    try {
+      setModalIsOpen(false);
+      dispatch(deleteRequest({ id: request._id }));
+      console.log("Заявка удалена!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const setStatusHandler = (status) => {
+    try {
+      dispatch(setRequestStatus({ id: request._id, status }));
+      setEditStatus(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-2 p-2 border border-gray-600 rounded-lg w-full sm:w-2/3 relative">
+    <div className="flex flex-col gap-2 p-2 border border-gray-600 rounded-lg w-full sm:w-2/3 relative z-0">
       <div className="absolute top-2 right-2">
-        <CancelButton
-          onClick={() => {
-            setModalIsOpen(true);
-          }}
-        >
+        <CancelButton onClick={() => setModalIsOpen(true)}>
           Удалить заявку
         </CancelButton>
-        <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
-          <div className="flex gap-5 justify-center items-center">
-            <h1>Вы действительно хотите удалить эту заявку?</h1>
-            <div className="flex gap-5">
-              <ActionButton
-                className="rounded-sm py-2 px-4 text-xs w-10"
-                onClick={() => {
-                  setModalIsOpen(false);
-                  dispatch(deleteRequest({ id: request._id }));
-                  console.log("deleted!");
-                }}
-              >
-                Да
-              </ActionButton>
-              <CancelButton className onClick={() => setModalIsOpen(false)}>
-                Нет
-              </CancelButton>
-            </div>
-          </div>
-        </Modal>
+
+        <ModalYesNo
+          isOpen={modalIsOpen}
+          setIsOpen={setModalIsOpen}
+          yesClick={deleteHandler}
+          noCkick={() => setModalIsOpen(false)}
+        >
+          <h1>Вы действительно хотите удалить эту заявку?</h1>
+        </ModalYesNo>
       </div>
+
       <div>{`Имя: ${request.name}`}</div>
 
       <div className="">
@@ -99,9 +106,8 @@ const RequestItem = ({ request }) => {
 
       <div className="flex flex-wrap">
         {`Статус: ${
-          request.status === "new"
-            ? "Новая"
-            : `${request.status === "active" ? "Активная" : "Завершённая"}`
+          requestStatusTypes.find((item) => item.id === request.status)
+            ?.title || "Ошибка"
         }`}
         <div
           className="text-cyan-500 hover:text-white ml-2 cursor-pointer"
@@ -111,54 +117,21 @@ const RequestItem = ({ request }) => {
         >
           Изменить
         </div>
-        <div
-          className={`w-full flex gap-3 justify-center items-center transition-all delay-250 ${
-            editStatus ? "h-10 pt-2 px-2" : "h-0 opacity-0 pointer-events-none"
-          }`}
-        >
-          <ActionButton
-            className="w-28 rounded-sm py-2 px-4 text-xs"
-            disabled={request.status === "new"}
-            onClick={() => {
-              dispatch(setRequestStatus({ id: request._id, status: "new" }));
-              setEditStatus(false);
-            }}
-          >
-            Новая
-          </ActionButton>
-          <ActionButton
-            className="w-28 rounded-sm py-2 px-4 text-xs"
-            disabled={request.status === "active"}
-            onClick={() => {
-              dispatch(setRequestStatus({ id: request._id, status: "active" }));
-              setEditStatus(false);
-            }}
-          >
-            Активная
-          </ActionButton>
-          <ActionButton
-            className="w-28 rounded-sm py-2 px-4 text-xs"
-            disabled={request.status === "fulfilled"}
-            onClick={() => {
-              dispatch(
-                setRequestStatus({ id: request._id, status: "fulfilled" })
-              );
-              setEditStatus(false);
-            }}
-          >
-            Завершённая
-          </ActionButton>
-        </div>
-      </div>
 
-      <div>
-        {`Дата создания:`}
-        <Moment
-          className="m-2"
-          date={request.createdAt}
-          format="D. M. YYYY г."
+        <FilterMenu
+          className={`w-full flex flex-wrap gap-3 justify-center items-center transition-all delay-250 ${
+            editStatus ? "pt-2 px-2" : "h-0 opacity-0 pointer-events-none"
+          }`}
+          typesArray={requestStatusTypes}
+          filter={request.status}
+          filterHandler={setStatusHandler}
+          all={false}
         />
       </div>
+
+      {`Дата создания: ${new DateObject(request.createdAt).format(
+        `${request.status === "active" ? "DD/MM/YYYY hh:mm:ss" : "DD/MM/YYYY"}`
+      )}`}
     </div>
   );
 };

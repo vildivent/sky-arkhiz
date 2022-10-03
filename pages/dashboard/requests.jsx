@@ -1,68 +1,66 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionButton } from "../../components/Buttons";
+import Loading from "../../components/Loading";
 import RequestItem from "../../components/RequestItem";
+import FilterMenu from "../../components/FilterMenu";
+import { requestStatusTypes } from "../../constasnts";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
-import { loadingGif } from "../../public/assets";
 import {
   getAllRequests,
   getRequestsWithStatus,
 } from "../../redux/features/request/requestSlice";
+import DateFilter from "../../components/DateFilter";
+import { setFileredRequests } from "../../redux/features/requestFilter/requestFilterSlice";
 
 const Requests = () => {
   const dispatch = useDispatch();
   const { requests, loading } = useSelector((state) => state.request);
+  const { filteredRequests } = useSelector((state) => state.requestFilter);
 
-  const [filter, setFilter] = useState("new");
+  const initialStatus = requestStatusTypes[0].id;
+  const [filter, setFilter] = useState(initialStatus);
+  const [filterDate, setFilterDate] = useState(null);
 
   useEffect(() => {
-    dispatch(getRequestsWithStatus({ status: "new" }));
-  }, [dispatch]);
+    dispatch(getRequestsWithStatus({ status: initialStatus }));
+  }, [dispatch, initialStatus]);
+
+  useEffect(() => {
+    dispatch(
+      setFileredRequests({ requests, filterDate: filterDate?.format() })
+    );
+  }, [dispatch, requests, filterDate]);
+
+  const filterHandler = (status) => {
+    try {
+      if (status !== "all") {
+        dispatch(getRequestsWithStatus({ status }));
+        setFilter(status);
+      } else {
+        dispatch(getAllRequests());
+        setFilter("all");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <DashboardLayout title={"Заявки"} mainProps={"px-2"}>
-      <div className={`flex flex-wrap gap-3 justify-center mt-5`}>
-        <ActionButton
-          onClick={() => {
-            dispatch(getRequestsWithStatus({ status: "new" }));
-            setFilter("new");
-          }}
-          disabled={filter === "new"}
-        >
-          Новые заявки
-        </ActionButton>
-        <ActionButton
-          onClick={() => {
-            dispatch(getRequestsWithStatus({ status: "active" }));
-            setFilter("active");
-          }}
-          disabled={filter === "active"}
-        >
-          Активные заявки
-        </ActionButton>
-        <ActionButton
-          onClick={() => {
-            dispatch(getAllRequests());
-            setFilter("all");
-          }}
-          disabled={filter === "all"}
-        >
-          Все заявки
-        </ActionButton>
-      </div>
+      <DateFilter filterDate={filterDate} setFilterDate={setFilterDate} />
+
+      <FilterMenu
+        typesArray={requestStatusTypes}
+        filter={filter}
+        filterHandler={filterHandler}
+        plural={true}
+      />
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
-        {!requests.length && (
-          <>
-            {loading ? (
-              <Image src={loadingGif} alt="loading" width={40} height={40} />
-            ) : (
-              <span>Заявок нет</span>
-            )}
-          </>
-        )}
-        {requests &&
-          requests.map((request) => (
+        <Loading array={requests} loading={loading} alt="Заявок нет" />
+
+        {filteredRequests &&
+          filteredRequests.map((request) => (
             <RequestItem key={request._id} request={request} />
           ))}
       </div>
