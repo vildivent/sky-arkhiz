@@ -9,6 +9,8 @@ const RequestSchema = new mongoose.Schema(
     comment: { type: String, default: "" },
     description: { type: String, default: "" },
     status: { type: String, default: "new" },
+    excursionDate: { type: Date, default: new Date(0) },
+    groupNumber: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

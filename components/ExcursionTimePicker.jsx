@@ -1,4 +1,5 @@
 import DatePicker from "react-multi-date-picker";
+import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import { AiOutlineClose } from "react-icons/ai";
 import gregorian_ru from "../utils/calendar/locale/gregorian_ru";
 import { ActionButton } from "./Buttons";
@@ -10,23 +11,28 @@ const CustomButton = ({ openCalendar, value, handleValueChange }) => {
       onChange={handleValueChange}
       className={`rounded-md py-2 px-4 text-sm ${value || "translate-x-3"}`}
     >
-      {value || "Фильтр по дате"}
+      {value || "Выбрать дату"}
     </ActionButton>
   );
 };
 
-const DateFilter = ({ filterDate, setFilterDate }) => {
+const ExcursionTimePicker = ({ filterDate, setFilterDate }) => {
   return (
-    <div className="flex justify-center mt-5 gap-2 z-[1]">
+    <div className="flex justify-center gap-2 z-[1]">
       <DatePicker
         value={filterDate}
         onChange={setFilterDate}
         locale={gregorian_ru}
-        format="DD/MM/YYYY"
+        format="DD/MM/YYYY HH:mm"
         render={<CustomButton />}
         weekStartDayIndex={1}
         className="bg-dark"
         editable={true}
+        calendarPosition={"top"}
+        fixMainPosition={true}
+        plugins={[
+          <TimePicker key={"timePicker"} position="bottom" hideSeconds />,
+        ]}
       />
 
       <ActionButton
@@ -41,4 +47,4 @@ const DateFilter = ({ filterDate, setFilterDate }) => {
   );
 };
 
-export default DateFilter;
+export default ExcursionTimePicker;

@@ -30,29 +30,11 @@ export const getRequestsWithStatus = createAsyncThunk(
   }
 );
 
-export const setRequestStatus = createAsyncThunk(
-  "request/setRequestStatus",
-  async ({ id, status }) => {
+export const setRequestData = createAsyncThunk(
+  "request/setRequestData",
+  async (newData) => {
     try {
-      const { data } = await axios.post("/api/requests/setStatus", {
-        id,
-        status,
-      });
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
-
-export const setRequestDescription = createAsyncThunk(
-  "request/setRequestDescription",
-  async ({ id, description }) => {
-    try {
-      const { data } = await axios.post("/api/requests/setDescription", {
-        id,
-        description,
-      });
+      const { data } = await axios.post("/api/requests/setData", newData);
       return data;
     } catch (error) {
       console.log(error);
@@ -100,35 +82,30 @@ export const requestSlice = createSlice({
       state.loading = false;
     },
 
-    //Изменить статус заявки
-    [setRequestStatus.pending]: (state) => {
+    //Изменить поля заявки
+    [setRequestData.pending]: (state) => {
       state.loading = true;
     },
-    [setRequestStatus.fulfilled]: (state, action) => {
-      state.requests.forEach((request) =>
-        request._id === action.payload.request._id
-          ? (request.status = action.payload.request.status)
-          : undefined
-      );
+    [setRequestData.fulfilled]: (state, action) => {
+      const newStatus = false;
+      state.requests.forEach((request, index) => {
+        if (request._id === action.payload.request._id) {
+          state.requests[index] = action.payload.request;
+        }
+        if (request.status !== action.payload.status) {
+          newStatus = true;
+        }
+      });
+      // Заявка удаляется из списка при переключении её состояния
+      if (false && newStatus) {
+        state.requests = state.requests.filter((request) => {
+          if (request._id === action.payload.request._id) return false;
+          return true;
+        });
+      }
       state.loading = false;
     },
-    [setRequestStatus.rejected]: (state) => {
-      state.loading = false;
-    },
-
-    //Изменить описание заявки
-    [setRequestDescription.pending]: (state) => {
-      state.loading = true;
-    },
-    [setRequestDescription.fulfilled]: (state, action) => {
-      state.requests.forEach((request) =>
-        request._id === action.payload.request._id
-          ? (request.description = action.payload.request.description)
-          : undefined
-      );
-      state.loading = false;
-    },
-    [setRequestDescription.rejected]: (state) => {
+    [setRequestData.rejected]: (state) => {
       state.loading = false;
     },
 

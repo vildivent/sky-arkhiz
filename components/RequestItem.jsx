@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteRequest,
-  setRequestDescription,
-  setRequestStatus,
+  setRequestData,
 } from "../redux/features/request/requestSlice";
 import { CancelButton } from "./Buttons";
 import { InputDate } from "./Inputs";
@@ -11,13 +10,18 @@ import ModalYesNo from "./ModalYesNo";
 import FilterMenu from "./FilterMenu";
 import { requestStatusTypes } from "../constasnts";
 import { DateObject } from "react-multi-date-picker";
+import { setRequestsEdit } from "../redux/features/requestEdit/requestEditSlice";
+import ExcursionTimePicker from "./ExcursionTimePicker";
+import { compareWithDefaultDate } from "../utils/compareWithDefaultDate";
 
 const RequestItem = ({ request }) => {
   const dispatch = useDispatch();
+  const edit = useSelector((state) => state.requestEdit);
 
-  const [editDescription, setEditDescription] = useState(false);
-  const [editStatus, setEditStatus] = useState(false);
   const [description, setDescription] = useState(request.description);
+  const [excursionDate, setExcursionDate] = useState(
+    compareWithDefaultDate(request.excursionDate) ? null : request.excursionDate
+  );
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const deleteHandler = () => {
@@ -32,8 +36,8 @@ const RequestItem = ({ request }) => {
 
   const setStatusHandler = (status) => {
     try {
-      dispatch(setRequestStatus({ id: request._id, status }));
-      setEditStatus(false);
+      dispatch(setRequestData({ id: request._id, status }));
+      dispatch(setRequestsEdit(["status"]));
     } catch (error) {
       console.error(error);
     }
@@ -71,37 +75,40 @@ const RequestItem = ({ request }) => {
       <div>{`Размер группы: ${request.groupSize} чел.`}</div>
 
       <div>{`Даты: ${request.dates[0]} ~ ${request.dates[1]}`}</div>
-      <div className="flex justify-center">
+      <div className="flex justify-center relative z-0">
         <InputDate dateRange={request.dates} editable={false} />
       </div>
 
       <div>{`Комментарий: ${request.comment}`}</div>
+      <div>{`Дата создания: ${new DateObject(request.createdAt).format(
+        "DD/MM/YYYY HH:mm"
+      )}`}</div>
 
       <div className="flex flex-wrap">
         {`Описание: ${request.description}`}
         <div
           className="text-cyan-500 hover:text-white ml-2 cursor-pointer"
           onClick={() => {
-            if (editDescription)
+            if (edit.description)
               dispatch(
-                setRequestDescription({
+                setRequestData({
                   id: request._id,
-                  description: description,
+                  description,
                 })
               );
-            setEditDescription((prev) => !prev);
+            dispatch(setRequestsEdit(["description"]));
           }}
         >
           {request.description
-            ? `${editDescription ? "Сохранить" : "Изменить"}`
-            : `${editDescription ? "Сохранить" : "Добавить"}`}
+            ? `${edit.description ? "Сохранить" : "Изменить"}`
+            : `${edit.description ? "Сохранить" : "Добавить"}`}
         </div>
         <textarea
           name="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className={`w-full outline-none bg-[#1e1e1e] border-cyan-500 rounded-md resize-none transition-all delay-250 ${
-            editDescription ? "h-40 py-1 px-2 border " : "h-0 "
+            edit.description ? "h-40 py-1 px-2 border " : "h-0 "
           }`}
         />
       </div>
@@ -114,7 +121,7 @@ const RequestItem = ({ request }) => {
         <div
           className="text-cyan-500 hover:text-white ml-2 cursor-pointer"
           onClick={() => {
-            setEditStatus((prev) => !prev);
+            dispatch(setRequestsEdit(["status"]));
           }}
         >
           Изменить
@@ -122,7 +129,7 @@ const RequestItem = ({ request }) => {
 
         <FilterMenu
           className={`w-full flex flex-wrap gap-3 justify-center items-center transition-all delay-250 ${
-            editStatus ? "pt-2 px-2" : "h-0 opacity-0 pointer-events-none"
+            edit.status ? "pt-2 px-2" : "h-0 opacity-0 pointer-events-none"
           }`}
           typesArray={requestStatusTypes}
           filter={request.status}
@@ -131,9 +138,47 @@ const RequestItem = ({ request }) => {
         />
       </div>
 
-      {`Дата создания: ${new DateObject(request.createdAt).format(
-        "DD/MM/YYYY-hh:mm"
-      )}`}
+      <div className="flex flex-wrap">
+        {`Дата экскурсии: ${
+          !compareWithDefaultDate(request.excursionDate)
+            ? new DateObject(request.excursionDate).format("DD/MM/YYYY HH:mm")
+            : ""
+        }
+        `}
+        <div
+          className="text-cyan-500 hover:text-white ml-2 cursor-pointer"
+          onClick={() => {
+            if (edit.excursionDate)
+              dispatch(
+                setRequestData({
+                  id: request._id,
+                  excursionDate: new DateObject(
+                    excursionDate ? excursionDate : Date(0)
+                  ).toUnix(),
+                })
+              );
+
+            dispatch(setRequestsEdit(["excursionDate"]));
+          }}
+        >
+          {!request.excursionDate ||
+          compareWithDefaultDate(request.excursionDate)
+            ? `${edit.excursionDate ? "Сохранить" : "Добавить"}`
+            : `${edit.excursionDate ? "Сохранить" : "Изменить"}`}
+        </div>
+        <div
+          className={`w-full flex flex-wrap gap-3 mt-5 justify-center items-center transition-all delay-250 relative z-[1] ${
+            edit.excursionDate
+              ? ""
+              : "h-0 opacity-0 pointer-events-none translate-y-10"
+          }`}
+        >
+          <ExcursionTimePicker
+            filterDate={excursionDate}
+            setFilterDate={setExcursionDate}
+          />
+        </div>
+      </div>
     </div>
   );
 };

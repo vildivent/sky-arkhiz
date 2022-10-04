@@ -7,9 +7,7 @@ const Loading = ({ array, loading, alt }) => {
       {!(array.length > 0) && (
         <>
           {loading ? (
-            console.log(loading) || (
-              <Image src={loadingGif} alt="loading" width={40} height={40} />
-            )
+            <Image src={loadingGif} alt="loading" width={40} height={40} />
           ) : (
             <span>{alt}</span>
           )}

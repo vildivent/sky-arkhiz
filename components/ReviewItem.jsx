@@ -125,7 +125,7 @@ const ReviewItem = ({ review, createPage }) => {
           <Moment
             className="m-2"
             date={review.createdAt}
-            format="DD/MM/YYYY-hh:mm"
+            format="DD/MM/YYYY HH:mm"
           />
         </div>
       </div>

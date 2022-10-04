@@ -64,7 +64,7 @@ const PostItem = ({ post }) => {
         <Moment
           className="m-2"
           date={post.createdAt}
-          format="DD/MM/YYYY-hh:mm"
+          format="DD/MM/YYYY HH:mm"
         />
       </div>
     </div>

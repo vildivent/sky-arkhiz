@@ -20,6 +20,7 @@ export default async function addNew(req, res) {
       dates: [...dates],
       comment,
       status: "new",
+      excursionDate: new Date(0),
     });
 
     await newRequest.save();
