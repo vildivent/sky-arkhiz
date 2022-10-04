@@ -13,7 +13,7 @@ import { DateObject } from "react-multi-date-picker";
 import ExcursionTimePicker from "./ExcursionTimePicker";
 import { compareWithDefaultDate } from "../utils/compareWithDefaultDate";
 
-const RequestItem = ({ request }) => {
+const RequestItem = ({ request, settings }) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -55,7 +55,7 @@ const RequestItem = ({ request }) => {
 
   const setStatusHandler = (status) => {
     try {
-      dispatch(setRequestData({ id: request._id, status }));
+      dispatch(setRequestData({ id: request._id, status, settings }));
       dispatchEdit("status");
     } catch (error) {
       console.error(error);

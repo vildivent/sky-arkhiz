@@ -13,6 +13,7 @@ import DateFilter from "../../components/DateFilter";
 import GroupFilter from "../../components/GroupFilter";
 import { setFilterByDate } from "../../redux/features/requestFilterByDate/requestFilterByDateSlice";
 import { setFilterByGroup } from "../../redux/features/requestFilterByGroup/requestFilterByGroupSlice";
+import StattusChangeSwitcher from "../../components/StattusChangeSwitcher";
 
 const Requests = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Requests = () => {
   const [filter, setFilter] = useState(initialStatus);
   const [filterDate, setFilterDate] = useState(null);
   const [filterGroup, setFilterGroup] = useState("");
+  const [hideOnStatusChange, setHideOnStatusChange] = useState(false);
 
   useEffect(() => {
     dispatch(getRequestsWithStatus({ status: initialStatus }));
@@ -63,7 +65,11 @@ const Requests = () => {
   return (
     <DashboardLayout title={"Заявки"} mainProps={"px-2"}>
       <div className="flex justify-center flex-col items-center gap-3 mt-3">
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap flex-col sm:flex-row gap-3">
+          <StattusChangeSwitcher
+            hideOnStatusChange={hideOnStatusChange}
+            setHideOnStatusChange={setHideOnStatusChange}
+          />
           <DateFilter filterDate={filterDate} setFilterDate={setFilterDate} />
           <GroupFilter
             filterGroup={filterGroup}
@@ -84,7 +90,11 @@ const Requests = () => {
 
         {filteredRequestsByGroup.length > 0 ? (
           filteredRequestsByGroup.map((request) => (
-            <RequestItem key={request._id} request={request} />
+            <RequestItem
+              key={request._id}
+              request={request}
+              settings={{ hideOnStatusChange }}
+            />
           ))
         ) : (
           <div>Заявок нет</div>

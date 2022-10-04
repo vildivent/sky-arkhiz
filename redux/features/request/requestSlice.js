@@ -97,7 +97,7 @@ export const requestSlice = createSlice({
         }
       });
       // Заявка удаляется из списка при переключении её состояния
-      if (false && newStatus) {
+      if (action.payload.settings.hideOnStatusChange && newStatus) {
         state.requests = state.requests.filter((request) => {
           if (request._id === action.payload.request._id) return false;
           return true;
