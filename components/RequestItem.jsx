@@ -12,6 +12,8 @@ import { requestStatusTypes } from "../constasnts";
 import { DateObject } from "react-multi-date-picker";
 import ExcursionTimePicker from "./ExcursionTimePicker";
 import { compareWithDefaultDate } from "../utils/compareWithDefaultDate";
+import EditButton from "./Buttons/EditButton";
+import EditCancelButton from "./Buttons/EditCancelButton";
 
 const RequestItem = ({ request, settings }) => {
   const dispatch = useDispatch();
@@ -19,9 +21,11 @@ const RequestItem = ({ request, settings }) => {
 
   const [groupSize, setGroupSize] = useState(request.groupSize);
   const [description, setDescription] = useState(request.description);
-  const [excursionDate, setExcursionDate] = useState(
-    compareWithDefaultDate(request.excursionDate) ? null : request.excursionDate
-  );
+
+  const initialDate = compareWithDefaultDate(request.excursionDate)
+    ? null
+    : request.excursionDate;
+  const [excursionDate, setExcursionDate] = useState(initialDate);
   const [groupNumber, setGroupNumber] = useState(request.groupNumber || 0);
 
   const spanStyle = "text-blue-300";
@@ -99,12 +103,13 @@ const RequestItem = ({ request, settings }) => {
 
       {/*groupSize*/}
       <div className="flex flex-col">
-        <div className="flex">
+        <div className="flex flex-wrap gap-2">
           {`Размер группы: `}
-          <span className={`${spanStyle} mx-2`}>{request.groupSize}</span>
+          <span className={`${spanStyle}`}>{request.groupSize}</span>
           {`чел.`}
-          <div
-            className="text-cyan-500 hover:text-white ml-2 cursor-pointer"
+          <EditButton
+            isEdit={edit.groupSize}
+            isDefault={!+request.groupSize}
             onClick={() => {
               if (edit.groupSize)
                 dispatch(
@@ -115,9 +120,14 @@ const RequestItem = ({ request, settings }) => {
                 );
               dispatchEdit("groupSize");
             }}
-          >
-            {edit.groupSize ? "Сохранить" : "Изменить"}
-          </div>
+          />
+          <EditCancelButton
+            isEdit={edit.groupSize}
+            onClick={() => {
+              setGroupSize(request.groupSize);
+              dispatchEdit("groupSize");
+            }}
+          />
         </div>
 
         <InputGroupSize
@@ -126,6 +136,7 @@ const RequestItem = ({ request, settings }) => {
           } w-full bg-[#1e1e1e] border-cyan-500 transition-all delay-250 text-md outline-none rounded-sm`}
           value={groupSize}
           onChange={(e) => setGroupSize(e.target.value)}
+          onClick={() => setGroupSize("")}
         />
       </div>
 
@@ -160,8 +171,9 @@ const RequestItem = ({ request, settings }) => {
       <div className="flex flex-wrap gap-x-2">
         {`Описание: `}
         <span className={`${spanStyle}`}>{request.description}</span>
-        <div
-          className="text-cyan-500 hover:text-white cursor-pointer"
+        <EditButton
+          isEdit={edit.description}
+          isDefault={!request.description}
           onClick={() => {
             if (edit.description)
               dispatch(
@@ -172,11 +184,15 @@ const RequestItem = ({ request, settings }) => {
               );
             dispatchEdit("description");
           }}
-        >
-          {request.description
-            ? `${edit.description ? "Сохранить" : "Изменить"}`
-            : `${edit.description ? "Сохранить" : "Добавить"}`}
-        </div>
+        />
+        <EditCancelButton
+          isEdit={edit.description}
+          onClick={() => {
+            setDescription(request.description);
+            dispatchEdit("description");
+          }}
+        />
+
         <textarea
           name="text"
           value={description}
@@ -194,15 +210,19 @@ const RequestItem = ({ request, settings }) => {
           {requestStatusTypes.find((item) => item.id === request.status)
             ?.title || "Ошибка"}
         </span>
+        {!edit.status && (
+          <EditButton
+            isEdit={edit.status}
+            onClick={() => dispatchEdit("status")}
+          />
+        )}
 
-        <div
-          className="text-cyan-500 hover:text-white cursor-pointer"
+        <EditCancelButton
+          isEdit={edit.status}
           onClick={() => {
             dispatchEdit("status");
           }}
-        >
-          Изменить
-        </div>
+        />
 
         <FilterMenu
           className={`w-full flex flex-wrap gap-3 justify-center items-center transition-all delay-250 ${
@@ -223,9 +243,12 @@ const RequestItem = ({ request, settings }) => {
             ? new DateObject(request.excursionDate).format("DD/MM/YYYY HH:mm")
             : ""}
         </span>
-
-        <div
-          className="text-cyan-500 hover:text-white cursor-pointer"
+        <EditButton
+          isEdit={edit.excursionDate}
+          isDefault={
+            !request.excursionDate ||
+            compareWithDefaultDate(request.excursionDate)
+          }
           onClick={() => {
             if (edit.excursionDate)
               dispatch(
@@ -238,12 +261,15 @@ const RequestItem = ({ request, settings }) => {
               );
             dispatchEdit("excursionDate");
           }}
-        >
-          {!request.excursionDate ||
-          compareWithDefaultDate(request.excursionDate)
-            ? `${edit.excursionDate ? "Сохранить" : "Добавить"}`
-            : `${edit.excursionDate ? "Сохранить" : "Изменить"}`}
-        </div>
+        />
+        <EditCancelButton
+          isEdit={edit.excursionDate}
+          onClick={() => {
+            setExcursionDate(initialDate);
+            dispatchEdit("excursionDate");
+          }}
+        />
+
         <div
           className={`w-full flex flex-wrap gap-3 justify-center items-center transition-all delay-250 relative z-[1] ${
             edit.excursionDate ? "mt-2" : "h-0 opacity-0 pointer-events-none"
@@ -261,9 +287,12 @@ const RequestItem = ({ request, settings }) => {
       <div className="flex flex-col">
         <div className="flex gap-x-2">
           {`Номер группы: `}
-          <span className={`${spanStyle}`}>{request.groupNumber}</span>
-          <div
-            className="text-cyan-500 hover:text-white cursor-pointer"
+          <span className={`${spanStyle}`}>
+            {request.groupNumber ? request.groupNumber : ""}
+          </span>
+          <EditButton
+            isEdit={edit.groupNumber}
+            isDefault={!+request.groupNumber}
             onClick={() => {
               if (edit.groupNumber)
                 dispatch(
@@ -274,9 +303,14 @@ const RequestItem = ({ request, settings }) => {
                 );
               dispatchEdit("groupNumber");
             }}
-          >
-            {edit.groupNumber ? "Сохранить" : "Изменить"}
-          </div>
+          />
+          <EditCancelButton
+            isEdit={edit.groupNumber}
+            onClick={() => {
+              setGroupNumber(request.groupNumber);
+              dispatchEdit("groupNumber");
+            }}
+          />
         </div>
 
         <InputGroupSize

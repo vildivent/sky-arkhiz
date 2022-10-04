@@ -4,10 +4,23 @@ import { AiOutlineClose } from "react-icons/ai";
 import gregorian_ru from "../utils/calendar/locale/gregorian_ru";
 import { ActionButton } from "./Buttons";
 
-const CustomButton = ({ openCalendar, value, handleValueChange }) => {
+const CustomButton = ({
+  openCalendar,
+  value,
+  handleValueChange,
+  filterDate,
+  setFilterDate,
+}) => {
+  const defaultDate = new DateObject();
+  defaultDate.hour = 20;
+  defaultDate.minute = 0;
+
   return (
     <ActionButton
-      onClick={openCalendar}
+      onClick={() => {
+        openCalendar();
+        if (!filterDate) setFilterDate(defaultDate);
+      }}
       onChange={handleValueChange}
       className={`rounded-md py-2 px-4 text-sm ${value || "translate-x-3"}`}
     >
@@ -19,19 +32,18 @@ const CustomButton = ({ openCalendar, value, handleValueChange }) => {
 const ExcursionTimePicker = ({ filterDate, setFilterDate, dateRange }) => {
   const startDay = new DateObject({ date: dateRange[0], format: "DD/MM/YYYY" });
   const endDay = new DateObject({ date: dateRange[1], format: "DD/MM/YYYY" });
-  const defaultDate = new DateObject();
-  defaultDate.hour = 20;
-  defaultDate.minute = 0;
   endDay.add(1, "day");
 
   return (
     <div className="flex justify-center gap-2 z-[1]">
       <DatePicker
-        value={filterDate || defaultDate}
+        value={filterDate}
         onChange={setFilterDate}
         locale={gregorian_ru}
         format="DD/MM/YYYY HH:mm"
-        render={<CustomButton />}
+        render={
+          <CustomButton filterDate={filterDate} setFilterDate={setFilterDate} />
+        }
         weekStartDayIndex={1}
         className="bg-dark scale-[1.40] sm:translate-y-[-5.5rem] translate-y-[-5rem]"
         editable={true}

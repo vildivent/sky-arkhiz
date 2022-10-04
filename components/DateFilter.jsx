@@ -25,7 +25,10 @@ const DateFilter = ({ filterDate, setFilterDate }) => {
         format="DD/MM/YYYY"
         render={<CustomButton />}
         weekStartDayIndex={1}
-        className="bg-dark"
+        className="bg-dark scale-[1.40] sm:translate-y-[4.5rem] translate-y-[3.5rem]"
+        calendarPosition={"bottom"}
+        fixMainPosition={true}
+        arrow={false}
         editable={true}
       />
 
