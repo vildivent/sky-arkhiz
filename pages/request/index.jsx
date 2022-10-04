@@ -21,7 +21,7 @@ export default function Request() {
   const initialState = {
     name: "",
     phoneNumber: "",
-    groupSize: 1,
+    groupSize: "1",
     comment: "",
   };
   const inputStyle =
@@ -34,14 +34,18 @@ export default function Request() {
     if (
       data.name &&
       data.phoneNumber.length === 12 &&
-      data.groupSize &&
+      +data.groupSize > 0 &&
       dateRange[0] &&
       dateRange[1]
     ) {
       try {
         console.log("Отправка...");
         await axios.post("/api/requests/addNew", {
-          data: { ...data, dates: dateRange.map((date) => date.format()) },
+          data: {
+            ...data,
+            groupSize: +data.groupSize,
+            dates: dateRange.map((date) => date.format()),
+          },
         });
         console.log("Заявка оставлена");
 
@@ -106,7 +110,7 @@ export default function Request() {
           />
 
           {/*Размер группы*/}
-          <Label wrongFormat={wrongFormat && !data.groupSize >= 1}>
+          <Label wrongFormat={wrongFormat && !+data.groupSize > 0}>
             * Размер группы (чел.):
           </Label>
           <InputGroupSize
@@ -115,7 +119,7 @@ export default function Request() {
             onChange={(e) =>
               setData((prev) => ({
                 ...prev,
-                groupSize: e.target.valueAsNumber,
+                groupSize: e.target.value,
               }))
             }
           />

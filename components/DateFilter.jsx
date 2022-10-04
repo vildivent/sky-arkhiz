@@ -8,7 +8,7 @@ const CustomButton = ({ openCalendar, value, handleValueChange }) => {
     <ActionButton
       onClick={openCalendar}
       onChange={handleValueChange}
-      className={`rounded-md py-2 px-4 text-sm ${value || "translate-x-3"}`}
+      className={`rounded-md py-2 px-4 text-sm`}
     >
       {value || "Фильтр по дате"}
     </ActionButton>
@@ -17,7 +17,7 @@ const CustomButton = ({ openCalendar, value, handleValueChange }) => {
 
 const DateFilter = ({ filterDate, setFilterDate }) => {
   return (
-    <div className="flex justify-center mt-5 gap-2 z-[1]">
+    <div className={`flex justify-center ${filterDate ? "gap-2" : ""}  z-[1]`}>
       <DatePicker
         value={filterDate}
         onChange={setFilterDate}
@@ -31,7 +31,9 @@ const DateFilter = ({ filterDate, setFilterDate }) => {
 
       <ActionButton
         className={`text-xl rounded-full ${
-          filterDate ? "p-2" : "opacity-0 translate-x-10"
+          filterDate
+            ? "p-2"
+            : "opacity-0 translate-x-10 w-0 pointer-events-none"
         }`}
         onClick={() => setFilterDate(null)}
       >

@@ -110,7 +110,7 @@ const RequestItem = ({ request }) => {
                 dispatch(
                   setRequestData({
                     id: request._id,
-                    groupSize,
+                    groupSize: +groupSize,
                   })
                 );
               dispatchEdit("groupSize");
@@ -268,7 +268,7 @@ const RequestItem = ({ request }) => {
                 dispatch(
                   setRequestData({
                     id: request._id,
-                    groupNumber,
+                    groupNumber: +groupNumber,
                   })
                 );
               dispatchEdit("groupNumber");
@@ -284,6 +284,9 @@ const RequestItem = ({ request }) => {
           } w-full bg-[#1e1e1e] border-cyan-500 transition-all delay-250 text-md outline-none rounded-sm`}
           value={groupNumber}
           onChange={(e) => setGroupNumber(e.target.value)}
+          onClick={() => {
+            setGroupNumber("");
+          }}
         />
       </div>
     </div>

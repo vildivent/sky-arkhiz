@@ -4,7 +4,7 @@ const FilterMenu = ({
   typesArray,
   filter,
   filterHandler,
-  className = "flex flex-wrap gap-3 justify-center mt-5",
+  className = "flex flex-wrap gap-3 justify-center",
   plural,
   all = true,
 }) => {

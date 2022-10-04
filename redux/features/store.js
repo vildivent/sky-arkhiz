@@ -3,8 +3,8 @@ import newPostFormSlice from "./newPostForm/newPostFormSlice";
 import newReviewFormSlice from "./newReviewForm/newReviewFormSlice";
 import postSlice from "./post/postSlice";
 import requestSlice from "./request/requestSlice";
-import requestEditSlice from "./requestEdit/requestEditSlice";
-import requestFilterSlice from "./requestFilter/requestFilterSlice";
+import requestFilterByDateSlice from "./requestFilterByDate/requestFilterByDateSlice";
+import requestFilterByGroupSlice from "./requestFilterByGroup/requestFilterByGroupSlice";
 import reviewSlice from "./review/reviewSlice";
 
 export const store = configureStore({
@@ -14,7 +14,7 @@ export const store = configureStore({
     review: reviewSlice,
     newReviewForm: newReviewFormSlice,
     request: requestSlice,
-    requestFilter: requestFilterSlice,
-    requestEdit: requestEditSlice,
+    requestFilterByDate: requestFilterByDateSlice,
+    requestFilterByGroup: requestFilterByGroupSlice,
   },
 });

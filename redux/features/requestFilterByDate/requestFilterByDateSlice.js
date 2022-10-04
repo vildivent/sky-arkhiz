@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DateObject } from "react-multi-date-picker";
 const initialState = {
-  filteredRequests: [],
+  filteredRequestsByDate: [],
 };
 
-export const requestFilterSlice = createSlice({
-  name: "requestFilter",
+export const requestFilterByDate = createSlice({
+  name: "requestFilterByDate",
   initialState,
   reducers: {
-    setFilteredRequests: (state, action) => {
+    setFilterByDate: (state, action) => {
       const { requests, filterDate } = action.payload;
 
       if (filterDate) {
@@ -17,7 +17,7 @@ export const requestFilterSlice = createSlice({
           format: "DD/MM/YYYY",
         }).toDate();
 
-        state.filteredRequests = requests.filter((request) => {
+        state.filteredRequestsByDate = requests.filter((request) => {
           const startDate = new DateObject({
             date: request.dates[0],
             format: "DD/MM/YYYY",
@@ -34,15 +34,16 @@ export const requestFilterSlice = createSlice({
           return true;
         });
       } else {
-        state.filteredRequests = requests;
+        state.filteredRequestsByDate = requests;
       }
     },
-    resetFilterRequests() {
+
+    resetFilterByDate() {
       return initialState;
     },
   },
   extraReducers: {},
 });
-export const { setFilteredRequests, resetFilterRequests } =
-  requestFilterSlice.actions;
-export default requestFilterSlice.reducer;
+export const { setFilterByDate, resetFilterByDate } =
+  requestFilterByDate.actions;
+export default requestFilterByDate.reducer;
