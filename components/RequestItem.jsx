@@ -252,6 +252,7 @@ const RequestItem = ({ request, settings }) => {
           <ExcursionTimePicker
             filterDate={excursionDate}
             setFilterDate={setExcursionDate}
+            dateRange={request.dates}
           />
         </div>
       </div>

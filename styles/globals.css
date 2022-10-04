@@ -61,6 +61,12 @@ a.ymaps-2-1-79-gototech {
   display: none;
 }
 
+/* календарь */
+.excursion-time-picker__calendar-highlight {
+  /* background-color: #1e3a8a; */
+  color: #0074d9;
+}
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

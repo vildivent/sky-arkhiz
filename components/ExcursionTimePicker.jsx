@@ -1,4 +1,4 @@
-import DatePicker from "react-multi-date-picker";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import { AiOutlineClose } from "react-icons/ai";
 import gregorian_ru from "../utils/calendar/locale/gregorian_ru";
@@ -16,23 +16,38 @@ const CustomButton = ({ openCalendar, value, handleValueChange }) => {
   );
 };
 
-const ExcursionTimePicker = ({ filterDate, setFilterDate }) => {
+const ExcursionTimePicker = ({ filterDate, setFilterDate, dateRange }) => {
+  const startDay = new DateObject({ date: dateRange[0], format: "DD/MM/YYYY" });
+  const endDay = new DateObject({ date: dateRange[1], format: "DD/MM/YYYY" });
+  const defaultDate = new DateObject();
+  defaultDate.hour = 20;
+  defaultDate.minute = 0;
+  endDay.add(1, "day");
+
   return (
     <div className="flex justify-center gap-2 z-[1]">
       <DatePicker
-        value={filterDate}
+        value={filterDate || defaultDate}
         onChange={setFilterDate}
         locale={gregorian_ru}
         format="DD/MM/YYYY HH:mm"
         render={<CustomButton />}
         weekStartDayIndex={1}
-        className="bg-dark"
+        className="bg-dark scale-[1.40] sm:translate-y-[-5.5rem] translate-y-[-5rem]"
         editable={true}
         calendarPosition={"top"}
         fixMainPosition={true}
+        arrow={false}
         plugins={[
           <TimePicker key={"timePicker"} position="bottom" hideSeconds />,
         ]}
+        mapDays={({ date }) => {
+          if (startDay < date && endDay > date) {
+            return {
+              className: "excursion-time-picker__calendar-highlight",
+            };
+          }
+        }}
       />
 
       <ActionButton
