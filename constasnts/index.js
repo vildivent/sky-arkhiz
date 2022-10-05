@@ -60,24 +60,6 @@ export const navLinks = [
     title: "Web камеры",
     subTitle: "Все камеры",
     mainNavbar: true,
-    subLinks: [
-      {
-        id: "all-sky",
-        title: "Небо над обсерваторией",
-      },
-      {
-        id: "bta-indom",
-        title: "БТА внутри",
-      },
-      {
-        id: "zeiss-1000-to-bta",
-        title: "БТА снаружи",
-      },
-      {
-        id: "zeiss-1000-indom",
-        title: "Цейсс-1000 внутри",
-      },
-    ],
   },
   {
     id: "weather-in-observatory",
