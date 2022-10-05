@@ -61,7 +61,7 @@ export default function Webcams() {
         className={`font-h3 text-cyan-500 justify-center text-center flex md:my-10 my-5`}
       >
         <button
-          className={`sm:w-48 w-48 h-10 flex justify-center items-center gap-1 ${
+          className={`sm:w-48 w-1/2 h-16 flex justify-center items-center gap-1 ${
             liveTV === false ? "text-white bg-[#111111] bg-opacity-70" : ""
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => {
@@ -77,7 +77,7 @@ export default function Webcams() {
           )}
         </button>
         <div
-          className={`sm:w-48 w-48 h-10 flex justify-center items-center gap-1 ${
+          className={`sm:w-48 w-1/2 h-16 flex justify-center items-center gap-1 ${
             liveTV === true ? "text-white bg-[#111111] bg-opacity-70" : ""
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => {
