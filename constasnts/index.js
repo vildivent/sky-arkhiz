@@ -200,11 +200,6 @@ export const staticCamLinks = [
     title: "Цейсс-1000 внешняя",
     link: "https://www.sao.ru/zserv/webcam/webcam_5_maxi.jpeg",
   },
-  {
-    id: "rokosSonarh",
-    title: "rokos.sonarh.ru",
-    link: "http://rokos.sonarh.ru:8000/current.jpg",
-  },
 ];
 
 export const dashboardLinks = [
