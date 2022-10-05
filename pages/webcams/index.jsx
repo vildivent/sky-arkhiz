@@ -29,15 +29,16 @@ export default function Webcams() {
   }, [activeLink, count, liveTV, initialStateLink]);
 
   const changeModeHandler = (mode) => {
-    clickHandler(
-      mode
-        ? camLinks.find((link) => {
-            return link.id === activeLink.id;
-          }) || initialStateLinkTV
-        : staticCamLinks.find((link) => {
-            return link.id === activeLink.id;
-          }) || initialStateLink
-    );
+    if (liveTV !== mode)
+      clickHandler(
+        mode
+          ? camLinks.find((link) => {
+              return link.id === activeLink.id;
+            }) || initialStateLinkTV
+          : staticCamLinks.find((link) => {
+              return link.id === activeLink.id;
+            }) || initialStateLink
+      );
   };
 
   const clickHandler = (camLink) => {
