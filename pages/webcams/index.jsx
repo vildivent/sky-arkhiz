@@ -28,15 +28,15 @@ export default function Webcams() {
     return () => clearInterval(timer);
   }, [activeLink, count, liveTV, initialStateLink]);
 
-  const changeModeHandler = () => {
+  const changeModeHandler = (mode) => {
     clickHandler(
-      liveTV
-        ? staticCamLinks.find((link) => {
-            return link.id === activeLink.id;
-          }) || initialStateLink
-        : camLinks.find((link) => {
+      mode
+        ? camLinks.find((link) => {
             return link.id === activeLink.id;
           }) || initialStateLinkTV
+        : staticCamLinks.find((link) => {
+            return link.id === activeLink.id;
+          }) || initialStateLink
     );
   };
 
@@ -61,7 +61,7 @@ export default function Webcams() {
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => {
             setLiveTV(false);
-            changeModeHandler();
+            changeModeHandler(false);
           }}
         >
           Накопление кадров
@@ -72,7 +72,7 @@ export default function Webcams() {
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => {
             setLiveTV(true);
-            changeModeHandler();
+            changeModeHandler(true);
           }}
         >
           Видео
