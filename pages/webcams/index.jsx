@@ -6,6 +6,7 @@ import CamPageMenu from "../../components/CamPageMenu";
 import { camLinks, staticCamLinks } from "../../constasnts";
 import { loadingGif, transparentPlaceholder } from "../../public/assets";
 import Image from "next/image";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 export default function Webcams() {
   const initialStateLink = staticCamLinks[0];
@@ -14,6 +15,7 @@ export default function Webcams() {
   const [imgSrc, setimgSrc] = useState(activeLink.link);
   const [count, setCount] = useState(0);
   const [liveTV, setLiveTV] = useState(false);
+  const [menuIsActive, setMenuIsActive] = useState(false);
 
   //refresh timer
   useEffect(() => {
@@ -29,6 +31,7 @@ export default function Webcams() {
   }, [activeLink, count, liveTV, initialStateLink]);
 
   const changeModeHandler = (mode) => {
+    setMenuIsActive((prev) => !prev);
     if (liveTV !== mode)
       clickHandler(
         mode
@@ -42,6 +45,7 @@ export default function Webcams() {
   };
 
   const clickHandler = (camLink) => {
+    setMenuIsActive(false);
     setActiveLink(camLink);
     setTimeout(() => setimgSrc(camLink.link), 100);
     setimgSrc(transparentPlaceholder.src);
@@ -57,7 +61,7 @@ export default function Webcams() {
         className={`font-h3 text-cyan-500 justify-center text-center flex md:my-10 my-5`}
       >
         <button
-          className={`w-32 h-16 ${
+          className={`sm:w-48 w-48 h-10 flex justify-center items-center gap-1 ${
             liveTV === false ? "text-white bg-[#111111] bg-opacity-70" : ""
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => {
@@ -66,9 +70,14 @@ export default function Webcams() {
           }}
         >
           Накопление кадров
+          {!liveTV && (
+            <span className="font-bold text-xl sm:hidden">
+              {menuIsActive ? <IoIosArrowDown /> : <IoIosArrowForward />}
+            </span>
+          )}
         </button>
-        <button
-          className={`w-32 h-16 ${
+        <div
+          className={`sm:w-48 w-48 h-10 flex justify-center items-center gap-1 ${
             liveTV === true ? "text-white bg-[#111111] bg-opacity-70" : ""
           } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
           onClick={() => {
@@ -77,7 +86,12 @@ export default function Webcams() {
           }}
         >
           Видео
-        </button>
+          {liveTV && (
+            <span className="font-bold text-xl sm:hidden">
+              {menuIsActive ? <IoIosArrowDown /> : <IoIosArrowForward />}
+            </span>
+          )}
+        </div>
       </div>
 
       <div
@@ -87,6 +101,7 @@ export default function Webcams() {
           liveTV={liveTV}
           activeLink={activeLink}
           liveTVhandler={clickHandler}
+          menuIsActive={menuIsActive}
         />
 
         <div
