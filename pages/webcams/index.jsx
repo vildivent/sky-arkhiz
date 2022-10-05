@@ -6,7 +6,7 @@ import CamPageMenu from "../../components/CamPageMenu";
 import { camLinks, staticCamLinks } from "../../constasnts";
 import { loadingGif, transparentPlaceholder } from "../../public/assets";
 import Image from "next/image";
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import CamMenuSwitchButton from "../../components/Buttons/CamMenuSwitchButton";
 
 export default function Webcams() {
   const initialStateLink = staticCamLinks[0];
@@ -60,38 +60,28 @@ export default function Webcams() {
       <div
         className={`font-h3 text-cyan-500 justify-center text-center flex md:my-10 my-5`}
       >
-        <button
-          className={`sm:w-48 w-1/2 h-16 flex justify-center items-center gap-1 ${
-            liveTV === false ? "text-white bg-[#111111] bg-opacity-70" : ""
-          } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
+        <CamMenuSwitchButton
+          liveTV={liveTV}
+          menuIsActive={menuIsActive}
+          mode={false}
           onClick={() => {
             setLiveTV(false);
             changeModeHandler(false);
           }}
         >
           Накопление кадров
-          {!liveTV && (
-            <span className="font-bold text-xl sm:hidden">
-              {menuIsActive ? <IoIosArrowDown /> : <IoIosArrowForward />}
-            </span>
-          )}
-        </button>
-        <div
-          className={`sm:w-48 w-1/2 h-16 flex justify-center items-center gap-1 ${
-            liveTV === true ? "text-white bg-[#111111] bg-opacity-70" : ""
-          } hover:bg-[#181818] hover:bg-opacity-70 hover:text-white`}
+        </CamMenuSwitchButton>
+        <CamMenuSwitchButton
+          liveTV={liveTV}
+          menuIsActive={menuIsActive}
+          mode={true}
           onClick={() => {
             setLiveTV(true);
             changeModeHandler(true);
           }}
         >
           Видео
-          {liveTV && (
-            <span className="font-bold text-xl sm:hidden">
-              {menuIsActive ? <IoIosArrowDown /> : <IoIosArrowForward />}
-            </span>
-          )}
-        </div>
+        </CamMenuSwitchButton>
       </div>
 
       <div
