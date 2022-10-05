@@ -152,11 +152,6 @@ export const socialLinks = [
 ];
 export const camLinks = [
   {
-    id: "newAllSky",
-    title: "Небо над обсерваторией",
-    link: "https://www.sao.ru/tb/webcam/mono_allsky.cgi",
-  },
-  {
     id: "btaFirstCameraIndom",
     title: "БТА внутри",
     link: "https://www.sao.ru/tb/webcam/livecam.cgi?1",
@@ -194,19 +189,34 @@ export const staticCamLinks = [
     link: "https://www.sao.ru/tb/webcam/mono_allsky.cgi",
   },
   {
-    id: "bta-indom",
+    id: "btaFirstCameraIndom",
     title: "БТА внутри",
     link: "https://www.sao.ru/tb/webcam/webcam_sky_1.jpeg",
   },
   {
-    id: "zeiss-1000-to-bta",
+    id: "zeiss1000SecondCameraToBTA",
     title: "БТА снаружи",
     link: "https://www.sao.ru/zserv/webcam/webcam_1_maxi.jpeg",
   },
   {
-    id: "zeiss-1000-indom",
+    id: "btaSecondCameraOutdoor",
+    title: "БТА парковка",
+    link: "https://www.sao.ru/tb/webcam/webcam_sky_2_maxi.jpeg",
+  },
+  {
+    id: "zeiss1000FirstCameraIndom",
     title: "Цейсс-1000 внутри",
     link: "https://www.sao.ru/zserv/webcam/webcam_0_maxi.jpeg",
+  },
+  {
+    id: "zeiss1000ThirdCameraAllSky",
+    title: "Цейсс-1000 небо",
+    link: "https://www.sao.ru/zserv/webcam/webcam_2_maxi.jpeg",
+  },
+  {
+    id: "zeiss10005thCameraOutdoor",
+    title: "Цейсс-1000 внешняя",
+    link: "https://www.sao.ru/zserv/webcam/webcam_5_maxi.jpeg",
   },
 ];
 

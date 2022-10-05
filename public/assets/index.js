@@ -30,6 +30,7 @@ import cardImage1 from "./cardImage1.png";
 import cameraPreview from "./camera-preview.png";
 import planetariumSmall from "./planetarium-small.png";
 import btaSmall from "./bta-small.png";
+import transparentPlaceholder from "./transparent-placeholder.png";
 
 export {
   mainBg,
@@ -64,4 +65,5 @@ export {
   cameraPreview,
   planetariumSmall,
   btaSmall,
+  transparentPlaceholder,
 };

@@ -94,6 +94,10 @@ export const postSlice = createSlice({
       state.loading = true;
     },
     [updateViews.fulfilled]: (state, action) => {
+      state.posts.forEach((post, index) => {
+        if (post._id === action.payload.post._id)
+          state.posts[index].views = action.payload.post.views;
+      });
       state.loading = false;
     },
     [updateViews.rejected]: (state) => {
