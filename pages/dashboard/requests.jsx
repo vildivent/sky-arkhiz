@@ -88,7 +88,7 @@ const Requests = () => {
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
         <Loading array={requests} loading={loading} alt="" />
 
-        {filteredRequestsByGroup.length > 0 ? (
+        {filteredRequestsByGroup.length > 0 || loading ? (
           filteredRequestsByGroup.map((request) => (
             <RequestItem
               key={request._id}

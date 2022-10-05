@@ -6,9 +6,11 @@ const StattusChangeSwitcher = ({
   setHideOnStatusChange,
 }) => {
   return (
-    <ActionButton onClick={() => setHideOnStatusChange((prev) => !prev)}>{`${
-      hideOnStatusChange ? "Убирать из списка" : "Оставлять в списке"
-    }`}</ActionButton>
+    <div className="flex justify-center">
+      <ActionButton onClick={() => setHideOnStatusChange((prev) => !prev)}>{`${
+        hideOnStatusChange ? "Убирать из списка" : "Оставлять в списке"
+      }`}</ActionButton>
+    </div>
   );
 };
 

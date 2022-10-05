@@ -67,7 +67,7 @@ const RequestItem = ({ request, settings }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 sm:p-2 pl-5 border border-gray-600 rounded-lg w-full sm:w-2/3 relative z-0">
+    <div className="flex flex-col gap-2 p-2 pl-5 border border-gray-600 rounded-lg w-full sm:w-2/3 relative z-0">
       {/*delete modal*/}
       <div className="absolute top-2 right-2">
         <CancelButton onClick={() => setModalIsOpen(true)}>
