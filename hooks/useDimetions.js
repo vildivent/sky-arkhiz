@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useBackground(mainBg, mobileBg) {
-  let bg = mainBg;
+export default function useDimentions() {
   function getWindowDimentions() {
     if (typeof window !== "undefined") {
       const { innerWidth: width, innerHeight: height } = window;
@@ -26,9 +25,5 @@ export default function useBackground(mainBg, mobileBg) {
     }
   }, []);
 
-  if (typeof window !== "undefined") {
-    const { height, width } = windowDimentions;
-    bg = width > 640 ? mainBg : mobileBg;
-  }
-  return bg;
+  return windowDimentions;
 }

@@ -1,6 +1,6 @@
+import { AstronomyCard } from "../../components/Cards/AstronomyCard";
 import { MainLayout } from "../../layouts/MainLayout";
 import { cardImage1 } from "../../public/assets";
-import AstronomyCard from "../../components/AstronomyCard";
 
 export default function Astronomy() {
   return (

@@ -50,7 +50,7 @@ export function MainLayout({
         </main>
         <Footer />
         <ScrollToTop
-          style={{ "background-color": "#404040" }}
+          style={{ backgroundColor: "#404040" }}
           component={
             <span className="flex justify-center items-center text-3xl">
               <IoIosArrowUp />
