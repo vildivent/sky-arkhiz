@@ -14,7 +14,7 @@ const textAnimation = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { delay: 0.4, duration: 0.4 },
+    transition: { delay: 0.1, duration: 0.4 },
   },
 };
 const buttonAnimation = {
@@ -25,7 +25,7 @@ const buttonAnimation = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { delay: 0.6, duration: 0.4 },
+    transition: { delay: 0.3, duration: 0.4 },
   },
 };
 

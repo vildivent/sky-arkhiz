@@ -8,7 +8,7 @@ const textAnimation = {
   },
   visible: (custom) => ({
     opacity: 1,
-    transition: { delay: custom * 0.2, duration: 0.25 },
+    transition: { delay: custom * 0.1, duration: 0.4 },
   }),
 };
 const leftAnimation = {
@@ -19,17 +19,19 @@ const leftAnimation = {
   visible: (custom) => ({
     x: 0,
     opacity: 1,
-    transition: { delay: custom * 0.2, duration: 0.3 },
+    transition: { delay: custom * 0.1, duration: 0.3 },
   }),
 };
 
 const AstronomyCards = () => {
   return (
-    <section className="p-5">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ amount: 0.1 }}
+      className="p-5"
+    >
       <motion.h2
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.2 }}
         variants={textAnimation}
         custom={1}
         className="font-h1 text-3xl sm:text-4xl xl:text-5xl text-center my-5 sm:mb-10"
@@ -40,7 +42,7 @@ const AstronomyCards = () => {
         <MAstronomyCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}
+          viewport={{ amount: 0.1 }}
           variants={leftAnimation}
           custom={1}
           href="/astronomy/telescopes/"
@@ -51,7 +53,7 @@ const AstronomyCards = () => {
         <MAstronomyCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}
+          viewport={{ amount: 0.1 }}
           variants={leftAnimation}
           custom={2}
           href="/astronomy/what-you-can-see-with-a-telescope/"
@@ -60,7 +62,7 @@ const AstronomyCards = () => {
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus"
         />
       </div>
-    </section>
+    </motion.section>
   );
 };
 

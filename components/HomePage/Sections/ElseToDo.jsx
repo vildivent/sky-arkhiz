@@ -10,7 +10,7 @@ const leftAnimation = {
   visible: (custom) => ({
     x: 0,
     opacity: 1,
-    transition: { delay: custom * 0.2, duration: 0.3 },
+    transition: { delay: custom * 0.1, duration: 0.3 },
   }),
 };
 const rightAnimation = {
@@ -21,7 +21,7 @@ const rightAnimation = {
   visible: (custom) => ({
     x: 0,
     opacity: 1,
-    transition: { delay: custom * 0.2, duration: 0.3 },
+    transition: { delay: custom * 0.1, duration: 0.3 },
   }),
 };
 const headingAnimation = {
@@ -31,7 +31,7 @@ const headingAnimation = {
   visible: (custom) => ({
     x: 0,
     opacity: 1,
-    transition: { delay: custom * 0.2, duration: 0.25 },
+    transition: { delay: custom * 0.1, duration: 0.4 },
   }),
 };
 
@@ -40,7 +40,7 @@ const ElseToDo = () => {
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.5 }}
+      viewport={{ amount: 0.1 }}
       className="p-5 flex flex-col gap-10 overflow-hidden"
     >
       <motion.h2
@@ -54,7 +54,7 @@ const ElseToDo = () => {
         <MElseToDoCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.5 }}
+          viewport={{ amount: 0.1 }}
           variants={leftAnimation}
           custom={1}
           title="Можете посетить наш планетарий"
@@ -65,7 +65,7 @@ const ElseToDo = () => {
         <MElseToDoCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.5 }}
+          viewport={{ amount: 0.1 }}
           variants={rightAnimation}
           custom={2}
           title="Или заглянуть на экскурсию в обсерваторию"

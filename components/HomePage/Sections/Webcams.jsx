@@ -8,11 +8,13 @@ import { ActionButton } from "../../Buttons";
 
 const textAnimation = {
   hidden: {
+    x: 100,
     opacity: 0,
   },
   visible: (custom) => ({
+    x: 0,
     opacity: 1,
-    transition: { delay: custom * 0.15, duration: 0.25 },
+    transition: { delay: custom * 0.1, duration: 0.4 },
   }),
 };
 
@@ -26,7 +28,7 @@ const imgAnimation = {
     x: 0,
     rotate: 0,
     opacity: 1,
-    transition: { delay: 0.2, duration: 0.8 },
+    transition: { delay: 0.15, duration: 0.8 },
   },
 };
 
@@ -59,7 +61,7 @@ const Webcams = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ amount: 0.3 }}
+        viewport={{ amount: 0.4 }}
         className="flex flex-col justify-center sm:w-1/2 text-center gap-5 sm:max-w-[25%]"
       >
         <motion.h2
@@ -69,13 +71,13 @@ const Webcams = () => {
         >
           Камеры
         </motion.h2>
-        <motion.p variants={textAnimation} custom={3}>
+        <motion.p variants={textAnimation} custom={4}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
           bibendum euismod felis, vel egestas risus porta bibendum euismod
           felis, vel egestas risus porta
         </motion.p>
         <div>
-          <motion.div variants={textAnimation} custom={4}>
+          <motion.div variants={textAnimation} custom={6}>
             <Link href="/webcams/">
               <a>
                 <div className="flex justify-center">
