@@ -10,6 +10,8 @@ import Background from "../components/Background";
 import { gallery19 } from "../public/assets/gallery";
 import { navLinks } from "../constasnts";
 import { mobileBg } from "../public/assets";
+import ScrollToTop from "react-scroll-to-top";
+import { IoIosArrowUp } from "react-icons/io";
 
 export function MainLayout({
   children,
@@ -47,6 +49,15 @@ export function MainLayout({
           {children}
         </main>
         <Footer />
+        <ScrollToTop
+          style={{ "background-color": "#404040" }}
+          component={
+            <span className="flex justify-center items-center text-3xl">
+              <IoIosArrowUp />
+            </span>
+          }
+          smooth
+        />
       </Background>
     </>
   );

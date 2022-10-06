@@ -137,31 +137,37 @@ export const camLinks = [
     id: "btaFirstCameraIndom",
     title: "БТА внутри",
     link: "https://www.sao.ru/tb/webcam/livecam.cgi?1",
+    updateTimer: 60000,
   },
   {
     id: "zeiss1000SecondCameraToBTA",
     title: "БТА снаружи",
     link: "https://www.sao.ru/zserv/webcam/livecam.cgi?1",
+    updateTimer: 60000,
   },
   {
     id: "btaSecondCameraOutdoor",
     title: "БТА парковка",
     link: "https://www.sao.ru/tb/webcam/livecam.cgi?2",
+    updateTimer: 60000,
   },
   {
     id: "zeiss1000FirstCameraIndom",
     title: "Цейсс-1000 внутри",
     link: "https://www.sao.ru/zserv/webcam/livecam.cgi?0",
+    updateTimer: 60000,
   },
   {
     id: "zeiss1000ThirdCameraAllSky",
     title: "Цейсс-1000 небо",
     link: "https://www.sao.ru/zserv/webcam/livecam.cgi?2",
+    updateTimer: 60000,
   },
   {
     id: "zeiss10005thCameraOutdoor",
     title: "Цейсс-1000 внешняя",
     link: "https://www.sao.ru/zserv/webcam/livecam.cgi?5",
+    updateTimer: 60000,
   },
 ];
 export const staticCamLinks = [
@@ -169,36 +175,43 @@ export const staticCamLinks = [
     id: "all-sky",
     title: "Небо над обсерваторией",
     link: "https://www.sao.ru/tb/webcam/mono_allsky.cgi",
+    updateTimer: 30000,
   },
   {
     id: "btaFirstCameraIndom",
     title: "БТА внутри",
     link: "https://www.sao.ru/tb/webcam/webcam_sky_1.jpeg",
+    updateTimer: 10000,
   },
   {
     id: "zeiss1000SecondCameraToBTA",
     title: "БТА снаружи",
     link: "https://www.sao.ru/zserv/webcam/webcam_1_maxi.jpeg",
+    updateTimer: 10000,
   },
   {
     id: "btaSecondCameraOutdoor",
     title: "БТА парковка",
     link: "https://www.sao.ru/tb/webcam/webcam_sky_2_maxi.jpeg",
+    updateTimer: 10000,
   },
   {
     id: "zeiss1000FirstCameraIndom",
     title: "Цейсс-1000 внутри",
     link: "https://www.sao.ru/zserv/webcam/webcam_0_maxi.jpeg",
+    updateTimer: 30000,
   },
   {
     id: "zeiss1000ThirdCameraAllSky",
     title: "Цейсс-1000 небо",
     link: "https://www.sao.ru/zserv/webcam/webcam_2_maxi.jpeg",
+    updateTimer: 60000,
   },
   {
     id: "zeiss10005thCameraOutdoor",
     title: "Цейсс-1000 внешняя",
     link: "https://www.sao.ru/zserv/webcam/webcam_5_maxi.jpeg",
+    updateTimer: 10000,
   },
 ];
 

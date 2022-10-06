@@ -11,6 +11,8 @@ import Sidebar from "../components/Sidebar";
 import { dashboardLinks } from "../constasnts";
 import { gallery3 } from "../public/assets/gallery";
 import { mobileBg } from "../public/assets";
+import ScrollToTop from "react-scroll-to-top";
+import { IoIosArrowUp } from "react-icons/io";
 
 export function DashboardLayout({
   children,
@@ -58,6 +60,15 @@ export function DashboardLayout({
           {children}
         </main>
       </Background>
+      <ScrollToTop
+        style={{ "background-color": "#404040" }}
+        component={
+          <span className="flex justify-center items-center text-3xl">
+            <IoIosArrowUp />
+          </span>
+        }
+        smooth
+      />
     </>
   );
 }

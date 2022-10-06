@@ -19,14 +19,11 @@ export default function Webcams() {
 
   //refresh timer
   useEffect(() => {
-    const timer = setInterval(
-      () => {
-        setCount((value) => value + 1);
-        if (!liveTV) setimgSrc(activeLink.link + "?" + count);
-        else setimgSrc(activeLink.link + "&" + count);
-      },
-      liveTV ? 60000 : activeLink.id === initialStateLink.id ? 30000 : 10000
-    );
+    const timer = setInterval(() => {
+      setCount((value) => value + 1);
+      if (!liveTV) setimgSrc(activeLink.link + "?" + count);
+      else setimgSrc(activeLink.link + "&" + count);
+    }, activeLink.updateTimer);
     return () => clearInterval(timer);
   }, [activeLink, count, liveTV, initialStateLink]);
 

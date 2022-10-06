@@ -23,7 +23,7 @@ export default function Navbar({ setSidebarIsOpened, navLinks }) {
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== "undefined") {
-        if (window.scrollY > lastScrollY && window.scrollY > 200) {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
           // if scroll down hide the navbar
           setShowNavbar(false);
         } else {
