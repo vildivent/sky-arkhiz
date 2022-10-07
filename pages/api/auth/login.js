@@ -1,7 +1,8 @@
 import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";
 
-const secret = "MYSECRETKEY";
+const secret = process.env.NEXT_PUBLIC_SECRET;
+const psd = process.env.NEXT_PUBLIC_PASSWORD;
 
 export default async function login(req, res) {
   const { username, password } = req.body;
@@ -10,7 +11,7 @@ export default async function login(req, res) {
   //if the user with this username
   //and password exists
 
-  if (username === "admin" && password === "admin") {
+  if (username === "admin" && password === psd) {
     const token = sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, // 30 days

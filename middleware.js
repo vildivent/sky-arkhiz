@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import * as jose from "jose";
 
-const secret = "MYSECRETKEY";
+const secret = process.env.NEXT_PUBLIC_SECRET;
 
 export default async function middleware(req) {
   if (req.nextUrl.pathname.startsWith("/dashboard")) {
