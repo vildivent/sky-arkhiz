@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
+const uri = process.env.NEXT_PUBLIC_MONGO_URI;
 
-const connectMongo = async () =>
-  mongoose.connect(
-    "mongodb+srv://admin:admin135@cluster0.lurv3cr.mongodb.net/sky-arkhyz?retryWrites=true&w=majority"
-  );
+const connectMongo = async () => mongoose.connect(uri);
 export default connectMongo;

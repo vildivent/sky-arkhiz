@@ -31,10 +31,6 @@ export function MainLayout({
         <title>{fullTitle}</title>
         <meta name="keywords" content={keywords || _keywords} />
         <meta name="description" content={description || _description} />
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; img-src https://*; child-src 'none';"
-        />
         <link rel="icon" href="/logo.svg" />
       </Head>
       <Navbar setSidebarIsOpened={setSidebarIsOpened} navLinks={navLinks} />
