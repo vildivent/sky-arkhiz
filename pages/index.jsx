@@ -9,7 +9,7 @@ import Request from "../components/HomePage/Sections/Request";
 
 export default function Home() {
   const buttonStyle = "text-lg sm:px-10 px-8 py-2 sm:rounded-lg rounded-md";
-
+  //
   return (
     <HomePageLayout title={"Главная"}>
       <main>
