@@ -5,15 +5,15 @@ import { ActionButton } from "../../../components/Buttons";
 import Loading from "../../../components/Loading";
 import PostItemDashboard from "../../../components/PostItemDashboard";
 import { DashboardLayout } from "../../../layouts/DashboardLayout";
-import { getAllPosts } from "../../../redux/features/post/postSlice";
+import { getAllPosts, getPosts } from "../../../redux/features/post/postSlice";
 
 const News = () => {
   const dispatch = useDispatch();
   const { posts, loading } = useSelector((state) => state.post);
 
   useEffect(() => {
-    dispatch(getAllPosts());
-  }, [dispatch, posts]);
+    dispatch(getPosts({}));
+  }, [dispatch]);
 
   return (
     <DashboardLayout title={"Новости"} mainProps={"px-2"}>

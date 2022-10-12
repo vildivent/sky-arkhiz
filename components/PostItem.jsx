@@ -1,12 +1,14 @@
+/* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
 
+import { forwardRef } from "react";
 import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import Moment from "react-moment";
 import { useDispatch } from "react-redux";
 import { updateViews } from "../redux/features/post/postSlice";
 
-const PostItem = ({ post }) => {
+const PostItem = forwardRef(({ post }, ref) => {
   const dispatch = useDispatch();
 
   const clickHandler = () => {
@@ -21,8 +23,8 @@ const PostItem = ({ post }) => {
   const [view, setView] = useState(false);
   return (
     <div
-      key={`item${post._id}`}
-      className="flex flex-col flex-wrap justify-around gap-3 flex-grow border border-gray-600 rounded-lg"
+      ref={ref}
+      className="flex flex-col flex-wrap justify-around gap-3 flex-grow border border-gray-600 rounded-lg w-full"
     >
       <h2 className={`font-h1 text-center sm:text-4xl text-2xl`}>
         {post.title}
@@ -69,6 +71,6 @@ const PostItem = ({ post }) => {
       </div>
     </div>
   );
-};
+});
 
 export default PostItem;

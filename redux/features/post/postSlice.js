@@ -4,13 +4,15 @@ import axios from "axios";
 const initialState = {
   posts: [],
   loading: false,
+  query: "",
+  hasMore: true,
 };
 
 export const createPost = createAsyncThunk(
   "post/createPost",
   async (params) => {
     try {
-      const { data } = await axios.post("/api/posts/addPost", params);
+      const { data } = await axios.post("/api/posts/create", params);
       return data;
     } catch (error) {
       console.log(error);
@@ -18,36 +20,49 @@ export const createPost = createAsyncThunk(
   }
 );
 
-export const getAllPosts = createAsyncThunk("post/getAllPosts", async () => {
-  try {
-    const { data } = await axios.get("/api/posts/getAll");
-    return data;
-  } catch (error) {
-    console.log(error);
+export const getPosts = createAsyncThunk(
+  "post/getPosts",
+  async ({ id, q, page, limit }) => {
+    try {
+      const { data } = await axios.get("/api/posts/get", {
+        params: { id, q, page, limit },
+      });
+      return { ...data, q: q || "" };
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
-export const getOnePost = createAsyncThunk("post/getOnePost", async (id) => {
-  try {
-    const { data } = await axios.post("/api/posts/getOneById", id);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const addPosts = createAsyncThunk(
+  "post/addPosts",
+  async ({ q, page, limit }) => {
+    try {
+      const { data } = await axios.get("/api/posts/get", {
+        params: { q, page, limit },
+      });
+      return { ...data, q: q || "" };
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
-export const updateViews = createAsyncThunk("post/getOnePost", async (id) => {
-  try {
-    const { data } = await axios.post("/api/posts/getOneById", id);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const updateViews = createAsyncThunk(
+  "post/updateViews",
+  async ({ id }) => {
+    try {
+      const { data } = await axios.get("/api/posts/get", { params: { id } });
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const deletePost = createAsyncThunk("post/deletePost", async (id) => {
   try {
-    const { data } = await axios.post("/api/posts/deletePost", id);
+    const { data } = await axios.post("/api/posts/delete", id);
     return data;
   } catch (error) {
     console.log(error);
@@ -59,7 +74,7 @@ export const postSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    //Создание поста
+    //Создание новости
     [createPost.pending]: (state) => {
       state.loading = true;
     },
@@ -70,26 +85,48 @@ export const postSlice = createSlice({
     [createPost.rejected]: (state) => {
       state.loading = false;
     },
-    //Получение всех постов
-    [getAllPosts.pending]: (state) => {
+    //Получение новостей с заменой массива
+    [getPosts.pending]: (state) => {
       state.loading = true;
     },
-    [getAllPosts.fulfilled]: (state, action) => {
-      state.loading = false;
+    [getPosts.fulfilled]: (state, action) => {
+      if (action.payload.start > action.payload.numFound) {
+        state.hasMore = false;
+        state.loading = false;
+        return state;
+      }
+      if (action.payload.post) {
+        state.posts = [action.payload.post];
+        state.hasMore = false;
+        state.loading = false;
+        return state;
+      }
       state.posts = action.payload.posts;
-    },
-    [getAllPosts.rejected]: (state) => {
+      state.query = action.payload.q;
+      state.hasMore = true;
       state.loading = false;
     },
-    //Получение поста по id
-    [getOnePost.pending]: (state) => {
+    [getPosts.rejected]: (state) => {
+      state.loading = false;
+    },
+    //Добавление новостей в массив
+    [addPosts.pending]: (state) => {
       state.loading = true;
     },
-    [getOnePost.fulfilled]: (state, action) => {
-      state.posts = [].push(action.payload.post);
+    [addPosts.fulfilled]: (state, action) => {
+      if (action.payload.start > action.payload.numFound) {
+        state.hasMore = false;
+        state.loading = false;
+        return state;
+      }
+      state.posts = [...state.posts, ...action.payload.posts];
+      state.query = action.payload.q;
       state.loading = false;
     },
-    //Обновление просмотров у поста
+    [addPosts.rejected]: (state) => {
+      state.loading = false;
+    },
+    //Обновление просмотров у новости
     [updateViews.pending]: (state) => {
       state.loading = true;
     },
@@ -103,7 +140,7 @@ export const postSlice = createSlice({
     [updateViews.rejected]: (state) => {
       state.loading = false;
     },
-    //Удаление поста
+    //Удаление новости
     [deletePost.pending]: (state) => {
       state.loading = true;
     },
