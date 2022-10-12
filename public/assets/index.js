@@ -31,6 +31,8 @@ import cameraPreview from "./camera-preview.png";
 import planetariumSmall from "./planetarium-small.png";
 import btaSmall from "./bta-small.png";
 import transparentPlaceholder from "./transparent-placeholder.png";
+import bta360Mobile from "./BTA_8mm_15jul2021_360min_ed3flat_1531x3400.jpg";
+import bta360 from "./BTA_8mm_15jul2021_360min_ed3flat_2695x1516.jpg";
 
 export {
   mainBg,
@@ -66,4 +68,6 @@ export {
   planetariumSmall,
   btaSmall,
   transparentPlaceholder,
+  bta360Mobile,
+  bta360,
 };

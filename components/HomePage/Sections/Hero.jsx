@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import useBackground from "../../../hooks/useBackground";
-import { btaBg1, btaMobile } from "../../../public/assets";
+import {
+  btaBg1,
+  btaMobile,
+  bta360Mobile,
+  bta360,
+} from "../../../public/assets";
 import { style } from "../../../styles/style";
 import Background from "../../Background";
 import { ActionButton } from "../../Buttons";
@@ -30,7 +35,7 @@ const buttonAnimation = {
 };
 
 const Hero = () => {
-  const bg = useBackground(btaBg1, btaMobile);
+  const bg = useBackground(bta360, bta360Mobile);
 
   return (
     <motion.section
