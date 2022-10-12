@@ -78,7 +78,12 @@ export default function News({ initialPosts }) {
           reset={() => setInputValue("")}
         />
 
-        {posts ? (
+        {initialPosts &&
+          !posts.length &&
+          !query &&
+          initialPosts.map((post) => <PostItem key={post._id} post={post} />)}
+
+        {posts.length > 0 &&
           posts.map((post, index) => {
             if (posts.length === index + 1)
               return (
@@ -89,15 +94,12 @@ export default function News({ initialPosts }) {
                 />
               );
             else return <PostItem key={post._id + index} post={post} />;
-          })
-        ) : initialPosts ? (
-          initialPosts.map((post) => <PostItem key={post._id} post={post} />)
-        ) : (
-          <span>Новостей нет</span>
-        )}
+          })}
+
         {loading && (
           <Image src={loadingGif} alt="loading" width={40} height={40} />
         )}
+        {posts.length === 0 && !loading && <span>Новости не найдены</span>}
       </div>
     </MainLayout>
   );
