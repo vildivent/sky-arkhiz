@@ -13,7 +13,7 @@ const baseURL = process.env.NEXT_PUBLIC_API_URL;
 export async function getServerSideProps() {
   try {
     const { data } = await axios.get(`${baseURL}api/posts/get`, {
-      params: { limit: 1 },
+      params: { limit: 2 },
     });
     return {
       props: { initialPosts: data.posts },
@@ -25,7 +25,7 @@ export async function getServerSideProps() {
 
 export default function News({ initialPosts }) {
   const dispatch = useDispatch();
-  const limit = 1;
+  const limit = 2;
   const timeoutDefaultValue = 500;
   const { posts, loading, query, hasMore } = useSelector((state) => state.post);
   const [searchQuery, setSearchQuery] = useState(query);
