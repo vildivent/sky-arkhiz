@@ -11,6 +11,7 @@ const RequestSchema = new mongoose.Schema(
     status: { type: String, default: "new" },
     excursionDate: { type: Date, default: new Date(0) },
     groupNumber: { type: Number, default: 0 },
+    referral: { type: String, default: "" },
   },
   { timestamps: true }
 );

@@ -16,7 +16,7 @@ export default function Navbar({ setSidebarIsOpened, navLinks }) {
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [changedNavbar, setChangedNavbar] = useState(
-    router.asPath === "/" ? false : true
+    router.pathname === "/" ? false : true
   );
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -32,7 +32,7 @@ export default function Navbar({ setSidebarIsOpened, navLinks }) {
         }
         if (window.scrollY < 200) {
           //set default navbar to top
-          if (router.asPath === "/") setChangedNavbar(false);
+          if (router.pathname === "/") setChangedNavbar(false);
         } else {
           //change navbar in other positions
           setChangedNavbar(true);
@@ -45,12 +45,11 @@ export default function Navbar({ setSidebarIsOpened, navLinks }) {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlNavbar);
 
-      // cleanup function
       return () => {
         window.removeEventListener("scroll", controlNavbar);
       };
     }
-  }, [lastScrollY, router.asPath]);
+  }, [lastScrollY, router.pathname]);
 
   return (
     <nav

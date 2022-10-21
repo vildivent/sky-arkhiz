@@ -12,6 +12,7 @@ export default async function addNew(req, res) {
     console.log("Mongo connected!");
 
     const { name, phoneNumber, groupSize, dates, comment } = req.body.data;
+    const referral = req.cookies.SkyArkhyzReferral || "";
 
     const newRequest = new Request({
       name,
@@ -21,6 +22,7 @@ export default async function addNew(req, res) {
       comment,
       status: "new",
       excursionDate: new Date(0),
+      referral,
     });
 
     await newRequest.save();

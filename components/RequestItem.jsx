@@ -159,6 +159,12 @@ const RequestItem = ({ request, settings }) => {
         <span className={`${spanStyle}`}>{request.comment}</span>
       </div>
 
+      {/*referral*/}
+      <div className="flex flex-wrap gap-2">
+        {`Реферальнaя ссылка: `}
+        <span className={`${spanStyle}`}>{request.referral}</span>
+      </div>
+
       {/*createdAt*/}
       <div className="flex flex-wrap gap-2">
         {`Дата создания: `}

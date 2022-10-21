@@ -9,7 +9,7 @@ export default function ActiveLink({ children, href, changedNavbar, sidebar }) {
       <a className={`flex`}>
         <span
           className={`${sidebar ? "py-2" : "p-3"} ${
-            router.asPath === (href === "/" ? "/" : `/${href}`)
+            router.pathname === (href === "/" ? "/" : `/${href}`)
               ? changedNavbar
                 ? "text-white"
                 : "text-cyan-500"

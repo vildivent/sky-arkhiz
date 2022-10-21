@@ -1,14 +1,28 @@
+import { useEffect } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 import { HomePageLayout } from "../layouts/HomePageLayout";
-import Hero from "../components/HomePage/Sections/Hero";
-import AboutExcursions from "../components/HomePage/Sections/AboutExcursions";
-import Webcams from "../components/HomePage/Sections/Webcams";
-import Gallery from "../components/HomePage/Sections/Gallery";
-import AstronomyCards from "../components/HomePage/Sections/AstronomyCards";
-import ElseToDo from "../components/HomePage/Sections/ElseToDo";
-import Request from "../components/HomePage/Sections/Request";
+import {
+  Hero,
+  AboutExcursions,
+  Webcams,
+  Gallery,
+  AstronomyCards,
+  ElseToDo,
+  Request,
+} from "../components/HomePage/Sections";
 
 export default function Home() {
-  const buttonStyle = "text-lg sm:px-10 px-8 py-2 sm:rounded-lg rounded-md";
+  const getReferalCookie = async (ref) =>
+    await axios.get("api/referral", { params: { ref } });
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.ref) {
+      getReferalCookie(router.query.ref);
+      router.push("/");
+    }
+  }, [router]);
 
   return (
     <HomePageLayout title={"Главная"}>
