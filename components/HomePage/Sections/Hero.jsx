@@ -6,6 +6,8 @@ import {
   btaMobile,
   bta360Mobile,
   bta360,
+  btaSquare,
+  btaOriginal,
 } from "../../../public/assets";
 import { style } from "../../../styles/style";
 import Background from "../../Background";
@@ -35,19 +37,19 @@ const buttonAnimation = {
 };
 
 const Hero = () => {
-  const bg = useBackground(bta360, bta360Mobile);
+  const bg = useBackground(btaSquare, bta360Mobile);
 
   return (
     <motion.section
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.2 }}
-      className="h-[100vh] relative"
+      className="h-[100vh] lg:h-[150vh] relative"
     >
       <Background bg={bg} position="absolute">
         <motion.h1
           variants={textAnimation}
-          className={`text-center sm:text-6xl text-5xl sm:mt-20 mt-10 mb-5 font-h1 opacity-80 cursor-default`}
+          className={`text-center sm:text-6xl text-5xl mt-20 2xl:mt-40 mb-5 font-h1 opacity-80 cursor-default text-shadow text-gray-100`}
         >
           Экскурсии по ночному небу
         </motion.h1>

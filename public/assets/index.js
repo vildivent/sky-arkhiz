@@ -33,6 +33,8 @@ import btaSmall from "./bta-small.png";
 import transparentPlaceholder from "./transparent-placeholder.png";
 import bta360Mobile from "./BTA_8mm_15jul2021_360min_ed3flat_1531x3400.jpg";
 import bta360 from "./BTA_8mm_15jul2021_360min_ed3flat_2695x1516.jpg";
+import btaOriginal from "./BTA_8mm_15jul2021_360min_ed3flat.jpg";
+import btaSquare from "./BTA_8mm_15jul2021_360min_square.jpg";
 
 export {
   mainBg,
@@ -70,4 +72,6 @@ export {
   transparentPlaceholder,
   bta360Mobile,
   bta360,
+  btaOriginal,
+  btaSquare,
 };

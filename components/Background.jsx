@@ -11,6 +11,7 @@ const Background = ({ children, bg, position = "fixed", opacity = "" }) => {
           quality={100}
           placeholder="blur"
           objectFit={position === "absolute" ? "cover" : undefined}
+          objectPosition={position === "absolute" ? "bottom right" : undefined}
         />
       </div>
 
