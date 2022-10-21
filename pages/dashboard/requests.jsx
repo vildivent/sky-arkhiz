@@ -64,6 +64,7 @@ const Requests = () => {
 
   useEffect(() => {
     filterHandler(initialStatus);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialStatus]);
 
   useEffect(() => {

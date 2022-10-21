@@ -71,6 +71,7 @@ export default function Navbar({ setSidebarIsOpened, navLinks }) {
         heading={"Ночные экскурсии"}
         description={"звёзды - это красиво"}
         verticalLogo={false}
+        textShadow={true}
       />
       <ul className="lg:flex hidden flex-row justify-center text-center">
         {navLinks.map((link) => {
@@ -81,7 +82,7 @@ export default function Navbar({ setSidebarIsOpened, navLinks }) {
                 className={`flex flex-col justify-center mb-[1px] ${
                   changedNavbar
                     ? "hover:text-white hover:bg-[#181818]"
-                    : "hover:text-cyan-500"
+                    : "hover:text-cyan-500 text-shadow link"
                 }`}
               >
                 <ActiveLink

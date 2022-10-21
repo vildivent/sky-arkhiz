@@ -28,8 +28,26 @@ p {
   box-sizing: border-box;
 }
 
-.text-shadow {
-  text-shadow: 0.05em 0 rgba(0, 0, 0, 0.6);
+@media (min-width: 640px) {
+  .text-shadow {
+    --text-shadow: -0 -1px 0 var(--text-shadow-color),
+      0 -1px 0 var(--text-shadow-color), -0 1px 0 var(--text-shadow-color),
+      0 1px 0 var(--text-shadow-color), -1px -0 0 var(--text-shadow-color),
+      1px -0 0 var(--text-shadow-color), -1px 0 0 var(--text-shadow-color),
+      1px 0 0 var(--text-shadow-color), -1px -1px 0 var(--text-shadow-color),
+      1px -1px 0 var(--text-shadow-color), -1px 1px 0 var(--text-shadow-color),
+      1px 1px 0 var(--text-shadow-color), -1px -1px 0 var(--text-shadow-color),
+      1px -1px 0 var(--text-shadow-color), -1px 1px 0 var(--text-shadow-color),
+      1px 1px 0 var(--text-shadow-color);
+
+    --text-shadow-color: #797878;
+    text-shadow: var(--text-shadow);
+  }
+
+  .text-shadow.link:hover {
+    --text-shadow-color: #79787800;
+    text-shadow: var(--text-shadow);
+  }
 }
 
 /* scrollbar */

@@ -49,7 +49,7 @@ const Hero = () => {
       <Background bg={bg} position="absolute">
         <motion.h1
           variants={textAnimation}
-          className={`text-center sm:text-6xl text-5xl mt-20 sm:mt-10 2xl:mt-40 mb-5 font-h1 opacity-80 cursor-default text-shadow text-gray-100`}
+          className={`text-center sm:text-6xl text-5xl mt-20 sm:mt-10 2xl:mt-40 mb-5 font-h1 opacity-80 cursor-default sm:text-white text-shadow`}
         >
           Экскурсии по ночному небу
         </motion.h1>
@@ -59,7 +59,7 @@ const Hero = () => {
         >
           <Link href="/request">
             <a>
-              <ActionButton className={`${style.button} opacity-95`}>
+              <ActionButton className={`${style.button}`}>
                 Оставить заявку
               </ActionButton>
             </a>

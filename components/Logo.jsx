@@ -9,6 +9,7 @@ const Logo = ({
   changedNavbar,
   verticalLogo,
   className,
+  textShadow,
 }) => {
   return (
     <Link href={"/"}>
@@ -27,7 +28,11 @@ const Logo = ({
           <div
             className={`flex flex-col justify-center ${
               !verticalLogo ? "pl-2 sm:pl-5" : ""
-            } ${changedNavbar ? " text-cyan-500" : ""}`}
+            } ${
+              changedNavbar
+                ? " text-cyan-500"
+                : `${textShadow ? "text-shadow" : ""}`
+            }`}
           >
             <h1 className={` font-logo-h1 text-[21px] leading-[100%]`}>
               {heading}
