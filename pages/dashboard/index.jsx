@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { DateObject } from "react-multi-date-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionButton } from "../../components/Buttons";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
 import { loadingGif } from "../../public/assets";
-import { getRequestsWithStatus } from "../../redux/features/request/requestSlice";
+import { getAllRequests } from "../../redux/features/request/requestSlice";
+import { setFilterByDate } from "../../redux/features/requestFilterByDate/requestFilterByDateSlice";
 import { getUncheckedReviews } from "../../redux/features/review/reviewSlice";
 
 export default function Dashboard() {
@@ -14,13 +16,38 @@ export default function Dashboard() {
   const { reviews } = reviewsState;
   const requestsState = useSelector((state) => state.request);
   const { requests } = requestsState;
+  const { filteredRequestsByDate } = useSelector(
+    (state) => state.requestFilterByDate
+  );
   const [loading, setLoading] = useState(true);
+  const [newRequests, setNewRequests] = useState([]);
+  const [registeredRequests, setRegisteredRequests] = useState([]);
+  const today = new DateObject({
+    date: new Date(),
+    format: "DD/MM/YYYY",
+  }).format();
 
   useEffect(() => {
+    dispatch(getAllRequests());
     dispatch(getUncheckedReviews());
-    dispatch(getRequestsWithStatus({ status: "new" }));
     setLoading(false);
   }, [dispatch]);
+
+  useEffect(() => {
+    setNewRequests(requests.filter((request) => request.status === "new"));
+    setRegisteredRequests(
+      requests.filter((request) => request.status === "registered")
+    );
+  }, [dispatch, requests]);
+
+  useEffect(() => {
+    dispatch(
+      setFilterByDate({
+        requests: registeredRequests,
+        filterDate: today,
+      })
+    );
+  }, [dispatch, today, registeredRequests]);
 
   return (
     <DashboardLayout title={"Панель управления"}>
@@ -32,16 +59,25 @@ export default function Dashboard() {
         <div className="mt-10 flex flex-wrap items-center gap-5 sm:justify-around justify-start">
           <Link href={"/dashboard/reviews"}>
             <a>
-              <ActionButton>{`Отзывов ожидают проверку (${
-                reviews.length > 0 && reviews.length
-              })`}</ActionButton>
+              <ActionButton>{`Отзывов ожидают проверку (${reviews.length})`}</ActionButton>
             </a>
           </Link>
           <Link href={"/dashboard/requests"}>
             <a>
               <ActionButton
-                title={`Новых заявок (${
-                  requests.length > 0 && requests.length
+                title={`Новых заявок (${newRequests.length || "нет"})`}
+              />
+            </a>
+          </Link>
+          <Link
+            href={`/dashboard/requests?status=registered&date=${new DateObject({
+              format: "DD/MM/YYYY",
+            })}&remove=true`}
+          >
+            <a>
+              <ActionButton
+                title={`Заявок на сегодня (${
+                  filteredRequestsByDate.length || "нет"
                 })`}
               />
             </a>

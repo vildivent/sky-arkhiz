@@ -14,8 +14,13 @@ import GroupFilter from "../../components/GroupFilter";
 import { setFilterByDate } from "../../redux/features/requestFilterByDate/requestFilterByDateSlice";
 import { setFilterByGroup } from "../../redux/features/requestFilterByGroup/requestFilterByGroupSlice";
 import StattusChangeSwitcher from "../../components/StattusChangeSwitcher";
+import { useRouter } from "next/router";
+import { DateObject } from "react-multi-date-picker";
 
 const Requests = () => {
+  const router = useRouter();
+  const { status, date, remove } = router.query;
+
   const dispatch = useDispatch();
   const { requests, loading } = useSelector((state) => state.request);
   const { filteredRequestsByDate } = useSelector(
@@ -25,28 +30,11 @@ const Requests = () => {
     (state) => state.requestFilterByGroup
   );
 
-  const initialStatus = requestStatusTypes[0].id; //'new'
+  const [initialStatus, setInitialStatus] = useState(requestStatusTypes[0].id);
   const [filter, setFilter] = useState(initialStatus);
   const [filterDate, setFilterDate] = useState(null);
   const [filterGroup, setFilterGroup] = useState("");
   const [hideOnStatusChange, setHideOnStatusChange] = useState(false);
-
-  useEffect(() => {
-    dispatch(getRequestsWithStatus({ status: initialStatus }));
-  }, [dispatch, initialStatus]);
-
-  useEffect(() => {
-    dispatch(setFilterByDate({ requests, filterDate: filterDate?.format() }));
-  }, [dispatch, requests, filterDate]);
-
-  useEffect(() => {
-    dispatch(
-      setFilterByGroup({
-        requests: filteredRequestsByDate,
-        filterGroup: +filterGroup,
-      })
-    );
-  }, [dispatch, filteredRequestsByDate, filterGroup]);
 
   const filterHandler = (status) => {
     try {
@@ -61,6 +49,35 @@ const Requests = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (status) setInitialStatus(status);
+  }, [status]);
+
+  useEffect(() => {
+    if (date) setFilterDate(new DateObject({ date, format: "DD/MM/YYYY" }));
+  }, [date]);
+
+  useEffect(() => {
+    if (remove) setHideOnStatusChange(remove === "true");
+  }, [remove]);
+
+  useEffect(() => {
+    filterHandler(initialStatus);
+  }, [initialStatus]);
+
+  useEffect(() => {
+    dispatch(setFilterByDate({ requests, filterDate: filterDate?.format() }));
+  }, [dispatch, requests, filterDate]);
+
+  useEffect(() => {
+    dispatch(
+      setFilterByGroup({
+        requests: filteredRequestsByDate,
+        filterGroup: +filterGroup,
+      })
+    );
+  }, [dispatch, filteredRequestsByDate, filterGroup]);
 
   return (
     <DashboardLayout title={"Заявки"} mainProps={"px-2"}>
