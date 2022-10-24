@@ -110,7 +110,7 @@ const ReviewItem = forwardRef(({ review, createPage }, ref) => {
           </div>
         )}
 
-        <div className={`flex flex-wrap gap-3 mt-10`}>
+        <div className={`flex flex-wrap gap-3 mt-10 justify-end`}>
           {!createPage && (
             <div className="flex flex-wrap gap-3 items-center mx-auto">
               <span>Был ли отзыв полезен?</span>
