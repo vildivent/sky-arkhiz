@@ -1,9 +1,10 @@
+import Image from "next/image";
 import { useState } from "react";
 import FilterMenu from "../../components/FilterMenu";
-import Loading from "../../components/Loading";
 import ReviewItemDashboard from "../../components/ReviewItemDashboard";
 import { reviewStatusTypes } from "../../constasnts";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
+import { loadingGif } from "../../public/assets";
 import useReviewFetch from "../../utils/hooks/useReviewFetch";
 
 export default function Reviews() {
@@ -44,16 +45,26 @@ export default function Reviews() {
       />
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
-        <Loading array={reviews} loading={loading} alt="Отзывов нет" />
+        {reviews.length > 0 &&
+          reviews.map((review, index) => {
+            if (reviews.length === index + 1)
+              return (
+                <ReviewItemDashboard
+                  ref={lastElementRef}
+                  key={review._id + index}
+                  review={review}
+                />
+              );
+            else
+              return (
+                <ReviewItemDashboard key={review._id + index} review={review} />
+              );
+          })}
 
-        {reviews &&
-          reviews.map((review) => (
-            <ReviewItemDashboard
-              ref={lastElementRef}
-              key={review._id}
-              review={review}
-            />
-          ))}
+        {loading && (
+          <Image src={loadingGif} alt="loading" width={40} height={40} />
+        )}
+        {reviews.length === 0 && !loading && <span>Отзывы не найдены</span>}
       </div>
     </DashboardLayout>
   );
