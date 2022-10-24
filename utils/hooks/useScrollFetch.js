@@ -2,12 +2,13 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 const useScrollFetch = ({
-  searchQuery = "",
+  searchQuery,
   limit = 2,
   loading,
   hasMore,
   getPosts,
   addPosts,
+  checked,
 }) => {
   const dispatch = useDispatch();
   const [pageNumber, setPageNumber] = useState(0);
@@ -29,11 +30,11 @@ const useScrollFetch = ({
 
   useEffect(() => {
     if (pageNumber === 0) {
-      dispatch(getPosts({ limit, q: searchQuery }));
+      dispatch(getPosts({ limit, q: searchQuery, page: pageNumber, checked }));
     } else {
-      dispatch(addPosts({ limit, q: searchQuery, page: pageNumber }));
+      dispatch(addPosts({ limit, q: searchQuery, page: pageNumber, checked }));
     }
-  }, [dispatch, searchQuery, pageNumber, limit, getPosts, addPosts]);
+  }, [dispatch, searchQuery, pageNumber, limit, getPosts, addPosts, checked]);
 
   return { lastElementRef, setPageNumber };
 };

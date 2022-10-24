@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import {
   ActionButton,
   ResetButton,
@@ -23,7 +24,6 @@ import {
   reset,
 } from "../../redux/features/newReviewForm/newReviewFormSlice";
 import ReviewItem from "../../components/ReviewItem";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 export default function CreateReview() {
   const router = useRouter();

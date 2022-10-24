@@ -11,79 +11,46 @@ export const createReview = createAsyncThunk(
   "review/createReview",
   async (params) => {
     try {
-      const { data } = await axios.post("/api/reviews/addNew", params);
+      const { data } = await axios.post("/api/reviews/create", params);
       return data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
 
-export const getAllReviews = createAsyncThunk(
-  "review/getAllReviews",
-  async () => {
+export const getReviews = createAsyncThunk(
+  "review/getReviews",
+  async (params) => {
     try {
-      const { data } = await axios.get("/api/reviews/getAll");
+      const { data } = await axios.get("/api/reviews/get", { params });
       return data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
 
-export const getCheckedReviews = createAsyncThunk(
-  "review/getCheckedReviews",
-  async () => {
+export const addReviews = createAsyncThunk(
+  "review/addReviews",
+  async (params) => {
     try {
-      const { data } = await axios.get("/api/reviews/getChecked");
+      const { data } = await axios.get("/api/reviews/get", { params });
       return data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
 
-export const getUncheckedReviews = createAsyncThunk(
-  "review/getUncheckedReviews",
-  async () => {
+export const updateReview = createAsyncThunk(
+  "review/updateReview",
+  async (params) => {
     try {
-      const { data } = await axios.get("/api/reviews/getUnchecked");
+      const { data } = await axios.post("/api/reviews/update", params);
       return data;
     } catch (error) {
-      console.log(error);
-    }
-  }
-);
-
-export const setChecked = createAsyncThunk("review/setChecked", async (id) => {
-  try {
-    const { data } = await axios.post("/api/reviews/setChecked", id);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-export const addUsefullRaiting = createAsyncThunk(
-  "review/addUsefullRaiting",
-  async (id) => {
-    try {
-      const { data } = await axios.post("/api/reviews/addUsefullRaiting", id);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
-
-export const addUselessRaiting = createAsyncThunk(
-  "review/addUselessRaiting",
-  async (id) => {
-    try {
-      const { data } = await axios.post("/api/reviews/addUselessRaiting", id);
-      return data;
-    } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
@@ -92,10 +59,12 @@ export const deleteReview = createAsyncThunk(
   "review/deleteReview",
   async (id) => {
     try {
-      const { data } = await axios.post("/api/reviews/deleteById", id);
+      const { data } = await axios.delete("/api/reviews/delete", {
+        params: { id },
+      });
       return data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
@@ -105,97 +74,71 @@ export const reviewSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    //Создание отзыва
+    //создание
     [createReview.pending]: (state) => {
       state.loading = true;
     },
-    [createReview.fulfilled]: (state) => {
+    [createReview.fulfilled]: (state, action) => {
+      state.reviews.push(action.payload);
       state.loading = false;
     },
     [createReview.rejected]: (state) => {
       state.loading = false;
     },
-    //Получение всех отзывов
-    [getAllReviews.pending]: (state) => {
+    //получение с заменой массива
+    [getReviews.pending]: (state) => {
       state.loading = true;
     },
-    [getAllReviews.fulfilled]: (state, action) => {
-      state.loading = false;
+    [getReviews.fulfilled]: (state, action) => {
+      if (action.payload.start > action.payload.numFound) {
+        state.hasMore = false;
+        state.loading = false;
+        return state;
+      }
+      if (action.payload.review) {
+        state.reviews = [action.payload.review];
+        state.hasMore = false;
+        state.loading = false;
+        return state;
+      }
       state.reviews = action.payload.reviews;
-    },
-    [getAllReviews.rejected]: (state) => {
+      state.hasMore = true;
       state.loading = false;
     },
-    //Получение проверенных отзывов
-    [getCheckedReviews.pending]: (state) => {
+    [getReviews.rejected]: (state) => {
+      state.loading = false;
+    },
+    //добавление в массив
+    [addReviews.pending]: (state) => {
       state.loading = true;
     },
-    [getCheckedReviews.fulfilled]: (state, action) => {
+    [addReviews.fulfilled]: (state, action) => {
+      if (action.payload.start > action.payload.numFound) {
+        state.hasMore = false;
+        state.loading = false;
+        return state;
+      }
+      state.reviews = [...state.reviews, ...action.payload.reviews];
       state.loading = false;
-      state.reviews = action.payload.reviews;
     },
-    [getCheckedReviews.rejected]: (state) => {
+    [addReviews.rejected]: (state) => {
       state.loading = false;
     },
-
-    //Получение не проверенных отзывов
-    [getUncheckedReviews.pending]: (state) => {
+    //обновление
+    [updateReview.pending]: (state) => {
       state.loading = true;
     },
-    [getUncheckedReviews.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.reviews = action.payload.reviews;
-    },
-    [getUncheckedReviews.rejected]: (state) => {
-      state.loading = false;
-    },
-    //Изменить отметку о проверке отзыва по id
-    [setChecked.pending]: (state) => {
-      state.loading = true;
-    },
-    [setChecked.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.reviews.forEach((review) =>
-        review._id === action.payload.review._id
-          ? (review.checked = action.payload.review.checked)
-          : undefined
-      );
-    },
-    [setChecked.rejected]: (state) => {
+    [updateReview.fulfilled]: (state, action) => {
+      state.reviews.forEach((review, index) => {
+        if (review._id === action.payload.review._id)
+          state.reviews[index] = action.payload.review;
+      });
       state.loading = false;
     },
-
-    //Добавить рейтинг "полезный" по id
-    [addUsefullRaiting.pending]: (state) => {
-      state.loading = true;
-    },
-    [addUsefullRaiting.fulfilled]: (state, action) => {
-      state.reviews.forEach((review) =>
-        review._id === action.payload.review._id
-          ? (review.usefullRaiting = action.payload.review.usefullRaiting)
-          : undefined
-      );
+    [updateReview.rejected]: (state) => {
       state.loading = false;
     },
-    [addUsefullRaiting.rejected]: (state) => {
-      state.loading = false;
-    },
-    //Добавить рейтинг "бесполезный" по id
-    [addUselessRaiting.pending]: (state) => {
-      state.loading = true;
-    },
-    [addUselessRaiting.fulfilled]: (state, action) => {
-      state.reviews.forEach((review) =>
-        review._id === action.payload.review._id
-          ? (review.uselessRaiting = action.payload.review.uselessRaiting)
-          : undefined
-      );
-      state.loading = false;
-    },
-    [addUselessRaiting.rejected]: (state) => {
-      state.loading = false;
-    },
-    //Удаление отзыва
+    //удаление
     [deleteReview.pending]: (state) => {
       state.loading = true;
     },

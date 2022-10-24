@@ -8,7 +8,7 @@ import { DashboardLayout } from "../../layouts/DashboardLayout";
 import { loadingGif } from "../../public/assets";
 import { getAllRequests } from "../../redux/features/request/requestSlice";
 import { setFilterByDate } from "../../redux/features/requestFilterByDate/requestFilterByDateSlice";
-import { getUncheckedReviews } from "../../redux/features/review/reviewSlice";
+import { getReviews } from "../../redux/features/review/reviewSlice";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     dispatch(getAllRequests());
-    dispatch(getUncheckedReviews());
+    dispatch(getReviews({ checked: false }));
     setLoading(false);
   }, [dispatch]);
 

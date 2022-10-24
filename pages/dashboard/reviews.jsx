@@ -1,39 +1,31 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import FilterMenu from "../../components/FilterMenu";
 import Loading from "../../components/Loading";
 import ReviewItemDashboard from "../../components/ReviewItemDashboard";
 import { reviewStatusTypes } from "../../constasnts";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
-import {
-  getAllReviews,
-  getCheckedReviews,
-  getUncheckedReviews,
-} from "../../redux/features/review/reviewSlice";
+import useReviewFetch from "../../utils/hooks/useReviewFetch";
 
 export default function Reviews() {
-  const dispatch = useDispatch();
-  const { reviews, loading } = useSelector((state) => state.review);
   const [filter, setFilter] = useState(reviewStatusTypes[0].id);
+  const [checked, setChecked] = useState(false);
 
-  useEffect(() => {
-    dispatch(getUncheckedReviews());
-  }, [dispatch]);
+  const { reviews, loading, lastElementRef } = useReviewFetch({ checked });
 
   const filterHandler = (status) => {
     try {
       if (status === reviewStatusTypes[0].id) {
-        dispatch(getUncheckedReviews());
+        setChecked(false);
         setFilter(status);
         return;
       }
       if (status === reviewStatusTypes[1].id) {
-        dispatch(getCheckedReviews());
+        setChecked(true);
         setFilter(status);
         return;
       }
       if (status === "all") {
-        dispatch(getAllReviews());
+        setChecked(undefined);
         setFilter("all");
         return;
       }
@@ -56,7 +48,11 @@ export default function Reviews() {
 
         {reviews &&
           reviews.map((review) => (
-            <ReviewItemDashboard key={review._id} review={review} />
+            <ReviewItemDashboard
+              ref={lastElementRef}
+              key={review._id}
+              review={review}
+            />
           ))}
       </div>
     </DashboardLayout>

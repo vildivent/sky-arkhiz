@@ -18,12 +18,12 @@ export default async function getReviews(req, res) {
     const { id, q, checked } = req.query;
 
     //access check
-    if (checked !== "y" || id) {
+    if (checked !== "true" || id) {
       const jwt = req.cookies["SkyArkhyzJWT"];
       if (!jwt)
         return res
           .status(401)
-          .json({ message: "You don't have auth token to proceed" });
+          .json({ message: "Отсутствует токен аутентификации" });
 
       await jose.jwtVerify(jwt, new TextEncoder().encode(`${secret}`));
     }
@@ -32,10 +32,10 @@ export default async function getReviews(req, res) {
     console.log("Mongo connected!");
 
     let filter;
-    if (checked === "y") {
+    if (checked === "true") {
       filter = { checked: true };
     }
-    if (checked === "n") {
+    if (checked === "false") {
       filter = { checked: false };
     }
 
@@ -46,7 +46,8 @@ export default async function getReviews(req, res) {
         { new: true }
       );
       if (review) return res.json({ review });
-      else return res.json({ message: "Отзыва с таким id не существует" });
+      else
+        return res.status(404).json({ message: `Отзыв с id:${id} не найден` });
     }
 
     if (q) {
@@ -69,7 +70,9 @@ export default async function getReviews(req, res) {
     if (error.name === "CastError")
       return res.status(400).json({ message: "Некорректный формат" });
     if (error.code === "ERR_JWS_INVALID")
-      return res.status(403).json({ message: "Wrong auth token" });
+      return res
+        .status(401)
+        .json({ message: "Некорректный токен аутентификации" });
     res.status(400).json(error);
   }
 }

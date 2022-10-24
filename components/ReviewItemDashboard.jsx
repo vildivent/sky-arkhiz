@@ -1,20 +1,25 @@
+/* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
 
+import { forwardRef } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteReview, setChecked } from "../redux/features/review/reviewSlice";
+import {
+  deleteReview,
+  updateReview,
+} from "../redux/features/review/reviewSlice";
 import { ActionButton, CancelButton } from "./Buttons";
 import ModalYesNo from "./ModalYesNo";
 import ReviewItem from "./ReviewItem";
 
-const ReviewItemDashboard = ({ review }) => {
+const ReviewItemDashboard = forwardRef(({ review }, ref) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const deleteHandler = () => {
     try {
       setModalIsOpen(false);
-      dispatch(deleteReview({ id: review._id }));
+      dispatch(deleteReview(review._id));
       console.log("Отзыв удалён!");
     } catch (error) {
       console.error(error);
@@ -23,7 +28,7 @@ const ReviewItemDashboard = ({ review }) => {
 
   const setCheckedHandler = () => {
     try {
-      dispatch(setChecked({ id: review._id }));
+      dispatch(updateReview({ id: review._id, checked: "inv" }));
     } catch (error) {
       console.error(error);
     }
@@ -51,13 +56,13 @@ const ReviewItemDashboard = ({ review }) => {
           </ModalYesNo>
         </div>
         <div>
-          <div>{`Полезным посчитали: ${review.usefullRaiting}`}</div>
-          <div>{`Бесполезным посчитали: ${review.uselessRaiting}`}</div>
+          <div>{`Лайков: ${review.upvotes}`}</div>
+          <div>{`Дизлайков: ${review.downvotes}`}</div>
         </div>
       </div>
-      <ReviewItem review={review} createPage={true} />
+      <ReviewItem ref={ref} review={review} createPage={true} />
     </>
   );
-};
+});
 
 export default ReviewItemDashboard;

@@ -144,9 +144,13 @@ const RequestItem = ({ request, settings }) => {
       <div className="flex flex-col gap-2">
         <div className="flex flex-wrap gap-2">
           {`Даты: `}
-          <span
-            className={`${spanStyle}`}
-          >{`${request.dates[0]} ~ ${request.dates[1]}`}</span>
+          <span className={`${spanStyle}`}>{`${new DateObject({
+            date: request.dates[0],
+            format: "DD/MM/YYYY",
+          }).format("DD.MM.YYYY")} ~ ${new DateObject({
+            date: request.dates[1],
+            format: "DD/MM/YYYY",
+          }).format("DD.MM.YYYY")}`}</span>
         </div>{" "}
         <div className="flex sm:justify-center relative z-0">
           <InputDate dateRange={request.dates} editable={false} />
@@ -169,7 +173,7 @@ const RequestItem = ({ request, settings }) => {
       <div className="flex flex-wrap gap-2">
         {`Дата создания: `}
         <span className={`${spanStyle}`}>
-          {new DateObject(request.createdAt).format("DD/MM/YYYY HH:mm")}
+          {new DateObject(request.createdAt).format("DD.MM.YYYY HH:mm")}
         </span>
       </div>
 
@@ -246,7 +250,7 @@ const RequestItem = ({ request, settings }) => {
         {`Дата экскурсии: `}
         <span className={`${spanStyle}`}>
           {!compareWithDefaultDate(request.excursionDate)
-            ? new DateObject(request.excursionDate).format("DD/MM/YYYY HH:mm")
+            ? new DateObject(request.excursionDate).format("DD.MM.YYYY HH:mm")
             : ""}
         </span>
         <EditButton

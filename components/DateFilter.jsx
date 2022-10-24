@@ -22,7 +22,7 @@ const DateFilter = ({ filterDate, setFilterDate }) => {
         value={filterDate}
         onChange={setFilterDate}
         locale={gregorian_ru}
-        format="DD/MM/YYYY"
+        format="DD.MM.YYYY"
         render={<CustomButton />}
         weekStartDayIndex={1}
         className="bg-dark scale-[1.40] sm:translate-y-[4.5rem] translate-y-[3.5rem]"

@@ -40,7 +40,7 @@ const ExcursionTimePicker = ({ filterDate, setFilterDate, dateRange }) => {
         value={filterDate}
         onChange={setFilterDate}
         locale={gregorian_ru}
-        format="DD/MM/YYYY HH:mm"
+        format="DD.MM.YYYY HH:mm"
         render={
           <CustomButton filterDate={filterDate} setFilterDate={setFilterDate} />
         }

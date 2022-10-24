@@ -1,20 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { ActionButton } from "../../components/Buttons";
-import Loading from "../../components/Loading";
 import ReviewItem from "../../components/ReviewItem";
 import { MainLayout } from "../../layouts/MainLayout";
-import { getCheckedReviews } from "../../redux/features/review/reviewSlice";
+import { loadingGif } from "../../public/assets";
+import useReviewFetch from "../../utils/hooks/useReviewFetch";
 
 export default function Reviews() {
-  const dispatch = useDispatch();
-
-  const { reviews, loading } = useSelector((state) => state.review);
-
-  useEffect(() => {
-    dispatch(getCheckedReviews());
-  }, [dispatch]);
+  const { reviews, loading, lastElementRef } = useReviewFetch({
+    checked: true,
+  });
 
   return (
     <MainLayout title={"Отзывы"} mainProps={"px-2"}>
@@ -27,11 +22,23 @@ export default function Reviews() {
       </div>
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
-        <Loading array={reviews} loading={loading} alt="Отзывов нет" />
-        {reviews &&
-          reviews.map((review) => (
-            <ReviewItem key={review._id} review={review} />
-          ))}
+        {reviews.length > 0 &&
+          reviews.map((review, index) => {
+            if (reviews.length === index + 1)
+              return (
+                <ReviewItem
+                  ref={lastElementRef}
+                  key={review._id + index}
+                  review={review}
+                />
+              );
+            else return <ReviewItem key={review._id + index} review={review} />;
+          })}
+
+        {loading && (
+          <Image src={loadingGif} alt="loading" width={40} height={40} />
+        )}
+        {reviews.length === 0 && !loading && <span>Отзывы не найдены</span>}
       </div>
     </MainLayout>
   );

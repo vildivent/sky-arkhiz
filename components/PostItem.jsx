@@ -11,16 +11,15 @@ import { updateViews } from "../redux/features/post/postSlice";
 const PostItem = forwardRef(({ post }, ref) => {
   const dispatch = useDispatch();
 
-  const clickHandler = () => {
-    setDetailed((prev) => !prev);
-    if (detailed && !view) {
-      dispatch(updateViews({ id: post._id }));
-      setView(true);
-    }
-  };
-
   const [detailed, setDetailed] = useState(false);
   const [view, setView] = useState(false);
+
+  const clickHandler = () => {
+    setDetailed((prev) => !prev);
+    if (!view) dispatch(updateViews({ id: post._id }));
+    setView(true);
+  };
+
   return (
     <div
       ref={ref}
@@ -66,7 +65,7 @@ const PostItem = forwardRef(({ post }, ref) => {
         <Moment
           className="m-2"
           date={post.createdAt}
-          format="DD/MM/YYYY HH:mm"
+          format="DD.MM.YYYY HH:mm"
         />
       </div>
     </div>

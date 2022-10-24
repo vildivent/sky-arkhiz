@@ -22,7 +22,7 @@ export default async function deletePost(req, res) {
     await connectMongo();
     console.log("Mongo connected!");
 
-    const { id } = req.body;
+    const { id } = req.query;
 
     const post = await Post.findByIdAndDelete(id);
     if (!post) return res.json({ message: "такого поста не существует" });

@@ -6,7 +6,7 @@ import connectMongo from "../../../utils/connectMongo";
  * @param {import("next").NextApiResponse} res
  */
 
-export default async function addNew(req, res) {
+export default async function createReview(req, res) {
   try {
     await connectMongo();
     console.log("Mongo connected!");
@@ -24,9 +24,9 @@ export default async function addNew(req, res) {
     await newRewiew.save();
     console.log("Rewiew saved!");
 
-    res.status(201).json({ message: "Rewiew saved!" });
+    res.status(201).json(newRewiew);
   } catch (error) {
     console.log(error);
-    res.json({ error });
+    res.status(400).json({ error });
   }
 }

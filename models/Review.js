@@ -12,9 +12,10 @@ const ReviewSchema = new mongoose.Schema(
     avatarUrl: { type: String, default: "" },
     photoUrl: { type: String, default: "" },
     stars: { type: Number, required: true },
-    usefullRaiting: { type: Number, default: 0 },
-    uselessRaiting: { type: Number, default: 0 },
     checked: { type: Boolean, default: false },
+    upvotes: { type: Number, default: 0 },
+    downvotes: { type: Number, default: 0 },
+    views: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

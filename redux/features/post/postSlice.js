@@ -20,33 +20,23 @@ export const createPost = createAsyncThunk(
   }
 );
 
-export const getPosts = createAsyncThunk(
-  "post/getPosts",
-  async ({ id, q, page, limit }) => {
-    try {
-      const { data } = await axios.get("/api/posts/get", {
-        params: { id, q, page, limit },
-      });
-      return { ...data, q: q || "" };
-    } catch (error) {
-      console.log(error);
-    }
+export const getPosts = createAsyncThunk("post/getPosts", async (params) => {
+  try {
+    const { data } = await axios.get("/api/posts/get", { params });
+    return { ...data, q: params.q || "" };
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 
-export const addPosts = createAsyncThunk(
-  "post/addPosts",
-  async ({ q, page, limit }) => {
-    try {
-      const { data } = await axios.get("/api/posts/get", {
-        params: { q, page, limit },
-      });
-      return { ...data, q: q || "" };
-    } catch (error) {
-      console.log(error);
-    }
+export const addPosts = createAsyncThunk("post/addPosts", async (params) => {
+  try {
+    const { data } = await axios.get("/api/posts/get", { params });
+    return { ...data, q: params.q || "" };
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 
 export const updateViews = createAsyncThunk(
   "post/updateViews",
@@ -62,7 +52,9 @@ export const updateViews = createAsyncThunk(
 
 export const deletePost = createAsyncThunk("post/deletePost", async (id) => {
   try {
-    const { data } = await axios.post("/api/posts/delete", id);
+    const { data } = await axios.delete("/api/posts/delete", {
+      params: { id },
+    });
     return data;
   } catch (error) {
     console.log(error);

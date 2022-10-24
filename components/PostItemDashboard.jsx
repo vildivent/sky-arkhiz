@@ -1,11 +1,12 @@
-import { useState } from "react";
+/* eslint-disable react/display-name */
+import { forwardRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../redux/features/post/postSlice";
 import { CancelButton } from "./Buttons";
 import ModalYesNo from "./ModalYesNo";
 import PostItem from "./PostItem";
 
-const PostItemDashboard = ({ post }) => {
+const PostItemDashboard = forwardRef(({ post }, ref) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -21,24 +22,26 @@ const PostItemDashboard = ({ post }) => {
 
   return (
     <>
-      <div className="flex justify-center mt-5">
-        <CancelButton onClick={() => setModalIsOpen(true)}>
-          Удалить новость
-        </CancelButton>
+      <div className="flex w-full justify-end">
+        <div className="flex justify-center mt-5">
+          <CancelButton onClick={() => setModalIsOpen(true)}>
+            Удалить
+          </CancelButton>
 
-        <ModalYesNo
-          isOpen={modalIsOpen}
-          setIsOpen={setModalIsOpen}
-          yesClick={deleteHandler}
-          noCkick={() => setModalIsOpen(false)}
-        >
-          <h1>Вы действительно хотите удалить эту новость?</h1>
-        </ModalYesNo>
+          <ModalYesNo
+            isOpen={modalIsOpen}
+            setIsOpen={setModalIsOpen}
+            yesClick={deleteHandler}
+            noCkick={() => setModalIsOpen(false)}
+          >
+            <h1>Вы действительно хотите удалить эту новость?</h1>
+          </ModalYesNo>
+        </div>
       </div>
 
-      <PostItem post={post} />
+      <PostItem ref={ref} post={post} />
     </>
   );
-};
+});
 
 export default PostItemDashboard;
