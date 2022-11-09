@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { DateObject } from "react-multi-date-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionButton } from "../../components/Buttons";
-import { DashboardLayout } from "../../layouts/DashboardLayout";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { loadingGif } from "../../public/assets";
 import { getAllRequests } from "../../redux/features/request/requestSlice";
 import { setFilterByDate } from "../../redux/features/requestFilterByDate/requestFilterByDateSlice";

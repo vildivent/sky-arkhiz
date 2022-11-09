@@ -4,7 +4,7 @@ import Loading from "../../components/Loading";
 import RequestItem from "../../components/RequestItem";
 import FilterMenu from "../../components/FilterMenu";
 import { requestStatusTypes } from "../../constasnts";
-import { DashboardLayout } from "../../layouts/DashboardLayout";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
 import {
   getAllRequests,
   getRequestsWithStatus,

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import useBackground from "../../../hooks/useBackground";
+import useBackground from "../../../utils/hooks/useBackground";
 import {
   btaBg1,
   btaMobile,

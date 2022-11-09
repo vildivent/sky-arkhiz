@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ActionButton } from "../../../components/Buttons";
 import PostItemDashboard from "../../../components/PostItemDashboard";
 import SearchBar from "../../../components/SearchBar";
-import { DashboardLayout } from "../../../layouts/DashboardLayout";
+import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { loadingGif } from "../../../public/assets";
 import usePostsFetchAndSearch from "../../../utils/hooks/usePostsFetchAndSearch";
 

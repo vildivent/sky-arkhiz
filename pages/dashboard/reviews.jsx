@@ -3,7 +3,7 @@ import { useState } from "react";
 import FilterMenu from "../../components/FilterMenu";
 import ReviewItemDashboard from "../../components/ReviewItemDashboard";
 import { reviewStatusTypes } from "../../constasnts";
-import { DashboardLayout } from "../../layouts/DashboardLayout";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { loadingGif } from "../../public/assets";
 import useReviewFetch from "../../utils/hooks/useReviewFetch";
 

@@ -12,7 +12,7 @@ import {
 } from "../../components/Buttons";
 import Label from "../../components/Label";
 import { InputName } from "../../components/Inputs";
-import { MainLayout } from "../../layouts/MainLayout";
+import { MainLayout } from "../../components/layouts/MainLayout";
 import { createReview } from "../../redux/features/review/reviewSlice";
 import {
   setName,

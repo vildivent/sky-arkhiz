@@ -10,7 +10,7 @@ import {
   CancelButton,
 } from "../../../components/Buttons";
 import PostItem from "../../../components/PostItem";
-import { DashboardLayout } from "../../../layouts/DashboardLayout";
+import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { createPost } from "../../../redux/features/post/postSlice";
 import {
   setTitle,
