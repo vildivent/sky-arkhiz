@@ -15,6 +15,7 @@
 # Основные функции
 
 ## Визитная карточка
+
 Заказчику был необходим вебсайт для небольшого бизнеса, который будет представлять собой визитную карточку и иметь дополнительный функционал. Также, на основную страницу были добавлены анимации при скролле.
 
 ![mobile home page](https://user-images.githubusercontent.com/32520512/198747170-e91ad5e5-5da5-42af-92cd-e56b62f645f5.png)
@@ -24,8 +25,9 @@
 - [`/news`](https://sky-arkhiz.vercel.app/news)
 - [`/reviews`](https://sky-arkhiz.vercel.app/reviews)
 
- для администратора:
- - [`/dashboard/news`](https://sky-arkhiz.vercel.app/dashboard/news)
+для администратора:
+
+- [`/dashboard/news`](https://sky-arkhiz.vercel.app/dashboard/news)
 - [`/dashboard/reviews`](https://sky-arkhiz.vercel.app/dashboard/reviews)
 
 Были добавлены соответствующие разделы, данные в которых подгружаются с API динамически при скролле. Также добавлена возможность добавлять/редактировать данные администратором из своей учётной записи. Новости можно искать, поиск происходит по полному совпадению фразы по полям: заголовок и описание.
@@ -39,10 +41,13 @@
 В демонстрационной версии используются следующие данные:
 
 логин:
+
 ```bash
 admin
 ```
+
 пароль:
+
 ```bash
 admin
 ```
@@ -76,7 +81,7 @@ admin
 
 ![requests edit](https://user-images.githubusercontent.com/32520512/198743986-f02c63f5-309a-472e-af2d-4b0c706b6ce8.png)
 
-## Реферральные ссылки 
+## Реферральные ссылки
 
 Если адрес основной страницы дополнить параметром 'ref', например, [https://sky-arkhiz.vercel.app?ref=ref-name](https://sky-arkhiz.vercel.app?ref=ref-name), то создадутся куки длительностью 24 ч. с полем 'ref-name', и поле добавится при создании заявки на сервере. После перехода по реферральной ссылке происходит перенаправление на главную сайта, чтобы у пользователя в адресной строке не было параметров. Это реферральное имя будет видно администратору в соответствующем поле заявки.
 
@@ -87,7 +92,3 @@ admin
 ![mobile home page sections](https://user-images.githubusercontent.com/32520512/198747497-4539926c-0f65-4b6b-be5f-da5c351ed395.png)
 ![sidemenu](https://user-images.githubusercontent.com/32520512/198747978-50f0468f-d9bb-4870-adaf-5b3dacf71e96.png)
 ![mobile requests](https://user-images.githubusercontent.com/32520512/198747605-276211ea-cc7d-4c71-9c4c-12f044f919d6.png)
-
-
-
-
