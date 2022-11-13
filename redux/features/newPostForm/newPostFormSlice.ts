@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: PostForm = {
   title: "",
   imgUrl: "",
   srcUrl: "",
@@ -12,16 +12,16 @@ export const newPostFormSlice = createSlice({
   name: "newPostForm",
   initialState,
   reducers: {
-    setTitle: (state, action) => {
+    setTitle: (state, action: PayloadAction<string>) => {
       state.title = action.payload;
     },
-    setImgUrl: (state, action) => {
+    setImgUrl: (state, action: PayloadAction<string>) => {
       state.imgUrl = action.payload;
     },
-    setParagraph: (state, action) => {
+    setParagraph: (state, action: PayloadAction<string>) => {
       state.paragraph = action.payload;
     },
-    setSrcUrl: (state, action) => {
+    setSrcUrl: (state, action: PayloadAction<string>) => {
       state.srcUrl = action.payload;
     },
     pushParagraph: (state) => {
@@ -43,3 +43,11 @@ export const {
   reset,
 } = newPostFormSlice.actions;
 export default newPostFormSlice.reducer;
+
+type PostForm = {
+  title: string;
+  imgUrl?: string;
+  srcUrl?: string;
+  paragraph?: string;
+  text: string[];
+};

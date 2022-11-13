@@ -1,21 +1,34 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "./redux";
+import type { AsyncThunk } from "@reduxjs/toolkit";
+
+type ScrollFetchProps = {
+  searchQuery: string;
+  limit: number;
+  loading: boolean;
+  error: string;
+  hasMore: boolean;
+  getPosts: AsyncThunk<any, any, any>;
+  addPosts: AsyncThunk<any, any, any>;
+  checked?: boolean;
+};
 
 const useScrollFetch = ({
   searchQuery,
   limit = 2,
   loading,
+  error,
   hasMore,
   getPosts,
   addPosts,
   checked,
-}) => {
-  const dispatch = useDispatch();
+}: ScrollFetchProps) => {
+  const dispatch = useAppDispatch();
   const [pageNumber, setPageNumber] = useState(0);
 
-  const observer = useRef();
+  const observer = useRef<IntersectionObserver | null>(null);
   const lastElementRef = useCallback(
-    (node) => {
+    (node: HTMLDivElement) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {

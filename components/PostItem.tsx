@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
 
 import { forwardRef } from "react";
@@ -8,10 +7,10 @@ import { IPost } from "../models/Post";
 import useUpdatePost from "../utils/hooks/posts/useUpdatePost";
 
 const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
-  { post },
+  { post, preview },
   ref
 ) {
-  const { detailed, clickHandler } = useUpdatePost(post);
+  const { detailed, clickHandler } = useUpdatePost(post, preview);
 
   return (
     <div
@@ -39,7 +38,9 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
         <a
           href={`${post.srcUrl}`}
           className={`text-cyan-500 hover:text-white ml-3`}
-        >{`Источник`}</a>
+        >
+          Источник
+        </a>
       )}
       <div className="flex">
         <button
@@ -67,6 +68,7 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
 
 export default PostItem;
 
-type PostItemProps = {
+export type PostItemProps = {
   post: IPost;
+  preview?: boolean;
 };

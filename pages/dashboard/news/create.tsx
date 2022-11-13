@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import type { MouseEvent } from "react";
+import { useAppSelector, useAppDispatch } from "../../../utils/hooks/redux";
 import {
   ActionButton,
   ResetButton,
@@ -21,11 +20,11 @@ import {
   reset,
 } from "../../../redux/features/newPostForm/newPostFormSlice";
 
-export default function CreateNews() {
+const CreateNews = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { title, imgUrl, srcUrl, paragraph, text } = useSelector(
+  const { title, imgUrl, srcUrl, paragraph, text } = useAppSelector(
     (state) => state.newPostForm
   );
   const [wrongFOrmatTitle, setWrongFOrmatTitle] = useState(false);
@@ -40,19 +39,12 @@ export default function CreateNews() {
         imgUrl,
         srcUrl,
       };
-      if (paragraph) {
-        data.text = [...text, paragraph];
-      }
-      try {
-        console.log("uploading...");
-        dispatch(createPost(data));
-        console.log("Post added!");
+      if (paragraph) data.text = [...text, paragraph];
 
-        dispatch(reset());
-        router.push("/dashboard/news");
-      } catch (error) {
-        console.log(error);
-      }
+      dispatch(createPost(data));
+      dispatch(reset());
+
+      router.push("/dashboard/news");
     } else {
       setWrongFOrmatTitle(true);
       setWrongFOrmatText(true);
@@ -64,7 +56,7 @@ export default function CreateNews() {
     if (title && text) setWrongFormatDescription(false);
   }, [title, text]);
 
-  const cancelHandler = (e) => {
+  const cancelHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(reset());
     router.push("/dashboard/news");
@@ -150,35 +142,33 @@ export default function CreateNews() {
             </div>
 
             <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
-              <ActionButton
-                title={"Подтвердить"}
-                onClick={() => submitHandler()}
-              />
-              <ActionButton
-                title={"Добавить абзац"}
-                onClick={() => dispatch(pushParagraph())}
-              />
-              <ResetButton
-                title={"Сбросить поля"}
-                onClick={() => dispatch(reset())}
-              />
-              <CancelButton title={"Отменить"} onClick={cancelHandler} />
+              <ActionButton onClick={submitHandler}>Подтвердить</ActionButton>
+              <ActionButton onClick={() => dispatch(pushParagraph())}>
+                Добавить абзац
+              </ActionButton>
+              <ResetButton onClick={() => dispatch(reset())}>
+                Сбросить поля
+              </ResetButton>
+              <CancelButton onClick={cancelHandler}>Отменить</CancelButton>
             </div>
           </form>
         </div>
         <div>
           <PostItem
             post={{
+              _id: "",
               title,
+              text: [...text, paragraph],
               imgUrl,
               srcUrl,
-              paragraph,
-              text,
-              createdAt: Date.now(),
+              createdAt: new Date(),
+              views: 0,
             }}
+            preview={true}
           />
         </div>
       </>
     </DashboardLayout>
   );
-}
+};
+export default CreateNews;

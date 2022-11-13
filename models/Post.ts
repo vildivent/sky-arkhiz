@@ -18,10 +18,10 @@ export default Post;
 export interface IPost {
   _id: string;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
   title: string;
   text: string[];
-  imgUrl: string;
-  srcUrl: string;
+  imgUrl?: string;
+  srcUrl?: string;
   views: number;
 }

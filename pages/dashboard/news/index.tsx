@@ -5,14 +5,14 @@ import PostItemDashboard from "../../../components/PostItemDashboard";
 import SearchBar from "../../../components/SearchBar";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { loadingGif } from "../../../public/assets";
-import usePostsFetchAndSearch from "../../../utils/hooks/usePostsFetchAndSearch";
+import usePostsFetchAndSearch from "../../../utils/hooks/posts/usePostsFetchAndSearch";
 
 const News = () => {
   const { posts, loading, lastElementRef, inputValue, setInputValue } =
     usePostsFetchAndSearch();
 
   return (
-    <DashboardLayout title={"Новости"} mainProps={"px-2"}>
+    <DashboardLayout title="Новости" mainProps="px-2">
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
         <SearchBar
           value={inputValue}
@@ -32,12 +32,11 @@ const News = () => {
               return (
                 <PostItemDashboard
                   ref={lastElementRef}
-                  key={post._id + index}
+                  key={post._id}
                   post={post}
                 />
               );
-            else
-              return <PostItemDashboard key={post._id + index} post={post} />;
+            else return <PostItemDashboard key={post._id} post={post} />;
           })}
 
         {loading && (

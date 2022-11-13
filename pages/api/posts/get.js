@@ -25,7 +25,10 @@ export default async function getPosts(req, res) {
         { new: true }
       );
       if (post) return res.json({ post });
-      else return res.json({ message: "Новости с таким id не существует" });
+      else
+        return res
+          .status(404)
+          .json({ message: "Новости с таким id не существует" });
     }
 
     let filter;
@@ -45,8 +48,11 @@ export default async function getPosts(req, res) {
 
     return res.json({ posts, start: page * limit, numFound });
   } catch (error) {
+    console.error(error);
+
     if (error.name === "CastError")
       return res.status(400).json({ message: "Некорректный формат" });
-    res.status(400).json(error);
+
+    res.status(400).json({ message: "Ошибка! Не удалось получить новости" });
   }
 }

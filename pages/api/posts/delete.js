@@ -15,7 +15,7 @@ export default async function deletePost(req, res) {
     if (!jwt)
       return res
         .status(401)
-        .json({ message: "You don't have auth token to proceed" });
+        .json({ message: "Отсутствует токен аутентификации!" });
 
     await jose.jwtVerify(jwt, new TextEncoder().encode(`${secret}`));
 
@@ -23,14 +23,23 @@ export default async function deletePost(req, res) {
     console.log("Mongo connected!");
 
     const { id } = req.query;
-
     const post = await Post.findByIdAndDelete(id);
-    if (!post) return res.json({ message: "такого поста не существует" });
-    res.status(200).json({ post });
+
+    if (!post) return res.json({ message: "Новости с таким id не существует" });
+
+    console.log("Post deleted!");
+    res.status(200).json({ deletedPost: post, message: "Новость удалена!" });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+
+    if (error.name === "CastError")
+      return res.status(400).json({ message: "Некорректный формат" });
+
     if (error.code === "ERR_JWS_INVALID")
-      return res.status(403).json({ message: "Wrong auth token" });
-    res.status(400).json({ error });
+      return res
+        .status(403)
+        .json({ message: "Некорректный токен аутентификации!" });
+
+    res.status(400).json({ message: "Ошибка! Не удалось удалить новость" });
   }
 }

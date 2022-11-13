@@ -3,7 +3,7 @@ import PostItem from "../components/PostItem";
 import SearchBar from "../components/SearchBar";
 import { MainLayout } from "../components/layouts/MainLayout";
 import { loadingGif } from "../public/assets";
-import usePostsFetchAndSearch from "../utils/hooks/usePostsFetchAndSearch";
+import usePostsFetchAndSearch from "../utils/hooks/posts/usePostsFetchAndSearch";
 import { IPost } from "../models/Post";
 import type { Dispatch, SetStateAction } from "react";
 
@@ -17,7 +17,7 @@ const News = () => {
   }: {
     posts: IPost[];
     loading: boolean;
-    lastElementRef: (node: any) => void;
+    lastElementRef: (node: HTMLDivElement) => void;
     inputValue: string;
     setInputValue: Dispatch<SetStateAction<string>>;
   } = usePostsFetchAndSearch();
