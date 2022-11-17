@@ -13,7 +13,14 @@ const useNavbarOnScroll = () => {
 
   useEffect(() => {
     setIsBrowser(true);
-  }, []);
+    if (isBrowser) {
+      if (pathname === "/") {
+        if (window.scrollY > hideIndent) setTransparentStyle(false);
+        else setTransparentStyle(true);
+        console.log("effect 2");
+      }
+    }
+  }, [isBrowser, pathname]);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -25,12 +32,14 @@ const useNavbarOnScroll = () => {
         if (pathname === "/") {
           if (window.scrollY > hideIndent) setTransparentStyle(false);
           else setTransparentStyle(true);
+          console.log("effect 2");
         }
 
         // remember current page location to use in the next move
         setLastScrollY(window.scrollY);
       }
     };
+
     if (isBrowser) {
       window.addEventListener("scroll", controlNavbar);
       return () => {

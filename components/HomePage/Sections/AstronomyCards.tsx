@@ -6,7 +6,7 @@ const textAnimation = {
   hidden: {
     opacity: 0,
   },
-  visible: (custom) => ({
+  visible: (custom: number) => ({
     opacity: 1,
     transition: { delay: custom * 0.1, duration: 0.4 },
   }),
@@ -16,7 +16,7 @@ const leftAnimation = {
     x: -50,
     opacity: 0,
   },
-  visible: (custom) => ({
+  visible: (custom: number) => ({
     x: 0,
     opacity: 1,
     transition: { delay: custom * 0.1, duration: 0.3 },
@@ -28,7 +28,7 @@ const AstronomyCards = () => {
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.1 }}
+      viewport={{ amount: 0.1, once: true }}
       className="p-5"
     >
       <motion.h2
@@ -42,7 +42,7 @@ const AstronomyCards = () => {
         <MAstronomyCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.1 }}
+          viewport={{ amount: 0.1, once: true }}
           variants={leftAnimation}
           custom={1}
           href="/astronomy/telescopes/"
@@ -53,7 +53,7 @@ const AstronomyCards = () => {
         <MAstronomyCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.1 }}
+          viewport={{ amount: 0.1, once: true }}
           variants={leftAnimation}
           custom={2}
           href="/astronomy/what-you-can-see-with-a-telescope/"

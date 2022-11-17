@@ -8,7 +8,7 @@ const headingAnimation = {
   hidden: {
     opacity: 0,
   },
-  visible: (custom) => ({
+  visible: (custom: number) => ({
     opacity: 1,
     transition: { delay: custom * 0.1, duration: 0.4 },
   }),
@@ -18,7 +18,7 @@ const buttonAnimation = {
     y: 40,
     opacity: 0,
   },
-  visible: (custom) => ({
+  visible: (custom: number) => ({
     y: 0,
     opacity: 1,
     transition: { delay: custom * 0.1, duration: 0.3 },
@@ -30,7 +30,7 @@ const Request = () => {
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.3 }}
+      viewport={{ amount: 0.3, once: true }}
       className="p-5 pb-20 flex flex-col gap-10 bg-[#151515]"
     >
       <motion.h2

@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { style } from "../../../styles/style";
+import { ActionButton } from "../../Buttons";
 import ImageSlider from "../../ImageSlider";
+import "react-slideshow-image/dist/styles.css";
 
 const textAnimation = {
   hidden: {
@@ -28,7 +32,7 @@ const Gallery = () => {
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.1 }}
+      viewport={{ amount: 0.1, once: true }}
       className={`h-full w-full flex flex-col sm:flex-row justify-around overflow-hidden bg-[#151515] p-2 sm:p-5`}
     >
       <div className="sm:w-[60%] w-full flex gap-3 flex-col">
@@ -44,16 +48,24 @@ const Gallery = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ amount: 0.1 }}
+        viewport={{ amount: 0.1, once: true }}
         className="sm:max-w-[25%] flex flex-col justify-center"
       >
-        <motion.p variants={textAnimation} custom={1}>
+        <motion.p variants={textAnimation} custom={1} className="mx-10 sm:mx-0">
           Вы сможете рассмотреть через телескоп интересные и различные по типу
           объекты, доступные в данное время года и ночи.
         </motion.p>
-        {/* <motion.p variants={textAnimation} custom={2}>
-          
-        </motion.p> */}
+        <motion.p
+          variants={textAnimation}
+          custom={3}
+          className="w-full flex justify-center"
+        >
+          <Link href="/photogallery/">
+            <a>
+              <ActionButton className={style.button}>Фотогалерея</ActionButton>
+            </a>
+          </Link>
+        </motion.p>
       </motion.div>
     </motion.section>
   );

@@ -18,6 +18,7 @@ import iconTelegram from "./icon-telegram-app.svg";
 import iconWhatsapp from "./icon-whatsapp.svg";
 import iconVk from "./icon-vk-circled.svg";
 import iconInstagram from "./icon-instagram.svg";
+import iconNowapp from "./icon-nowapp.png";
 import iconPhone from "./icon-phone.svg";
 import bta1 from "./bta1.jpg";
 import bta2 from "./bta2.jpg";
@@ -57,6 +58,7 @@ export {
   iconWhatsapp,
   iconVk,
   iconInstagram,
+  iconNowapp,
   iconPhone,
   bta1,
   bta2,

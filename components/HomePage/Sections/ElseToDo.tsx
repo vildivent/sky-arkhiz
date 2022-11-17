@@ -18,7 +18,7 @@ const rightAnimation = {
     x: 50,
     opacity: 0,
   },
-  visible: (custom) => ({
+  visible: (custom: number) => ({
     x: 0,
     opacity: 1,
     transition: { delay: custom * 0.1, duration: 0.3 },
@@ -28,7 +28,7 @@ const headingAnimation = {
   hidden: {
     opacity: 0,
   },
-  visible: (custom) => ({
+  visible: (custom: number) => ({
     x: 0,
     opacity: 1,
     transition: { delay: custom * 0.1, duration: 0.4 },
@@ -40,7 +40,7 @@ const ElseToDo = () => {
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.1 }}
+      viewport={{ amount: 0.1, once: true }}
       className="p-5 flex flex-col gap-10 overflow-hidden"
     >
       <motion.h2
@@ -54,7 +54,7 @@ const ElseToDo = () => {
         <MElseToDoCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.1 }}
+          viewport={{ amount: 0.1, once: true }}
           variants={leftAnimation}
           custom={1}
           title="Можете посетить наш планетарий"
@@ -65,7 +65,7 @@ const ElseToDo = () => {
         <MElseToDoCard
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.1 }}
+          viewport={{ amount: 0.1, once: true }}
           variants={rightAnimation}
           custom={2}
           title="Или заглянуть на экскурсию в обсерваторию"

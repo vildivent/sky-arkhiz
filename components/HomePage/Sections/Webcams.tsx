@@ -36,7 +36,7 @@ const Webcams = () => {
     <motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.2 }}
+      viewport={{ amount: 0.2, once: true }}
       className="p-5 flex sm:flex-row flex-col bg-[#151515] gap-5 sm:justify-around overflow-hidden"
     >
       <motion.div
@@ -60,8 +60,8 @@ const Webcams = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ amount: 0.4 }}
-        className="flex flex-col justify-center sm:w-1/2 text-start gap-5 sm:max-w-[30%]"
+        viewport={{ amount: 0.4, once: true }}
+        className="flex flex-col justify-center sm:w-1/2 text-start gap-5 sm:max-w-[30%] mx-5 sm:mx-0"
       >
         <motion.h2
           variants={textAnimation}
@@ -70,25 +70,22 @@ const Webcams = () => {
         >
           Камеры
         </motion.h2>
-        <motion.p className="my-0" variants={textAnimation} custom={4}>
+        <motion.p className="my-0" variants={textAnimation} custom={5}>
           В Специальной Астрофизической Обсерватории, около которой проводятся
           экскурсии, находятся различные камеры - обзора неба и окрестностей,
           камеры внутри обсерватории и пр.
         </motion.p>
-        <motion.p className="my-0" variants={textAnimation} custom={7}>
+        <motion.p className="my-0" variants={textAnimation} custom={8}>
           Вы можете заглянуть в некоторые из них и увидеть ночное небо, красивые
           виды вокруг обсерватории, а так же обстановку внутри и снаружи.
         </motion.p>
-        <motion.p className="my-0" variants={textAnimation} custom={9}>
-          Камеры работают как в реальном времени, так и покадрово с накоплением.
-        </motion.p>
         <div>
-          <motion.div variants={textAnimation} custom={6}>
+          <motion.div variants={textAnimation} custom={10}>
             <Link href="/webcams/">
               <a>
                 <div className="flex justify-center">
                   <ActionButton className={style.button}>
-                    Подробнее
+                    Посмотреть
                   </ActionButton>
                 </div>
               </a>

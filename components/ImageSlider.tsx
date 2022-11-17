@@ -15,7 +15,7 @@ import {
 
 const ImageSlide = ({ src }: ImageSlideProps) => {
   return (
-    <div className="flex justify-center items-center relative sm:h-[45vw] h-[75vw]">
+    <div className="flex justify-center items-center relative sm:h-[45vw] h-[75vw] select-none">
       <Image
         src={src}
         alt="slider photo"
@@ -34,7 +34,7 @@ const ImageSlider = () => {
     <Slide
       transitionDuration={400}
       prevArrow={
-        <div className="text-5xl opacity-50 hover:text-cyan-500 h-full flex flex-col justify-center">
+        <div className="text-5xl opacity-50 hover:text-cyan-500 h-full flex flex-col justify-center z-[1]">
           <BiChevronLeft />
         </div>
       }

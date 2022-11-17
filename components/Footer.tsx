@@ -39,7 +39,9 @@ const Footer = () => {
               <div>+7 (928) 384-30-40</div>
             </a>
           </div>
-          <div className={`flex justify-around max-w-[280px] mx-auto`}>
+          <div
+            className={`flex justify-around max-w-[280px] mx-auto flex-wrap`}
+          >
             {socialLinks.map((socialLink) => (
               <a
                 className={`hover:translate-y-[1px]`}
@@ -48,7 +50,19 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Image src={socialLink.logo} alt={socialLink.title} />
+                {socialLink.id === "nowapp" ? (
+                  <div className="p-1">
+                    <Image
+                      className="rounded-md"
+                      src={socialLink.logo}
+                      alt={socialLink.title}
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                ) : (
+                  <Image src={socialLink.logo} alt={socialLink.title} />
+                )}
               </a>
             ))}
           </div>

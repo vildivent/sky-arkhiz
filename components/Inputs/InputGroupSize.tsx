@@ -13,7 +13,7 @@ const InputGroupSize = ({
 }: InputGroupSizeProps) => {
   return (
     <input
-      type="text"
+      type="number"
       name="groupSize"
       onChange={(e) => {
         e.target.value =
@@ -34,7 +34,7 @@ export default InputGroupSize;
 type InputGroupSizeProps = {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   className?: string;
-  value: number | string;
+  value: number;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onClick?: MouseEventHandler<HTMLInputElement>;
 };

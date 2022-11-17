@@ -1,14 +1,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import useBackground from "../../../utils/hooks/useBackground";
-import {
-  btaBg1,
-  btaMobile,
-  bta360Mobile,
-  bta360,
-  btaSquare,
-  btaOriginal,
-} from "../../../public/assets";
+import { bta360Mobile, btaSquare } from "../../../public/assets";
 import { style } from "../../../styles/style";
 import Background from "../../Background";
 import { ActionButton } from "../../Buttons";

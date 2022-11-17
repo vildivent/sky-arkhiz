@@ -151,9 +151,9 @@ export const postSlice = createSlice({
       .addMatcher(
         (action: AnyAction) => action.type.endsWith("rejected"),
         (state, action: PayloadAction<string>) => {
-          console.error(action.payload);
           state.error = action.payload;
           state.loading = false;
+          console.error(state.error);
         }
       )
       .addMatcher(

@@ -5,6 +5,7 @@ import {
   iconVk,
   iconWhatsapp,
   iconPhone,
+  iconNowapp,
 } from "../public/assets";
 
 export const _keywords = "Архыз,Ночные экскурсии,звёзды";
@@ -131,9 +132,17 @@ export const callLink = {
   link: "tel:+79283843040",
   logo: iconPhone,
 };
-export const socialLinks = [
+
+export type socialLinks = {
+  id: "whatsapp" | "telegram" | "vk" | "instagram" | "nowapp" | string;
+  title: string;
+  link: string;
+  logo: StaticImageData | string;
+}[];
+
+export const socialLinks: socialLinks = [
   {
-    id: "whatsApp",
+    id: "whatsapp",
     title: "Ватсап",
     link: "https://wa.me/79283843040",
     logo: iconWhatsapp,
@@ -155,6 +164,12 @@ export const socialLinks = [
     title: "Инстаграм",
     link: "https://www.instagram.com/dimglen/",
     logo: iconInstagram,
+  },
+  {
+    id: "nowapp",
+    title: "Nowapp",
+    link: "https://nowapp.me/dimglen",
+    logo: iconNowapp,
   },
 ];
 export const camLinks = [

@@ -17,11 +17,12 @@ import Label from "../../components/Label";
 import type { DateObject } from "react-multi-date-picker";
 
 const Request = () => {
+  const telLength = 18;
   const router = useRouter();
   const initialDates: DateObject[] = [null, null];
   const initialState = {
     name: "",
-    phoneNumber: "",
+    phoneNumber: "+7",
     groupSize: 1,
     comment: "",
   };
@@ -34,7 +35,7 @@ const Request = () => {
   const submitHandler = async () => {
     if (
       data.name &&
-      data.phoneNumber.length === 12 &&
+      data.phoneNumber.length === telLength &&
       data.groupSize > 0 &&
       dateRange[0] &&
       dateRange[1]
@@ -60,7 +61,7 @@ const Request = () => {
   useEffect(() => {
     if (
       data.name &&
-      data.phoneNumber.length === 12 &&
+      data.phoneNumber.length === telLength &&
       dateRange[0] &&
       dateRange[1]
     )
@@ -97,7 +98,9 @@ const Request = () => {
           />
 
           {/*телефон*/}
-          <Label wrongFormat={wrongFormat && data.phoneNumber.length !== 12}>
+          <Label
+            wrongFormat={wrongFormat && data.phoneNumber.length !== telLength}
+          >
             * Ваш контактный телефон:
           </Label>
           <InputTel
