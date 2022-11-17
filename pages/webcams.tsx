@@ -27,7 +27,7 @@ export default function Webcams() {
     return () => clearInterval(timer);
   }, [activeLink, count, liveTV, initialStateLink]);
 
-  const changeModeHandler = (mode) => {
+  const changeModeHandler = (mode: boolean) => {
     setMenuIsActive((prev) => !prev);
     if (liveTV !== mode)
       clickHandler(
@@ -52,10 +52,10 @@ export default function Webcams() {
   useEffect(() => clickHandler(initialStateLink), [initialStateLink]);
 
   return (
-    <MainLayout title={"Web камеры"} mainProps="min-h-[100vh] px-0 sm:p-5">
-      <h1 className="font-h1 text-center sm:text-5xl text-3xl">
+    <MainLayout title="Web камеры" mainProps="min-h-[100vh] px-0 sm:p-5">
+      <h2 className="text-center font-h1 italic sm:text-[40px] text-[23px] mt-5">
         Специальной Астрофизической обсерватории
-      </h1>
+      </h2>
       {/* switch menu */}
       <div
         className={`font-h3 text-cyan-500 justify-center text-center flex md:my-10 my-5`}

@@ -17,7 +17,6 @@ const useNavbarOnScroll = () => {
       if (pathname === "/") {
         if (window.scrollY > hideIndent) setTransparentStyle(false);
         else setTransparentStyle(true);
-        console.log("effect 2");
       }
     }
   }, [isBrowser, pathname]);
@@ -32,7 +31,6 @@ const useNavbarOnScroll = () => {
         if (pathname === "/") {
           if (window.scrollY > hideIndent) setTransparentStyle(false);
           else setTransparentStyle(true);
-          console.log("effect 2");
         }
 
         // remember current page location to use in the next move

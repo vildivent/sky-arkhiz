@@ -37,7 +37,7 @@ const Webcams = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.2, once: true }}
-      className="p-5 flex sm:flex-row flex-col bg-[#151515] gap-5 sm:justify-around overflow-hidden"
+      className="p-5 flex md:flex-row flex-col bg-[#151515] gap-5 md:justify-around overflow-hidden items-center"
     >
       <motion.div
         variants={imgAnimation}
@@ -45,7 +45,7 @@ const Webcams = () => {
           scale: 1.1,
           transition: { duration: 0.3 },
         }}
-        className="sm:selection:w-1/2 shadow-lg shadow-black rounded-full hover:scale-[1.02] sm:my-10"
+        className="md:w-[50vw] w-[80vw] rounded-full md:h-[50vw] h-[80vw] shadow-lg shadow-black hover:scale-[1.02] m-10 "
       >
         <Link href="/webcams/">
           <a>
@@ -53,6 +53,7 @@ const Webcams = () => {
               src={cameraPreview}
               alt="Небо над обсерваторией"
               placeholder="blur"
+              layout="responsive"
             />
           </a>
         </Link>
@@ -61,7 +62,7 @@ const Webcams = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.4, once: true }}
-        className="flex flex-col justify-center sm:w-1/2 text-start gap-5 sm:max-w-[30%] mx-5 sm:mx-0"
+        className="flex flex-col justify-center md:w-1/2 text-start gap-5 md:max-w-[30%] mx-5 md:mx-0"
       >
         <motion.h2
           variants={textAnimation}
