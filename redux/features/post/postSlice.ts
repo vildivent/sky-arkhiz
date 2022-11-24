@@ -5,8 +5,9 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import axios from "axios";
-import type { AxiosResponse } from "axios";
+import type { AxiosResponse, AxiosRequestConfig } from "axios";
 import type { IPost } from "../../../models/Post";
+import type { PostCreateParams } from "../../../pages/api/posts/create";
 
 const initialState: PostState = {
   posts: [],
@@ -17,14 +18,14 @@ const initialState: PostState = {
 };
 
 export const createPost = createAsyncThunk<
-  CreatePostResponse,
-  CreatePostParams,
+  PostCreateResponse,
+  PostCreateParams,
   RejectValue
 >("post/createPost", async (params, { rejectWithValue }) => {
-  const res: AxiosResponse<CreatePostResponse> = await axios.post(
-    "/api/posts/create",
-    params
-  );
+  const res: AxiosResponse<
+    PostCreateResponse,
+    AxiosRequestConfig<PostCreateParams>
+  > = await axios.post("/api/posts/create", params);
 
   if (res.status !== 201 || res.data.createdPost === undefined) {
     return rejectWithValue(res.data.message);
@@ -89,7 +90,7 @@ export const deletePost = createAsyncThunk<
   DeletePostResponse,
   DeletePostParams,
   RejectValue
->("post/deletePost", async (params, { rejectWithValue }) => {
+>("post/deletePost", async (params, { rejectWithValue, getState }) => {
   const res: AxiosResponse<DeletePostResponse> = await axios.delete(
     "/api/posts/delete",
     { params }
@@ -108,25 +109,25 @@ export const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createPost.fulfilled, (state, action) => {
+      .addCase(createPost.fulfilled, (state: PostState, action) => {
         state.loading = false;
-        state.posts.push(action.payload.createdPost);
+        state.posts = [action.payload.createdPost];
       })
-      .addCase(getPosts.fulfilled, (state, action) => {
+      .addCase(getPosts.fulfilled, (state: PostState, action) => {
         state.hasMore = false;
         state.loading = false;
         if (action.payload.start > action.payload.numFound) {
           return state;
         }
         if (action.payload.post) {
-          state.posts = [action.payload.post];
+          state.posts.push(action.payload.post);
           return state;
         }
         state.posts = action.payload.posts;
         state.query = action.payload.q;
         state.hasMore = true;
       })
-      .addCase(addPosts.fulfilled, (state, action) => {
+      .addCase(addPosts.fulfilled, (state: PostState, action) => {
         state.loading = false;
         if (action.payload.start > action.payload.numFound) {
           state.hasMore = false;
@@ -135,14 +136,14 @@ export const postSlice = createSlice({
         state.posts = [...state.posts, ...action.payload.posts];
         state.query = action.payload.q;
       })
-      .addCase(updateViews.fulfilled, (state, action) => {
+      .addCase(updateViews.fulfilled, (state: PostState, action) => {
         state.loading = false;
         state.posts.forEach((post, index) => {
           if (post._id === action.payload.post._id)
             state.posts[index].views = action.payload.post.views;
         });
       })
-      .addCase(deletePost.fulfilled, (state, action) => {
+      .addCase(deletePost.fulfilled, (state: PostState, action) => {
         state.loading = false;
         state.posts = state.posts.filter(
           (post) => post._id !== action.payload.deletedPost._id
@@ -150,7 +151,7 @@ export const postSlice = createSlice({
       })
       .addMatcher(
         (action: AnyAction) => action.type.endsWith("rejected"),
-        (state, action: PayloadAction<string>) => {
+        (state: PostState, action: PayloadAction<string>) => {
           state.error = action.payload;
           state.loading = false;
           console.error(state.error);
@@ -158,7 +159,7 @@ export const postSlice = createSlice({
       )
       .addMatcher(
         (action: AnyAction) => action.type.endsWith("pending"),
-        (state) => {
+        (state: PostState) => {
           state.loading = true;
           state.error = null;
         }
@@ -176,15 +177,9 @@ type PostState = {
 };
 type RejectValue = { rejectValue: string };
 
-type CreatePostResponse = {
+type PostCreateResponse = {
   createdPost?: IPost;
-  message?: string;
-};
-type CreatePostParams = {
-  title: string;
-  text: string[];
-  imgUrl?: string;
-  srcUrl?: string;
+  message: string;
 };
 
 type GetPostsResponse = {

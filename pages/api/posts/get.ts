@@ -1,15 +1,12 @@
 import connectMongo from "../../../utils/connectMongo";
 import Post from "../../../models/Post";
+import type { NextApiRequest, NextApiResponse } from "next";
+import type { FilterQuery } from "mongoose";
 
-/**
- * @param {import("next").NextApiRequest} req
- * @param {import("next").NextApiResponse} res
- */
-
-export default async function getPosts(req, res) {
+const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await connectMongo();
-    console.log("Mongo connected!");
+    console.log("Mongo connected! Get Posts request");
 
     const defaultLimit = 5;
 
@@ -31,7 +28,7 @@ export default async function getPosts(req, res) {
           .json({ message: "Новости с таким id не существует" });
     }
 
-    let filter;
+    let filter: FilterQuery<typeof Post>;
     if (q) {
       filter = { $text: { $search: `\"${q}\"` } };
     }
@@ -55,4 +52,5 @@ export default async function getPosts(req, res) {
 
     res.status(400).json({ message: "Ошибка! Не удалось получить новости" });
   }
-}
+};
+export default getPosts;

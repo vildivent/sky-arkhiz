@@ -1,15 +1,11 @@
 import connectMongo from "../../../utils/connectMongo";
-import Post from "../../../models/Post";
+import Photo, { IPhoto } from "../../../models/Photo";
 import * as jose from "jose";
-
-/**
- * @param {import("next").NextApiRequest} req
- * @param {import("next").NextApiResponse} res
- */
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const secret = process.env.NEXT_PUBLIC_SECRET;
 
-export default async function createPost(req, res) {
+const createPhoto = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const jwt = req.cookies["SkyArkhyzJWT"];
     if (!jwt)
@@ -20,23 +16,24 @@ export default async function createPost(req, res) {
     await jose.jwtVerify(jwt, new TextEncoder().encode(`${secret}`));
 
     await connectMongo();
-    console.log("Mongo connected!");
+    console.log("Mongo connected! Create Photo request");
 
-    const { title, text, imgUrl, srcUrl } = req.body;
+    const { title, imgUrl, category } = req.body as PhotoCreateParams;
 
-    const newPost = new Post({
+    const newPhoto: IPhoto = new Photo({
       title,
-      text: [...text],
       imgUrl,
-      srcUrl,
+      category,
     });
 
-    await newPost.save();
-    console.log("Post saved!");
+    await newPhoto.save();
+    console.log("Photo saved!");
 
-    res.status(201).json({ createdPost: newPost, message: "Новость создана!" });
+    res
+      .status(201)
+      .json({ createdPhoto: newPhoto, message: "Фото добавлено!" });
   } catch (error) {
-    console.log(error);
+    console.error(error);
 
     if (error.name === "CastError")
       return res.status(400).json({ message: "Некорректный формат" });
@@ -46,6 +43,13 @@ export default async function createPost(req, res) {
         .status(403)
         .json({ message: "Некорректный токен аутентификации!" });
 
-    res.status(400).json({ message: "Ошибка! Не удалось создать новость" });
+    res.status(400).json({ message: "Ошибка! Не удалось добавить фото" });
   }
-}
+};
+export default createPhoto;
+
+export type PhotoCreateParams = {
+  title: string;
+  imgUrl: string;
+  category?: string;
+};

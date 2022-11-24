@@ -1,15 +1,11 @@
 import connectMongo from "../../../utils/connectMongo";
-import Post from "../../../models/Post";
+import Photo from "../../../models/Photo";
 import * as jose from "jose";
-
-/**
- * @param {import("next").NextApiRequest} req
- * @param {import("next").NextApiResponse} res
- */
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const secret = process.env.NEXT_PUBLIC_SECRET;
 
-export default async function deletePost(req, res) {
+const deletePhoto = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const jwt = req.cookies["SkyArkhyzJWT"];
     if (!jwt)
@@ -20,15 +16,16 @@ export default async function deletePost(req, res) {
     await jose.jwtVerify(jwt, new TextEncoder().encode(`${secret}`));
 
     await connectMongo();
-    console.log("Mongo connected!");
+    console.log("Mongo connected! Delete Photo request");
 
     const { id } = req.query;
-    const post = await Post.findByIdAndDelete(id);
+    const photo = await Photo.findByIdAndDelete(id);
 
-    if (!post) return res.json({ message: "Новости с таким id не существует" });
+    if (!photo)
+      return res.status(404).json({ message: "Фото с таким id не существует" });
 
-    console.log("Post deleted!");
-    res.status(200).json({ deletedPost: post, message: "Новость удалена!" });
+    console.log("Photo deleted!");
+    res.status(200).json({ deletedPhoto: photo, message: "Фото удалено!" });
   } catch (error) {
     console.error(error);
 
@@ -40,6 +37,7 @@ export default async function deletePost(req, res) {
         .status(403)
         .json({ message: "Некорректный токен аутентификации!" });
 
-    res.status(400).json({ message: "Ошибка! Не удалось удалить новость" });
+    res.status(400).json({ message: "Ошибка! Не удалось удалить фото" });
   }
-}
+};
+export default deletePhoto;

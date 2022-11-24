@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import newPhotoFormSlice from "./newPhotoForm/newPhotoFormSlice";
 import newPostFormSlice from "./newPostForm/newPostFormSlice";
 import newReviewFormSlice from "./newReviewForm/newReviewFormSlice";
+import photoSlice from "./photo/photoSlice";
 import postSlice from "./post/postSlice";
 import requestSlice from "./request/requestSlice";
 import requestFilterByDateSlice from "./requestFilterByDate/requestFilterByDateSlice";
@@ -16,6 +18,8 @@ export const store = configureStore({
     request: requestSlice,
     requestFilterByDate: requestFilterByDateSlice,
     requestFilterByGroup: requestFilterByGroupSlice,
+    photo: photoSlice,
+    newPhotoForm: newPhotoFormSlice,
   },
 });
 

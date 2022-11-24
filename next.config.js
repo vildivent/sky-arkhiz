@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["www.sao.ru"],
+    domains: ["localhost"],
   },
   experimental: {
     scrollRestoration: true,

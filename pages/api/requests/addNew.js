@@ -1,5 +1,6 @@
 import Request from "../../../models/Request";
 import connectMongo from "../../../utils/connectMongo";
+import sendEmail from "../../../utils/sendEmail";
 
 /**
  * @param {import("next").NextApiRequest} req
@@ -27,6 +28,8 @@ export default async function addNew(req, res) {
 
     await newRequest.save();
     console.log("Request added!");
+
+    await sendEmail();
 
     res.status(201).json({ message: "Request added!" });
   } catch (error) {

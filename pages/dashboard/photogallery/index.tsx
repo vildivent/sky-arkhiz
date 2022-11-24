@@ -1,21 +1,37 @@
-import Image from "next/image";
 import { useState } from "react";
-import { MainLayout } from "../components/layouts/MainLayout";
-import { loadingGif } from "../public/assets";
-import usePhotosFetchAndSearch from "../utils/hooks/photos/usePhotosFetchAndSearch";
-import PhotoColumn from "../components/Photos/PhotoColumn";
-import { categories } from "../constasnts";
-import { ActionButton } from "../components/Buttons";
-import useDimentions from "../utils/hooks/useDimetions";
+import Image from "next/image";
+import Link from "next/link";
+import { ActionButton } from "../../../components/Buttons";
+import SearchBar from "../../../components/SearchBar";
+import DashboardLayout from "../../../components/layouts/DashboardLayout";
+import { loadingGif } from "../../../public/assets";
+import usePhotosFetchAndSearch from "../../../utils/hooks/photos/usePhotosFetchAndSearch";
+import useDimentions from "../../../utils/hooks/useDimetions";
+import PhotoColumn from "../../../components/Photos/PhotoColumn";
+import { categories } from "../../../constasnts";
 
 const Photogallery = () => {
-  const [category, setCategory] = useState(categories[2]);
-  const { photos, loading, lastElementRef } = usePhotosFetchAndSearch(category);
+  const [category, setCategory] = useState(categories[0]);
+  const { photos, loading, lastElementRef, inputValue, setInputValue } =
+    usePhotosFetchAndSearch(category);
   const { windowDimentions } = useDimentions();
 
   return (
-    <MainLayout title="Фотогалерея" mainProps="px-2">
+    <DashboardLayout title="Фотогалерея" mainProps="px-2">
       <div className={`flex flex-col flex-wrap gap-3 mt-3`}>
+        <SearchBar
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          reset={() => setInputValue("")}
+        />
+        <div className="flex justify-center">
+          <Link href="/dashboard/photogallery/create">
+            <a className="my-3">
+              <ActionButton>Добавить фото</ActionButton>
+            </a>
+          </Link>
+        </div>
+
         <div className="flex flex-col md:flex-row gap-3 justify-center items-start">
           <ActionButton
             onClick={() => setCategory(categories[1])}
@@ -88,7 +104,8 @@ const Photogallery = () => {
           <span className="text-center">Фото не найдены</span>
         )}
       </div>
-    </MainLayout>
+    </DashboardLayout>
   );
 };
+
 export default Photogallery;

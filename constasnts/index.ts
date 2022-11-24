@@ -280,6 +280,11 @@ export const dashboardLinks = [
     title: "Заявки",
     mainNavbar: true,
   },
+  {
+    id: "dashboard/photogallery",
+    title: "Фотогалерея",
+    mainNavbar: true,
+  },
 ];
 
 export const requestStatusTypes = [
@@ -430,4 +435,10 @@ export const photoGallery = [
     title: "20",
     img: "/assets/gallery/20",
   },
+];
+export const categories = [
+  "",
+  "Мои астрофотографии",
+  "Объекты, наблюдаемые на экскурсии",
+  "Фото с экскурсий",
 ];

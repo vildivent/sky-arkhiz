@@ -4,19 +4,21 @@ import SearchBar from "../components/SearchBar";
 import { MainLayout } from "../components/layouts/MainLayout";
 import { loadingGif } from "../public/assets";
 import usePostsFetchAndSearch from "../utils/hooks/posts/usePostsFetchAndSearch";
-import { IPost } from "../models/Post";
+import type { IPost } from "../models/Post";
 import type { Dispatch, SetStateAction } from "react";
 
 const News = () => {
   const {
     posts,
     loading,
+    error,
     lastElementRef,
     inputValue,
     setInputValue,
   }: {
     posts: IPost[];
     loading: boolean;
+    error: string;
     lastElementRef: (node: HTMLDivElement) => void;
     inputValue: string;
     setInputValue: Dispatch<SetStateAction<string>>;
@@ -30,6 +32,8 @@ const News = () => {
           onChange={(e) => setInputValue(e.target.value)}
           reset={() => setInputValue("")}
         />
+
+        {error && <div className="text-red-700">{error}</div>}
 
         {posts.length > 0 &&
           posts.map((post, index) => {

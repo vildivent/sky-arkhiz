@@ -1,6 +1,18 @@
-import mongoose, { models } from "mongoose";
+import { model, Schema, models } from "mongoose";
+import type { Document, Model } from "mongoose";
 
-const PostSchema = new mongoose.Schema(
+export interface IPost extends Document {
+  title: string;
+  text: string[];
+  imgUrl?: string;
+  srcUrl?: string;
+  views?: number;
+
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const PostSchema = new Schema<IPost, Model<IPost>>(
   {
     title: { type: String, required: true },
     text: [{ type: String, required: true }],
@@ -11,17 +23,6 @@ const PostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Post = models.Post || mongoose.model("Post", PostSchema);
+const Post: Model<IPost> = models.Post || model("Post", PostSchema);
 
 export default Post;
-
-export interface IPost {
-  _id: string;
-  createdAt: Date;
-  updatedAt?: Date;
-  title: string;
-  text: string[];
-  imgUrl?: string;
-  srcUrl?: string;
-  views: number;
-}

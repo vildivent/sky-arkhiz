@@ -1,4 +1,4 @@
-import type { MouseEventHandler, ReactNode } from "react";
+import type { MouseEventHandler, ReactNode, ButtonHTMLAttributes } from "react";
 
 const Button = ({
   children,
@@ -29,4 +29,5 @@ export type ButtonProps = {
   title?: string;
   style?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 };
