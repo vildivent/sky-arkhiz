@@ -34,7 +34,7 @@ const PhotoItem = forwardRef<HTMLDivElement, PhotoItemProps>(function PhotoItem(
       />
 
       <div
-        className="flex justify-center border border-gray-600 rounded-md relative cursor-pointer bg-[#1e1e1e]"
+        className="flex justify-center border border-gray-600 rounded-md relative cursor-pointer bg-[#1e1e1e] min-h-[50px]"
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
       >

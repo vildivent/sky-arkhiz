@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { addPhotos, getPhotos } from "../../../redux/features/photo/photoSlice";
 import { useAppDispatch, useAppSelector } from "../redux";
 
-const usePhotosFetchAndSearch = (category = "") => {
+const usePhotosFetchAndSearch = (category?: string) => {
   const limit = 6;
   const timeoutDefaultValue = 500;
   const { photos, loading, error, query, hasMore } = useAppSelector(
@@ -12,6 +12,7 @@ const usePhotosFetchAndSearch = (category = "") => {
   const [pageNumber, setPageNumber] = useState(0);
   const [searchQuery, setSearchQuery] = useState(query);
   const [inputValue, setInputValue] = useState(searchQuery);
+  const [newCategory, setNewCategory] = useState(category);
 
   const observer = useRef<IntersectionObserver>();
   const lastElementRef = useCallback(
@@ -29,6 +30,7 @@ const usePhotosFetchAndSearch = (category = "") => {
   );
 
   useEffect(() => {
+    setNewCategory(category);
     setPageNumber(0);
   }, [category]);
 
@@ -49,14 +51,24 @@ const usePhotosFetchAndSearch = (category = "") => {
   useEffect(() => {
     if (pageNumber === 0) {
       dispatch(
-        getPhotos({ limit, q: searchQuery, page: pageNumber, category })
+        getPhotos({
+          limit,
+          q: searchQuery,
+          page: pageNumber,
+          category: newCategory,
+        })
       );
     } else {
       dispatch(
-        addPhotos({ limit, q: searchQuery, page: pageNumber, category })
+        addPhotos({
+          limit,
+          q: searchQuery,
+          page: pageNumber,
+          category: newCategory,
+        })
       );
     }
-  }, [dispatch, searchQuery, pageNumber, limit, category]);
+  }, [dispatch, searchQuery, pageNumber, limit, newCategory]);
 
   return { photos, loading, error, lastElementRef, inputValue, setInputValue };
 };
