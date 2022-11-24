@@ -19,6 +19,7 @@ import {
   pushParagraph,
   reset,
 } from "../../../redux/features/newPostForm/newPostFormSlice";
+import { IPost } from "../../../models/Post";
 
 const CreateNews = () => {
   const router = useRouter();
@@ -155,15 +156,17 @@ const CreateNews = () => {
         </div>
         <div>
           <PostItem
-            post={{
-              _id: "",
-              title,
-              text: [...text, paragraph],
-              imgUrl,
-              srcUrl,
-              createdAt: new Date(),
-              views: 0,
-            }}
+            post={
+              {
+                _id: "",
+                title,
+                text: [...text, paragraph],
+                imgUrl,
+                srcUrl,
+                createdAt: new Date(),
+                views: 0,
+              } as IPost
+            }
             preview={true}
           />
         </div>
