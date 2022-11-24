@@ -128,7 +128,7 @@ export const photoSlice = createSlice({
     builder
       .addCase(createPhoto.fulfilled, (state: PhotoState, action) => {
         state.loading = false;
-        state.photos = [action.payload.createdPhoto];
+        state.photos = [action.payload.createdPhoto, ...state.photos];
       })
       .addCase(getPhotos.fulfilled, (state: PhotoState, action) => {
         state.hasMore = false;
