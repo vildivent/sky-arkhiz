@@ -8,6 +8,7 @@ const SearchBar = ({ value, onChange, reset }: SearchBarProps) => {
       <IoSearch className="text-3xl" />
       <input
         type="text"
+        placeholder="Поиск..."
         value={value}
         onChange={onChange}
         className={`${style.input} border-gray-400`}

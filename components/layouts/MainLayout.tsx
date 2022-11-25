@@ -43,7 +43,7 @@ export function MainLayout({
         <main
           className={`mx-auto mb-3 sm:p-5 p-5 w-full sm:w-[90%] lg:w-[80%] xl:w-[75%] 2xl:w-[70%] bg-[#1e1e1e] bg-opacity-70 border-[1px] rounded-xl border-[#111111] ${mainProps}`}
         >
-          <h1 className={`font-h1 text-center sm:text-6xl text-4xl ${h1Props}`}>
+          <h1 className={`font-h1 text-center sm:text-5xl text-3xl ${h1Props}`}>
             {h1Title || title}
           </h1>
           {children}

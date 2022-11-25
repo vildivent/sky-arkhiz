@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ActionButton } from "../../../components/Buttons";
-import PostItemDashboard from "../../../components/PostItemDashboard";
+import PostItem from "../../../components/PostItem";
 import SearchBar from "../../../components/SearchBar";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { loadingGif } from "../../../public/assets";
@@ -21,7 +21,7 @@ const News = () => {
         />
 
         <Link href="/dashboard/news/create">
-          <a className="mt-3">
+          <a className="my-3">
             <ActionButton>Добавить новость</ActionButton>
           </a>
         </Link>
@@ -30,13 +30,9 @@ const News = () => {
           posts.map((post, index) => {
             if (posts.length === index + 1)
               return (
-                <PostItemDashboard
-                  ref={lastElementRef}
-                  key={post._id}
-                  post={post}
-                />
+                <PostItem ref={lastElementRef} key={post._id} post={post} />
               );
-            else return <PostItemDashboard key={post._id} post={post} />;
+            else return <PostItem key={post._id} post={post} />;
           })}
 
         {loading && (

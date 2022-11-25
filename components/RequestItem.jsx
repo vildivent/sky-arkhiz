@@ -105,7 +105,7 @@ const RequestItem = ({ request, settings }) => {
       <div className="flex flex-col">
         <div className="flex flex-wrap gap-2">
           {`Размер группы: `}
-          <span className={`${spanStyle}`}>{request.groupSize}</span>
+          <span className={spanStyle}>{request.groupSize}</span>
           {`чел.`}
           <EditButton
             isEdit={edit.groupSize}
@@ -144,7 +144,7 @@ const RequestItem = ({ request, settings }) => {
       <div className="flex flex-col gap-2">
         <div className="flex flex-wrap gap-2">
           {`Даты: `}
-          <span className={`${spanStyle}`}>{`${new DateObject({
+          <span className={spanStyle}>{`${new DateObject({
             date: request.dates[0],
             format: "DD/MM/YYYY",
           }).format("DD.MM.YYYY")} ~ ${new DateObject({
@@ -160,19 +160,19 @@ const RequestItem = ({ request, settings }) => {
       {/*comment*/}
       <div className="flex flex-wrap gap-2">
         {`Комментарий: `}
-        <span className={`${spanStyle}`}>{request.comment}</span>
+        <span className={spanStyle}>{request.comment}</span>
       </div>
 
       {/*referral*/}
       <div className="flex flex-wrap gap-2">
         {`Реферальнaя ссылка: `}
-        <span className={`${spanStyle}`}>{request.referral}</span>
+        <span className={spanStyle}>{request.referral}</span>
       </div>
 
       {/*createdAt*/}
       <div className="flex flex-wrap gap-2">
         {`Дата создания: `}
-        <span className={`${spanStyle}`}>
+        <span className={spanStyle}>
           {new DateObject(request.createdAt).format("DD.MM.YYYY HH:mm")}
         </span>
       </div>
@@ -180,7 +180,7 @@ const RequestItem = ({ request, settings }) => {
       {/*description*/}
       <div className="flex flex-wrap gap-x-2">
         {`Описание: `}
-        <span className={`${spanStyle}`}>{request.description}</span>
+        <span className={spanStyle}>{request.description}</span>
         <EditButton
           isEdit={edit.description}
           isDefault={!request.description}
@@ -216,7 +216,7 @@ const RequestItem = ({ request, settings }) => {
       {/*status*/}
       <div className="flex flex-wrap gap-x-2">
         {`Статус: `}
-        <span className={`${spanStyle}`}>
+        <span className={spanStyle}>
           {requestStatusTypes.find((item) => item.id === request.status)
             ?.title || "Ошибка"}
         </span>
@@ -248,7 +248,7 @@ const RequestItem = ({ request, settings }) => {
       {/*excursionDate*/}
       <div className="flex flex-wrap gap-x-2">
         {`Дата экскурсии: `}
-        <span className={`${spanStyle}`}>
+        <span className={spanStyle}>
           {!compareWithDefaultDate(request.excursionDate)
             ? new DateObject(request.excursionDate).format("DD.MM.YYYY HH:mm")
             : ""}
@@ -297,7 +297,7 @@ const RequestItem = ({ request, settings }) => {
       <div className="flex flex-col">
         <div className="flex gap-x-2">
           {`Номер группы: `}
-          <span className={`${spanStyle}`}>
+          <span className={spanStyle}>
             {request.groupNumber ? request.groupNumber : ""}
           </span>
           <EditButton
