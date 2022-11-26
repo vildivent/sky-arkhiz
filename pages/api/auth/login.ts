@@ -1,15 +1,12 @@
 import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const secret = process.env.NEXT_PUBLIC_SECRET;
 const psd = process.env.NEXT_PUBLIC_PASSWORD;
 
-export default async function login(req, res) {
+export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { username, password } = req.body;
-
-  //Check in databese
-  //if the user with this username
-  //and password exists
 
   if (username === "admin" && password === psd) {
     const token = sign(
@@ -29,6 +26,7 @@ export default async function login(req, res) {
     });
 
     res.setHeader("Set-Cookie", serialized);
+
     res.status(200).json({ message: "Success!" });
   } else {
     res.status(401).json({ message: "Invalid credentials!" });

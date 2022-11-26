@@ -32,7 +32,7 @@ const Navbar = ({ setSidebarIsOpened, navLinks }: NavbarProps) => {
 
       {/* menu button */}
       <button
-        className={`cursor-pointer text-4xl px-3 ${
+        className={`cursor-pointer text-4xl px-3 transition-all duration-200 ${
           transparentStyle
             ? "text-white hover:text-cyan-500"
             : "text-cyan-500 hover:text-white"

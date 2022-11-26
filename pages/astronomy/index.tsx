@@ -10,13 +10,13 @@ const Astronomy = () => {
           href="/astronomy/telescopes/"
           imageSrc={cardImage1}
           title="Телескопы"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus porta"
+          description="Статья находится на стадии написания"
         />
         <AstronomyCard
           href="/astronomy/what-you-can-see-with-a-telescope/"
           imageSrc={cardImage1}
           title="Что можно увидеть в телескоп"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum euismod felis, vel egestas risus porta bibendum euismod felis, vel egestas risus porta"
+          description="Статья находится на стадии написания"
         />
       </div>
     </MainLayout>

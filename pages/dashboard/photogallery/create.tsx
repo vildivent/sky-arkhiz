@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import type { MouseEvent } from "react";
+import type { MouseEventHandler } from "react";
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks/redux";
 import {
   ActionButton,
@@ -17,20 +17,37 @@ import {
   reset,
 } from "../../../redux/features/newPhotoForm/newPhotoFormSlice";
 import { categories } from "../../../constasnts";
+import Label from "../../../components/Label";
 
-const CreateNews = () => {
+const inputStyle =
+  "bg-[#1e1e1e] w-full text-gray-200 border border-sky-500 py-1 px-4 mt-1 outline-none placeholder:text-gray-400 rounded-md";
+
+const CreatePhoto = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const { title, imgUrl, category } = useAppSelector(
     (state) => state.newPhotoForm
   );
-  const [wrongFOrmatTitle, setWrongFOrmatTitle] = useState(false);
-  const [wrongFOrmatImgUrl, setWrongFOrmatImgUrl] = useState(false);
+  const [wrongFormatTitle, setWrongFormatTitle] = useState(false);
+  const [wrongFormatImgUrl, setWrongFormatImgUrl] = useState(false);
+  const [wrongFormatCategory, setWrongFormatCategory] = useState(false);
   const [wrongFormatDescription, setWrongFormatDescription] = useState(false);
 
   const submitHandler = () => {
-    if (title && imgUrl) {
+    if (!title) {
+      setWrongFormatTitle(true);
+      setWrongFormatDescription(true);
+    }
+    if (!imgUrl) {
+      setWrongFormatImgUrl(true);
+      setWrongFormatDescription(true);
+    }
+    if (!category) {
+      setWrongFormatCategory(true);
+      setWrongFormatDescription(true);
+    }
+    if (title && imgUrl && category) {
       const data = {
         title,
         imgUrl,
@@ -41,17 +58,35 @@ const CreateNews = () => {
       dispatch(reset());
 
       router.push("/dashboard/photogallery");
-    } else {
-      setWrongFOrmatTitle(true);
-      setWrongFOrmatImgUrl(true);
     }
   };
 
   useEffect(() => {
-    if (title && imgUrl) setWrongFormatDescription(false);
-  }, [title, imgUrl]);
+    if (title) setWrongFormatTitle(false);
+  }, [title]);
 
-  const cancelHandler = (e: MouseEvent<HTMLButtonElement>) => {
+  useEffect(() => {
+    if (imgUrl) setWrongFormatImgUrl(false);
+  }, [imgUrl]);
+
+  useEffect(() => {
+    if (category) setWrongFormatCategory(false);
+  }, [category]);
+
+  useEffect(() => {
+    if (title && imgUrl && category) setWrongFormatDescription(false);
+  }, [title, imgUrl, category]);
+
+  const resetHandler: MouseEventHandler = (e) => {
+    e.preventDefault();
+    dispatch(reset());
+    setWrongFormatTitle(false);
+    setWrongFormatImgUrl(false);
+    setWrongFormatCategory(false);
+    setWrongFormatDescription(false);
+  };
+
+  const cancelHandler: MouseEventHandler = (e) => {
     e.preventDefault();
     dispatch(reset());
     router.push("/dashboard/photogallery");
@@ -63,57 +98,49 @@ const CreateNews = () => {
         <div className={`mx-auto`}>
           <form
             id="formAddNewPhoto"
-            className={`sm:w-1/2 w-full mx-auto py-10`}
+            className="sm:w-1/2 w-full mx-auto py-10 flex flex-col justify-center gap-3"
             onSubmit={(e) => e.preventDefault()}
           >
             {/*заголовок*/}
-            <label className="text-xs text-white opacity-70">
-              *Заголовок Фото:
+            <div>
+              <Label htmlFor="title" wrongFormat={wrongFormatTitle}>
+                * Заголовок фото:
+              </Label>
               <input
+                id="title"
                 type="text"
                 name="title"
                 placeholder="Заголовок"
                 value={title}
-                onChange={(e) => {
-                  dispatch(setTitle(e.target.value));
-                  setWrongFOrmatTitle(false);
-                }}
-                className={`mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm ${
-                  wrongFOrmatTitle
-                    ? "placeholder:text-red-700"
-                    : "placeholder:text-gray-700"
-                }`}
+                onChange={(e) => dispatch(setTitle(e.target.value))}
+                className={inputStyle}
               />
-            </label>
+            </div>
+
             {/*изображение*/}
-            <label className="text-xs text-white opacity-70">
-              *URL изображения:
+            <div>
+              <Label htmlFor="imgUrl" wrongFormat={wrongFormatImgUrl}>
+                URL изображения:
+              </Label>
               <input
+                id="imgUrl"
                 type="text"
                 name="imgUrl"
                 placeholder="https://"
                 value={imgUrl}
-                onChange={(e) => {
-                  dispatch(setImgUrl(e.target.value));
-                  setWrongFOrmatImgUrl(false);
-                }}
-                className={`mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm ${
-                  wrongFOrmatImgUrl
-                    ? "placeholder:text-red-700"
-                    : "placeholder:text-gray-700"
-                }`}
+                onChange={(e) => dispatch(setImgUrl(e.target.value))}
+                className={inputStyle}
               />
-            </label>
+            </div>
 
             {/*Категория*/}
-            <label className="text-xs text-white opacity-70">Категория:</label>
-            <div className="flex flex-col gap-3 justify-center items-start">
-              <ActionButton
-                onClick={() => dispatch(setCategory(categories[0]))}
-                disabled={categories[0] === category}
-              >
-                Все
-              </ActionButton>
+            <Label htmlFor="category" wrongFormat={wrongFormatCategory}>
+              * Категория:
+            </Label>
+            <div
+              id="category"
+              className="flex flex-col gap-3 justify-center items-start"
+            >
               <ActionButton
                 onClick={() => dispatch(setCategory(categories[1]))}
                 disabled={categories[1] === category}
@@ -134,19 +161,13 @@ const CreateNews = () => {
               </ActionButton>
             </div>
 
-            <div
-              className={`mt-2 ${
-                wrongFormatDescription ? "text-red-500" : "text-gray-300"
-              } font-p italic text-sm `}
-            >
+            <Label wrongFormat={wrongFormatDescription}>
               *отмечены поля, обязательные к заполнению
-            </div>
+            </Label>
 
             <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
               <ActionButton onClick={submitHandler}>Подтвердить</ActionButton>
-              <ResetButton onClick={() => dispatch(reset())}>
-                Сбросить поля
-              </ResetButton>
+              <ResetButton onClick={resetHandler}>Сбросить поля</ResetButton>
               <CancelButton onClick={cancelHandler}>Отменить</CancelButton>
             </div>
           </form>
@@ -158,4 +179,4 @@ const CreateNews = () => {
     </DashboardLayout>
   );
 };
-export default CreateNews;
+export default CreatePhoto;

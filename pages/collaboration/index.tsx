@@ -1,15 +1,29 @@
+import Link from "next/link";
 import { MainLayout } from "../../components/layouts/MainLayout";
+import { callLink } from "../../constasnts";
 
 const Collaboration = () => {
   return (
     <MainLayout title="Сотрудничество">
-      <div className="font-p text-[21px] text-justify mb-10 lg:w-[40%] sm:w-[70%] w-[90%] mt-5 mx-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint
-        voluptate laboriosam saepe earum officiis fuga excepturi, rerum ea,
-        consequuntur fugit? In nihil illo quisquam similique maiores dolor
-        beatae! Odit! Ad tempora impedit, modi quibusdam quis magnam! Nisi
-        beatae aliquam ad ipsa consectetur facilis similique doloremque magnam
-        aut sunt nihil veniam, iusto perferendis, rem sed maxime, odio non
+      <div className="mt-5">
+        <span>
+          Если у Вас есть предложения, и Вы хотите сотрудничать, то позвоните по
+          номеру телефона
+        </span>
+        <Link href={"/contacts"}>
+          <a
+            href={callLink.link}
+            rel="nofollow"
+            className={`hover:translate-y-[1px] text-cyan-500 hover:text-white mx-2`}
+          >
+            +7 (928) 384-30-40
+          </a>
+        </Link>
+
+        <span>или свяжитесь другим</span>
+        <Link href={"/contacts"}>
+          <a className="text-cyan-500 hover:text-white mx-2">способом.</a>
+        </Link>
       </div>
     </MainLayout>
   );

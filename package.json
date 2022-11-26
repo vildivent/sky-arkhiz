@@ -30,6 +30,7 @@
     "react-slideshow-image": "^4.0.5"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.11.7",
     "@types/nodemailer": "^6.4.6",
     "@types/react": "^18.0.24",

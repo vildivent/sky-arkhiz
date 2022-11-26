@@ -22,7 +22,7 @@ import {
 import { IPost } from "../../../models/Post";
 
 const inputStyle =
-  "bg-[#1e1e1e] w-full text-gray-200 border border-sky-500 py-1 px-4 outline-none placeholder:text-gray-400 rounded-md";
+  "bg-[#1e1e1e] w-full text-gray-200 border border-sky-500 py-1 px-4 mt-1 outline-none placeholder:text-gray-400 rounded-md";
 
 const CreateNews = () => {
   const router = useRouter();
@@ -31,17 +31,17 @@ const CreateNews = () => {
   const { title, imgUrl, srcUrl, paragraph, text } = useAppSelector(
     (state) => state.newPostForm
   );
-  const [wrongFOrmatTitle, setWrongFOrmatTitle] = useState(false);
-  const [wrongFOrmatText, setWrongFOrmatText] = useState(false);
+  const [wrongFormatTitle, setWrongFormatTitle] = useState(false);
+  const [wrongFormatText, setWrongFormatText] = useState(false);
   const [wrongFormatDescription, setWrongFormatDescription] = useState(false);
 
   const submitHandler = () => {
     if (!title) {
-      setWrongFOrmatTitle(true);
+      setWrongFormatTitle(true);
       setWrongFormatDescription(true);
     }
     if (!(text.length > 0 || paragraph)) {
-      setWrongFOrmatText(true);
+      setWrongFormatText(true);
       setWrongFormatDescription(true);
     }
     if (title && (text.length > 0 || paragraph)) {
@@ -60,11 +60,11 @@ const CreateNews = () => {
     }
   };
   useEffect(() => {
-    if (title) setWrongFOrmatTitle(false);
+    if (title) setWrongFormatTitle(false);
   }, [title]);
 
   useEffect(() => {
-    if (text.length > 0 || paragraph) setWrongFOrmatText(false);
+    if (text.length > 0 || paragraph) setWrongFormatText(false);
   }, [text, paragraph]);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const CreateNews = () => {
       <div className="mx-auto">
         <form
           id="formAddNewPost"
-          className={`sm:w-1/2 w-full mx-auto py-10 flex flex-col justify-center gap-3`}
+          className="sm:w-1/2 w-full mx-auto py-10 flex flex-col justify-center gap-3"
           onSubmit={(e) => e.preventDefault()}
         >
           {/*заголовок*/}
@@ -91,7 +91,7 @@ const CreateNews = () => {
             <label
               htmlFor="title"
               className={`font-bold ${
-                wrongFOrmatTitle ? "text-red-700" : "text-gray-200"
+                wrongFormatTitle ? "text-red-700" : "text-gray-200"
               }`}
             >
               * Заголовок новости:
@@ -128,7 +128,7 @@ const CreateNews = () => {
             <label
               htmlFor="text"
               className={`font-bold ${
-                wrongFOrmatText ? "text-red-700" : "text-gray-200"
+                wrongFormatText ? "text-red-700" : "text-gray-200"
               }`}
             >
               * Текст новости:
@@ -177,8 +177,8 @@ const CreateNews = () => {
             <ResetButton
               onClick={() => {
                 dispatch(reset());
-                setWrongFOrmatTitle(false);
-                setWrongFOrmatText(false);
+                setWrongFormatTitle(false);
+                setWrongFormatText(false);
                 setWrongFormatDescription(false);
               }}
             >

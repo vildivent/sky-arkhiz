@@ -13,7 +13,7 @@ const News = () => {
 
   return (
     <DashboardLayout title="Новости" mainProps="px-2">
-      <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
+      <div className="flex flex-col flex-wrap items-center gap-3 mt-3">
         <SearchBar
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

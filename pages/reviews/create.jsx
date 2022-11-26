@@ -25,6 +25,9 @@ import {
 } from "../../redux/features/newReviewForm/newReviewFormSlice";
 import ReviewItem from "../../components/ReviewItem";
 
+const inputStyle =
+  "bg-[#1e1e1e] w-full text-gray-200 border border-sky-500 py-1 px-4 mt-1 outline-none placeholder:text-gray-400 rounded-md";
+
 export default function CreateReview() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -77,74 +80,87 @@ export default function CreateReview() {
   };
 
   return (
-    <MainLayout title={"Добавить отзыв"}>
-      <>
-        <div className={`mx-auto`}>
-          <form
-            id="formAddNewReview"
-            className={`sm:w-1/2 w-full mx-auto py-10`}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            {/*имя пользователя*/}
-            <Label wrongFormat={wrongFormat && !name}>
+    <MainLayout title="Добавить отзыв">
+      <div className="mx-auto">
+        <form
+          id="formAddNewReview"
+          className="sm:w-1/2 w-full mx-auto py-10 flex flex-col justify-center gap-3"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          {/*имя пользователя*/}
+          <div>
+            <Label htmlFor="name" wrongFormat={wrongFormat && !name}>
               * Ваше имя:
-              <InputName
-                value={name}
-                onChange={(e) => {
-                  dispatch(setName(e.target.value));
-                }}
-                className={`mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm`}
-              />
             </Label>
+            <InputName
+              id="name"
+              value={name}
+              onChange={(e) => {
+                dispatch(setName(e.target.value));
+              }}
+              className={inputStyle}
+            />
+          </div>
 
-            {/*изображение аватара*/}
-            <Label>
-              URL Вашего фото (аватара):
-              <input
-                type="text"
-                name="avatarUrl"
-                placeholder="https://"
-                value={avatarUrl}
-                onChange={(e) => dispatch(setAvatarUrl(e.target.value))}
-                className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm"
-              />
-            </Label>
-            {/*изображение*/}
-            <Label>
-              URL фото с места события:
-              <input
-                type="text"
-                name="photoUrl"
-                placeholder="https://"
-                value={photoUrl}
-                onChange={(e) => dispatch(setPhotoUrl(e.target.value))}
-                className="mt-1 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm"
-              />
-            </Label>
+          {/*изображение аватара*/}
+          <div>
+            <Label htmlFor="avatarUrl">URL Вашего фото (аватара):</Label>
+            <input
+              id="avatarUrl"
+              type="text"
+              name="avatarUrl"
+              placeholder="https://"
+              value={avatarUrl}
+              onChange={(e) => dispatch(setAvatarUrl(e.target.value))}
+              className={inputStyle}
+            />
+          </div>
 
-            {/*Текст*/}
-            <Label wrongFormat={wrongFormat && !(text.length || paragraph)}>
+          {/*изображение*/}
+          <div>
+            <Label htmlFor="photoUrl">URL фото с места события:</Label>
+            <input
+              id="photoUrl"
+              type="text"
+              name="photoUrl"
+              placeholder="https://"
+              value={photoUrl}
+              onChange={(e) => dispatch(setPhotoUrl(e.target.value))}
+              className={inputStyle}
+            />
+          </div>
+
+          {/*Текст*/}
+          <div>
+            <Label
+              htmlFor="text"
+              wrongFormat={wrongFormat && !(text.length || paragraph)}
+            >
               * Отзыв:
-              <textarea
-                value={paragraph}
-                name="text"
-                onChange={(e) => {
-                  dispatch(setParagraph(e.target.value));
-                }}
-                placeholder="Напишите отзыв здесь"
-                className={`mt-1 resize-none h-40 text-black w-full bg-gray-200 border py-1 px-2 text-xs outline-none placeholder:text-gray-700 rounded-sm`}
-              />
             </Label>
+            <textarea
+              id="text"
+              required={true}
+              rows={6}
+              value={paragraph}
+              name="text"
+              onChange={(e) => {
+                dispatch(setParagraph(e.target.value));
+              }}
+              placeholder="Напишите отзыв здесь"
+              className={`${inputStyle} resize-none`}
+            />
+          </div>
 
-            {/* рейтинг */}
-            <ol className="flex justify-start flex-wrap gap-3 items-center text-xl">
-              <span
-                className={`text-xs text-white opacity-70 ${
-                  wrongFormat && !stars ? "text-red-500" : ""
-                }`}
-              >
-                * Ваша оценка:
-              </span>
+          {/* рейтинг */}
+          <div>
+            <Label htmlFor="rating" wrongFormat={wrongFormat && !stars}>
+              * Ваша оценка:
+            </Label>
+            <ol
+              id="rating"
+              className="flex justify-start flex-wrap gap-3 items-center text-xl"
+            >
               {starArray.map((number) => (
                 <li
                   key={number}
@@ -155,54 +171,51 @@ export default function CreateReview() {
                 </li>
               ))}
             </ol>
-            <div
-              className={`mt-2 ${
-                wrongFormat ? "text-red-500" : "text-gray-300"
-              } font-p italic text-sm `}
-            >
-              *отмечены поля, обязательные к заполнению
-            </div>
+          </div>
 
-            <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
-              <ActionButton onClick={() => submitHandler()}>
-                Подтвердить
-              </ActionButton>
-              <ResetButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  paragraph && dispatch(pushParagraph());
-                }}
-              >
-                Добавить абзац
-              </ResetButton>
-              <CancelButton onClick={cancelHandler}>Отменить</CancelButton>
-              <ResetButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(reset());
-                  setWrongFormat(false);
-                }}
-              >
-                Сбросить поля
-              </ResetButton>
-            </div>
-          </form>
-        </div>
-        <div>
-          <ReviewItem
-            review={{
-              name,
-              avatarUrl,
-              photoUrl,
-              stars,
-              paragraph,
-              text,
-              createdAt: Date.now(),
-            }}
-            createPage={true}
-          />
-        </div>
-      </>
+          <Label wrongFormat={wrongFormat}>
+            *отмечены поля, обязательные к заполнению
+          </Label>
+
+          <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
+            <ActionButton onClick={() => submitHandler()}>
+              Подтвердить
+            </ActionButton>
+            <ResetButton
+              onClick={(e) => {
+                e.preventDefault();
+                paragraph && dispatch(pushParagraph());
+              }}
+            >
+              Новый абзац
+            </ResetButton>
+            <CancelButton onClick={cancelHandler}>Отменить</CancelButton>
+            <ResetButton
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(reset());
+                setWrongFormat(false);
+              }}
+            >
+              Сбросить поля
+            </ResetButton>
+          </div>
+        </form>
+      </div>
+      <div>
+        <ReviewItem
+          review={{
+            name,
+            avatarUrl,
+            photoUrl,
+            stars,
+            paragraph,
+            text,
+            createdAt: Date.now(),
+          }}
+          createPage={true}
+        />
+      </div>
     </MainLayout>
   );
 }

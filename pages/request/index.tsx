@@ -16,6 +16,9 @@ import {
 import Label from "../../components/Label";
 import type { DateObject } from "react-multi-date-picker";
 
+const inputStyle =
+  "bg-[#1e1e1e] w-full text-gray-200 border border-sky-500 py-1 px-4 mt-1 outline-none placeholder:text-gray-400 rounded-md";
+
 const Request = () => {
   const telLength = 18;
   const router = useRouter();
@@ -26,8 +29,7 @@ const Request = () => {
     groupSize: 1,
     comment: "",
   };
-  const inputStyle =
-    "text-black bg-gray-200 border py-1 px-2 mb-2 text-xs outline-none placeholder:text-gray-700 rounded-sm";
+
   const [data, setData] = useState(initialState);
   const [dateRange, setDateRange] = useState(initialDates);
   const [wrongFormat, setWrongFormat] = useState(false);
@@ -81,83 +83,91 @@ const Request = () => {
   };
 
   return (
-    <MainLayout title={"Оставить заявку"}>
-      <main className={`mx-auto`}>
+    <MainLayout title="Оставить заявку">
+      <main className="mx-auto">
         <form
-          className={`sm:w-1/2 flex flex-col gap-1 mx-auto py-10`}
+          className="sm:w-1/2 w-full mx-auto py-10 flex flex-col justify-center gap-3"
           onSubmit={(e) => e.preventDefault()}
         >
           {/*имя пользователя*/}
-          <Label wrongFormat={wrongFormat && !data.name}>* Ваше имя:</Label>
-          <InputName
-            value={data.name}
-            className={inputStyle}
-            onChange={(e) =>
-              setData((prev) => ({ ...prev, name: e.target.value }))
-            }
-          />
+          <div>
+            <Label wrongFormat={wrongFormat && !data.name}>* Ваше имя:</Label>
+            <InputName
+              value={data.name}
+              className={inputStyle}
+              onChange={(e) =>
+                setData((prev) => ({ ...prev, name: e.target.value }))
+              }
+            />
+          </div>
 
           {/*телефон*/}
-          <Label
-            wrongFormat={wrongFormat && data.phoneNumber.length !== telLength}
-          >
-            * Ваш контактный телефон:
-          </Label>
-          <InputTel
-            value={data.phoneNumber}
-            className={inputStyle}
-            onChange={(e) =>
-              setData((prev) => ({ ...prev, phoneNumber: e.target.value }))
-            }
-          />
+          <div>
+            <Label
+              wrongFormat={wrongFormat && data.phoneNumber.length !== telLength}
+            >
+              * Ваш контактный телефон:
+            </Label>
+            <InputTel
+              value={data.phoneNumber}
+              className={inputStyle}
+              onChange={(e) =>
+                setData((prev) => ({ ...prev, phoneNumber: e.target.value }))
+              }
+            />
+          </div>
 
           {/*Размер группы*/}
-          <Label wrongFormat={wrongFormat && !(data.groupSize > 0)}>
-            * Размер группы (чел.):
-          </Label>
-          <InputGroupSize
-            value={data.groupSize}
-            className={inputStyle}
-            onChange={(e) =>
-              setData((prev) => ({
-                ...prev,
-                groupSize: e.target.valueAsNumber,
-              }))
-            }
-          />
+          <div>
+            <Label wrongFormat={wrongFormat && !(data.groupSize > 0)}>
+              * Размер группы (чел.):
+            </Label>
+            <InputGroupSize
+              value={data.groupSize}
+              className={inputStyle}
+              onChange={(e) =>
+                setData((prev) => ({
+                  ...prev,
+                  groupSize: e.target.valueAsNumber,
+                }))
+              }
+            />
+          </div>
 
           {/*Даты*/}
-          <Label wrongFormat={wrongFormat && (!dateRange[0] || !dateRange[1])}>
-            * Диапазон дат, в который Вам бы хотелось посетить экскурсию:
-          </Label>
-          <InputDate
-            className={inputStyle}
-            dateRange={dateRange}
-            setDateRange={setDateRange}
-          />
+          <div>
+            <Label
+              wrongFormat={wrongFormat && (!dateRange[0] || !dateRange[1])}
+            >
+              * Диапазон дат, в который Вам бы хотелось посетить экскурсию:
+              <br />
+            </Label>
+            <InputDate
+              className={inputStyle}
+              dateRange={dateRange}
+              setDateRange={setDateRange}
+            />
+          </div>
 
           {/*Комментарий-описание*/}
-          <Label>Комментарий:</Label>
-          <textarea
-            name="text"
-            placeholder="Комментарий"
-            value={data.comment}
-            onChange={(e) => {
-              setData((prev) => ({ ...prev, comment: e.target.value }));
-            }}
-            className={`${inputStyle.replace(
-              /( mb-2)/,
-              ""
-            )} resize-none h-40 mb-0`}
-          />
-
-          <div
-            className={`mt-2 ${
-              wrongFormat ? "text-red-500" : "text-gray-300"
-            } font-p italic text-sm `}
-          >
-            *отмечены поля, обязательные к заполнению
+          <div>
+            <Label>Комментарий:</Label>
+            <textarea
+              name="text"
+              placeholder="Комментарий"
+              value={data.comment}
+              onChange={(e) => {
+                setData((prev) => ({ ...prev, comment: e.target.value }));
+              }}
+              className={`${inputStyle.replace(
+                /( mb-2)/,
+                ""
+              )} resize-none h-28 mb-0`}
+            />
           </div>
+          <Label wrongFormat={wrongFormat}>
+            *отмечены поля, обязательные к заполнению
+          </Label>
 
           <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
             <ActionButton onClick={submitHandler}>Подтвердить</ActionButton>

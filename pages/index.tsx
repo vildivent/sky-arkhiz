@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -7,15 +6,16 @@ import {
   AboutExcursions,
   Webcams,
   Gallery,
-  AstronomyCards,
+  // AstronomyCards,
   ElseToDo,
   Request,
 } from "../components/HomePage/Sections";
 import HomePageLayout from "../components/layouts/HomePageLayout";
 
-const Home: NextPage = () => {
+const Home = () => {
   const getReferalCookie = async (ref: string | string[]) =>
     await axios.get("api/referral", { params: { ref } });
+
   const router = useRouter();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
         <Hero />
         <AboutExcursions />
         <Gallery />
-        <AstronomyCards />
+        {/* <AstronomyCards /> */}
         <Webcams />
         <ElseToDo />
         <Request />

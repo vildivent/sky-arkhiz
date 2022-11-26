@@ -1,5 +1,5 @@
 import SidebarSubLinks from "./SidebarLinks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SidebarCloseButton from "./Buttons/SidebarCloseButton";
 import { NavLinks } from "../constasnts";
 
@@ -10,8 +10,6 @@ const Sidebar = ({
   handleLogout,
 }: TSidebarProps) => {
   const [activeSubMenu, setActiveSubMenu] = useState("");
-
-  useEffect(() => {}, [handleLogout]);
 
   const closeHandler = () => {
     setSidebarIsOpened(() => false);

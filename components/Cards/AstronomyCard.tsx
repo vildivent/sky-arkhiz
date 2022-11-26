@@ -10,7 +10,7 @@ export const AstronomyCard = forwardRef<HTMLDivElement, AstronomyCardProps>(
       <div ref={ref}>
         <Link href={href}>
           <a>
-            <div className="w-[300px] sm:h-[550px] bg-[#114883] hover:scale-[1.03] shadow-lg shadow-black">
+            <div className="w-[300px] sm:h-[450px] bg-[#114883] hover:scale-[1.03] shadow-lg shadow-black">
               <Image src={imageSrc} alt={title} />
 
               <div className="p-5 text-center">
