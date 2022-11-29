@@ -199,9 +199,11 @@ const CreatePhoto = () => {
                   setFile(e.target.files[0]);
                   setError("");
                   setUploadMessage("");
-                  if (e.target.files[0])
+                  if (e.target.files[0]) {
                     tilteInput.current.value =
                       e.target.files[0].name.split(".")[0];
+                    setTitle(e.target.files[0].name.split(".")[0]);
+                  }
                 }}
                 className="hidden"
               />
