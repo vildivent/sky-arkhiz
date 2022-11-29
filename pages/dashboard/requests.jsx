@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../../components/Loading";
 import RequestItem from "../../components/RequestItem";
 import FilterMenu from "../../components/FilterMenu";
 import { requestStatusTypes } from "../../constasnts";
@@ -16,6 +15,8 @@ import { setFilterByGroup } from "../../redux/features/requestFilterByGroup/requ
 import StattusChangeSwitcher from "../../components/StattusChangeSwitcher";
 import { useRouter } from "next/router";
 import { DateObject } from "react-multi-date-picker";
+import Image from "next/image";
+import { loadingGif } from "../../public/assets";
 
 const Requests = () => {
   const router = useRouter();
@@ -104,8 +105,6 @@ const Requests = () => {
       </div>
 
       <div className={`flex flex-col flex-wrap items-center gap-3 mt-3`}>
-        <Loading array={requests} loading={loading} alt="" />
-
         {filteredRequestsByGroup.length > 0 || loading ? (
           filteredRequestsByGroup.map((request) => (
             <RequestItem
@@ -116,6 +115,9 @@ const Requests = () => {
           ))
         ) : (
           <div>Заявок нет</div>
+        )}
+        {loading && (
+          <Image src={loadingGif} alt="loading" width={40} height={40} />
         )}
       </div>
     </DashboardLayout>
