@@ -148,6 +148,7 @@ const CreatePhoto = () => {
     setWrongFormatCategory(false);
     setWrongFormatDescription(false);
     tilteInput.current.value = "";
+    hiddenFileInput.current.value = "";
   };
 
   const cancelHandler: MouseEventHandler = (e) => {
