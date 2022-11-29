@@ -24,7 +24,13 @@ const deletePhoto = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!photo)
       return res.status(404).json({ message: "Фото с таким id не существует" });
 
-    console.log("Photo deleted!");
+    console.log("Photo deleted from db!");
+
+    await fetch(photo.imgUrl, {
+      method: "delete",
+    });
+    console.log("Photo deleted from storage!");
+
     res.status(200).json({ deletedPhoto: photo, message: "Фото удалено!" });
   } catch (error) {
     console.error(error);
