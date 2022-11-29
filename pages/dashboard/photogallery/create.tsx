@@ -24,6 +24,7 @@ import { FaUpload } from "react-icons/fa";
 import { GiConfirmed } from "react-icons/gi";
 import { MdError } from "react-icons/md";
 import type { AxiosResponse, AxiosError } from "axios";
+import translit from "../../../utils/translit";
 
 const fileAPI = process.env.NEXT_PUBLIC_FILE_API_URL;
 
@@ -35,6 +36,7 @@ const CreatePhoto = () => {
   const dispatch = useAppDispatch();
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
+  const tilteInput = useRef<HTMLInputElement>(null);
 
   const [file, setFile] = useState<File>();
   const preview = useImgPreview(file);
@@ -56,7 +58,7 @@ const CreatePhoto = () => {
     }
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("fileName", file.name);
+    formData.append("fileName", translit(file.name));
     const config = {
       headers: {
         "content-type": "multipart/form-data",
@@ -79,8 +81,13 @@ const CreatePhoto = () => {
     } catch (error) {
       const err = error as Error | AxiosError<IAPIResponse>;
       if (axios.isAxiosError(err)) {
-        console.error((err.response?.data as IAPIResponse).message);
-        setError((err.response?.data as IAPIResponse).message);
+        if (err.response.status < 500 && err.code === "ERR_NETWORK") {
+          console.error("Файл превосходит 5 MБ!");
+          setError("Файл превосходит 5 MБ!");
+          return;
+        }
+        console.error((err.response?.data as IAPIResponse)?.message);
+        setError((err.response?.data as IAPIResponse)?.message);
         return;
       } else {
         console.error(err);
@@ -165,8 +172,8 @@ const CreatePhoto = () => {
               id="title"
               type="text"
               name="title"
+              ref={tilteInput}
               placeholder="Заголовок"
-              value={title}
               onChange={(e) => dispatch(setTitle(e.target.value))}
               className={inputStyle}
             />
@@ -174,9 +181,9 @@ const CreatePhoto = () => {
 
           {/*изображение*/}
           <div className="flex flex-col gap-1">
-            <Label htmlFor="imgUrl" wrongFormat={wrongFormatImgUrl}>
+            <Label wrongFormat={wrongFormatImgUrl}>
               * Изображение в формате jpg / jpeg / png / webp, размером не
-              больше 5 MB:
+              больше 5 MБ:
             </Label>
             <div className="flex gap-3">
               <ActionButton onClick={(e) => hiddenFileInput.current.click()}>
@@ -192,6 +199,9 @@ const CreatePhoto = () => {
                   setFile(e.target.files[0]);
                   setError("");
                   setUploadMessage("");
+                  if (e.target.files[0])
+                    tilteInput.current.value =
+                      e.target.files[0].name.split(".")[0];
                 }}
                 className="hidden"
               />

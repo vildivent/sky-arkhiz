@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { forwardRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
