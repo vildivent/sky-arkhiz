@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
-import type { MouseEventHandler } from "react";
+import type { MouseEventHandler, ChangeEvent } from "react";
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks/redux";
 import {
   ActionButton,
@@ -82,8 +82,10 @@ const CreatePhoto = () => {
       const err = error as Error | AxiosError<IAPIResponse>;
       if (axios.isAxiosError(err)) {
         if (err.response.status < 500 && err.code === "ERR_NETWORK") {
-          console.error("Файл превосходит 5 MБ!");
-          setError("Файл превосходит 5 MБ!");
+          console.error(
+            "Ошибка загрузки. Возможно размер файла превышает 5 MБ."
+          );
+          setError("Ошибка загрузки. Возможно размер файла превышает 5 MБ.");
           return;
         }
         console.error((err.response?.data as IAPIResponse)?.message);
@@ -157,6 +159,16 @@ const CreatePhoto = () => {
     router.push("/dashboard/photogallery");
   };
 
+  const changeFileHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setFile(e.target.files[0]);
+    setError("");
+    setUploadMessage("");
+    if (e.target.files[0]) {
+      tilteInput.current.value = e.target.files[0].name.split(".")[0];
+      dispatch(setTitle(tilteInput.current.value));
+    }
+  };
+
   return (
     <DashboardLayout title="Добавить фото">
       <div className="mx-auto">
@@ -188,7 +200,7 @@ const CreatePhoto = () => {
               больше 5 MБ:
             </Label>
             <div className="flex gap-3">
-              <ActionButton onClick={(e) => hiddenFileInput.current.click()}>
+              <ActionButton onClick={() => hiddenFileInput.current.click()}>
                 {file ? file.name : "Выберите файл..."}
               </ActionButton>
               <input
@@ -197,16 +209,7 @@ const CreatePhoto = () => {
                 name="imgUrl"
                 accept="image/*"
                 ref={hiddenFileInput}
-                onChange={(e) => {
-                  setFile(e.target.files[0]);
-                  setError("");
-                  setUploadMessage("");
-                  if (e.target.files[0]) {
-                    tilteInput.current.value =
-                      e.target.files[0].name.split(".")[0];
-                    setTitle(e.target.files[0].name.split(".")[0]);
-                  }
-                }}
+                onChange={changeFileHandler}
                 className="hidden"
               />
               <ActionButton
