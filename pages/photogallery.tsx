@@ -9,7 +9,7 @@ import { ActionButton } from "../components/Buttons";
 import useDimentions from "../utils/hooks/useDimetions";
 
 const Photogallery = () => {
-  const [category, setCategory] = useState(categories[2]);
+  const [category, setCategory] = useState(categories[1]);
   const { photos, loading, lastElementRef } = usePhotosFetchAndSearch(category);
   const { windowDimentions } = useDimentions();
 

@@ -5,6 +5,7 @@ import type { IPhoto } from "../../models/Photo";
 import { AiFillEye } from "react-icons/ai";
 import Moment from "react-moment";
 import useDimentions from "../../utils/hooks/useDimetions";
+import { IoClose } from "react-icons/io5";
 
 const PhotoModal = ({ photo, detailed, clickHandler }: PhotoModalProps) => {
   const dimentions = useDimentions();
@@ -27,7 +28,13 @@ const PhotoModal = ({ photo, detailed, clickHandler }: PhotoModalProps) => {
   }, [dimentions.windowDimentions.width, photo.aspectRatio]);
   return (
     <Modal isOpen={detailed} setIsOpen={clickHandler} padding={false}>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between relative">
+        <button
+          onClick={clickHandler}
+          className="hover:text-cyan-500 absolute top-0 right-0 text-3xl"
+        >
+          <IoClose />
+        </button>
         <h2 className="font-h1 sm:text-5xl text-2xl text-center m-2">
           {photo.title}
         </h2>

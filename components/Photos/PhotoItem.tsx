@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { forwardRef, useState, useEffect } from "react";
@@ -101,8 +99,8 @@ const PhotoItem = forwardRef<HTMLDivElement, PhotoItemProps>(function PhotoItem(
             onClick={clickHandler}
             quality={100}
             placeholder="empty"
-            width={imgWidth || 100}
-            height={imgHeight || 100}
+            width={imgWidth || 0}
+            height={imgHeight || 0}
           />
         )}
       </div>
