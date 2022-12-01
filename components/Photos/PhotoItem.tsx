@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { IPhoto } from "../../models/Photo";
 import { deletePhoto } from "../../redux/features/photo/photoSlice";
 import useUpdatePhotoViews from "../../utils/hooks/photos/useUpdatePhotoViews";
 import { useAppDispatch } from "../../utils/hooks/redux";
+import useDimentions from "../../utils/hooks/useDimetions";
 import ModalYesNo from "../ModalYesNo";
 import PhotoModal from "./PhotoModal";
 
@@ -20,6 +21,18 @@ const PhotoItem = forwardRef<HTMLDivElement, PhotoItemProps>(function PhotoItem(
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const dimentions = useDimentions();
+
+  const [imgWidth, setImgWidth] = useState(0);
+  const [imgHeight, setImgHeight] = useState(0);
+
+  useEffect(() => {
+    const multiplier = dimentions.windowDimentions.width >= 640 ? 0.276 : 0.466;
+    setImgWidth(dimentions.windowDimentions.width * multiplier);
+    setImgHeight(
+      (dimentions.windowDimentions.width * multiplier) / photo.aspectRatio
+    );
+  }, [dimentions.windowDimentions.width, photo.aspectRatio]);
 
   const deleteHandler = () => {
     setModalIsOpen(false);
@@ -35,7 +48,7 @@ const PhotoItem = forwardRef<HTMLDivElement, PhotoItemProps>(function PhotoItem(
       />
 
       <div
-        className="flex justify-center border border-gray-600 rounded-md relative cursor-pointer bg-[#1e1e1e] min-h-[50px]"
+        className={`flex justify-center border border-gray-600 rounded-md relative cursor-pointer bg-[#1e1e1e] min-h-[50px]`}
         onPointerEnter={() => setHovered(true)}
         onPointerLeave={() => setHovered(false)}
       >
@@ -72,15 +85,19 @@ const PhotoItem = forwardRef<HTMLDivElement, PhotoItemProps>(function PhotoItem(
             {photo.title}
           </h2>
         </div>
-        <div onClick={clickHandler}>
-          {photo.imgUrl && (
-            <img
-              src={photo.imgUrl}
-              alt={photo.title}
-              className={`rounded-md`}
-            />
-          )}
-        </div>
+
+        {photo.imgUrl && (
+          <Image
+            src={photo.imgUrl}
+            alt={photo.title}
+            className={`rounded-md`}
+            onClick={clickHandler}
+            quality={100}
+            placeholder="empty"
+            width={imgWidth || 100}
+            height={imgHeight || 100}
+          />
+        )}
       </div>
     </div>
   );
