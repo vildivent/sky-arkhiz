@@ -18,11 +18,13 @@ const createPhoto = async (req: NextApiRequest, res: NextApiResponse) => {
     await connectMongo();
     console.log("Mongo connected! Create Photo request");
 
-    const { title, imgUrl, category } = req.body as PhotoCreateParams;
+    const { title, imgUrl, aspectRatio, category } =
+      req.body as PhotoCreateParams;
 
     const newPhoto: IPhoto = new Photo({
       title,
       imgUrl,
+      aspectRatio,
       category,
     });
 
@@ -51,5 +53,6 @@ export default createPhoto;
 export type PhotoCreateParams = {
   title: string;
   imgUrl: string;
+  aspectRatio: number;
   category?: string;
 };

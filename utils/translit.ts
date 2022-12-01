@@ -77,6 +77,7 @@ export default function translit(word: string) {
       answer += converter[word[i]];
     }
   }
+  answer = answer.replace(/( )/g, "_");
 
   return answer;
 }

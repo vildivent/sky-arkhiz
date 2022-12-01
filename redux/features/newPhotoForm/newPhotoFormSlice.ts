@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: PhotoForm = {
   title: "",
   imgUrl: "",
+  aspectRatio: 0,
   category: "",
 };
 
@@ -16,6 +17,9 @@ export const newPhotoFormSlice = createSlice({
     setImgUrl: (state, action: PayloadAction<string>) => {
       state.imgUrl = action.payload;
     },
+    setAspectRatio: (state, action: PayloadAction<number>) => {
+      state.aspectRatio = action.payload;
+    },
     setCategory: (state, action: PayloadAction<string>) => {
       state.category = action.payload;
     },
@@ -25,12 +29,13 @@ export const newPhotoFormSlice = createSlice({
   },
   extraReducers: {},
 });
-export const { setTitle, setImgUrl, setCategory, reset } =
+export const { setTitle, setImgUrl, setAspectRatio, setCategory, reset } =
   newPhotoFormSlice.actions;
 export default newPhotoFormSlice.reducer;
 
 type PhotoForm = {
   title: string;
   imgUrl: string;
+  aspectRatio: number;
   category: string;
 };

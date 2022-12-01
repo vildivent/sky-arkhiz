@@ -15,6 +15,7 @@ import {
   setImgUrl,
   setCategory,
   reset,
+  setAspectRatio,
 } from "../../../redux/features/newPhotoForm/newPhotoFormSlice";
 import { categories } from "../../../constasnts";
 import Label from "../../../components/Label";
@@ -43,7 +44,7 @@ const CreatePhoto = () => {
   const [error, setError] = useState("");
   const [uploadMessage, setUploadMessage] = useState("");
 
-  const { title, imgUrl, category } = useAppSelector(
+  const { title, imgUrl, aspectRatio, category } = useAppSelector(
     (state) => state.newPhotoForm
   );
   const [wrongFormatTitle, setWrongFormatTitle] = useState(false);
@@ -57,8 +58,7 @@ const CreatePhoto = () => {
       return;
     }
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("fileName", translit(file.name));
+    formData.append(translit(file.name), file);
     const config = {
       headers: {
         "content-type": "multipart/form-data",
@@ -68,6 +68,7 @@ const CreatePhoto = () => {
       status: string;
       message: string;
       filenames?: string[];
+      aspectRatio?: number[];
     }
     try {
       const res: AxiosResponse<IAPIResponse> = await axios.post(
@@ -76,6 +77,7 @@ const CreatePhoto = () => {
         config
       );
       dispatch(setImgUrl(`${fileAPI}skyarhyz/${res.data.filenames[0]}`));
+      dispatch(setAspectRatio(res.data.aspectRatio[0]));
       setUploadMessage("Файл загружен");
       return;
     } catch (error) {
@@ -102,7 +104,7 @@ const CreatePhoto = () => {
       setWrongFormatTitle(true);
       setWrongFormatDescription(true);
     }
-    if (!imgUrl) {
+    if (!(imgUrl && aspectRatio)) {
       setWrongFormatImgUrl(true);
       setWrongFormatDescription(true);
     }
@@ -110,10 +112,11 @@ const CreatePhoto = () => {
       setWrongFormatCategory(true);
       setWrongFormatDescription(true);
     }
-    if (title && imgUrl && category) {
+    if (title && imgUrl && aspectRatio && category) {
       const data = {
         title,
         imgUrl,
+        aspectRatio,
         category,
       };
 
@@ -129,8 +132,8 @@ const CreatePhoto = () => {
   }, [title]);
 
   useEffect(() => {
-    if (imgUrl) setWrongFormatImgUrl(false);
-  }, [imgUrl]);
+    if (imgUrl && aspectRatio) setWrongFormatImgUrl(false);
+  }, [imgUrl, aspectRatio]);
 
   useEffect(() => {
     if (category) setWrongFormatCategory(false);
