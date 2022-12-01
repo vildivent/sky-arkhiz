@@ -27,11 +27,18 @@ const PhotoItem = forwardRef<HTMLDivElement, PhotoItemProps>(function PhotoItem(
   const [imgHeight, setImgHeight] = useState(0);
 
   useEffect(() => {
-    const multiplier = dimentions.windowDimentions.width >= 640 ? 0.276 : 0.466;
-    setImgWidth(dimentions.windowDimentions.width * multiplier);
-    setImgHeight(
-      (dimentions.windowDimentions.width * multiplier) / photo.aspectRatio
-    );
+    const timeout = setTimeout(() => {
+      const multiplier =
+        dimentions.windowDimentions.width >= 640 ? 0.276 : 0.466;
+      setImgWidth(dimentions.windowDimentions.width * multiplier);
+      setImgHeight(
+        (dimentions.windowDimentions.width * multiplier) / photo.aspectRatio
+      );
+    }, 100);
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
   }, [dimentions.windowDimentions.width, photo.aspectRatio]);
 
   const deleteHandler = () => {
