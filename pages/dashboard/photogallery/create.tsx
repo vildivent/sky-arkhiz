@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useReducer } from "react";
 import type { MouseEventHandler, ChangeEvent } from "react";
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks/redux";
 import {
@@ -21,8 +21,6 @@ import { categories } from "../../../constasnts";
 import Label from "../../../components/Label";
 import useImgPreview from "../../../utils/hooks/useImgPreview";
 import axios from "axios";
-import { FaUpload } from "react-icons/fa";
-import { GiConfirmed } from "react-icons/gi";
 import { MdError } from "react-icons/md";
 import type { AxiosResponse, AxiosError } from "axios";
 import translit from "../../../utils/translit";
@@ -32,38 +30,73 @@ const fileAPI = process.env.NEXT_PUBLIC_FILE_API_URL;
 const inputStyle =
   "bg-[#1e1e1e] w-full text-gray-200 border border-sky-500 py-1 px-4 outline-none placeholder:text-gray-400 rounded-md";
 
+type wrongFormatState = {
+  title: string;
+  imgUrl: string;
+  category: string;
+};
+
+const initialState: wrongFormatState = {
+  title: "",
+  imgUrl: "",
+  category: "",
+};
+
+enum ActionKind {
+  setTitleError = "setTitleError",
+  setImgUrlError = "setImgUrlError",
+  setCategoryError = "setCategoryError",
+  resetError = "resetError",
+}
+
+type Action = {
+  type: ActionKind;
+  payload?: string;
+};
+
+const wrongFormat = (state: wrongFormatState, action: Action) => {
+  switch (action.type) {
+    case ActionKind.setTitleError:
+      return { ...state, title: action.payload };
+    case ActionKind.setImgUrlError:
+      return { ...state, imgUrl: action.payload };
+    case ActionKind.setCategoryError:
+      return { ...state, category: action.payload };
+    case ActionKind.resetError:
+      return initialState;
+    default:
+      throw new Error();
+  }
+};
+
 const CreatePhoto = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
-  const tilteInput = useRef<HTMLInputElement>(null);
+
+  const [wrongFormatState, dispatchFormat] = useReducer(
+    wrongFormat,
+    initialState
+  );
 
   const [file, setFile] = useState<File>();
   const preview = useImgPreview(file);
-  const [error, setError] = useState("");
-  const [uploadMessage, setUploadMessage] = useState("");
 
   const { title, imgUrl, aspectRatio, category } = useAppSelector(
     (state) => state.newPhotoForm
   );
-  const [wrongFormatTitle, setWrongFormatTitle] = useState(false);
-  const [wrongFormatImgUrl, setWrongFormatImgUrl] = useState(false);
-  const [wrongFormatCategory, setWrongFormatCategory] = useState(false);
-  const [wrongFormatDescription, setWrongFormatDescription] = useState(false);
 
-  const uploadFile = async (file: File) => {
-    if (!file) {
-      setError("Выберите файл!");
-      return;
-    }
+  const uploadFile = async () => {
     const formData = new FormData();
     formData.append(translit(file.name), file);
+
     const config = {
       headers: {
         "content-type": "multipart/form-data",
       },
     };
+
     interface IAPIResponse {
       status: string;
       message: string;
@@ -78,45 +111,91 @@ const CreatePhoto = () => {
       );
       dispatch(setImgUrl(`${fileAPI}skyarhyz/${res.data.filenames[0]}`));
       dispatch(setAspectRatio(res.data.aspectRatio[0]));
-      setUploadMessage("Файл загружен");
-      return;
+      dispatchFormat({ type: ActionKind.setImgUrlError, payload: "" });
+      console.log("Файл загружен!");
+      return {
+        error: "",
+        imgUrl: res.data.filenames[0],
+        aspectRatio: res.data.aspectRatio[0],
+      };
     } catch (error) {
       const err = error as Error | AxiosError<IAPIResponse>;
       if (axios.isAxiosError(err)) {
-        if (err.response.status < 500 && err.code === "ERR_NETWORK") {
-          console.error(
-            "Ошибка загрузки. Возможно размер файла превышает 5 MБ."
-          );
-          setError("Ошибка загрузки. Возможно размер файла превышает 5 MБ.");
-          return;
+        if (err.code === "ERR_NETWORK") {
+          const errorMessage =
+            "Ошибка загрузки! Возможно размер файла превышает 5 MБ.";
+          console.error(errorMessage);
+          dispatchFormat({
+            type: ActionKind.setImgUrlError,
+            payload: errorMessage,
+          });
+          return {
+            error: errorMessage,
+            imgUrl: "",
+            aspectRatio: 0,
+          };
         }
-        console.error((err.response?.data as IAPIResponse)?.message);
-        setError((err.response?.data as IAPIResponse)?.message);
-        return;
+        const errorMessage = (err.response?.data as IAPIResponse)?.message;
+        console.error(errorMessage);
+        dispatchFormat({
+          type: ActionKind.setImgUrlError,
+          payload: errorMessage,
+        });
+        return {
+          error: errorMessage,
+          imgUrl: "",
+          aspectRatio: 0,
+        };
       } else {
+        const errorMessage = "Неизвестная ошибка!";
         console.error(err);
+        dispatchFormat({
+          type: ActionKind.setImgUrlError,
+          payload: errorMessage,
+        });
+        return {
+          error: errorMessage,
+          imgUrl: "",
+          aspectRatio: 0,
+        };
       }
     }
   };
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
+    let uploadData = {
+      error: "",
+      imgUrl: "",
+      aspectRatio: 0,
+    };
     if (!title) {
-      setWrongFormatTitle(true);
-      setWrongFormatDescription(true);
-    }
-    if (!(imgUrl && aspectRatio)) {
-      setWrongFormatImgUrl(true);
-      setWrongFormatDescription(true);
+      dispatchFormat({
+        type: ActionKind.setTitleError,
+        payload: "Введите заголовок",
+      });
     }
     if (!category) {
-      setWrongFormatCategory(true);
-      setWrongFormatDescription(true);
+      dispatchFormat({
+        type: ActionKind.setCategoryError,
+        payload: "Выберите категорию",
+      });
     }
-    if (title && imgUrl && aspectRatio && category) {
+    if (!file) {
+      dispatchFormat({
+        type: ActionKind.setImgUrlError,
+        payload: "Выберите файл",
+      });
+      uploadData.error = "Отсутствует файл";
+    } else {
+      const response = await uploadFile();
+      uploadData = { ...response };
+    }
+
+    if (title && (imgUrl || !uploadData.error) && category) {
       const data = {
         title,
-        imgUrl,
-        aspectRatio,
+        imgUrl: imgUrl || uploadData.imgUrl,
+        aspectRatio: aspectRatio || uploadData.aspectRatio,
         category,
       };
 
@@ -128,31 +207,25 @@ const CreatePhoto = () => {
   };
 
   useEffect(() => {
-    if (title) setWrongFormatTitle(false);
+    if (title) dispatchFormat({ type: ActionKind.setTitleError, payload: "" });
   }, [title]);
 
   useEffect(() => {
-    if (imgUrl && aspectRatio) setWrongFormatImgUrl(false);
+    if (imgUrl && aspectRatio)
+      dispatchFormat({ type: ActionKind.setImgUrlError, payload: "" });
   }, [imgUrl, aspectRatio]);
 
   useEffect(() => {
-    if (category) setWrongFormatCategory(false);
+    if (category)
+      dispatchFormat({ type: ActionKind.setCategoryError, payload: "" });
   }, [category]);
-
-  useEffect(() => {
-    if (title && imgUrl && category) setWrongFormatDescription(false);
-  }, [title, imgUrl, category]);
 
   const resetHandler: MouseEventHandler = (e) => {
     e.preventDefault();
     dispatch(reset());
+    dispatchFormat({ type: ActionKind.resetError });
     setFile(null);
-    setError("");
-    setWrongFormatTitle(false);
-    setWrongFormatImgUrl(false);
-    setWrongFormatCategory(false);
-    setWrongFormatDescription(false);
-    tilteInput.current.value = "";
+
     hiddenFileInput.current.value = "";
   };
 
@@ -164,11 +237,10 @@ const CreatePhoto = () => {
 
   const changeFileHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files[0]);
-    setError("");
-    setUploadMessage("");
-    if (e.target.files[0]) {
-      tilteInput.current.value = e.target.files[0].name.split(".")[0];
-      dispatch(setTitle(tilteInput.current.value));
+    dispatchFormat({ type: ActionKind.setImgUrlError, payload: "" });
+
+    if (e.target.files[0] && !title) {
+      dispatch(setTitle(e.target.files[0].name.split(".")[0]));
     }
   };
 
@@ -182,23 +254,27 @@ const CreatePhoto = () => {
         >
           {/*заголовок*/}
           <div className="flex flex-col gap-1">
-            <Label htmlFor="title" wrongFormat={wrongFormatTitle}>
-              * Заголовок фото:
-            </Label>
+            <Label htmlFor="title">* Заголовок фото:</Label>
             <input
               id="title"
               type="text"
               name="title"
-              ref={tilteInput}
+              value={title}
               placeholder="Заголовок"
               onChange={(e) => dispatch(setTitle(e.target.value))}
               className={inputStyle}
             />
+            {wrongFormatState.title && (
+              <div className="relative">
+                <MdError className="text-xl text-red-600 absolute top-[2px] left-0" />
+                <span className="ml-7">{wrongFormatState.title}</span>
+              </div>
+            )}
           </div>
 
           {/*изображение*/}
           <div className="flex flex-col gap-1">
-            <Label wrongFormat={wrongFormatImgUrl}>
+            <Label>
               * Изображение в формате jpg / jpeg / png / webp, размером не
               больше 5 MБ:
             </Label>
@@ -215,59 +291,58 @@ const CreatePhoto = () => {
                 onChange={changeFileHandler}
                 className="hidden"
               />
-              <ActionButton
-                className="p-2 text-xl rounded-md"
-                onClick={(e) => {
-                  e.preventDefault();
-                  uploadFile(file);
-                }}
-              >
-                <FaUpload />
-              </ActionButton>
             </div>
-            {uploadMessage && (
-              <div className="flex gap-3 items-center">
-                <span>{uploadMessage}</span>
-                <GiConfirmed className="text-xl text-green-600" />
-              </div>
-            )}
-            {error && (
+            {wrongFormatState.imgUrl && (
               <div className="relative">
                 <MdError className="text-xl text-red-600 absolute top-[2px] left-0" />
-                <span className="ml-7">{error}</span>
+                <span className="ml-7">{wrongFormatState.imgUrl}</span>
               </div>
             )}
           </div>
 
           {/*Категория*/}
-          <Label htmlFor="category" wrongFormat={wrongFormatCategory}>
-            * Категория:
-          </Label>
-          <div
-            id="category"
-            className="flex flex-col gap-3 justify-center items-start"
-          >
-            <ActionButton
-              onClick={() => dispatch(setCategory(categories[1]))}
-              disabled={categories[1] === category}
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="category">* Категория:</Label>
+            <div
+              id="category"
+              className="flex flex-col gap-3 justify-center items-start"
             >
-              {categories[1]}
-            </ActionButton>
-            <ActionButton
-              onClick={() => dispatch(setCategory(categories[2]))}
-              disabled={categories[2] === category}
-            >
-              {categories[2]}
-            </ActionButton>
-            <ActionButton
-              onClick={() => dispatch(setCategory(categories[3]))}
-              disabled={categories[3] === category}
-            >
-              {categories[3]}
-            </ActionButton>
+              <ActionButton
+                onClick={() => dispatch(setCategory(categories[1]))}
+                disabled={categories[1] === category}
+              >
+                {categories[1]}
+              </ActionButton>
+              <ActionButton
+                onClick={() => dispatch(setCategory(categories[2]))}
+                disabled={categories[2] === category}
+              >
+                {categories[2]}
+              </ActionButton>
+              <ActionButton
+                onClick={() => dispatch(setCategory(categories[3]))}
+                disabled={categories[3] === category}
+              >
+                {categories[3]}
+              </ActionButton>
+            </div>
+            {wrongFormatState.category && (
+              <div className="relative">
+                <MdError className="text-xl text-red-600 absolute top-[2px] left-0" />
+                <span className="ml-7">{wrongFormatState.category}</span>
+              </div>
+            )}
           </div>
 
-          <Label wrongFormat={wrongFormatDescription}>
+          <Label
+            wrongFormat={
+              !!(
+                wrongFormatState.title ||
+                wrongFormatState.imgUrl ||
+                wrongFormatState.category
+              )
+            }
+          >
             *отмечены поля, обязательные к заполнению
           </Label>
 

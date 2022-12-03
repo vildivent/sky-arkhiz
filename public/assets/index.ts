@@ -1,4 +1,4 @@
-import mainBg from "./bg.png";
+import mainBg from "./bg.jpg";
 import btaBg1 from "./btaBg1.jpg";
 import bgStars4k from "./bg-stars-4k.png";
 import closeWhiteIcon from "./close-white.svg";

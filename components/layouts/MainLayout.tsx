@@ -1,15 +1,13 @@
 import { ReactNode, useState } from "react";
 import Head from "next/head";
-
 import useBackground from "../../utils/hooks/useBackground";
 import { _title, _keywords, _description } from "../../constasnts";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 import Background from "../Background";
-import { gallery19 } from "../../public/assets/gallery";
 import { navLinks } from "../../constasnts";
-import { mobileBg } from "../../public/assets";
+import { mainBg, mobileBg } from "../../public/assets";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -23,7 +21,7 @@ export function MainLayout({
   h1Props,
 }: MainLayoutProps) {
   const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
-  const bg = useBackground(gallery19, mobileBg);
+  const bg = useBackground(mainBg, mobileBg);
   const fullTitle = `${title || _title} | Ночные экскурсии Архыз`;
   return (
     <>

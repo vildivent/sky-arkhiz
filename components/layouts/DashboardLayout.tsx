@@ -8,8 +8,7 @@ import Navbar from "../Navbar";
 import Background from "../Background";
 import Sidebar from "../Sidebar";
 import { dashboardLinks } from "../../constasnts";
-import { gallery3 } from "../../public/assets/gallery";
-import { mobileBg } from "../../public/assets";
+import { mainBg, mobileBg } from "../../public/assets";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -23,7 +22,7 @@ const DashboardLayout = ({
   h1Props,
 }: DashboardLayoutProps) => {
   const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
-  const bg = useBackground(gallery3, mobileBg);
+  const bg = useBackground(mainBg, mobileBg);
   const router = useRouter();
 
   const handleLogout = async () => {
