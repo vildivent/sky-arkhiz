@@ -351,9 +351,6 @@ const CreatePhoto = () => {
           >
             *отмечены поля, обязательные к заполнению
           </Label>
-          {loading && (
-            <Image src={loadingGif} alt="loading" width={40} height={40} />
-          )}
 
           <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
             <ActionButton
@@ -364,7 +361,11 @@ const CreatePhoto = () => {
                 submitHandler();
               }}
             >
-              Подтвердить
+              {loading ? (
+                <Image src={loadingGif} alt="loading" width={20} height={20} />
+              ) : (
+                <span>Подтвердить</span>
+              )}
             </ActionButton>
             <ResetButton onClick={resetHandler}>Сбросить поля</ResetButton>
             <CancelButton onClick={cancelHandler}>Отменить</CancelButton>
