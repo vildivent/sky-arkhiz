@@ -24,6 +24,8 @@ import axios from "axios";
 import { MdError } from "react-icons/md";
 import type { AxiosResponse, AxiosError } from "axios";
 import translit from "../../../utils/translit";
+import Image from "next/image";
+import { loadingGif } from "../../../public/assets";
 
 const fileAPI = process.env.NEXT_PUBLIC_FILE_API_URL;
 
@@ -81,6 +83,7 @@ const CreatePhoto = () => {
   );
 
   const [file, setFile] = useState<File>();
+  const [loading, setLoading] = useState(false);
   const preview = useImgPreview(file);
 
   const { title, imgUrl, aspectRatio, category } = useAppSelector(
@@ -186,7 +189,7 @@ const CreatePhoto = () => {
         payload: "Выберите файл",
       });
       uploadData.error = "Отсутствует файл";
-    } else {
+    } else if (!imgUrl) {
       const response = await uploadFile();
       uploadData = { ...response };
     }
@@ -204,6 +207,7 @@ const CreatePhoto = () => {
 
       router.push("/dashboard/photogallery");
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -237,6 +241,8 @@ const CreatePhoto = () => {
 
   const changeFileHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files[0]);
+    dispatch(setImgUrl(""));
+    dispatch(setAspectRatio(0));
     dispatchFormat({ type: ActionKind.setImgUrlError, payload: "" });
 
     if (e.target.files[0] && !title) {
@@ -345,9 +351,21 @@ const CreatePhoto = () => {
           >
             *отмечены поля, обязательные к заполнению
           </Label>
+          {loading && (
+            <Image src={loadingGif} alt="loading" width={40} height={40} />
+          )}
 
           <div className="grid grid-cols-2 gap-2 flex-wrap items-center justify-center mt-4">
-            <ActionButton onClick={submitHandler}>Подтвердить</ActionButton>
+            <ActionButton
+              disabled={loading}
+              onClick={(e) => {
+                e.preventDefault();
+                setLoading(true);
+                submitHandler();
+              }}
+            >
+              Подтвердить
+            </ActionButton>
             <ResetButton onClick={resetHandler}>Сбросить поля</ResetButton>
             <CancelButton onClick={cancelHandler}>Отменить</CancelButton>
           </div>
