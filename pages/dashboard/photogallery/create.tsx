@@ -118,7 +118,7 @@ const CreatePhoto = () => {
       console.log("Файл загружен!");
       return {
         error: "",
-        imgUrl: res.data.filenames[0],
+        imgUrl: `${fileAPI}skyarhyz/${res.data.filenames[0]}`,
         aspectRatio: res.data.aspectRatio[0],
       };
     } catch (error) {
