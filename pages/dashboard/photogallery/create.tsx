@@ -255,7 +255,7 @@ const CreatePhoto = () => {
       <div className="mx-auto">
         <form
           id="formAddNewPhoto"
-          className="sm:w-1/2 w-full mx-auto py-10 flex flex-col justify-center gap-3"
+          className="sm:w-1/2 w-full mx-auto py-10 flex flex-col justify-center gap-5"
           onSubmit={(e) => e.preventDefault()}
         >
           {/*заголовок*/}
@@ -279,7 +279,7 @@ const CreatePhoto = () => {
           </div>
 
           {/*изображение*/}
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-3">
             <Label>
               * Изображение в формате jpg / jpeg / png / webp, размером не
               больше 5 MБ:
