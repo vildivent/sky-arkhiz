@@ -373,8 +373,7 @@ const CreatePhoto = () => {
         </form>
       </div>
 
-      <div className="flex flex-col items-center gap-5">
-        {!fileAPI && imgUrl && <img src={imgUrl} alt="preview" />}
+      <div className="flex justify-center">
         {fileAPI && file && <img src={preview} alt={file.name} />}
       </div>
     </DashboardLayout>

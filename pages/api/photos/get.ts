@@ -1,5 +1,6 @@
 import connectMongo from "../../../utils/connectMongo";
 import Photo from "../../../models/Photo";
+import { categories } from "../../../constasnts";
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { FilterQuery } from "mongoose";
 
@@ -37,7 +38,9 @@ const getPhotos = async (req: NextApiRequest, res: NextApiResponse) => {
     if (q) {
       filter = { ...filter, $text: { $search: `\"${q}\"` } };
     }
-    const photos = await Photo.find(filter).sort("-createdAt");
+    const photos = await Photo.find(filter).sort(
+      category === categories[1] ? { createdAt: 1 } : { createdAt: -1 }
+    );
     const numFound = photos.length;
 
     if (limit) {

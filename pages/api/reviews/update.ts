@@ -1,24 +1,27 @@
 import Review from "../../../models/Review";
 import connectMongo from "../../../utils/connectMongo";
 import * as jose from "jose";
-
-/**
- * @param {import("next").NextApiRequest} req
- * @param {import("next").NextApiResponse} res
- */
+import type { NextApiRequest, NextApiResponse } from "next";
+import type { FilterQuery } from "mongoose";
+import type { UpdateReviewParams } from "../../../redux/features/review/reviewSlice";
 
 const secret = process.env.NEXT_PUBLIC_SECRET;
 
-export default async function updateReview(req, res) {
+export default async function updateReview(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
     await connectMongo();
-    console.log("Mongo connected!");
+    console.log("Mongo connected! Update Reviews request");
 
-    const { id, checked, upvotes, downvotes, views } = req.body;
-    const filter = { _id: id };
+    const { id, checked, upvotes, downvotes, views } =
+      req.body as UpdateReviewParams;
+    const filter: FilterQuery<typeof Review> = { _id: id };
     const jwt = req.cookies["SkyArkhyzJWT"];
 
     if (!id) return res.status(400).json({ message: "Отсутствует id отзыва" });
+
     const reviewBeforeUpdate = await Review.findOne(filter);
     if (!reviewBeforeUpdate)
       return res.status(404).json({ message: `Отзыв с id:${id} не найден` });

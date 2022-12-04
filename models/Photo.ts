@@ -5,7 +5,7 @@ export interface IPhoto extends Document {
   title: string;
   imgUrl: string;
   aspectRatio: number;
-  category?: string;
+  category: string;
   views?: number;
 
   createdAt: Date;
@@ -17,7 +17,7 @@ const PhotoSchema = new Schema<IPhoto, Model<IPhoto>>(
     title: { type: String, required: true },
     imgUrl: { type: String, required: true },
     aspectRatio: { type: Number, required: true },
-    category: { type: String, default: "" },
+    category: { type: String, required: true },
     views: { type: Number, default: 0 },
   },
   { timestamps: true }
