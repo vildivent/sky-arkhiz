@@ -388,6 +388,12 @@ const CreateReview = () => {
               onChange={(e) => {
                 dispatch(setParagraph(e.target.value));
               }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  paragraph && dispatch(pushParagraph());
+                }
+              }}
               placeholder="Напишите отзыв здесь"
               className={`${inputStyle} resize-none`}
             />
