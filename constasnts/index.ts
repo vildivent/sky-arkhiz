@@ -122,6 +122,10 @@ export const navLinks: NavLinks = [
     ],
   },
   {
+    id: "about",
+    title: "Обо мне",
+  },
+  {
     id: "contacts",
     title: "Контакты",
   },

@@ -19,7 +19,7 @@ export const ElseToDoCard = forwardRef<HTMLDivElement, ElseToDoCardProps>(
                 height={305}
               />
 
-              <h3 className="font-h1 text-2xl px-3 sm:text-3xl xl:text-3xl text-center">
+              <h3 className="font-h2 px-3 text-xl sm:text-2xl xl:text-3xl text-center">
                 {title}
               </h3>
             </div>

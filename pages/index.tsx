@@ -6,12 +6,12 @@ import {
   AboutExcursions,
   Webcams,
   Gallery,
-  // AstronomyCards,
   ElseToDo,
   Request,
 } from "../components/HomePage/Sections";
 import HomePageLayout from "../components/layouts/HomePageLayout";
 import WhatYoullSee from "../components/HomePage/Sections/WhatYoullSee";
+import About from "../components/HomePage/Sections/About";
 
 const Home = () => {
   const getReferalCookie = async (ref: string | string[]) =>
@@ -33,7 +33,7 @@ const Home = () => {
         <AboutExcursions />
         <Gallery />
         <WhatYoullSee />
-        {/* <AstronomyCards /> */}
+        <About />
         <Webcams />
         <ElseToDo />
         <Request />

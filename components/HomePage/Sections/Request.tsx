@@ -31,14 +31,15 @@ const Request = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.3, once: true }}
-      className="p-5 pb-20 flex flex-col gap-10 bg-[#151515]"
+      className="p-5 pb-10 flex flex-col gap-5 bg-[#151515]"
     >
       <motion.h2
         variants={headingAnimation}
         custom={1}
         className="font-h1 text-3xl sm:text-4xl xl:text-5xl text-center"
       >
-        Уже посмотрели на звёзды? Оставьте отзыв
+        Уже посетили экскурсию?
+        <br /> Поделитесь своими впечатлениями
       </motion.h2>
 
       <motion.div

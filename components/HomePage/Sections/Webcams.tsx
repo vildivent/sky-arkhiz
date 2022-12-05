@@ -37,63 +37,68 @@ const Webcams = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.2, once: true }}
-      className="p-5 flex md:flex-row flex-col bg-[#151515] gap-5 md:justify-around overflow-hidden items-center"
+      className="flex flex-col gap-5 overflow-hidden items-center bg-[#151515] p-5"
     >
-      <motion.div
-        variants={imgAnimation}
-        whileHover={{
-          scale: 1.1,
-          transition: { duration: 0.3 },
-        }}
-        className="md:w-[50vw] w-[80vw] rounded-full md:h-[50vw] h-[80vw] shadow-lg shadow-black hover:scale-[1.02] m-10 "
+      <motion.h2
+        variants={textAnimation}
+        custom={2}
+        className="font-h1 text-3xl text-center sm:text-4xl xl:text-5xl"
       >
-        <Link href="/webcams/">
-          <a>
-            <Image
-              src={cameraPreview}
-              alt="Небо над обсерваторией"
-              placeholder="blur"
-              layout="responsive"
-            />
-          </a>
-        </Link>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.4, once: true }}
-        className="flex flex-col justify-center md:w-1/2 text-start gap-5 md:max-w-[30%] mx-5 md:mx-0"
-      >
-        <motion.h2
-          variants={textAnimation}
-          custom={2}
-          className="font-h1 text-3xl text-center sm:text-4xl xl:text-5xl"
+        Камеры
+      </motion.h2>
+      <div className="flex flex-col items-center gap-5 md:gap-0 md:flex-row md:justify-around">
+        <motion.div
+          variants={imgAnimation}
+          whileHover={{
+            scale: 1.1,
+            transition: { duration: 0.3 },
+          }}
+          className="md:w-[50vw] w-[80vw] rounded-full md:h-[50vw] h-[80vw] shadow-lg shadow-black hover:scale-[1.02]"
         >
-          Камеры
-        </motion.h2>
-        <motion.p className="my-0" variants={textAnimation} custom={5}>
-          В Специальной Астрофизической Обсерватории, около которой проводятся
-          экскурсии, находятся различные камеры - обзора неба и окрестностей,
-          камеры внутри обсерватории и пр.
-        </motion.p>
-        <motion.p className="my-0" variants={textAnimation} custom={8}>
-          Вы можете заглянуть в некоторые из них и увидеть ночное небо, красивые
-          виды вокруг обсерватории, а так же обстановку внутри и снаружи.
-        </motion.p>
-        <div>
-          <motion.div variants={textAnimation} custom={10}>
-            <Link href="/webcams/">
-              <a>
-                <div className="flex justify-center">
+          <Link href="/webcams/">
+            <a>
+              <Image
+                src={cameraPreview}
+                alt="Небо над обсерваторией"
+                placeholder="blur"
+                layout="responsive"
+              />
+            </a>
+          </Link>
+        </motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.4, once: true }}
+          className="flex flex-col justify-center md:w-1/2 text-start gap-5 md:max-w-[30%]"
+        >
+          <motion.p className="m-0" variants={textAnimation} custom={5}>
+            В Специальной Астрофизической Обсерватории, около которой проводятся
+            экскурсии, находятся различные камеры - обзора неба и окрестностей,
+            камеры внутри обсерватории и пр.
+          </motion.p>
+          <motion.p className="m-0" variants={textAnimation} custom={8}>
+            Вы можете заглянуть в некоторые из них и увидеть ночное небо,
+            красивые виды вокруг обсерватории, а так же обстановку внутри и
+            снаружи.
+          </motion.p>
+          <div>
+            <motion.div
+              variants={textAnimation}
+              custom={10}
+              className="flex justify-center w-full m-0"
+            >
+              <Link href="/webcams/">
+                <a>
                   <ActionButton className={style.button}>
                     Посмотреть
                   </ActionButton>
-                </div>
-              </a>
-            </Link>
-          </motion.div>
-        </div>
-      </motion.div>
+                </a>
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </motion.section>
   );
 };

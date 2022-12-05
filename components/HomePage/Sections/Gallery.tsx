@@ -43,49 +43,53 @@ const Gallery = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.1, once: true }}
-      className={`h-full w-full flex flex-col sm:flex-row justify-around overflow-hidden bg-[#151515] sm:p-5`}
+      className="h-full w-full flex flex-col items-center overflow-hidden gap-5 py-5 md:p-5"
     >
-      <div className="sm:w-[60%] w-full flex gap-3 flex-col">
-        <motion.h2
-          variants={headingAnimation}
-          custom={1}
-          className="font-h1 text-3xl sm:text-4xl xl:text-5xl text-center my-5"
-        >
-          Объекты, наблюдаемые на экскурсии:
-        </motion.h2>
-        <ImageSlider>
-          <ImageSlide src={sliderImage1} />
-          <ImageSlide src={sliderImage2} />
-          <ImageSlide src={sliderImage3} />
-          <ImageSlide src={sliderImage4} />
-          <ImageSlide src={sliderImage5} />
-          <ImageSlide src={sliderImage6} />
-          <ImageSlide src={sliderImage7} />
-          <ImageSlide src={sliderImage8} />
-        </ImageSlider>
-      </div>
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.1, once: true }}
-        className="sm:max-w-[25%] flex flex-col justify-center"
+      <motion.h2
+        variants={headingAnimation}
+        custom={1}
+        className="font-h1 text-3xl sm:text-4xl xl:text-5xl text-center mx-5"
       >
-        <motion.p variants={textAnimation} custom={1} className="mx-10 sm:mx-0">
-          Вы сможете рассмотреть через телескоп интересные и различные по типу
-          объекты, доступные в данное время года и ночи.
-        </motion.p>
-        <motion.p
-          variants={textAnimation}
-          custom={3}
-          className="w-full flex justify-center"
+        Объекты, наблюдаемые на экскурсии
+      </motion.h2>
+      <div className="w-full flex flex-col md:flex-row md:justify-around gap-5 md:gap-0 items-center">
+        <div className="w-full md:w-[60%]">
+          <ImageSlider>
+            <ImageSlide src={sliderImage1} />
+            <ImageSlide src={sliderImage2} />
+            <ImageSlide src={sliderImage3} />
+            <ImageSlide src={sliderImage4} />
+            <ImageSlide src={sliderImage5} />
+            <ImageSlide src={sliderImage6} />
+            <ImageSlide src={sliderImage7} />
+            <ImageSlide src={sliderImage8} />
+          </ImageSlider>
+        </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.1, once: true }}
+          className="md:max-w-[25%] flex flex-col justify-center items-center gap-5 mx-5 md:mx-0"
         >
-          <Link href="/photogallery/">
-            <a>
-              <ActionButton className={style.button}>Фотогалерея</ActionButton>
-            </a>
-          </Link>
-        </motion.p>
-      </motion.div>
+          <motion.p variants={textAnimation} custom={1} className="m-0">
+            Вы сможете рассмотреть через телескоп интересные и различные по типу
+            объекты, доступные в данное время года и ночи.
+          </motion.p>
+          <motion.p
+            variants={textAnimation}
+            custom={3}
+            className="w-full flex justify-center m-0"
+          >
+            <Link href="/photogallery/">
+              <a>
+                <ActionButton className={style.button}>
+                  Фотогалерея
+                </ActionButton>
+              </a>
+            </Link>
+          </motion.p>
+        </motion.div>
+      </div>
     </motion.section>
   );
 };

@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 
 export const ImageSlide = ({ src }: ImageSlideProps) => {
   return (
-    <div className="flex justify-center items-center relative sm:h-[40vw] h-[70vw] select-none">
+    <div className="flex justify-center items-center relative md:h-[40vw] h-[70vw] select-none">
       <Image
         src={src}
         alt="slider photo"

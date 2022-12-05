@@ -21,7 +21,7 @@ const Footer = () => {
           </Link>
         </div>
         <div className="">
-          <h1 className={`${style.h2} text-[21px]`}>Контакты</h1>
+          <h1 className={`${style.h1} text-[21px]`}>Контакты</h1>
           <div
             className={`${style.p} w-full flex justify-center text-center my-3 sm:my-10 opacity-80`}
           >
