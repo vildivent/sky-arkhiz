@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef, useReducer } from "react";
 import type { MouseEventHandler, ChangeEvent } from "react";

@@ -11,6 +11,7 @@ import {
   Request,
 } from "../components/HomePage/Sections";
 import HomePageLayout from "../components/layouts/HomePageLayout";
+import WhatYoullSee from "../components/HomePage/Sections/WhatYoullSee";
 
 const Home = () => {
   const getReferalCookie = async (ref: string | string[]) =>
@@ -31,6 +32,7 @@ const Home = () => {
         <Hero />
         <AboutExcursions />
         <Gallery />
+        <WhatYoullSee />
         {/* <AstronomyCards /> */}
         <Webcams />
         <ElseToDo />
