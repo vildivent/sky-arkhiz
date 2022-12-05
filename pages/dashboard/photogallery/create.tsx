@@ -215,11 +215,6 @@ const CreatePhoto = () => {
   }, [title]);
 
   useEffect(() => {
-    if (imgUrl && aspectRatio)
-      dispatchFormat({ type: ActionKind.setImgUrlError, payload: "" });
-  }, [imgUrl, aspectRatio]);
-
-  useEffect(() => {
     if (category)
       dispatchFormat({ type: ActionKind.setCategoryError, payload: "" });
   }, [category]);
@@ -286,7 +281,10 @@ const CreatePhoto = () => {
             </Label>
             <div className="flex gap-3">
               <ActionButton onClick={() => hiddenFileInput.current.click()}>
-                {file ? file.name : "Выберите файл..."}
+                {file
+                  ? file.name.slice(0, 24) +
+                    (file.name.length > 25 ? "..." : "")
+                  : "Выберите файл..."}
               </ActionButton>
               <input
                 id="imgUrl"

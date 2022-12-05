@@ -8,7 +8,6 @@ const InputName = ({ className, onChange, value }: InputNameProps) => {
       minLength={2}
       maxLength={20}
       placeholder="Ваше имя"
-      required
       onChange={(e) => {
         onChange(e);
       }}
@@ -24,4 +23,5 @@ type InputNameProps = {
   className?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   value: string;
+  id?: string;
 };
