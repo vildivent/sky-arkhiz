@@ -110,7 +110,7 @@ export const deleteReview = createAsyncThunk<
 >("review/deleteReview", async (params, { rejectWithValue }) => {
   const res: AxiosResponse<DeleteReviewResponse> = await axios.delete(
     "/api/reviews/delete",
-    { params }
+    params
   );
   if (res.status !== 200) {
     return rejectWithValue(res.data.message);
