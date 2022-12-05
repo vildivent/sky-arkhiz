@@ -117,6 +117,8 @@ const CreateReview = () => {
     text,
   } = useAppSelector((state) => state.newReviewForm);
 
+  const { error } = useAppSelector((state) => state.review);
+
   const starArray = [1, 2, 3, 4, 5];
 
   const uploadFile = async (
@@ -268,15 +270,15 @@ const CreateReview = () => {
         photoUrl: photoUrl || uploadPhotoData.imgUrl,
         photoAspectRatio: photoAspectRatio || uploadPhotoData.aspectRatio,
       };
-      if (paragraph) {
-        data.text = [...text, paragraph];
-      }
+      if (paragraph) data.text = [...text, paragraph];
 
       dispatch(createReview(data));
-      dispatch(reset());
-      console.log("Отзыв добавлен и находится на проверке");
 
-      router.push("/reviews/success");
+      if (!error) {
+        dispatch(reset());
+        console.log("Отзыв добавлен и находится на проверке");
+        router.push("/reviews/success");
+      }
     }
     setLoading(false);
   };

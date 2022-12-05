@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: ReviewForm = {
   name: "",
-  text: [""],
+  text: [],
   stars: 0,
   paragraph: "",
   avatarUrl: "",

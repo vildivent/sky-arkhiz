@@ -176,7 +176,7 @@ export const reviewSlice = createSlice({
       .addMatcher(
         (action: AnyAction) => action.type.endsWith("rejected"),
         (state: ReviewState, action: PayloadAction<string>) => {
-          state.error = action.payload;
+          state.error = action.payload || "error";
           state.loading = false;
           console.error(state.error);
         }
