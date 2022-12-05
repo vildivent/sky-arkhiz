@@ -28,12 +28,14 @@ const deleteReview = async (req: NextApiRequest, res: NextApiResponse) => {
 
     console.log("Review deleted from db!");
 
-    await fetch(review.avatarUrl, {
-      method: "delete",
-    });
-    await fetch(review.photoUrl, {
-      method: "delete",
-    });
+    if (review.avatarUrl)
+      await fetch(review.avatarUrl, {
+        method: "delete",
+      });
+    if (review.photoUrl)
+      await fetch(review.photoUrl, {
+        method: "delete",
+      });
     console.log("Review deleted from storage!");
 
     res.status(200).json({ deletedReview: review, message: "Отзыв удалён!" });
