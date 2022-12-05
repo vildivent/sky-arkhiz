@@ -2,8 +2,18 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { style } from "../../../styles/style";
 import { ActionButton } from "../../Buttons";
-import ImageSlider from "../../ImageSlider";
+import ImageSlider, { ImageSlide } from "../../ImageSlider";
 import "react-slideshow-image/dist/styles.css";
+import {
+  sliderImage1,
+  sliderImage2,
+  sliderImage3,
+  sliderImage4,
+  sliderImage5,
+  sliderImage6,
+  sliderImage7,
+  sliderImage8,
+} from "../../../public/assets/gallery/observed objects";
 
 const textAnimation = {
   hidden: {
@@ -33,7 +43,7 @@ const Gallery = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.1, once: true }}
-      className={`h-full w-full flex flex-col sm:flex-row justify-around overflow-hidden bg-[#151515] p-2 sm:p-5`}
+      className={`h-full w-full flex flex-col sm:flex-row justify-around overflow-hidden bg-[#151515] sm:p-5`}
     >
       <div className="sm:w-[60%] w-full flex gap-3 flex-col">
         <motion.h2
@@ -43,7 +53,16 @@ const Gallery = () => {
         >
           Объекты, наблюдаемые на экскурсии:
         </motion.h2>
-        <ImageSlider />
+        <ImageSlider>
+          <ImageSlide src={sliderImage1} />
+          <ImageSlide src={sliderImage2} />
+          <ImageSlide src={sliderImage3} />
+          <ImageSlide src={sliderImage4} />
+          <ImageSlide src={sliderImage5} />
+          <ImageSlide src={sliderImage6} />
+          <ImageSlide src={sliderImage7} />
+          <ImageSlide src={sliderImage8} />
+        </ImageSlider>
       </div>
       <motion.div
         initial="hidden"

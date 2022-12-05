@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import ImageSlider from "../../ImageSlider";
+import ImageSlider, { ImageSlide } from "../../ImageSlider";
 import "react-slideshow-image/dist/styles.css";
-import useDimentions from "../../../utils/hooks/useDimetions";
+
+import {
+  slider2Image1,
+  slider2Image2,
+  slider2Image3,
+  slider2Image4,
+  slider2Image5,
+  slider2Image6,
+} from "../../../public/assets/gallery/you will see";
+import { IoIosArrowDown } from "react-icons/io";
 
 const textAnimation = {
   hidden: {
@@ -28,13 +37,15 @@ const headingAnimation = {
 
 const WhatYoullSee = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { windowDimentions } = useDimentions();
-  const ratio = (100 * windowDimentions.width) / windowDimentions.height;
-  const size = `h-[${ratio.toFixed(0)}vh]`;
 
   return (
-    <section
-      className={`h-full w-full flex flex-col sm:flex-row justify-around overflow-hidden sm:px-5`}
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ amount: 0.1, once: true }}
+      className={`h-full w-full flex flex-col sm:flex-row justify-around overflow-hidden sm:px-5 ${
+        isOpen ? "pb-5" : ""
+      }`}
     >
       <div className="flex flex-col justify-center">
         <motion.h2
@@ -44,53 +55,70 @@ const WhatYoullSee = () => {
         >
           Как видно глазом в телескоп
         </motion.h2>
-        <button
+        <motion.button
+          variants={headingAnimation}
+          custom={2}
           className="mb-5 mx-auto"
           onClick={() => setIsOpen((prev) => !prev)}
         >
-          Подробнее
-        </button>
-        <div
-          className={`transition-all duration-300 ${
-            isOpen ? `${size}` : "h-[0vh] pointer-events-none"
-          }`}
+          {
+            <div className="flex items-center gap-2 text-cyan-500 hover:text-white ">
+              <span className="transition-all duration-300">Подробнее</span>
+              <IoIosArrowDown
+                className={`transition-all duration-300 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+          }
+        </motion.button>
+        <motion.div
+          className="h-full w-full lg:flex flex-row justify-around"
+          animate={{
+            height: isOpen ? "auto" : 0,
+            transition: {
+              duration: 0.5,
+            },
+          }}
         >
-          <div className={`sm:w-[80vw] w-[100vw] mx-auto ${isOpen ? "" : ""}`}>
-            <ImageSlider />
+          <div className={`sm:w-[60vw] w-[100vw] mx-auto`}>
+            <ImageSlider>
+              <ImageSlide src={slider2Image1} />
+              <ImageSlide src={slider2Image2} />
+              <ImageSlide src={slider2Image3} />
+              <ImageSlide src={slider2Image4} />
+              <ImageSlide src={slider2Image5} />
+              <ImageSlide src={slider2Image6} />
+            </ImageSlider>
           </div>
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ amount: 0.1, once: true }}
-            className={`mx-10`}
+            className={`mx-10 my-auto`}
           >
-            <motion.p variants={textAnimation} custom={1} className="">
+            <motion.p variants={textAnimation} custom={1} className="mx-0">
               Красочные изображения, какие все привыкли видеть на фотографиях в
               интернете, глазом через телескоп вы не сможете увидеть.
             </motion.p>
-            <motion.p variants={textAnimation} custom={2} className="">
+            <motion.p variants={textAnimation} custom={2} className="mx-0">
               К сожалению наши глаза не фотоаппараты и имеют ограниченную
               чувствительность. К тому же атмосфера Земли искажает видимость
               космических объектов.
             </motion.p>
-            <motion.p variants={textAnimation} custom={3} className="">
+            <motion.p variants={textAnimation} custom={3} className="mx-0">
               Однако с лёгкостью можно наблюдать в телескоп кратеры на Луне,
               облака на Юпитере и его спутники, кольца Сатурна, ледяную шапку на
               полюсе Марса, различные звёздные скопления.
             </motion.p>
-            <motion.p variants={textAnimation} custom={4} className="">
+            <motion.p variants={textAnimation} custom={4} className="mx-0">
               А при чистой атмосфере, отсутствии засветки и нужной подготовке
               глаз, возможно рассмотреть туманности и далёкие галактики.
             </motion.p>
-            <motion.p variants={textAnimation} custom={5} className="">
-              Заглянув в телескоп вы получите возможность собственными глазами
-              увидеть интересные космические объекты и получите массу приятных
-              эмоций и впечатлений.
-            </motion.p>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

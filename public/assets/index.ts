@@ -26,7 +26,6 @@ import ratan600 from "./ratan600.jpg";
 import planetarium from "./planetarium.jpg";
 import btaMobile from "./bta-mobile.webp";
 import celestron from "./Celestron.png";
-import sliderImage1 from "./image1.png";
 import cardImage1 from "./cardImage1.png";
 import cameraPreview from "./camera-preview.png";
 import planetariumSmall from "./planetarium-small.png";
@@ -66,7 +65,6 @@ export {
   planetarium,
   btaMobile,
   celestron,
-  sliderImage1,
   cardImage1,
   cameraPreview,
   planetariumSmall,
