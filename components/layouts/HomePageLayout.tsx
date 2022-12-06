@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Head from "next/head";
-
 import { _title, _keywords, _description } from "../../constasnts";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
@@ -8,8 +7,10 @@ import Footer from "../Footer";
 import { navLinks } from "../../constasnts";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
+import { logo } from "../../public/assets";
 
-const imgUrl = "/assets/telescope-logo.png";
+const imgUrl =
+  "https://skyarhyz.ru/_next/static/media/telescope-logo.08147157.png";
 
 const HomePageLayout = ({
   children,
@@ -28,7 +29,6 @@ const HomePageLayout = ({
         <meta name="image" content={imgUrl} />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://skyarhyz.ru/" />
         <meta
           property="og:title"
           content="Ночные экскурсии по звёздному небу Архыз"
