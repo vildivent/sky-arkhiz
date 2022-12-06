@@ -126,7 +126,7 @@ const CreatePhoto = () => {
       if (axios.isAxiosError(err)) {
         if (err.code === "ERR_NETWORK") {
           const errorMessage =
-            "Ошибка загрузки! Возможно размер файла превышает 5 MБ.";
+            "Ошибка загрузки! Возможно размер файла превышает 10 MБ.";
           console.error(errorMessage);
           dispatchFormat({
             type: ActionKind.setImgUrlError,
