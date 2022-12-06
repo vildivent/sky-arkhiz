@@ -24,6 +24,12 @@ const HomePageLayout = ({
         <meta name="keywords" content={keywords || _keywords} />
         <meta name="description" content={description || _description} />
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:title"
+          content="Ночные экскурсии по звёздному небу Архыз"
+        />
+        <meta property="og:description" content={description || _description} />
+        <meta property="og:image" content="/favicon.ico" />
       </Head>
 
       <Navbar setSidebarIsOpened={setSidebarIsOpened} navLinks={navLinks} />
