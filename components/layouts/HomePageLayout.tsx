@@ -29,7 +29,10 @@ const HomePageLayout = ({
           content="Ночные экскурсии по звёздному небу Архыз"
         />
         <meta property="og:description" content={description || _description} />
-        <meta property="og:image" content="/favicon.ico" />
+        <meta
+          property="og:image"
+          content="https://skyarhyz.ru/_next/static/media/telescope-logo1-cyan.7bd33f5b.svg"
+        />
       </Head>
 
       <Navbar setSidebarIsOpened={setSidebarIsOpened} navLinks={navLinks} />
