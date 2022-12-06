@@ -31,7 +31,7 @@ const HomePageLayout = ({
         />
         <meta property="og:description" content={description || _description} />
         <meta
-          property="og:image"
+          property="og:image:secure_url"
           itemProp="image"
           content="https://skyarhyz.ru/_next/static/media/telescope-logo1-cyan.7bd33f5b.svg"
         />
