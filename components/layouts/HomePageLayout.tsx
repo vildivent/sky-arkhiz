@@ -9,6 +9,9 @@ import { navLinks } from "../../constasnts";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
 
+const imgUrl =
+  "https://skyarhyz.ru/_next/static/media/telescope-logo1-cyan.7bd33f5b.svg";
+
 const HomePageLayout = ({
   children,
   title,
@@ -23,18 +26,16 @@ const HomePageLayout = ({
         <title>{fullTitle}</title>
         <meta name="keywords" content={keywords || _keywords} />
         <meta name="description" content={description || _description} />
-        <meta name="image" content="/favicon.ico" />
+        <meta name="image" content={imgUrl} />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://skyarhyz.ru/" />
         <meta
           property="og:title"
           content="Ночные экскурсии по звёздному небу Архыз"
         />
         <meta property="og:description" content={description || _description} />
-        <meta
-          property="og:image:secure_url"
-          itemProp="image"
-          content="https://skyarhyz.ru/_next/static/media/telescope-logo1-cyan.7bd33f5b.svg"
-        />
+        <meta property="og:image" itemProp="image" content={imgUrl} />
       </Head>
 
       <Navbar setSidebarIsOpened={setSidebarIsOpened} navLinks={navLinks} />
