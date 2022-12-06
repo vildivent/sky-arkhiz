@@ -9,7 +9,7 @@ import { navLinks } from "../../constasnts";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
 
-const imgUrl = "/assets//telescope-logo.png";
+const imgUrl = "/assets/telescope-logo.png";
 
 const HomePageLayout = ({
   children,
