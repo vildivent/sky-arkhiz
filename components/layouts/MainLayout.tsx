@@ -29,6 +29,7 @@ export function MainLayout({
         <title>{fullTitle}</title>
         <meta name="keywords" content={keywords || _keywords} />
         <meta name="description" content={description || _description} />
+        <meta name="image" content="/favicon.ico" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar setSidebarIsOpened={setSidebarIsOpened} navLinks={navLinks} />

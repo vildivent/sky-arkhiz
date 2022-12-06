@@ -460,7 +460,7 @@ const CreateReview = () => {
 
           <div>
             изображения должны быть в формате jpg / jpeg / png / webp и размером
-            не больше 5 MБ
+            не больше 10 MБ
           </div>
 
           <Label

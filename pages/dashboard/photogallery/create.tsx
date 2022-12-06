@@ -277,7 +277,7 @@ const CreatePhoto = () => {
           <div className="flex flex-col gap-3">
             <Label>
               * Изображение в формате jpg / jpeg / png / webp, размером не
-              больше 5 MБ:
+              больше 10 MБ:
             </Label>
             <div className="flex gap-3">
               <ActionButton onClick={() => hiddenFileInput.current.click()}>

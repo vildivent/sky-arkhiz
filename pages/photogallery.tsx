@@ -35,12 +35,6 @@ const Photogallery = () => {
           >
             {categories[3]}
           </ActionButton>
-          <ActionButton
-            onClick={() => setCategory(categories[0])}
-            disabled={categories[0] === category}
-          >
-            Все
-          </ActionButton>
         </div>
         <div className="grid sm:grid-cols-3 grid-cols-2 gap-2">
           {windowDimentions.width >= 640 ? (

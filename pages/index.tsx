@@ -27,7 +27,10 @@ const Home = () => {
   }, [router]);
 
   return (
-    <HomePageLayout title="Главная">
+    <HomePageLayout
+      title="Главная"
+      description="Запишитесь на экскурсию, и Вы сможете посмотреть через телескоп на звёздное небо, а текже узнать много нового про нашу вселенную."
+    >
       <main>
         <Hero />
         <AboutExcursions />
