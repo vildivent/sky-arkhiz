@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { cameraPreview } from "../../../public/assets";
 import { style } from "../../../styles/style";
 import { ActionButton } from "../../Buttons";
 
@@ -39,7 +37,7 @@ const About = () => {
         viewport={{ amount: 0.4, once: true }}
         className="flex flex-col justify-center text-center gap-5"
       >
-        <motion.p className="m-0" variants={textAnimation} custom={5}>
+        <motion.p className="m-0 font-bold" variants={textAnimation} custom={5}>
           Дмитрий Владимирович Гунько
         </motion.p>
         <motion.p className="m-0" variants={textAnimation} custom={8}>

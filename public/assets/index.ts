@@ -13,6 +13,7 @@ import ratan600 from "./ratan600.jpg";
 import planetarium from "./planetarium.jpg";
 import planetariumSmall from "./planetarium-small.png";
 import btaSmall from "./bta-small.png";
+import myPhoto from "./my-photo.png";
 
 import loadingGif from "./loading.svg";
 import transparentPlaceholder from "./transparent-placeholder.png";
@@ -59,4 +60,5 @@ export {
   transparentPlaceholder,
   bta360Mobile,
   btaSquare,
+  myPhoto,
 };
