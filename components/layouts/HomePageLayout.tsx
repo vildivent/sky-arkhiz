@@ -23,6 +23,7 @@ const HomePageLayout = ({
         <title>{fullTitle}</title>
         <meta name="keywords" content={keywords || _keywords} />
         <meta name="description" content={description || _description} />
+        <meta name="image" content="/favicon.ico" />
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:title"
@@ -31,6 +32,7 @@ const HomePageLayout = ({
         <meta property="og:description" content={description || _description} />
         <meta
           property="og:image"
+          itemProp="image"
           content="https://skyarhyz.ru/_next/static/media/telescope-logo1-cyan.7bd33f5b.svg"
         />
       </Head>
