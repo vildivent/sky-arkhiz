@@ -1,14 +1,13 @@
-/* eslint-disable react/display-name */
-/* eslint-disable @next/next/no-img-element */
-
-import { forwardRef } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import Moment from "react-moment";
 import { AiFillEye, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { IReview } from "../models/Review";
 import useUpdateReview from "../utils/hooks/reviews/useUpdateReview";
+import Image from "next/image";
+import useDimentions from "../utils/hooks/useDimetions";
 
 const ReviewItem = forwardRef<HTMLDivElement, ReviewItemProps>(
-  ({ review, createPage = false }, ref) => {
+  function ReviewItem({ review, createPage = false }, ref) {
     const {
       detailed,
       useful,
@@ -17,6 +16,36 @@ const ReviewItem = forwardRef<HTMLDivElement, ReviewItemProps>(
       clickDownvoteHandler,
     } = useUpdateReview(review, createPage);
     const starsArray = [1, 2, 3, 4, 5];
+
+    const { windowDimentions } = useDimentions();
+
+    const [avatarWidth, setAvatarWidth] = useState(0);
+    const [avatarHeight, setAvatarHeight] = useState(0);
+    const [photoWidth, setPhotWidth] = useState(0);
+    const [photoHeight, setPhotHeight] = useState(0);
+
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        const avatarMultiplier = 0.4;
+        const photoMultiplier = 1;
+        setAvatarWidth(windowDimentions.width * avatarMultiplier);
+        setAvatarHeight(
+          (windowDimentions.width * avatarMultiplier) / review.avatarAspectRatio
+        );
+        setPhotWidth(windowDimentions.width * photoMultiplier);
+        setPhotHeight(
+          (windowDimentions.width * photoMultiplier) / review.photoAspectRatio
+        );
+      }, 100);
+
+      return () => {
+        if (timeout) clearTimeout(timeout);
+      };
+    }, [
+      windowDimentions.width,
+      review.photoAspectRatio,
+      review.avatarAspectRatio,
+    ]);
 
     return (
       <div
@@ -28,11 +57,13 @@ const ReviewItem = forwardRef<HTMLDivElement, ReviewItemProps>(
           <h2 className={`font-h1 text-center text-2xl`}>{review.name}</h2>
 
           {review.avatarUrl && (
-            <div className="flex mx-auto h-[10rem] w-[10rem]">
-              <img
+            <div className="flex mx-auto h-[7rem] w-[7rem] bg-[#1e1e1e] rounded-full">
+              <Image
                 src={review.avatarUrl}
                 alt="avatar"
                 className="rounded-full object-cover object-center border mx-auto border-gray-500"
+                width={avatarWidth}
+                height={avatarHeight}
               />
             </div>
           )}
@@ -49,13 +80,18 @@ const ReviewItem = forwardRef<HTMLDivElement, ReviewItemProps>(
         </div>
 
         {/* блок с отзывом */}
-        <div className={`flex flex-col flex-wrap gap-3 sm:w-[70%] w-full`}>
-          <div className={`mt-3 flex max-h-[25rem] `}>
+        <div
+          className={`flex flex-col flex-wrap gap-3 sm:w-[70%] w-full relative`}
+        >
+          <div className={`mt-3 flex max-h-[25rem]`}>
             {review.photoUrl && (
-              <img
+              <Image
                 src={review.photoUrl}
                 alt="photo"
-                className="object-contain object-left"
+                className="object-contain object-center"
+                width={photoWidth}
+                height={photoHeight}
+                placeholder="empty"
               />
             )}
           </div>
