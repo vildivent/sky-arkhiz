@@ -197,6 +197,7 @@ const CreateNews = () => {
         text: [...text],
         imgUrl: imgUrl || uploadData.imgUrl,
         aspectRatio: aspectRatio || uploadData.aspectRatio,
+        srcUrl,
       };
       if (paragraph) data.text = [...text, paragraph];
 
