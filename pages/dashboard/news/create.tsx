@@ -90,7 +90,6 @@ const CreateNews = () => {
   const { title, imgUrl, srcUrl, aspectRatio, paragraph, text } =
     useAppSelector((state) => state.newPostForm);
   const { error } = useAppSelector((state) => state.post);
-  console.log(wrongFormatState);
 
   const uploadFile = async () => {
     const formData = new FormData();

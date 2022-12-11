@@ -71,20 +71,30 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
         {post.title}
       </h2>
 
-      <div className={`mt-3 flex justify-center relative min-h-[250px]`}>
-        {post.imgUrl && preview ? (
-          <img src={post.imgUrl} alt={post.title} className="object-contain" />
+      {post.imgUrl &&
+        (preview ? (
+          <div
+            className={`mt-3 flex justify-center relative h-[40vh] sm:h-[60vh]`}
+          >
+            <img
+              src={post.imgUrl}
+              alt={post.title}
+              className="object-contain"
+            />
+          </div>
         ) : (
-          <Image
-            src={post.imgUrl}
-            alt={post.title}
-            placeholder="empty"
-            className="bg-[#1e1e1e]"
-            width={imgWidth || 0}
-            height={imgHeight || 0}
-          />
-        )}
-      </div>
+          <div className={`mt-3 flex justify-center relative`}>
+            <Image
+              src={post.imgUrl}
+              alt={post.title}
+              placeholder="empty"
+              className="bg-[#1e1e1e]"
+              width={imgWidth || 0}
+              height={imgHeight || 0}
+            />
+          </div>
+        ))}
+
       {!detailed && <p className="font-p px-3 my-0">{post.text[0]}</p>}
 
       {detailed &&
