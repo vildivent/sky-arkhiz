@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { forwardRef, useState } from "react";
 import { AiFillEye } from "react-icons/ai";
@@ -53,8 +54,16 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
       </h2>
 
       <div className={`mt-3 flex justify-center max-h-[25rem]`}>
-        {post.imgUrl && (
-          <img src={post.imgUrl} alt="post img" className="object-contain" />
+        {post.imgUrl && preview ? (
+          <img src={post.imgUrl} alt={post.title} className="object-contain" />
+        ) : (
+          <Image
+            src={post.imgUrl}
+            alt={post.title}
+            className="object-contain"
+            width={400 / post.aspectRatio}
+            height={400}
+          />
         )}
       </div>
       {!detailed && <p className="font-p px-3 my-0">{post.text[0]}</p>}

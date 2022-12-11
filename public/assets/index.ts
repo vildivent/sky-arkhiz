@@ -31,7 +31,6 @@ import iconNowapp from "./icon-nowapp.png";
 import iconPhone from "./icon-phone.svg";
 
 import cardImage1 from "./cardImage1.png";
-import logo from "./telescope-logo.png";
 
 export {
   mainBg,
@@ -62,5 +61,4 @@ export {
   bta360Mobile,
   btaSquare,
   myPhoto,
-  logo,
 };

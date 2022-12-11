@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: PostForm = {
   title: "",
   imgUrl: "",
+  aspectRatio: 0,
   srcUrl: "",
   paragraph: "",
   text: [],
@@ -17,6 +18,9 @@ export const newPostFormSlice = createSlice({
     },
     setImgUrl: (state, action: PayloadAction<string>) => {
       state.imgUrl = action.payload;
+    },
+    setAspectRatio: (state, action: PayloadAction<number>) => {
+      state.aspectRatio = action.payload;
     },
     setParagraph: (state, action: PayloadAction<string>) => {
       state.paragraph = action.payload;
@@ -37,6 +41,7 @@ export const newPostFormSlice = createSlice({
 export const {
   setTitle,
   setImgUrl,
+  setAspectRatio,
   setParagraph,
   setSrcUrl,
   pushParagraph,
@@ -47,6 +52,7 @@ export default newPostFormSlice.reducer;
 type PostForm = {
   title: string;
   imgUrl?: string;
+  aspectRatio?: number;
   srcUrl?: string;
   paragraph?: string;
   text: string[];

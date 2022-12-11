@@ -7,7 +7,6 @@ import Footer from "../Footer";
 import { navLinks } from "../../constasnts";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
-import { logo } from "../../public/assets";
 
 const imgUrl =
   "https://skyarhyz.ru/_next/static/media/telescope-logo.08147157.png";
