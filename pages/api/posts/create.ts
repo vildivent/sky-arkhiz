@@ -18,12 +18,14 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
     await connectMongo();
     console.log("Mongo connected! Create Post request");
 
-    const { title, text, imgUrl, srcUrl } = req.body as PostCreateParams;
+    const { title, text, imgUrl, aspectRatio, srcUrl } =
+      req.body as PostCreateParams;
 
     const newPost: IPost = new Post({
       title,
       text: [...text],
       imgUrl,
+      aspectRatio,
       srcUrl,
     });
 
@@ -51,5 +53,6 @@ export type PostCreateParams = {
   title: string;
   text: string[];
   imgUrl?: string;
+  aspectRatio?: number;
   srcUrl?: string;
 };

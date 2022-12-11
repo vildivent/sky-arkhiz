@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
 import Moment from "react-moment";
@@ -9,6 +9,7 @@ import { IPost } from "../models/Post";
 import { deletePost } from "../redux/features/post/postSlice";
 import useUpdatePost from "../utils/hooks/posts/useUpdatePost";
 import { useAppDispatch } from "../utils/hooks/redux";
+import useDimentions from "../utils/hooks/useDimetions";
 import ModalYesNo from "./ModalYesNo";
 
 const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
@@ -19,6 +20,25 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
   const dispatch = useAppDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const router = useRouter();
+
+  const { windowDimentions } = useDimentions();
+
+  const [imgWidth, setImgWidth] = useState(0);
+  const [imgHeight, setImgHeight] = useState(0);
+
+  console.log(post.aspectRatio);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const multiplier = 0.8;
+      setImgWidth(windowDimentions.width * multiplier);
+      setImgHeight((windowDimentions.width * multiplier) / post.aspectRatio);
+    }, 100);
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [windowDimentions.width, post.aspectRatio]);
 
   const deleteHandler = () => {
     setModalIsOpen(false);
@@ -45,24 +65,26 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
             yesClick={deleteHandler}
             noCkick={() => setModalIsOpen(false)}
           >
-            <h1>Вы действительно хотите удалить это фото?</h1>
+            <h1>Вы действительно хотите удалить эту новость?</h1>
           </ModalYesNo>
         </div>
       )}
-      <h2 className={`font-h1 text-center sm:text-4xl text-2xl`}>
+      <h2 className={`font-h1 text-center sm:text-4xl text-2xl mx-10`}>
         {post.title}
       </h2>
 
-      <div className={`mt-3 flex justify-center max-h-[25rem]`}>
+      <div
+        className={`mt-3 flex justify-center relative bg-[#1e1e1e] min-h-[250px]`}
+      >
         {post.imgUrl && preview ? (
           <img src={post.imgUrl} alt={post.title} className="object-contain" />
         ) : (
           <Image
             src={post.imgUrl}
             alt={post.title}
-            className="object-contain"
-            width={400 / post.aspectRatio}
-            height={400}
+            placeholder="empty"
+            width={imgWidth || 0}
+            height={imgHeight || 0}
           />
         )}
       </div>
