@@ -10,7 +10,7 @@ import {
 
 export const _keywords = "Архыз,Ночные экскурсии,звёзды";
 export const _description = "Ночные экскурсии";
-export const _title = "sky-arkhiz.ru";
+export const _title = "skyarhyz.ru";
 
 export type NavLink = {
   id: string;

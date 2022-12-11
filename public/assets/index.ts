@@ -22,6 +22,7 @@ import telescopeLogo from "./telescope-logo1.svg";
 import telescopeLogoCyan from "./telescope-logo1-cyan.svg";
 import backArrowCyan500 from "./back-arrow-cyan500.svg";
 import backArrowWhite from "./back-arrow-white.svg";
+import Logo from "./telescope-logo.png";
 
 import iconTelegram from "./icon-telegram-app.svg";
 import iconWhatsapp from "./icon-whatsapp.svg";
@@ -61,4 +62,5 @@ export {
   bta360Mobile,
   btaSquare,
   myPhoto,
+  Logo,
 };

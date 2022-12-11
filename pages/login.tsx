@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import type { FormEventHandler } from "react";
 import { ActionButton } from "../components/Buttons";
+import { Logo } from "../public/assets"; //don't delete
 
 const inputStyle =
   "bg-[#1e1e1e] w-full text-gray-200 border border-sky-500 py-1 px-4 outline-none placeholder:text-gray-400 rounded-md";

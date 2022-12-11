@@ -11,6 +11,9 @@ import { mainBg, mobileBg } from "../../public/assets";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
 
+const imgUrl =
+  "https://skyarhyz.ru/_next/static/media/telescope-logo.08147157.png";
+
 export function MainLayout({
   children,
   title,
@@ -29,8 +32,12 @@ export function MainLayout({
         <title>{fullTitle}</title>
         <meta name="keywords" content={keywords || _keywords} />
         <meta name="description" content={description || _description} />
-        <meta name="image" content="/favicon.ico" />
+        <meta name="image" content={imgUrl} />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description || _description} />
+        <meta property="og:image" itemProp="image" content={imgUrl} />
       </Head>
       <Navbar setSidebarIsOpened={setSidebarIsOpened} navLinks={navLinks} />
       <Sidebar
