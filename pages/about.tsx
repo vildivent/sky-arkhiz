@@ -10,9 +10,7 @@ const About = () => {
       title="Обо мне"
       description="Дмитрий Владимирович Гунько 
     Ведущий инженер Специальной Астрофизической Обсерватории Российской
-    Академии Наук (САО РАН)
-    Штатный экскурсовод САО РАН более 20 лет.
-    Провожу ночные экскурсии более 10 лет."
+    Академии Наук (САО РАН)"
     >
       <section className="flex flex-col justify-around sm:flex-row gap-5 md:gap-10 items-center mt-5">
         <div className="relative w-[40vh] h-[60vh] sm:w-[50vh] sm:h-[75vh] max-w-[90vw] shadow-xl">
