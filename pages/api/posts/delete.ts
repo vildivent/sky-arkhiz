@@ -26,7 +26,14 @@ const deletePost = async (req: NextApiRequest, res: NextApiResponse) => {
         .status(404)
         .json({ message: "Новости с таким id не существует" });
 
-    console.log("Post deleted!");
+    console.log("Post deleted from DB!");
+
+    if (post.imgUrl)
+      await fetch(post.imgUrl, {
+        method: "delete",
+      });
+    console.log("Post deleted from storage!");
+
     res.status(200).json({ deletedPost: post, message: "Новость удалена!" });
   } catch (error) {
     console.error(error);

@@ -26,19 +26,17 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
   const [imgWidth, setImgWidth] = useState(0);
   const [imgHeight, setImgHeight] = useState(0);
 
-  console.log(post.aspectRatio);
-
   useEffect(() => {
     const timeout = setTimeout(() => {
-      const multiplier = 0.8;
-      setImgWidth(windowDimentions.width * multiplier);
-      setImgHeight((windowDimentions.width * multiplier) / post.aspectRatio);
+      const multiplier = windowDimentions.width >= 640 ? 0.6 : 0.4;
+      setImgWidth(windowDimentions.height * multiplier * post.aspectRatio);
+      setImgHeight(windowDimentions.height * multiplier);
     }, 100);
 
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [windowDimentions.width, post.aspectRatio]);
+  }, [windowDimentions.height, windowDimentions.width, post.aspectRatio]);
 
   const deleteHandler = () => {
     setModalIsOpen(false);
@@ -73,9 +71,7 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
         {post.title}
       </h2>
 
-      <div
-        className={`mt-3 flex justify-center relative bg-[#1e1e1e] min-h-[250px]`}
-      >
+      <div className={`mt-3 flex justify-center relative min-h-[250px]`}>
         {post.imgUrl && preview ? (
           <img src={post.imgUrl} alt={post.title} className="object-contain" />
         ) : (
@@ -83,6 +79,7 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
             src={post.imgUrl}
             alt={post.title}
             placeholder="empty"
+            className="bg-[#1e1e1e]"
             width={imgWidth || 0}
             height={imgHeight || 0}
           />
@@ -100,6 +97,8 @@ const PostItem = forwardRef<HTMLDivElement, PostItemProps>(function PostItem(
         <a
           href={`${post.srcUrl}`}
           className={`text-cyan-500 hover:text-white ml-3`}
+          target="_blank"
+          rel="noreferrer"
         >
           Источник
         </a>
