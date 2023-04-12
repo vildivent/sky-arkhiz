@@ -19,7 +19,7 @@ const sendEmail = async () => {
 
   transporter.sendMail(
     {
-      from: email,
+      from: "noreply@skyarhyz.ru",
       to: emailTo,
       subject: "Новая заявка",
       text: "На сайт skyarhyz.ru поступила новая заявка! ",
