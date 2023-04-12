@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import RequestItem from "../../components/RequestItem";
 import FilterMenu from "../../components/FilterMenu";
-import { requestStatusTypes } from "../../constasnts";
+import { requestStatusTypes } from "../../constants";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import {
   getAllRequests,
@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { DateObject } from "react-multi-date-picker";
 import Image from "next/image";
 import { loadingGif } from "../../public/assets";
+import { setOutdatedFilter } from "../../redux/features/requestOutdatedFilter/requestOutdatedFilterSlice.js";
 
 const Requests = () => {
   const router = useRouter();
@@ -24,6 +25,10 @@ const Requests = () => {
 
   const dispatch = useDispatch();
   const { requests, loading } = useSelector((state) => state.request);
+
+  const { outdatedFilteredRequests } = useSelector(
+    (state) => state.requestOutdatedFilter
+  );
   const { filteredRequestsByDate } = useSelector(
     (state) => state.requestFilterByDate
   );
@@ -39,13 +44,20 @@ const Requests = () => {
 
   const filterHandler = (status) => {
     try {
+      if (status === "outdated") {
+        dispatch(getRequestsWithStatus({ status: "registered" }));
+        setFilter(status);
+        return;
+      }
+
       if (status !== "all") {
         dispatch(getRequestsWithStatus({ status }));
         setFilter(status);
-      } else {
-        dispatch(getAllRequests());
-        setFilter("all");
+        return;
       }
+
+      dispatch(getAllRequests());
+      setFilter("all");
     } catch (error) {
       console.error(error);
     }
@@ -69,8 +81,17 @@ const Requests = () => {
   }, [initialStatus]);
 
   useEffect(() => {
-    dispatch(setFilterByDate({ requests, filterDate: filterDate?.format() }));
-  }, [dispatch, requests, filterDate]);
+    dispatch(setOutdatedFilter({ requests, status: filter }));
+  }, [dispatch, requests, filter]);
+
+  useEffect(() => {
+    dispatch(
+      setFilterByDate({
+        requests: outdatedFilteredRequests,
+        filterDate: filterDate?.format(),
+      })
+    );
+  }, [dispatch, outdatedFilteredRequests, filterDate]);
 
   useEffect(() => {
     dispatch(

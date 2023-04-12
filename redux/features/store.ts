@@ -7,6 +7,7 @@ import postSlice from "./post/postSlice";
 import requestSlice from "./request/requestSlice";
 import requestFilterByDateSlice from "./requestFilterByDate/requestFilterByDateSlice";
 import requestFilterByGroupSlice from "./requestFilterByGroup/requestFilterByGroupSlice";
+import requestOutdatedFilterSlice from "./requestOutdatedFilter/requestOutdatedFilterSlice";
 import reviewSlice from "./review/reviewSlice";
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
     request: requestSlice,
     requestFilterByDate: requestFilterByDateSlice,
     requestFilterByGroup: requestFilterByGroupSlice,
+    requestOutdatedFilter: requestOutdatedFilterSlice,
     photo: photoSlice,
     newPhotoForm: newPhotoFormSlice,
   },
