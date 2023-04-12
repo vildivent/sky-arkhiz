@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { MainLayout } from "../components/layouts/MainLayout";
-import { callLink, socialLinks } from "../constasnts";
+import { callLink, socialLinks } from "../constants";
 
 const Contacts = () => {
   return (

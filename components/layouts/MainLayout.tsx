@@ -1,12 +1,12 @@
 import { ReactNode, useState } from "react";
 import Head from "next/head";
 import useBackground from "../../utils/hooks/useBackground";
-import { _title, _keywords, _description } from "../../constasnts";
+import { _title, _keywords, _description } from "../../constants";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
 import Background from "../Background";
-import { navLinks } from "../../constasnts";
+import { navLinks } from "../../constants";
 import { mainBg, mobileBg } from "../../public/assets";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";

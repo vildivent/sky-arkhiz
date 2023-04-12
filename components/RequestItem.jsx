@@ -8,7 +8,7 @@ import { CancelButton } from "./Buttons";
 import { InputDate, InputGroupSize } from "./Inputs";
 import ModalYesNo from "./ModalYesNo";
 import FilterMenu from "./FilterMenu";
-import { requestStatusTypes } from "../constasnts";
+import { requestStatusTypes } from "../constants";
 import { DateObject } from "react-multi-date-picker";
 import ExcursionTimePicker from "./ExcursionTimePicker";
 import { compareWithDefaultDate } from "../utils/compareWithDefaultDate";
@@ -238,7 +238,7 @@ const RequestItem = ({ request, settings }) => {
           className={`w-full flex flex-wrap gap-3 justify-center items-center transition-all delay-250 ${
             edit.status ? "pt-2 px-2" : "h-0 opacity-0 pointer-events-none"
           }`}
-          typesArray={requestStatusTypes}
+          typesArray={requestStatusTypes.filter((el) => el.id !== "outdated")}
           filter={request.status}
           filterHandler={setStatusHandler}
           all={false}

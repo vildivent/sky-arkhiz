@@ -1,4 +1,4 @@
-import { camLinks, staticCamLinks } from "../constasnts";
+import { camLinks, staticCamLinks } from "../constants";
 
 const CamPageMenu = ({ liveTV, activeLink, liveTVhandler, menuIsActive }) => {
   const links = liveTV ? camLinks : staticCamLinks;

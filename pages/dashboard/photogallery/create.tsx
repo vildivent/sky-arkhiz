@@ -17,7 +17,7 @@ import {
   reset,
   setAspectRatio,
 } from "../../../redux/features/newPhotoForm/newPhotoFormSlice";
-import { categories } from "../../../constasnts";
+import { categories } from "../../../constants";
 import Label from "../../../components/Label";
 import useImgPreview from "../../../utils/hooks/useImgPreview";
 import axios from "axios";

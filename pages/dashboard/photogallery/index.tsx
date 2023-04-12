@@ -8,7 +8,7 @@ import { loadingGif } from "../../../public/assets";
 import usePhotosFetchAndSearch from "../../../utils/hooks/photos/usePhotosFetchAndSearch";
 import useDimentions from "../../../utils/hooks/useDimetions";
 import PhotoColumn from "../../../components/Photos/PhotoColumn";
-import { categories } from "../../../constasnts";
+import { categories } from "../../../constants";
 
 const Photogallery = () => {
   const [category, setCategory] = useState(categories[0]);

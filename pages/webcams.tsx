@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { MainLayout } from "../components/layouts/MainLayout";
 import CamPageMenu from "../components/CamPageMenu";
-import { camLinks, staticCamLinks } from "../constasnts";
+import { camLinks, staticCamLinks } from "../constants";
 import { loadingGif, transparentPlaceholder } from "../public/assets";
 import Image from "next/image";
 import CamMenuSwitchButton from "../components/Buttons/CamMenuSwitchButton";

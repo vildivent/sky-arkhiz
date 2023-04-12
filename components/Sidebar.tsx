@@ -1,7 +1,7 @@
 import SidebarSubLinks from "./SidebarLinks";
 import { useState } from "react";
 import SidebarCloseButton from "./Buttons/SidebarCloseButton";
-import { NavLinks } from "../constasnts";
+import { NavLinks } from "../constants";
 
 const Sidebar = ({
   sidebarIsOpened,

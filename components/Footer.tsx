@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { style } from "../styles/style";
 import Logo from "./Logo";
-import { socialLinks, callLink } from "../constasnts";
+import { socialLinks, callLink } from "../constants";
 import { ActionButton } from "./Buttons";
 import Link from "next/link";
 

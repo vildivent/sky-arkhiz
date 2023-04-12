@@ -312,6 +312,11 @@ export const requestStatusTypes = [
     title: "Завершённая",
     titlePlural: "Завершённые",
   },
+  {
+    id: "outdated",
+    title: "Просроченная",
+    titlePlural: "Просроченные",
+  },
 ];
 
 export const reviewStatusTypes = [

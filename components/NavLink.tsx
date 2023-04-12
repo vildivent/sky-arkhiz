@@ -1,4 +1,4 @@
-import { NavLink } from "../constasnts";
+import { NavLink } from "../constants";
 import ActiveLink from "./ActiveLink";
 
 const NavLink = ({ children, transparentStyle = false }: NavLinkProps) => {

@@ -4,7 +4,7 @@ import { MainLayout } from "../components/layouts/MainLayout";
 import { loadingGif } from "../public/assets";
 import usePhotosFetchAndSearch from "../utils/hooks/photos/usePhotosFetchAndSearch";
 import PhotoColumn from "../components/Photos/PhotoColumn";
-import { categories } from "../constasnts";
+import { categories } from "../constants";
 import { ActionButton } from "../components/Buttons";
 import useDimentions from "../utils/hooks/useDimetions";
 

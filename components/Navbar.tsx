@@ -1,7 +1,7 @@
 import { IoMenu } from "react-icons/io5";
 import Logo from "./Logo";
 import useNavbarOnScroll from "../utils/hooks/useNavbarOnScroll";
-import { NavLinks } from "../constasnts";
+import { NavLinks } from "../constants";
 import NavLink from "./NavLink";
 
 const Navbar = ({ setSidebarIsOpened, navLinks }: NavbarProps) => {

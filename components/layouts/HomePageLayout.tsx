@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Head from "next/head";
-import { _title, _keywords, _description } from "../../constasnts";
+import { _title, _keywords, _description } from "../../constants";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import Footer from "../Footer";
-import { navLinks } from "../../constasnts";
+import { navLinks } from "../../constants";
 import ScrollToTop from "react-scroll-to-top";
 import { IoIosArrowUp } from "react-icons/io";
 

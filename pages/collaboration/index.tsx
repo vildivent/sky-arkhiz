@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MainLayout } from "../../components/layouts/MainLayout";
-import { callLink } from "../../constasnts";
+import { callLink } from "../../constants";
 
 const Collaboration = () => {
   return (

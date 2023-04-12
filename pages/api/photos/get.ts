@@ -1,6 +1,6 @@
 import connectMongo from "../../../utils/connectMongo";
 import Photo from "../../../models/Photo";
-import { categories } from "../../../constasnts";
+import { categories } from "../../../constants";
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { FilterQuery } from "mongoose";
 
